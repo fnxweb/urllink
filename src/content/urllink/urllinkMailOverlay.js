@@ -24,6 +24,10 @@ var urllinkAlternateMailMenuItems = new Array(
     "urllink-mail-open-link-as-popup" );
 var gInThunderbird = false;
 
+var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+
+
 // Every time a new window is made, urllinkMailInit will be called
 window.addEventListener("load",urllinkMailInit,false);
 
@@ -37,6 +41,15 @@ function urllinkMailInit()
         document.getElementById("messagePaneContext").addEventListener("popupshowing",urllinkMailContext,false);
 }
 
+
+
+// getReferrer() has gone away in trunk builds and
+// sometimes breaks in 1.0.x builds, so don't use it
+// anymore
+function getReferrer()
+{
+    return ioService.newURI(document.location, null, null);
+}
 
 
 // raw version
@@ -56,11 +69,7 @@ function rawOpenNewWindowWith(url)
         if (wintype == "navigator:browser")
             charsetArg = "charset=" + window._content.document.characterSet;
 
-        // getReferrer() has gone away in trunk builds and
-        // sometimes breaks in 1.0.x builds, so don't use it
-        // anymore
-        var referrer = null;
-        //var referrer = getReferrer(document);
+        var referrer = getReferrer();
         window.openDialog(getBrowserURL(), "_blank", "chrome,all,dialog=no", url, charsetArg, referrer);
     }
     else

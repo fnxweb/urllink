@@ -7,12 +7,13 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>1.06.5</em:version>
+        <em:version>1.06.6</em:version>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
         <em:contributor>[ contact: mozilla@fnxweb.com ]</em:contributor>
         <em:contributor>Olivier Grange-Labat - French translations</em:contributor>
         <em:contributor>"MatrixIsAllOver" - Italian translations</em:contributor>
+        <em:contributor>Martin Hoppen - German translations</em:contributor>
         <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <!-- em:aboutURL>chrome://urllink/content/about.xul</em:aboutURL -->
@@ -24,6 +25,7 @@
                 <em:locale>locale/en-US/urllink/</em:locale>
                 <em:locale>locale/fr-FR/urllink/</em:locale>
                 <em:locale>locale/it-IT/urllink/</em:locale>
+                <em:locale>locale/de-DE/urllink/</em:locale>
             </Description>
         </em:file>
 
@@ -46,13 +48,13 @@
         </em:targetApplication>
 
         <!-- Seamonkey -->
-        <em:targetApplication>
-            <Description>
-                <em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
-                <em:minVersion>1.4</em:minVersion>
-                <em:maxVersion>1.8.0.*</em:maxVersion>
-            </Description>
-        </em:targetApplication>
+        <!-- <em:targetApplication> -->
+        <!--     <Description> -->
+        <!--         <em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id> -->
+        <!--         <em:minVersion>1.4</em:minVersion> -->
+        <!--         <em:maxVersion>1.8.0.*</em:maxVersion> -->
+        <!--     </Description> -->
+        <!-- </em:targetApplication> -->
 
     </Description>
 

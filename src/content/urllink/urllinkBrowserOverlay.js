@@ -29,6 +29,9 @@ var urllinkAlternateBrowserMenuItems = new Array(
     "urllink-browser-open-link-as",
     "urllink-browser-open-link-as-popup" );
 
+var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+
 
 // Every time a new browser window is made, urllinkBrowserInit will be called
 window.addEventListener("load",urllinkBrowserInit,false);
@@ -183,6 +186,15 @@ function fixURL(url)
 }
 
 
+// getReferrer() has gone away in trunk builds and
+// sometimes breaks in 1.0.x builds, so don't use it
+// anymore
+function getReferrer()
+{
+    return ioService.newURI(document.location, null, null);
+}
+
+
 function urllinkBrowserOpenLink(typ,prefix,suffix)
 {
     var browser = getBrowser();
@@ -206,12 +218,18 @@ function urllinkBrowserOpenLink(typ,prefix,suffix)
     }
     lnk = fixURL( prefix + unmangleURL( lnk ) + suffix );
 
-    // getReferrer() has gone away in trunk builds and
-    // sometimes breaks in 1.0.x builds, so don't use it
-    // anymore
-    var referrer = null;
+    var referrer = getReferrer();
     if (typ == 1)
-        browser.addTab( lnk, referrer );
+    {
+        // Tab
+        var loadInBackground = prefManager.getBoolPref("browser.tabs.loadInBackground");
+        var tab = browser.addTab( lnk, referrer );
+        if (!loadInBackground)
+            browser.selectedTab = tab;
+    }
     else
+    {
+        // Window
         window.loadURI( lnk, referrer );
+    }
 }

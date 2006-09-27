@@ -1,5 +1,10 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 
+1.06.6 : 29-jan-06
+- German translations from Martin Hoppen
+- Use new-style 'referer' code (got changed in FF/TB 1.5)
+- Try to honour 'open tabs in background' Firefox pref.
+
 1.06.5 : 13-nov-05
 - .4 was borked (undid .2 fix)
 
