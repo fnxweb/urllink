@@ -70,7 +70,7 @@
                     oncommand="urllinkMailOpenLink('http://www.','.net')"/>
                 <menuitem id="urllink-mail-open-link-as-ftp"
                     label="&popup-urllink-open-as-ftp.label;"
-                    oncommand="urllinkMailOpenLink(ftp://ftp.','')"/>
+                    oncommand="urllinkMailOpenLink('ftp://ftp.','')"/>
             </menupopup>
         </menu>
 

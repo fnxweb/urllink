@@ -73,7 +73,7 @@
                     oncommand="urllinkBrowserOpenLink(1,'http://www.','.net')"/>
                 <menuitem id="urllink-browser-open-tab-as-ftp"
                     label="&popup-urllink-open-as-ftp.label;"
-                    oncommand="urllinkBrowserOpenLink(1,ftp://ftp.','')"/>
+                    oncommand="urllinkBrowserOpenLink(1,'ftp://ftp.','')"/>
             </menupopup>
         </menu>
 
@@ -97,7 +97,7 @@
                     oncommand="urllinkBrowserOpenLink(0,'http://www.','.net')"/>
                 <menuitem id="urllink-browser-open-link-as-ftp"
                     label="&popup-urllink-open-as-ftp.label;"
-                    oncommand="urllinkBrowserOpenLink(0,ftp://ftp.','')"/>
+                    oncommand="urllinkBrowserOpenLink(0,'ftp://ftp.','')"/>
             </menupopup>
         </menu>
 

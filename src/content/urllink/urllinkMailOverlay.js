@@ -28,7 +28,7 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 
 
-// Every time a new window is made, urllinkMailInit will be called
+/* Every time a new window is made, urllinkMailInit will be called */
 window.addEventListener("load",urllinkMailInit,false);
 
 
@@ -43,16 +43,14 @@ function urllinkMailInit()
 
 
 
-// getReferrer() has gone away in trunk builds and
-// sometimes breaks in 1.0.x builds, so don't use it
-// anymore
+/* getReferrer() has gone away in trunk builds and sometimes breaks in 1.0.x builds, so don't use it anymore */
 function getReferrer()
 {
     return ioService.newURI(document.location, null, null);
 }
 
 
-// raw version
+/* raw version */
 function rawOpenNewWindowWith(url)
 {
     if (!gInThunderbird)
@@ -61,9 +59,10 @@ function rawOpenNewWindowWith(url)
         if (url.search(/^file:/) == -1)
             urlSecurityCheck(url, document);
 
-        // if and only if the current window is a browser window and it has a document with a character
-        // set, then extract the current charset menu setting from the current document and use it to
-        // initialize the new browser window...
+        /* if and only if the current window is a browser window and it has a document with a character
+         * set, then extract the current charset menu setting from the current document and use it to
+         * initialize the new browser window...
+         */
         var charsetArg = null;
         var wintype = document.firstChild.getAttribute('windowtype');
         if (wintype == "navigator:browser")
@@ -82,42 +81,44 @@ function rawOpenNewWindowWith(url)
 }
 
 
-// Raw version of comm/nsContextMenu.js:searchSelected
-// Now using mail/base/content/nsContextMenu.js
+/* Raw version of comm/nsContextMenu.js:searchSelected
+ * Now using mail/base/content/nsContextMenu.js
+ */
 function rawSearchSelected(context)
 {
     var focusedWindow = document.commandDispatcher.focusedWindow;
-    // var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow);
+    /* var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow); */
     var searchStr = focusedWindow.getSelection();
     searchStr = searchStr.toString();
     searchStr = searchStr.replace( /^\s+/, "" );
-    searchStr = searchStr.replace(/((\n|\r)[> ]*)+/g, ""); // include removing standard quote marks
+    searchStr = searchStr.replace(/((\n|\r)[> ]*)+/g, ""); /* include removing standard quote marks */
     searchStr = searchStr.replace(/\t/g, " ");
     searchStr = searchStr.replace(/\s+$/,"");
     return searchStr;
 }
 
 
-// strip bad leading and trailing characters
-// assume no leading/terminating white space (searchSelected() removes this)
-// as a work-around of a seeming bug in Moz. which gives us " " in lieu of
-// <CR> from some emails, assume " " is never valid in URLs and cut it out,
-// only 'fixing' them to %20 if the URL seems to be a file.
-function unmangleURL(url)
+/* strip bad leading and trailing characters
+ * assume no leading/terminating white space (searchSelected() removes this)
+ * as a work-around of a seeming bug in Moz. which gives us " " in lieu of
+ * <CR> from some emails, assume " " is never valid in URLs and cut it out,
+ * only 'fixing' them to %20 if the URL seems to be a file.
+ */
+function unmangleURL(url,wasLink)
 {
-    // Remove OutLook delims. now
+    /* Remove OutLook delims. now */
     url = url.replace(/^\<(.*)\>$/, "$1");
 
-    // NT remote spec.
+    /* NT remote spec. */
     url = url.replace(/^\\\\/, "file://///");
-    // Yucky drive spec.
+    /* Yucky drive spec. */
     url = url.replace(/^([A-Z]:)\\/, "file:///$1/");
 
-    // strip bad leading characters
+    /* strip bad leading characters */
     url = url.replace(/^[^a-zA-Z]+/, "");
-    // strip bad ending characters
+    /* strip bad ending characters */
     url = url.replace(/[\.,\'\"\)\?!>\]]+$/, "");
-    // Convert inner spaces
+    /* Convert inner spaces */
     if (url.search(/^file:/) == 0)
     {
         url = url.replace(/ /g, "%20");
@@ -127,11 +128,13 @@ function unmangleURL(url)
         url = url.replace(/ /g, "");
     }
 
-    // Convert [remaining] Doze dir seps.
+    /* Convert [remaining] Doze dir seps. */
     url = url.replace(/\\/g, "/");
 
-    // If it's a mail link, strip off up to the '@'
-    if (url.search(/^mailto:/) == 0)
+    /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
+     * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
+     */
+    if (wasLink  &&  url.search(/^mailto:/) == 0)
         url = url.replace(/^mailto:.*@/,"");
 
     return url;
@@ -147,22 +150,24 @@ function urllinkMailContext()
         isTextOrUrlSelection = ( gContextMenu.isTextSelected || gContextMenu.onLink );
         if (isTextOrUrlSelection)
         {
-            // See if selection looks like a URL
-            // Always use selection if it exists
+            /* See if selection looks like a URL
+             * Always use selection if it exists
+             */
             var sel;
             if (gContextMenu.isTextSelected)
             {
                 sel = rawSearchSelected(gContextMenu);
-                sel = unmangleURL(sel);
+                sel = unmangleURL(sel,false);
             }
             else if (gContextMenu.onLink)
             {
+                wasLink = true;
                 sel = gContextMenu.link.href;
-                // Only do mailto: links
+                /* Only do mailto: links */
                 if (sel.search(/^mailto:/) != 0)
                     isTextOrUrlSelection = false;
             }
-            if (isTextOrUrlSelection && sel.search(/^(\w+:\/\/|www\.|ftp\.)/) == 0)
+            if (isTextOrUrlSelection && sel.search(/^(mailto:|\w+:\/\/|www\.|ftp\.|.*@)/) == 0)
                 isURL = true;
         }
     }
@@ -200,12 +205,16 @@ function urllinkMailContext()
 
 function fixURL(url)
 {
-    // make sure it has some sort of protocol
-    if (url.search(/^\w+:\/\//) == -1)
+    /* make sure it has some sort of protocol */
+    if (url.search(/^mailto:/) == -1  &&  url.search(/^\w+:\/\//) == -1)
     {
         if (url.search(/^ftp/) == 0)
         {
             url = "ftp://" + url;
+        }
+        else if (url.search(/@/) >= 0)
+        {
+            url = "mailto:" + url;
         }
         else
         {
@@ -218,6 +227,7 @@ function fixURL(url)
 
 function urllinkMailOpenLink(prefix,suffix)
 {
+    var wasLink = false;
     var selURL;
     if (gContextMenu.isTextSelected)
     {
@@ -225,8 +235,9 @@ function urllinkMailOpenLink(prefix,suffix)
     }
     else if (gContextMenu.onLink)
     {
+        wasLink = true;
         selURL = gContextMenu.link.href;
     }
-    selURL = unmangleURL(selURL);
+    selURL = unmangleURL(selURL,wasLink);
     rawOpenNewWindowWith( fixURL( prefix + selURL + suffix ) );
 }

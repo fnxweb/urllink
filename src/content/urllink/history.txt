@@ -1,5 +1,10 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 
+1.06.7 : 31-jan-06
+- Correctly strip <cr> from browser selections
+  (workaround toString() bug)
+- Fix 'open with ftp.'
+
 1.06.6 : 29-jan-06
 - German translations from Martin Hoppen
 - Use new-style 'referer' code (got changed in FF/TB 1.5)
@@ -21,7 +26,8 @@ URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 - Fix rawSearchSelected for TB 1.0.6
 
 1.06 : 09-jun-05
-- Enhance javascript parsing, and fix priorities of selection, erm, selection
+- Enhance javascript parsing, and fix priorities of
+  selection, erm, selection
 
 1.05.2 : 12-mar-05
 - IT translations ("MatrixIsAllOver")
@@ -35,7 +41,8 @@ URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 
 1.04 : 02-feb-05
 - Fix glitch with textbox selections
-- Always allow selections to be followed (with possible amendments)
+- Always allow selections to be followed
+  (with possible amendments)
 - Cope with mailto: links
 
 1.03.1 : 03-jan-05
@@ -45,26 +52,31 @@ URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 - Change mechanism for greying out menu options
 
 1.02 : 22-nov-04
-- Add profile installation & Firefox/Thunderbird extension compatibility
+- Add profile installation & Firefox/Thunderbird
+  extension compatibility
 
 1.01 : 20-jan-04
-- Include correct (latest) urllink.jar (!) - tabbed opening was broken
+- Include correct (latest) urllink.jar (!)
+  (tabbed opening was broken)
 
 1.00 : 06-may-03
 - Rename to URL link, incorporating textlink
 
 0.06 : 12-mar-03
-- only convert <space> to "%20" for file: URLs, assume others should be "" (Moz bug converts <CR>s to <space>?)
+- only convert <space> to "%20" for file: URLs, assume others
+  should be "" (Moz bug converts <CR>s to <space>?)
 
 0.05 : 02-jan-03
 - fix conversion of driver-letter link to file: URL (need colon)
 
 0.04 : 29-nov-02
 - re-insert seperator
-- fix install script to allow continuous installs (handle err==999)
+- fix install script to allow continuous installs
+  (handle err==999)
 
 0.03 : 27-nov-02
-- make to work with local NT file specs. ("\\server\dir\file")
+- make to work with local NT file specs.
+  ("\\server\dir\file")
 
 0.02 : 27-nov-02
 - seems to be working OK with normal URLs

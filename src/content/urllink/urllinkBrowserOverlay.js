@@ -18,7 +18,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-// gContextMenu.searchSelected() <- gets string
 var urllinkBrowserMenuSep = "urllink-browser-sep";
 var urllinkBrowserMenuItems = new Array(
     "urllink-browser-open-tab",
@@ -33,20 +32,21 @@ var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getSe
 var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 
 
-// Every time a new browser window is made, urllinkBrowserInit will be called
+/* Every time a new browser window is made, urllinkBrowserInit will be called */
 window.addEventListener("load",urllinkBrowserInit,false);
 
 
 function urllinkBrowserInit()
 {
-    if (document.getElementById("contentAreaContextMenu"))
-        document.getElementById("contentAreaContextMenu").addEventListener("popupshowing",urllinkBrowserContext,false);
+    var contentAreaContextMenu = document.getElementById("contentAreaContextMenu");
+    if (contentAreaContextMenu)
+        contentAreaContextMenu.addEventListener("popupshowing",urllinkBrowserContext,false);
 }
 
 
 function urllinkGetTextBoxText(field)
 {
-    /* field seems to sometimes a div under the actual input object, so check parent */
+    /* field seems to sometimes be a div under the actual input object, so check parent */
     var tb;
 
     if (field.value)
@@ -63,6 +63,27 @@ function urllinkGetTextBoxText(field)
 }
 
 
+function getBestSelection(context)
+{
+    var focusedWindow = document.commandDispatcher.focusedWindow;
+    var searchStr;
+    if (focusedWindow)
+    {
+        searchStr = focusedWindow.getSelection();
+        searchStr = searchStr.toString();
+    }
+    else
+        searchStr = context.searchSelected();
+
+    searchStr = searchStr.replace(/^\s+/, "");
+    searchStr = searchStr.replace(/(\n|\r)*/g, "");
+    searchStr = searchStr.replace(/\s+$/, "");
+
+    return searchStr;
+}
+
+
+/* Callback upon context-menu trigger */
 function urllinkBrowserContext()
 {
     var isLinkOrUrlSelection = false, isURL = false;
@@ -72,12 +93,13 @@ function urllinkBrowserContext()
         isLinkOrUrlSelection = ( gContextMenu.isTextSelected || gContextMenu.onTextInput || gContextMenu.onLink );
         if (isLinkOrUrlSelection)
         {
-            // See if selection looks like a URL
-            // Always use selection if it exists
+            var wasLink = false;
+            /* See if selection looks like a URL */
+            /* Always use selection if it exists */
             var sel = '';
             if (gContextMenu.isTextSelected)
             {
-                sel = gContextMenu.searchSelected();
+                sel = getBestSelection(gContextMenu);
             }
             else if (gContextMenu.onTextInput)
             {
@@ -85,20 +107,21 @@ function urllinkBrowserContext()
             }
             else if (gContextMenu.onLink)
             {
+                wasLink = true;
                 sel = gContextMenu.link.href;
-                // Only do mailto: links and javascript: which have string args
+                /* Only do mailto: links and javascript: which have string args */
                 if (sel.search(/^mailto:/) == 0  ||  sel.search(/^javascript:.*\(.*['"].*['"]/) == 0)
                     isURL = true;
                 else
                     isLinkOrUrlSelection = false;
             }
-            sel = unmangleURL(sel);
-            if (isLinkOrUrlSelection && sel.search(/^(\w+:\/\/|www\.|ftp\.)/) == 0)
+            sel = unmangleURL(sel,wasLink);
+            if (isLinkOrUrlSelection && sel.search(/^(mailto:|\w+:\/\/|www\.|ftp\.|.*@)/) == 0)
                 isURL = true;
         }
         else if (gContextMenu.onSaveableLink)
         {
-            // Right-click on a link
+            /* Right-click on a link */
             isLinkOrUrlSelection = true;
             isURL = true;
         }
@@ -135,23 +158,25 @@ function urllinkBrowserContext()
 }
 
 
-// strip bad leading and trailing characters
-function unmangleURL(url)
+/* strip bad leading and trailing characters */
+function unmangleURL(url,wasLink)
 {
-    // strip bad leading characters
+    /* strip bad leading characters */
     url = url.replace(/^[^a-zA-Z]+/, "");
 
-    // If it's a mail link, strip off up to the '@'
-    if (url.search(/^mailto:/) == 0)
+    /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
+     * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
+     */
+    if (wasLink  &&  url.search(/^mailto:/) == 0)
         url = url.replace(/^mailto:.*@/,"");
 
-    // Remove any JavaScript waffle
+    /* Remove any JavaScript waffle */
     if (url.search(/^javascript:/) == 0)
     {
-        // Get out first string arg.
+        /* Get out first string arg. */
         url = url.replace(/^javascript:.*?\(.*?['"](.*?)['"].*/, "$1");
 
-        // Full URL?  If not, prefix current site
+        /* Full URL?  If not, prefix current site */
         if (url.search(/^\w+:\/\//) == -1)
         {
             var thispage = window.content.location.href;
@@ -169,44 +194,57 @@ function unmangleURL(url)
         }
     }
 
-    // strip bad ending characters
+    /* strip bad ending characters */
     url = url.replace(/[\.,\'\"\)\?!>\]]+$/, "");
 
     return url;
 }
 
 
+/* make sure it has some sort of protocol */
 function fixURL(url)
 {
-    // make sure it has some sort of protocol
-    if (url.search(/^\w+:\/\//) == -1)
-        url = "http://" + url;
+    if (url.search(/^mailto:/) == -1  &&  url.search(/^\w+:\/\//) == -1)
+    {
+        if (url.search(/^ftp/) == 0)
+        {
+            url = "ftp://" + url;
+        }
+        else if (url.search(/@/) >= 0)
+        {
+            url = "mailto:" + url;
+        }
+        else
+        {
+            url = "http://" + url;
+        }
+    }
 
     return url;
 }
 
 
-// getReferrer() has gone away in trunk builds and
-// sometimes breaks in 1.0.x builds, so don't use it
-// anymore
+/* getReferrer() has gone away in trunk builds and sometimes breaks in 1.0.x builds, so don't use it anymore */
 function getReferrer()
 {
     return ioService.newURI(document.location, null, null);
 }
 
 
+/* Callback from XUL */
 function urllinkBrowserOpenLink(typ,prefix,suffix)
 {
     var browser = getBrowser();
     var lnk;
+    var wasLink = false;
 
-    // if (gContextMenu.onSaveableLink)
-    // {
-    //     lnk = gContextMenu.link.href;
-    // }
+    /* if (gContextMenu.onSaveableLink) */
+    /* { */
+    /*     lnk = gContextMenu.link.href; */
+    /* } */
     if (gContextMenu.isTextSelected)
     {
-        lnk = gContextMenu.searchSelected();
+        lnk = getBestSelection(gContextMenu);
     }
     else if (gContextMenu.onTextInput)
     {
@@ -215,13 +253,14 @@ function urllinkBrowserOpenLink(typ,prefix,suffix)
     else if (gContextMenu.onLink)
     {
         lnk = gContextMenu.link.href;
+        wasLink = true;
     }
-    lnk = fixURL( prefix + unmangleURL( lnk ) + suffix );
+    lnk = fixURL( prefix + unmangleURL( lnk, wasLink ) + suffix );
 
     var referrer = getReferrer();
     if (typ == 1)
     {
-        // Tab
+        /* Tab */
         var loadInBackground = prefManager.getBoolPref("browser.tabs.loadInBackground");
         var tab = browser.addTab( lnk, referrer );
         if (!loadInBackground)
@@ -229,7 +268,7 @@ function urllinkBrowserOpenLink(typ,prefix,suffix)
     }
     else
     {
-        // Window
+        /* Window */
         window.loadURI( lnk, referrer );
     }
 }
