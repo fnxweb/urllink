@@ -76,7 +76,7 @@ function getBestSelection(context)
         searchStr = context.searchSelected();
 
     searchStr = searchStr.replace(/^\s+/, "");
-    searchStr = searchStr.replace(/(\n|\r)*/g, "");
+    searchStr = searchStr.replace(/((\n|\r)[> ]*)+/g, ""); /* include removing standard quote marks */
     searchStr = searchStr.replace(/\s+$/, "");
 
     return searchStr;

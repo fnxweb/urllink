@@ -125,7 +125,12 @@ function unmangleURL(url,wasLink)
     }
     else
     {
-        url = url.replace(/ /g, "");
+        /* Temp: workaround mozilla toString() bug that replaces <CR><LF> with <space>.
+         *       https://bugzilla.mozilla.org/show_bug.cgi?id=183496
+         *       Breaks links that have legitimate (!?) '>'s in, but there will be fewer of these than those we fix..
+         */
+        url = url.replace(/[ >]/g, "");
+        /* url = url.replace(/ /g, ""); */
     }
 
     /* Convert [remaining] Doze dir seps. */
