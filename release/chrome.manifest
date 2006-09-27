@@ -1,0 +1,11 @@
+content urllink jar:chrome/urllink.jar!/content/
+overlay chrome://browser/content/browser.xul chrome://urllink/content/urllinkBrowserOverlay.xul
+overlay chrome://messenger/content/mailWindowOverlay.xul chrome://urllink/content/urllinkMailOverlay.xul
+
+locale urllink en-US jar:chrome/urllink.jar!/locale/en-US/
+locale urllink de-DE jar:chrome/urllink.jar!/locale/en-US/
+locale urllink fr-FR jar:chrome/urllink.jar!/locale/en-US/
+locale urllink hu-HU jar:chrome/urllink.jar!/locale/en-US/
+locale urllink it-IT jar:chrome/urllink.jar!/locale/en-US/
+
+# skin urllink classic/1.0 skin/
