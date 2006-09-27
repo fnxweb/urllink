@@ -1,0 +1,2 @@
+zip -Tv zipfile         test
+zip -vrX9 zipfile *     create

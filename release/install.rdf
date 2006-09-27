@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+    <Description about="urn:mozilla:install-manifest">
+
+        <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
+        <em:name>URL Link</em:name>
+        <em:version>1.06</em:version>
+        <em:description>Allow navigation to broken/unlinked URLs</em:description>
+        <em:creator>Neil Bird</em:creator>
+        <em:contributor>[ contact: mozilla@fnxweb.com ]</em:contributor>
+        <em:contributor>Olivier Grange-Labat - French translations</em:contributor>
+        <em:contributor>"MatrixIsAllOver" - Italian translations</em:contributor>
+        <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
+        <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
+        <!-- em:aboutURL>chrome://urllink/content/about.xul</em:aboutURL -->
+        <em:updateURL>http://www.fnxweb.com/software/mozilla-update.rdf</em:updateURL>
+
+        <em:file>
+            <Description about="urn:mozilla:extension:file:urllink.jar">
+                <em:package>content/urllink/</em:package>
+                <em:locale>locale/en-US/urllink/</em:locale>
+                <em:locale>locale/fr-FR/urllink/</em:locale>
+                <em:locale>locale/it-IT/urllink/</em:locale>
+            </Description>
+        </em:file>
+
+        <!-- Firefox -->
+        <em:targetApplication>
+            <Description>
+                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+                <em:minVersion>0.9</em:minVersion>
+                <em:maxVersion>1.0</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+
+        <!-- Thunderbird -->
+        <em:targetApplication>
+          <Description>
+            <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
+            <em:minVersion>0.9</em:minVersion>
+            <em:maxVersion>1.0</em:maxVersion>
+          </Description>
+        </em:targetApplication>
+
+        <!-- Seamonkey -->
+        <em:targetApplication>
+          <Description>
+            <em:id>{86c18b42-e466-45a9-ae7a-9b95ba6f5640}</em:id>
+            <em:minVersion>1.4</em:minVersion>
+            <em:maxVersion>1.7</em:maxVersion>
+          </Description>
+        </em:targetApplication>
+
+    </Description>
+
+</RDF>

@@ -1,0 +1,10 @@
+<!ENTITY popup-urllink-open-tab.label "Apri URL selezionato in una nuova scheda">
+<!ENTITY popup-urllink-open-link.label "Apri URL selezionato">
+<!ENTITY popup-urllink-open-tab-as.label "Apri selezione in una nuova scheda">
+<!ENTITY popup-urllink-open-link-as.label "Apri selezione">
+<!ENTITY popup-urllink-open-as-is.label "Inalterata">
+<!ENTITY popup-urllink-open-as-www.label "Con 'www.'">
+<!ENTITY popup-urllink-open-as-www-com.label "Con 'www.*.com'">
+<!ENTITY popup-urllink-open-as-www-org.label "Con 'www.*.org'">
+<!ENTITY popup-urllink-open-as-www-net.label "Con 'www.*.net'">
+<!ENTITY popup-urllink-open-as-ftp.label "Con 'ftp.'">
