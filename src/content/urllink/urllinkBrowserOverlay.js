@@ -206,7 +206,10 @@ function urllinkBrowserOpenLink(typ,prefix,suffix)
     }
     lnk = fixURL( prefix + unmangleURL( lnk ) + suffix );
 
-    var referrer = document.referrer;
+    // getReferrer() has gone away in trunk builds and
+    // sometimes breaks in 1.0.x builds, so don't use it
+    // anymore
+    var referrer = null;
     if (typ == 1)
         browser.addTab( lnk, referrer );
     else

@@ -56,7 +56,11 @@ function rawOpenNewWindowWith(url)
         if (wintype == "navigator:browser")
             charsetArg = "charset=" + window._content.document.characterSet;
 
-        var referrer = document.referrer;
+        // getReferrer() has gone away in trunk builds and
+        // sometimes breaks in 1.0.x builds, so don't use it
+        // anymore
+        var referrer = null;
+        //var referrer = getReferrer(document);
         window.openDialog(getBrowserURL(), "_blank", "chrome,all,dialog=no", url, charsetArg, referrer);
     }
     else
