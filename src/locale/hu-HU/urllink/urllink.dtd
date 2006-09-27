@@ -1,0 +1,10 @@
+<!ENTITY popup-urllink-open-tab.label "Kiválasztott URL megnyitása új lapon">
+<!ENTITY popup-urllink-open-link.label "Kiválasztott URL megnyitása">
+<!ENTITY popup-urllink-open-tab-as.label "Kijelölt rész megnyitása új lapon">
+<!ENTITY popup-urllink-open-link-as.label "Kijelölt rész megnyitása">
+<!ENTITY popup-urllink-open-as-is.label "Változatlanul">
+<!ENTITY popup-urllink-open-as-www.label "'www.' kiegészítéssel">
+<!ENTITY popup-urllink-open-as-www-com.label "'www.*.com' kiegészítéssel">
+<!ENTITY popup-urllink-open-as-www-org.label "'www.*.org' kiegészítéssel">
+<!ENTITY popup-urllink-open-as-www-net.label "'www.*.net' kiegészítéssel">
+<!ENTITY popup-urllink-open-as-ftp.label "'ftp.' kiegészítéssel">
