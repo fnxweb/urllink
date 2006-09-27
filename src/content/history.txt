@@ -1,5 +1,19 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 
+1.07.0 : 27-sep-06
+- Firefox 2 compatability
+- Some minor internal reorganisation
+
+1.06.9 : 20-apr-06
+- Added Hungarian translations (Szarka Peter)
+
+1.06.8 : 05-apr-06
+- Add partial workaround for Mozilla bug 183496;
+  this allows you to 'follow' broken links that have also been quoted in emails:
+    > > http://www.broken
+    > > link.com/
+  This will now also work in Firefox, for what it's worth.
+
 1.06.7 : 31-jan-06
 - Correctly strip <cr> from browser selections
   (workaround toString() bug)
