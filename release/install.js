@@ -1,7 +1,7 @@
 const APP_DISPLAY_NAME = "URL Link Handler";
 const APP_NAME = "urllink";
 const APP_PACKAGE = "/FNX/urllink";
-const APP_VERSION = "1.06";
+const APP_VERSION = "1.06.1";
 
 const APP_JAR_FILE = "urllink.jar";
 const APP_CONTENT_FOLDER = "content/urllink/";

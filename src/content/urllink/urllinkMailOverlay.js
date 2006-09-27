@@ -70,10 +70,12 @@ function rawOpenNewWindowWith(url)
 
 
 // Raw version of comm/nsContextMenu.js:searchSelected
+// Now using mail/base/content/nsContextMenu.js
 function rawSearchSelected(context)
 {
     var focusedWindow = document.commandDispatcher.focusedWindow;
-    var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow);
+    // var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow);
+    var searchStr = focusedWindow.getSelection();
     searchStr = searchStr.toString();
     searchStr = searchStr.replace( /^\s+/, "" );
     searchStr = searchStr.replace(/(\n|\r)+/g, "");
