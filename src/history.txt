@@ -1,13 +1,19 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 
-1.06.2 : 12-sep-05
-- Fix getReferrer(document) now missing in trunk
+1.06.4 : 13-nov-05
+- Deal with '>'s in quoted broken links
+
+1.06.3 : 12-nov-05
+- No-change up-issue to register 1.5 compat.
+
+1.06.2 : 29-aug-05
+- Fix document.getReferrer() no missing in trunk
 
 1.06.1 : 26-jul-05
 - Fix rawSearchSelected for TB 1.0.6
 
 1.06 : 09-jun-05
-- Enhance javascript parsing, and fix priorities of selection, erm, selection
+- ?
 
 1.05.2 : 12-mar-05
 - IT translations ("MatrixIsAllOver")

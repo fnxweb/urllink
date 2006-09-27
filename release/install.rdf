@@ -7,7 +7,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>1.06.3</em:version>
+        <em:version>1.06.4</em:version>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
         <em:contributor>[ contact: mozilla@fnxweb.com ]</em:contributor>

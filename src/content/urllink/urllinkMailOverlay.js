@@ -56,11 +56,7 @@ function rawOpenNewWindowWith(url)
         if (wintype == "navigator:browser")
             charsetArg = "charset=" + window._content.document.characterSet;
 
-        // getReferrer() has gone away in trunk builds and
-        // sometimes breaks in 1.0.x builds, so don't use it
-        // anymore
-        var referrer = null;
-        //var referrer = getReferrer(document);
+        var referrer = document.referrer;
         window.openDialog(getBrowserURL(), "_blank", "chrome,all,dialog=no", url, charsetArg, referrer);
     }
     else
@@ -82,7 +78,7 @@ function rawSearchSelected(context)
     var searchStr = focusedWindow.getSelection();
     searchStr = searchStr.toString();
     searchStr = searchStr.replace( /^\s+/, "" );
-    searchStr = searchStr.replace(/(\n|\r)+/g, "");
+    searchStr = searchStr.replace(/((\n|\r)[> ]*)+/g, ""); // include removing standard quote marks
     searchStr = searchStr.replace(/\t/g, " ");
     searchStr = searchStr.replace(/\s+$/,"");
     return searchStr;
