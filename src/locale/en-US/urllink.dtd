@@ -8,3 +8,16 @@
 <!ENTITY popup-urllink-open-as-www-org.label "With 'www.*.org'">
 <!ENTITY popup-urllink-open-as-www-net.label "With 'www.*.net'">
 <!ENTITY popup-urllink-open-as-ftp.label "With 'ftp.'">
+
+<!ENTITY urllink-prefs-title "URL Link Preferences">
+<!ENTITY urllink-prefs-editmenu "Edit Menu">
+<!ENTITY urllink-prefs-newentry "New entry">
+<!ENTITY urllink-prefs-up "Up">
+<!ENTITY urllink-prefs-down "Down">
+<!ENTITY urllink-prefs-defaults "Defaults">
+<!ENTITY urllink-prefs-delete "Delete">
+<!ENTITY urllink-prefs-add "Add">
+<!ENTITY urllink-prefs-help "Help">
+<!ENTITY urllink-prefs-cancel "Cancel">
+<!ENTITY urllink-prefs-apply "Apply">
+<!ENTITY urllink-prefs-ok "OK">
