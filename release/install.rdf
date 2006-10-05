@@ -21,6 +21,17 @@
         <!-- em:aboutURL>chrome://urllink/content/about.xul</em:aboutURL -->
         <!-- <em:updateURL>http://www.fnxweb.com/software/mozilla-update.rdf</em:updateURL> -->
 
+        <em:file>
+            <Description about="urn:mozilla:extension:file:urllink.jar">
+                <em:package>content/</em:package>
+                <em:locale>locale/de-DE/</em:locale>
+                <em:locale>locale/en-US/</em:locale>
+                <em:locale>locale/fr-FR/</em:locale>
+                <em:locale>locale/hu-HU/</em:locale>
+                <em:locale>locale/it-IT/</em:locale>
+            </Description>
+        </em:file>
+
         <!-- Firefox -->
         <em:targetApplication>
             <Description>
