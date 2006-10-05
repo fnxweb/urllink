@@ -1,2 +1,2 @@
 zip -Tv zipfile         test
-zip -vrX9 zipfile *     create
+zip -vrX9 -x.svn zipfile *     create

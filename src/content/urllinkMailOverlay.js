@@ -1,5 +1,4 @@
-/*
- * Copyright (c) 2003  Neil Bird  <mozilla@fnxweb.com>
+/* Copyright (c) 2006  Neil Bird  <mozilla@fnxweb.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,17 +15,6 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-var urllinkMailMenuSep = "urllink-mail-sep";
-var urllinkMailMenuItems = new Array(
-    "urllink-mail-open-link" );
-var urllinkAlternateMailMenuItems = new Array(
-    "urllink-mail-open-link-as",
-    "urllink-mail-open-link-as-popup" );
-var gInThunderbird = false;
-
-var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-
 
 /* Every time a new window is made, urllinkMailInit will be called */
 window.addEventListener("load",urllinkMailInit,false);
@@ -35,7 +23,7 @@ window.addEventListener("load",urllinkMailInit,false);
 function urllinkMailInit()
 {
     if (navigator.userAgent.search(/Thunderbird/gi) != -1)
-        gInThunderbird = true;
+        inThunderbird = true;
 
     if (document.getElementById("messagePaneContext"))
         document.getElementById("messagePaneContext").addEventListener("popupshowing",urllinkMailContext,false);
@@ -43,17 +31,10 @@ function urllinkMailInit()
 
 
 
-/* getReferrer() has gone away in trunk builds and sometimes breaks in 1.0.x builds, so don't use it anymore */
-function getReferrer()
-{
-    return ioService.newURI(document.location, null, null);
-}
-
-
 /* raw version */
 function rawOpenNewWindowWith(url)
 {
-    if (!gInThunderbird)
+    if (!inThunderbird)
     {
         /* Local browser - (from contentAreaUtils.js) to not sec. check file: URIs */
         if (url.search(/^file:/) == -1)
@@ -178,7 +159,7 @@ function urllinkMailContext()
     }
 
     /* Visible if selection and looks like URL */
-    for(var i=0; i<urllinkMailMenuItems.length; i++)
+    for (var i=0; i<urllinkMailMenuItems.length; i++)
     {
         var menuitem = document.getElementById(urllinkMailMenuItems[i]);
         if (menuitem)
@@ -187,7 +168,15 @@ function urllinkMailContext()
         }
     }
     /* Visible if selection and doesn't look like URL */
-    for(var i=0; i<urllinkAlternateMailMenuItems.length; i++)
+    if (! (!isTextOrUrlSelection || isURL))
+    {
+        /* Alternate menus not hidden;  regenerate from current prefs. */
+        for (var i=0; i<urllinkAlternateMailMenus.length; i++)
+        {
+            regenerateMenu( urllinkAlternateMailMenus[i], 'urllinkMailOpenLink', 0 );
+        }
+    }
+    for (var i=0; i<urllinkAlternateMailMenuItems.length; i++)
     {
         var menuitem = document.getElementById(urllinkAlternateMailMenuItems[i]);
         if (menuitem)
@@ -208,32 +197,16 @@ function urllinkMailContext()
 }
 
 
-function fixURL(url)
-{
-    /* make sure it has some sort of protocol */
-    if (url.search(/^mailto:/) == -1  &&  url.search(/^\w+:\/\//) == -1)
-    {
-        if (url.search(/^ftp/) == 0)
-        {
-            url = "ftp://" + url;
-        }
-        else if (url.search(/@/) >= 0)
-        {
-            url = "mailto:" + url;
-        }
-        else
-        {
-            url = "http://" + url;
-        }
-    }
-    return url;
-}
-
-
-function urllinkMailOpenLink(prefix,suffix)
+function urllinkMailOpenLink(astab,format)  /* astab not used in mailer */
 {
     var wasLink = false;
     var selURL;
+    var prefix = {val:''};
+    var suffix = {val:''};
+
+    /* Determine prefix/suffix by splitting on '*' */
+    splitFormat( format, prefix, suffix );
+
     if (gContextMenu.isTextSelected)
     {
         selURL = rawSearchSelected(gContextMenu);
@@ -244,5 +217,5 @@ function urllinkMailOpenLink(prefix,suffix)
         selURL = gContextMenu.link.href;
     }
     selURL = unmangleURL(selURL,wasLink);
-    rawOpenNewWindowWith( fixURL( prefix + selURL + suffix ) );
+    rawOpenNewWindowWith( fixURL( prefix.val + selURL + suffix.val ) );
 }

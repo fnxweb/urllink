@@ -1,7 +1,4 @@
-/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
- *
- * Copyright (c) 2001-2002  Ted Mielczarek
- * This version (C) 2003  Neil Bird
+/* Copyright (C) 2006  Neil Bird
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,19 +14,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
-
-var urllinkBrowserMenuSep = "urllink-browser-sep";
-var urllinkBrowserMenuItems = new Array(
-    "urllink-browser-open-tab",
-    "urllink-browser-open-link" );
-var urllinkAlternateBrowserMenuItems = new Array(
-    "urllink-browser-open-tab-as",
-    "urllink-browser-open-tab-as-popup",
-    "urllink-browser-open-link-as",
-    "urllink-browser-open-link-as-popup" );
-
-var prefManager = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-var ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
 
 
 /* Every time a new browser window is made, urllinkBrowserInit will be called */
@@ -127,8 +111,8 @@ function urllinkBrowserContext()
         }
     }
 
-    /* Visible if selection and looks like URL */
-    for(var i=0; i<urllinkBrowserMenuItems.length; i++)
+    /* Main menu buttons visible if selection and looks like URL */
+    for (var i=0; i<urllinkBrowserMenuItems.length; i++)
     {
         var menuitem = document.getElementById(urllinkBrowserMenuItems[i]);
         if (menuitem)
@@ -136,8 +120,16 @@ function urllinkBrowserContext()
             menuitem.hidden = !(isLinkOrUrlSelection && isURL);
         }
     }
-    /* Visible if selection and doesn't look like URL */
-    for(var i=0; i<urllinkAlternateBrowserMenuItems.length; i++)
+    /* Alternate submenus visible if selection and doesn't look like URL */
+    if (! (!isLinkOrUrlSelection || isURL))
+    {
+        /* Alternate menus not hidden;  regenerate from current prefs. */
+        for (var i=0; i<urllinkAlternateBrowserMenus.length; i++)
+        {
+            regenerateMenu( urllinkAlternateBrowserMenus[i], 'urllinkBrowserOpenLink', i );
+        }
+    }
+    for (var i=0; i<urllinkAlternateBrowserMenuItems.length; i++)
     {
         var menuitem = document.getElementById(urllinkAlternateBrowserMenuItems[i]);
         if (menuitem)
@@ -201,47 +193,18 @@ function unmangleURL(url,wasLink)
 }
 
 
-/* make sure it has some sort of protocol */
-function fixURL(url)
-{
-    if (url.search(/^mailto:/) == -1  &&  url.search(/^\w+:\/\//) == -1)
-    {
-        if (url.search(/^ftp/) == 0)
-        {
-            url = "ftp://" + url;
-        }
-        else if (url.search(/@/) >= 0)
-        {
-            url = "mailto:" + url;
-        }
-        else
-        {
-            url = "http://" + url;
-        }
-    }
-
-    return url;
-}
-
-
-/* getReferrer() has gone away in trunk builds and sometimes breaks in 1.0.x builds, so don't use it anymore */
-function getReferrer()
-{
-    return ioService.newURI(document.location, null, null);
-}
-
-
 /* Callback from XUL */
-function urllinkBrowserOpenLink(typ,prefix,suffix)
+function urllinkBrowserOpenLink(astab,format)
 {
     var browser = getBrowser();
     var lnk;
     var wasLink = false;
+    var prefix = {val:''};
+    var suffix = {val:''};
 
-    /* if (gContextMenu.onSaveableLink) */
-    /* { */
-    /*     lnk = gContextMenu.link.href; */
-    /* } */
+    /* Determine prefix/suffix by splitting on '*' */
+    splitFormat( format, prefix, suffix );
+
     if (gContextMenu.isTextSelected)
     {
         lnk = getBestSelection(gContextMenu);
@@ -255,10 +218,10 @@ function urllinkBrowserOpenLink(typ,prefix,suffix)
         lnk = gContextMenu.link.href;
         wasLink = true;
     }
-    lnk = fixURL( prefix + unmangleURL( lnk, wasLink ) + suffix );
+    lnk = fixURL( prefix.val + unmangleURL( lnk, wasLink ) + suffix.val );
 
     var referrer = getReferrer();
-    if (typ == 1)
+    if (astab == 1)
     {
         /* Tab */
         var loadInBackground = prefManager.getBoolPref("browser.tabs.loadInBackground");

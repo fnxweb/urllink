@@ -1,6 +1,4 @@
-/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
- *
- * Copyright (c) 2006  Neil Bird
+/* Copyright (c) 2006  Neil Bird
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,11 +15,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-const nsIPrefBranch = Components.interfaces.nsIPrefBranch;
 var listbox; /* = document.getElementById("urllinkMenuItems"); */
-var prefs = Components.classes["@mozilla.org/preferences-service;1"].
-    getService(Components.interfaces.nsIPrefService);
-prefs = prefs.getBranch("extensions.urllink.");
 
 
 function openNewWindow(url)
@@ -76,11 +70,10 @@ function setDefaults()
     {
         listbox.removeItemAt(0);
     }
-    listbox.appendItem( "www.", "" );
-    listbox.appendItem( "www.*.com", "" );
-    listbox.appendItem( "www.*.org", "" );
-    listbox.appendItem( "www.*.net", "" );
-    listbox.appendItem( "ftp.", "" );
+    for (var i=0; i<defaultMenuItems.length; i++)
+    {
+        listbox.appendItem( defaultMenuItems[i], "" );
+    }
 }
 
 

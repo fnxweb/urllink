@@ -3,8 +3,17 @@
 <!ENTITY popup-urllink-open-tab-as.label "Apri selezione in una nuova scheda">
 <!ENTITY popup-urllink-open-link-as.label "Apri selezione">
 <!ENTITY popup-urllink-open-as-is.label "Inalterata">
-<!ENTITY popup-urllink-open-as-www.label "Con 'www.'">
-<!ENTITY popup-urllink-open-as-www-com.label "Con 'www.*.com'">
-<!ENTITY popup-urllink-open-as-www-org.label "Con 'www.*.org'">
-<!ENTITY popup-urllink-open-as-www-net.label "Con 'www.*.net'">
-<!ENTITY popup-urllink-open-as-ftp.label "Con 'ftp.'">
+<!ENTITY urllink-prefs-title "Impostazioni di URL Link">
+<!ENTITY urllink-prefs-editmenu "Modifica il menu">
+<!ENTITY urllink-prefs-newentry "Nuovo elemento">
+<!ENTITY urllink-prefs-up "Su">
+<!ENTITY urllink-prefs-down "Giù">
+<!ENTITY urllink-prefs-defaults "Predefinite">
+<!ENTITY urllink-prefs-delete "Elimina">
+<!ENTITY urllink-prefs-add "Aggiungi">
+<!ENTITY urllink-prefs-help "Contenuti guida">
+<!ENTITY urllink-prefs-cancel "Annulla">
+<!ENTITY urllink-prefs-apply "Applica">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "Lista delle voci di menu;  '*' è sostituito dalla selezione">
+<!ENTITY urllink-prefs-entry-tip "Nuova voce di menu;  '*' è sostituito dalla selezione">

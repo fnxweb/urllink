@@ -3,12 +3,6 @@
 <!ENTITY popup-urllink-open-tab-as.label "Open Selection in New Tab">
 <!ENTITY popup-urllink-open-link-as.label "Open Selection">
 <!ENTITY popup-urllink-open-as-is.label "Unaltered">
-<!ENTITY popup-urllink-open-as-www.label "With 'www.'">
-<!ENTITY popup-urllink-open-as-www-com.label "With 'www.*.com'">
-<!ENTITY popup-urllink-open-as-www-org.label "With 'www.*.org'">
-<!ENTITY popup-urllink-open-as-www-net.label "With 'www.*.net'">
-<!ENTITY popup-urllink-open-as-ftp.label "With 'ftp.'">
-
 <!ENTITY urllink-prefs-title "URL Link Preferences">
 <!ENTITY urllink-prefs-editmenu "Edit Menu">
 <!ENTITY urllink-prefs-newentry "New entry">
@@ -21,3 +15,5 @@
 <!ENTITY urllink-prefs-cancel "Cancel">
 <!ENTITY urllink-prefs-apply "Apply">
 <!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "List of menu items;  '*' is replaced by the selection">
+<!ENTITY urllink-prefs-entry-tip "New menu item;  '*' is replaced by the selection">

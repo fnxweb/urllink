@@ -12,12 +12,9 @@
    - for the specific language governing rights and limitations under the
    - License.
    -
-   - The Initial Developer of the Original Code is Fabricio Campos Zuardi
-   - Portions created by the Initial Developer are Copyright (C) 2001-2002
+   - The Initial Developer of the Original Code is Neil Bird.
+   - Portions created by the Initial Developer are Copyright (C) 2006
    - the Initial Developer. All Rights Reserved.
-   -
-   - Contributor(s):
-   -  Neil Bird  <mozilla@fnxweb.com>
    -
    - Alternatively, the contents of this file may be used under the terms of
    - either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -32,6 +29,7 @@
    - the terms of any one of the MPL, the GPL or the LGPL.
    -
    - ***** END LICENSE BLOCK ***** -->
+
 <!--DOCTYPE overlay SYSTEM "chrome://urllink/locale/urllink.dtd"-->
 <!DOCTYPE window [
 <!ENTITY % urllinkDTD SYSTEM "chrome://urllink/locale/urllink.dtd" >
@@ -41,7 +39,12 @@
 <overlay id="urllinkMailOverlay"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
+    <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/>
     <script type="application/x-javascript" src="chrome://urllink/content/urllinkMailOverlay.js"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
+    </stringbundleset>
 
     <popup id="messagePaneContext" insertafter="context-copy">
         <menuseparator id="urllink-mail-sep"/>
@@ -53,24 +56,10 @@
         <menu id="urllink-mail-open-link-as"
             label="&popup-urllink-open-link-as.label;">
             <menupopup id="urllink-mail-open-link-as-popup">
-                <menuitem id="urllink-mail-open-link-as-is"
+                <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     oncommand="urllinkMailOpenLink('','')"/>
-                <menuitem id="urllink-mail-open-link-as-www"
-                    label="&popup-urllink-open-as-www.label;"
-                    oncommand="urllinkMailOpenLink('http://www.','')"/>
-                <menuitem id="urllink-mail-open-link-as-www-com"
-                    label="&popup-urllink-open-as-www-com.label;"
-                    oncommand="urllinkMailOpenLink('http://www.','.com')"/>
-                <menuitem id="urllink-mail-open-link-as-www-org"
-                    label="&popup-urllink-open-as-www-org.label;"
-                    oncommand="urllinkMailOpenLink('http://www.','.org')"/>
-                <menuitem id="urllink-mail-open-link-as-www-net"
-                    label="&popup-urllink-open-as-www-net.label;"
-                    oncommand="urllinkMailOpenLink('http://www.','.net')"/>
-                <menuitem id="urllink-mail-open-link-as-ftp"
-                    label="&popup-urllink-open-as-ftp.label;"
-                    oncommand="urllinkMailOpenLink('ftp://ftp.','')"/>
+                <menuseparator/>
             </menupopup>
         </menu>
 

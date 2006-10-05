@@ -3,9 +3,17 @@
 <!ENTITY popup-urllink-open-tab-as.label "Öffne Auswahl in neuem Tab">
 <!ENTITY popup-urllink-open-link-as.label "Öffne Auswahl">
 <!ENTITY popup-urllink-open-as-is.label "Unverändert">
-<!ENTITY popup-urllink-open-as-www.label "Mit 'www.'">
-<!ENTITY popup-urllink-open-as-www-de.label "Mit 'www.*.de'">
-<!ENTITY popup-urllink-open-as-www-com.label "Mit 'www.*.com'">
-<!ENTITY popup-urllink-open-as-www-org.label "Mit 'www.*.org'">
-<!ENTITY popup-urllink-open-as-www-net.label "Mit 'www.*.net'">
-<!ENTITY popup-urllink-open-as-ftp.label "Mit 'ftp.'">
+<!ENTITY urllink-prefs-title "URL Link Präferenzen">
+<!ENTITY urllink-prefs-editmenu "Menü redigieren">
+<!ENTITY urllink-prefs-newentry "Neue Eintragung">
+<!ENTITY urllink-prefs-up "Herauf">
+<!ENTITY urllink-prefs-down "Unten">
+<!ENTITY urllink-prefs-defaults "Rückstellungen">
+<!ENTITY urllink-prefs-delete "Löschung">
+<!ENTITY urllink-prefs-add "Hinzufügen">
+<!ENTITY urllink-prefs-help "Hilfe">
+<!ENTITY urllink-prefs-cancel "Löschen">
+<!ENTITY urllink-prefs-apply "Zutreffen">
+<!ENTITY urllink-prefs-ok "O.K.">
+<!ENTITY urllink-prefs-list-tip "Liste der Menüeinzelteile;  '*' wird durch die Vorwähler ersetzt">
+<!ENTITY urllink-prefs-entry-tip "Neues Menüeinzelteil;  '*' wird durch die Vorwähler ersetzt">

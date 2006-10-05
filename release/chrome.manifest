@@ -3,9 +3,9 @@ overlay chrome://browser/content/browser.xul chrome://urllink/content/urllinkBro
 overlay chrome://messenger/content/mailWindowOverlay.xul chrome://urllink/content/urllinkMailOverlay.xul
 
 locale urllink en-US jar:chrome/urllink.jar!/locale/en-US/
-locale urllink de-DE jar:chrome/urllink.jar!/locale/en-US/
-locale urllink fr-FR jar:chrome/urllink.jar!/locale/en-US/
-locale urllink hu-HU jar:chrome/urllink.jar!/locale/en-US/
-locale urllink it-IT jar:chrome/urllink.jar!/locale/en-US/
+locale urllink de-DE jar:chrome/urllink.jar!/locale/de-DE/
+locale urllink fr-FR jar:chrome/urllink.jar!/locale/fr-FR/
+locale urllink hu-HU jar:chrome/urllink.jar!/locale/hu-HU/
+locale urllink it-IT jar:chrome/urllink.jar!/locale/it-IT/
 
 # skin urllink classic/1.0 skin/

@@ -1,0 +1,2 @@
+#!/bin/bash
+zip -vrX9 ../release/chrome/urllink.jar `find . -type f | grep -v '\.svn'`
