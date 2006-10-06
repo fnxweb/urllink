@@ -3,17 +3,18 @@
 <!ENTITY popup-urllink-open-tab-as.label "Kijelölt rész megnyitása új lapon">
 <!ENTITY popup-urllink-open-link-as.label "Kijelölt rész megnyitása">
 <!ENTITY popup-urllink-open-as-is.label "Változatlanul">
-<!ENTITY urllink-prefs-title "URL Link Preferences">
-<!ENTITY urllink-prefs-editmenu "Edit Menu">
-<!ENTITY urllink-prefs-newentry "New entry">
-<!ENTITY urllink-prefs-up "Up">
-<!ENTITY urllink-prefs-down "Down">
-<!ENTITY urllink-prefs-defaults "Defaults">
-<!ENTITY urllink-prefs-delete "Delete">
-<!ENTITY urllink-prefs-add "Add">
-<!ENTITY urllink-prefs-help "Help">
-<!ENTITY urllink-prefs-cancel "Cancel">
-<!ENTITY urllink-prefs-apply "Apply">
+<!ENTITY urllink-prefs-title "URL Link Beállítások">
+<!ENTITY urllink-prefs-editmenu "Menü szerkesztése">
+<!ENTITY urllink-prefs-newentry "Új bejegyzés">
+<!ENTITY urllink-prefs-up "Fel">
+<!ENTITY urllink-prefs-down "Le">
+<!ENTITY urllink-prefs-defaults "Alapértelmezettek">
+<!ENTITY urllink-prefs-delete "Törlés">
+<!ENTITY urllink-prefs-add "Hozzáadás">
+<!ENTITY urllink-prefs-help "Súgó">
+<!ENTITY urllink-prefs-cancel "Mégse">
+<!ENTITY urllink-prefs-apply "Alkalmaz">
 <!ENTITY urllink-prefs-ok "OK">
-<!ENTITY urllink-prefs-list-tip "List of menu items;  '*' is replaced by the selection">
-<!ENTITY urllink-prefs-entry-tip "New menu item;  '*' is replaced by the selection">
+<!ENTITY urllink-prefs-list-tip "Menü pontok listája;  '*' helyére kerül a kijelölt rész">
+<!ENTITY urllink-prefs-entry-tip "Új menü pont;  '*' helyére kerül a kijelölt rész">
+

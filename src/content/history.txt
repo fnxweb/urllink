@@ -1,5 +1,9 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
 
+2.00.0 : xx-oct-06
+- Preferences!
+- Help!
+
 1.07.0 : 27-sep-06
 - Firefox 2 compatability
 - Some minor internal reorganisation

@@ -3,17 +3,17 @@
 <!ENTITY popup-urllink-open-tab-as.label "Ouvrir sélection dans un nouvel onglet">
 <!ENTITY popup-urllink-open-link-as.label "Ouvrir sélection">
 <!ENTITY popup-urllink-open-as-is.label "Inchangé">
-<!ENTITY urllink-prefs-title "URL Link Préférences">
+<!ENTITY urllink-prefs-title "Préférences">
 <!ENTITY urllink-prefs-editmenu "Éditer le menu">
 <!ENTITY urllink-prefs-newentry "Nouvelle entrée">
-<!ENTITY urllink-prefs-up "Vers le haut de">
-<!ENTITY urllink-prefs-down "Vers le bas">
-<!ENTITY urllink-prefs-defaults "Défauts">
-<!ENTITY urllink-prefs-delete "Effacement">
+<!ENTITY urllink-prefs-up "Monter">
+<!ENTITY urllink-prefs-down "Descendre">
+<!ENTITY urllink-prefs-defaults "Rétablir la configuration par défaut">
+<!ENTITY urllink-prefs-delete "Supprimer">
 <!ENTITY urllink-prefs-add "Ajouter">
 <!ENTITY urllink-prefs-help "Aide">
-<!ENTITY urllink-prefs-cancel "Annulation">
-<!ENTITY urllink-prefs-apply "Appliquer">
+<!ENTITY urllink-prefs-cancel "Annuler">
+<!ENTITY urllink-prefs-apply "Valider">
 <!ENTITY urllink-prefs-ok "OK">
-<!ENTITY urllink-prefs-list-tip "Liste d'articles de menu;  '*' est remplacé par le choix">
-<!ENTITY urllink-prefs-entry-tip "Nouvel article de menu;  '*' est remplacé par le choix">
+<!ENTITY urllink-prefs-list-tip "Liste des entrées du menu;  '*' est remplacé par le choix">
+<!ENTITY urllink-prefs-entry-tip "Nouvelle entrée du menu;  '*' est remplacé par le choix">
