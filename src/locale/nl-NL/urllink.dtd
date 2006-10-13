@@ -1,0 +1,19 @@
+<!ENTITY popup-urllink-open-tab.label "Geselecteerde URL in nieuw tabblad openen">
+<!ENTITY popup-urllink-open-link.label "Geselecteerde URL openen">
+<!ENTITY popup-urllink-open-tab-as.label "Selectie in nieuw tabblad openen">
+<!ENTITY popup-urllink-open-link-as.label "Selectie openen">
+<!ENTITY popup-urllink-open-as-is.label "Ongewijzigd">
+<!ENTITY urllink-prefs-title "URL Link voorkeuren">
+<!ENTITY urllink-prefs-editmenu "Menu bewerken">
+<!ENTITY urllink-prefs-newentry "Nieuwe ingave">
+<!ENTITY urllink-prefs-up "Omhoog">
+<!ENTITY urllink-prefs-down "Naar beneden">
+<!ENTITY urllink-prefs-defaults "Standaardwaardes">
+<!ENTITY urllink-prefs-delete "Verwijderen">
+<!ENTITY urllink-prefs-add "Toevoegen">
+<!ENTITY urllink-prefs-help "Help">
+<!ENTITY urllink-prefs-cancel "Afbreken">
+<!ENTITY urllink-prefs-apply "Toepassen">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "Lijst van menu-onderdelen; &apos;*&apos; wordt vervangen door de selectie">
+<!ENTITY urllink-prefs-entry-tip "Nieuw menu-onderdeel; &apos;*&apos; wordt vervangen door de selectie">

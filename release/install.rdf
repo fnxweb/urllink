@@ -15,6 +15,8 @@
         <em:contributor>"MatrixIsAllOver" - Italian translations</em:contributor>
         <em:contributor>Martin Hoppen - German translations</em:contributor>
         <em:contributor>Szarka Peter - Hungarian translations</em:contributor>
+        <em:contributor>markh/babelzilla.org - Dutch</em:contributor>
+        <em:contributor>kennith/babelzilla.org - Chinese</em:contributor>
         <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <em:optionsURL>chrome://urllink/content/urllinkPrefs.xul</em:optionsURL>
@@ -29,6 +31,8 @@
                 <em:locale>locale/fr-FR/</em:locale>
                 <em:locale>locale/hu-HU/</em:locale>
                 <em:locale>locale/it-IT/</em:locale>
+                <em:locale>locale/nl-NL/</em:locale>
+                <em:locale>locale/zh-TW/</em:locale>
             </Description>
         </em:file>
 
