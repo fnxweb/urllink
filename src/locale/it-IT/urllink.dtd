@@ -1,10 +1,10 @@
-<!ENTITY popup-urllink-open-tab.label "Apri URL selezionato in una nuova scheda">
+<!ENTITY popup-urllink-open-tab.label "Apri URL selezionato in nuova scheda">
 <!ENTITY popup-urllink-open-link.label "Apri URL selezionato">
-<!ENTITY popup-urllink-open-tab-as.label "Apri selezione in una nuova scheda">
+<!ENTITY popup-urllink-open-tab-as.label "Apri selezione in nuova scheda">
 <!ENTITY popup-urllink-open-link-as.label "Apri selezione">
 <!ENTITY popup-urllink-open-as-is.label "Inalterata">
 <!ENTITY urllink-prefs-title "Impostazioni di URL Link">
-<!ENTITY urllink-prefs-editmenu "Modifica il menu">
+<!ENTITY urllink-prefs-editmenu "Personalizzazione del menu">
 <!ENTITY urllink-prefs-newentry "Nuovo elemento">
 <!ENTITY urllink-prefs-up "Su">
 <!ENTITY urllink-prefs-down "Giù">
@@ -15,5 +15,5 @@
 <!ENTITY urllink-prefs-cancel "Annulla">
 <!ENTITY urllink-prefs-apply "Applica">
 <!ENTITY urllink-prefs-ok "OK">
-<!ENTITY urllink-prefs-list-tip "Lista delle voci di menu;  '*' è sostituito dalla selezione">
-<!ENTITY urllink-prefs-entry-tip "Nuova voce di menu;  '*' è sostituito dalla selezione">
+<!ENTITY urllink-prefs-list-tip "Lista delle voci di menu;  &apos;*&apos; è sostituito dalla selezione">
+<!ENTITY urllink-prefs-entry-tip "Nuova voce di menu;  &apos;*&apos; è sostituito dalla selezione">
