@@ -1,8 +1,10 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
+  $Id$
 
-2.00.0 : xx-oct-06
+2.00.0 : 14-oct-06
 - Preferences!
 - Help!
+- Babelzilla!
 
 1.07.0 : 27-sep-06
 - Firefox 2 compatability
