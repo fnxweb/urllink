@@ -1,9 +1,9 @@
-<!ENTITY popup-urllink-open-tab.label "用新視窗開啟已選擇的網址">
-<!ENTITY popup-urllink-open-link.label "開啟已選擇的網址">
-<!ENTITY popup-urllink-open-tab-as.label "用新視窗開啟已選擇區域">
-<!ENTITY popup-urllink-open-link-as.label "開啟已選擇區域">
-<!ENTITY popup-urllink-open-as-is.label "無轉變">
-<!ENTITY urllink-prefs-title "網址鏈結偏好設定">
+<!ENTITY popup-urllink-open-tab.label "用新視窗開啟已選取的網址">
+<!ENTITY popup-urllink-open-link.label "開啟已選取的網址">
+<!ENTITY popup-urllink-open-tab-as.label "用新視窗開啟選取範圍">
+<!ENTITY popup-urllink-open-link-as.label "開啟選取範圍">
+<!ENTITY popup-urllink-open-as-is.label "直接貼上">
+<!ENTITY urllink-prefs-title "URL Link 偏好設定">
 <!ENTITY urllink-prefs-editmenu "編輯選單">
 <!ENTITY urllink-prefs-newentry "新項目">
 <!ENTITY urllink-prefs-up "上移">
@@ -15,5 +15,5 @@
 <!ENTITY urllink-prefs-cancel "取消">
 <!ENTITY urllink-prefs-apply "套用">
 <!ENTITY urllink-prefs-ok "確定">
-<!ENTITY urllink-prefs-list-tip "選單項目列表；選擇區域會取代&apos;*&apos;">
-<!ENTITY urllink-prefs-entry-tip "新選單項目；選擇區域會取代&apos;*&apos;">
+<!ENTITY urllink-prefs-list-tip "選單項目列表；選取範圍會取代&apos;*&apos;">
+<!ENTITY urllink-prefs-entry-tip "新選單項目；選取範圍會取代&apos;*&apos;">
