@@ -1,0 +1,20 @@
+<!-- $Id$ -->
+<!ENTITY popup-urllink-open-tab.label "Otvori odabranu web adresu u novoj kartici">
+<!ENTITY popup-urllink-open-link.label "Otvori odabranu web adresu">
+<!ENTITY popup-urllink-open-tab-as.label "Otvori odabrano u novoj kartici">
+<!ENTITY popup-urllink-open-link-as.label "Otvori odabrano">
+<!ENTITY popup-urllink-open-as-is.label "Nepromijenjeno">
+<!ENTITY urllink-prefs-title "URL Link Svojstva">
+<!ENTITY urllink-prefs-editmenu "Uredi izbornik">
+<!ENTITY urllink-prefs-newentry "Novi unos">
+<!ENTITY urllink-prefs-up "Gore">
+<!ENTITY urllink-prefs-down "Dolje">
+<!ENTITY urllink-prefs-defaults "Zadano">
+<!ENTITY urllink-prefs-delete "Obriši">
+<!ENTITY urllink-prefs-add "Dodaj">
+<!ENTITY urllink-prefs-help "Pomoć">
+<!ENTITY urllink-prefs-cancel "Odustani">
+<!ENTITY urllink-prefs-apply "Primijeni">
+<!ENTITY urllink-prefs-ok "Uredu">
+<!ENTITY urllink-prefs-list-tip "Popis stavki izbornika;  &apos;*&apos; je zamijenjen s odabranim">
+<!ENTITY urllink-prefs-entry-tip "Nova stavka izbornika;  &apos;*&apos; je zamijenjena s odabranim">

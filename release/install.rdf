@@ -8,7 +8,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.00.0</em:version>
+        <em:version>2.00.1</em:version>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
         <em:contributor>[ contact: mozilla@fnxweb.com ]</em:contributor>
@@ -18,6 +18,7 @@
         <em:contributor>Szarka Peter - Hungarian translations</em:contributor>
         <em:contributor>markh/babelzilla.org - Dutch</em:contributor>
         <em:contributor>kennith/babelzilla.org - Chinese</em:contributor>
+        <em:contributor>Krcko/babelzilla.org - Croatian</em:contributor>
         <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <em:optionsURL>chrome://urllink/content/urllinkPrefs.xul</em:optionsURL>
@@ -30,6 +31,7 @@
                 <em:locale>locale/de-DE/</em:locale>
                 <em:locale>locale/en-US/</em:locale>
                 <em:locale>locale/fr-FR/</em:locale>
+                <em:locale>locale/hr-HR/</em:locale>
                 <em:locale>locale/hu-HU/</em:locale>
                 <em:locale>locale/it-IT/</em:locale>
                 <em:locale>locale/nl-NL/</em:locale>
