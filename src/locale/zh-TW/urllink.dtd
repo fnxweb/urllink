@@ -17,4 +17,4 @@
 <!ENTITY urllink-prefs-apply "套用">
 <!ENTITY urllink-prefs-ok "確定">
 <!ENTITY urllink-prefs-list-tip "選單項目列表；選取範圍會取代&apos;*&apos;">
-<!ENTITY urllink-prefs-entry-tip "新選單項目；選取範圍會取代&apos;*&apos;">
+<!ENTITY urllink-prefs-entry-tip "新增選單項目；選取範圍會取代&apos;*&apos;">
