@@ -1,6 +1,10 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
   $Id$
 
+2.00.1 : 24-oct-06
+- Croatian & preliminary Russian
+- Corrected manifest to actually include the more recent translartions (!)
+
 2.00.0 : 14-oct-06
 - Preferences!
 - Help!
