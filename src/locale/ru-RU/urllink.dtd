@@ -1,0 +1,20 @@
+<!-- $Id: urllink.dtd 686 2006-10-14 09:37:58Z neil $ -->
+<!ENTITY popup-urllink-open-tab.label "Открыть выделенную ссылку в новой вкладке">
+<!ENTITY popup-urllink-open-link.label "Открыть выделнную ссылку">
+<!ENTITY popup-urllink-open-tab-as.label "Открыть выделенное в новой вкладке">
+<!ENTITY popup-urllink-open-link-as.label "Открыть выделенное">
+<!ENTITY popup-urllink-open-as-is.label "Не изменено">
+<!ENTITY urllink-prefs-title "Настройки URL Link">
+<!ENTITY urllink-prefs-editmenu "Изменить меню">
+<!ENTITY urllink-prefs-newentry "Новый пункт">
+<!ENTITY urllink-prefs-up "Вверх">
+<!ENTITY urllink-prefs-down "Вниз">
+<!ENTITY urllink-prefs-defaults "По умолчанию">
+<!ENTITY urllink-prefs-delete "Удалить">
+<!ENTITY urllink-prefs-add "Добавить">
+<!ENTITY urllink-prefs-help "Помощь">
+<!ENTITY urllink-prefs-cancel "Отмена">
+<!ENTITY urllink-prefs-apply "Применить">
+<!ENTITY urllink-prefs-ok "ОК">
+<!ENTITY urllink-prefs-list-tip "Список пунктов меню; &apos;*&apos; перемещён по выделению">
+<!ENTITY urllink-prefs-entry-tip "Новый пункт меню; &apos;*&apos; перемещён по выделению">
