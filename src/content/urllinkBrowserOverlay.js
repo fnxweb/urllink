@@ -151,6 +151,102 @@ function urllinkBrowserContext()
 }
 
 
+/* Some sites (e.g., kelkoo) obfuisctae their js links with base64! */
+var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+function decode64(realinput)
+{
+    var output = "";
+    var chr1, chr2, chr3;
+    var enc1, enc2, enc3, enc4;
+    var i = 0;
+
+    // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+    var input = realinput.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+    if (input != realinput)
+    {
+        /* Not Base64 */
+        return '';
+    }
+
+    do {
+        enc1 = keyStr.indexOf(input.charAt(i++));
+        enc2 = keyStr.indexOf(input.charAt(i++));
+        enc3 = keyStr.indexOf(input.charAt(i++));
+        enc4 = keyStr.indexOf(input.charAt(i++));
+
+        chr1 = (enc1 << 2) | (enc2 >> 4);
+        chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+        chr3 = ((enc3 & 3) << 6) | enc4;
+
+        output = output + String.fromCharCode(chr1);
+
+        if (enc3 != 64) {
+            output = output + String.fromCharCode(chr2);
+        }
+        if (enc4 != 64) {
+            output = output + String.fromCharCode(chr3);
+        }
+    } while (i < input.length);
+
+    return output;
+}
+
+
+/* find largest best javascript arg */
+function getBestJavascriptArg(url)
+{
+    /* Strip leader */
+    url = url.replace(/^javascript:.*?\(/, '');
+
+    /* Loop through looking for best; '/' has precedence */
+    var haveSlash = false;
+    var best = '';
+    var start = 0;
+    var pos = 0;
+    var quote = '';
+    while (pos < url.length)
+    {
+        /* Backslash? */
+        if (url[pos] == '\\')
+        {
+            continue;
+        }
+        /* Start of quote? */
+        else if (quote == ''  &&  (url[pos] == '\''  ||  url[pos] == '"'))
+        {
+            quote = url[pos];
+            start = pos;
+        }
+        /* End of quote? */
+        else if (quote != ''  &&  url[pos] == quote)
+        {
+            /* We want this if it has a slash and our best doesn't,
+             * or they both do/don't have slashes it's bigger than our best
+             */
+            quote = '';
+            var current = url.substr( start+1, pos-start-1 );
+            var thisSlash = (current.match(/\//) == '/');
+            if ( (!haveSlash && thisSlash)  ||
+                 (haveSlash == thisSlash  &&  current.length > best.length) )
+            {
+                best = current;
+                haveSlash = thisSlash;
+            }
+        }
+        pos++;
+    }
+
+    /* Is out best actualy base64 (e.g,. kelkoo?) */
+    var decoded = decode64(best);
+    if (decoded != '')
+    {
+         best = decoded;
+    }
+
+    return best;
+}
+
+
 /* strip bad leading and trailing characters */
 function unmangleURL(url,wasLink)
 {
@@ -167,7 +263,7 @@ function unmangleURL(url,wasLink)
     if (url.search(/^javascript:/) == 0)
     {
         /* Get out first string arg. */
-        url = url.replace(/^javascript:.*?\(.*?['"](.*?)['"].*/, "$1");
+        url = getBestJavascriptArg(url);
 
         /* Full URL?  If not, prefix current site */
         if (url.search(/^\w+:\/\//) == -1)

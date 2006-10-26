@@ -107,9 +107,10 @@ function urllinkInit()
 }
 
 
-/* make sure URL has some sort of protocol */
+/* make sure URL has some sort of protocol, & change common 'errors' */
 function fixURL(url)
 {
+    /* Check proto */
     if (url.search(/^mailto:/) == -1  &&  url.search(/^\w+:\/\//) == -1)
     {
         if (url.search(/^ftp/) == 0)
@@ -125,6 +126,10 @@ function fixURL(url)
             url = "http://" + url;
         }
     }
+
+    /* Change common faults */
+    url.replace(/&amp;/ig,'&');
+    url.replace(/\\/g,'/');
 
     return url;
 }
