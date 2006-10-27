@@ -202,13 +202,28 @@ function regenerateMenu( menuname, func, astab )
         while (prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING  &&
                prefs.prefHasUserValue("submenu."+n))
         {
-            var format = prefs.getCharPref("submenu."+n);
-            if (format)
+            var prefstr = prefs.getCharPref("submenu."+n);
+            if (prefstr)
             {
+                /* prefstr = 'displaystr|format' */
+                var barpos = prefstr.search('\\|');
+                var text, format;
+                if (barpos == -1)
+                {
+                    text = withStr + " '" + prefstr + "'";
+                    format = prefstr;
+                }
+                else
+                {
+                    text = prefstr.substr(0,barpos);
+                    format = prefstr.substr(barpos+1);
+                }
+
+                /* Create menuitem */
                 var menuitem = document.createElement("menuitem");
                 if (menuitem)
                 {
-                    menuitem.setAttribute("label", withStr+" '"+format+"'");
+                    menuitem.setAttribute("label", text);
                     menuitem.setAttribute("oncommand", func+"("+astab+",'"+format+"')");
                     menuitem.setAttribute("temp","true");
                     submenu.appendChild(menuitem);

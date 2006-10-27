@@ -17,6 +17,7 @@
  */
 
 var listbox; /* = document.getElementById("urllinkMenuItems"); */
+var newitembox;
 
 
 function openNewWindow(url)
@@ -103,7 +104,6 @@ function deleteItem()
 
 function addItem()
 {
-    var newitembox = document.getElementById("urllinkNewItem");
     var newitem = newitembox.value;
     if (newitem != "")
     {
@@ -116,11 +116,24 @@ function addItem()
 }
 
 
+function onPrefsSelect()
+{
+    /* Set text entry to selection for 'editing' of exiting entries */
+    var idx = listbox.selectedIndex;
+    if (idx != -1)
+    {
+        newitembox.value = listbox.getItemAtIndex(idx).label;
+    }
+}
+
+
 function loadPrefs()
 {
     if (!listbox)
     {
         listbox = document.getElementById("urllinkMenuItems");
+        newitembox = document.getElementById("urllinkNewItem");
+        listbox.addEventListener("select",onPrefsSelect, false);
     }
     if (prefs.getPrefType("submenu.0") != nsIPrefBranch.PREF_STRING)
     {
