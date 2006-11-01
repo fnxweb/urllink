@@ -1,0 +1,20 @@
+<!-- $Id: urllink.dtd 686 2006-10-14 09:37:58Z neil $ -->
+<!ENTITY popup-urllink-open-tab.label "Přejít na vybranou adresu v novém panelu">
+<!ENTITY popup-urllink-open-link.label "Přejít na vybranou adresu">
+<!ENTITY popup-urllink-open-tab-as.label "Otevřít výběr v novém panelu">
+<!ENTITY popup-urllink-open-link-as.label "Otevřít výběr">
+<!ENTITY popup-urllink-open-as-is.label "beze změny">
+<!ENTITY urllink-prefs-title "Nastavení URL Link">
+<!ENTITY urllink-prefs-editmenu "Úpravy menu">
+<!ENTITY urllink-prefs-newentry "Nová položka">
+<!ENTITY urllink-prefs-up "Nahoru">
+<!ENTITY urllink-prefs-down "Dolů">
+<!ENTITY urllink-prefs-defaults "Původní">
+<!ENTITY urllink-prefs-delete "Smazat">
+<!ENTITY urllink-prefs-add "Přidat">
+<!ENTITY urllink-prefs-help "Nápověda">
+<!ENTITY urllink-prefs-cancel "Zrušit">
+<!ENTITY urllink-prefs-apply "Použít">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "Seznam položek menu; &apos;*&apos; bude zaměněno za výběr">
+<!ENTITY urllink-prefs-entry-tip "Nová položka menu; &apos;*&apos; bude zaměněno za výběr">
