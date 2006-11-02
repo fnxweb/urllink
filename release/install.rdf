@@ -8,7 +8,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.00.1</em:version>
+        <em:version>2.00.2</em:version>
         <em:type>2</em:type>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
@@ -45,6 +45,15 @@
                 <em:maxVersion>1.5.0.*</em:maxVersion>
             </Description>
         </em:targetApplication>
+
+        <!-- Seamonkey -->
+        <!-- <em:targetApplication> -->
+        <!--     <Description> -->
+        <!--         <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id> -->
+        <!--         <em:minVersion>1.5a</em:minVersion> -->
+        <!--         <em:maxVersion>1.5a</em:maxVersion> -->
+        <!--     </Description> -->
+        <!-- </em:targetApplication> -->
 
         <!-- Mozilla Suite -->
         <!-- <em:targetApplication> -->

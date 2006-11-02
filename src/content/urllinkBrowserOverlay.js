@@ -251,7 +251,7 @@ function getBestJavascriptArg(url)
 function unmangleURL(url,wasLink)
 {
     /* strip bad leading characters */
-    url = url.replace(/^[^a-zA-Z]+/, "");
+    url = url.replace(/^[^-0-9_a-zA-Z]+/, "");
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
