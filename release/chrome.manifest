@@ -5,14 +5,19 @@ overlay chrome://browser/content/browser.xul chrome://urllink/content/urllinkBro
 overlay chrome://messenger/content/mailWindowOverlay.xul chrome://urllink/content/urllinkMailOverlay.xul
 
 locale urllink cs-CZ jar:chrome/urllink.jar!/locale/cs-CZ/
+locale urllink da-DK jar:chrome/urllink.jar!/locale/da-DK/
 locale urllink de-DE jar:chrome/urllink.jar!/locale/de-DE/
 locale urllink en-US jar:chrome/urllink.jar!/locale/en-US/
+locale urllink es-ES jar:chrome/urllink.jar!/locale/es-ES/
 locale urllink fr-FR jar:chrome/urllink.jar!/locale/fr-FR/
 locale urllink hr-HR jar:chrome/urllink.jar!/locale/hr-HR/
 locale urllink hu-HU jar:chrome/urllink.jar!/locale/hu-HU/
 locale urllink it-IT jar:chrome/urllink.jar!/locale/it-IT/
 locale urllink nl-NL jar:chrome/urllink.jar!/locale/nl-NL/
+locale urllink pl-PL jar:chrome/urllink.jar!/locale/pl-PL/
+locale urllink pt-BR jar:chrome/urllink.jar!/locale/pt-BR/
 locale urllink ru-RU jar:chrome/urllink.jar!/locale/ru-RU/
+locale urllink uk-UA jar:chrome/urllink.jar!/locale/uk-UA/
 locale urllink zh-TW jar:chrome/urllink.jar!/locale/zh-TW/
 
 # skin urllink classic/1.0 skin/

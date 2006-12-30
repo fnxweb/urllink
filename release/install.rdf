@@ -18,10 +18,15 @@
         <em:contributor>Martin Hoppen - German</em:contributor>
         <em:contributor>Szarka Peter - Hungarian</em:contributor>
         <em:contributor>markh/babelzilla.org - Dutch</em:contributor>
-        <em:contributor>kennith/babelzilla.org - Chinese</em:contributor>
+        <em:contributor>kennith/babelzilla.org - Chinese (Traditional)</em:contributor>
         <em:contributor>Krcko/babelzilla.org - Croatian</em:contributor>
         <em:contributor>Santiago26/babelzilla.org - Russian</em:contributor>
         <em:contributor>mikeshk/babelzilla.org - Czech</em:contributor>
+        <em:contributor>chuzo/babelzilla.org - Spanish (Spain)</em:contributor>
+        <em:contributor>humbertosartini/babelzilla.org - Portuguese (Brazilian)</em:contributor>
+        <em:contributor>MozUA/babelzilla.org - Ukranian</em:contributor>
+        <em:contributor>Kim Ludvigsen, AlleyKat/babelzilla.org - Danish</em:contributor>
+        <em:contributor>Wizard/babelzilla.org - Polish</em:contributor>
         <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <em:optionsURL>chrome://urllink/content/urllinkPrefs.xul</em:optionsURL>

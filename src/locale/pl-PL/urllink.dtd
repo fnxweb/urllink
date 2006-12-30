@@ -1,0 +1,20 @@
+<!-- $Id: urllink.dtd 686 2006-10-14 09:37:58Z neil $ -->
+<!ENTITY popup-urllink-open-tab.label "Otwórz zaznaczony adres URL w nowej karcie">
+<!ENTITY popup-urllink-open-link.label "Otwórz zaznaczony adres URL">
+<!ENTITY popup-urllink-open-tab-as.label "Otwórz zaznaczenie w nowej karcie">
+<!ENTITY popup-urllink-open-link-as.label "Otwórz zaznaczenie">
+<!ENTITY popup-urllink-open-as-is.label "Bez użycia wzorca">
+<!ENTITY urllink-prefs-title "URL Link - ustawienia">
+<!ENTITY urllink-prefs-editmenu "Edytuj menu">
+<!ENTITY urllink-prefs-newentry "Nowy wzorzec">
+<!ENTITY urllink-prefs-up "Do góry">
+<!ENTITY urllink-prefs-down "W dół">
+<!ENTITY urllink-prefs-defaults "Domyślne">
+<!ENTITY urllink-prefs-delete "Usuń">
+<!ENTITY urllink-prefs-add "Dodaj">
+<!ENTITY urllink-prefs-help "Pomoc">
+<!ENTITY urllink-prefs-cancel "Anuluj">
+<!ENTITY urllink-prefs-apply "Zastosuj">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "Wieloznacznik &quot;*&quot; jest zamieniany przez zaznaczenie">
+<!ENTITY urllink-prefs-entry-tip "Wieloznacznik &quot;*&quot; jest zamieniany przez zaznaczenie">

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/REC-html401/loose.dtd">
+<!-- $Id: help.html 686 2006-10-14 09:37:58Z neil $ -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>URL Link Help</title>
+  </head>
+  <body>
+    <h2><img src="chrome://urllink/content/urllink.png" alt="logo">&nbsp;&nbsp;URL Link</h2>
+    <p>
+    <a href="chrome://urllink/content/history.txt">Lista de cambios</a>
+    </p>
+
+    <h3>Uso</h3>
+    <p>
+    Seleccione algún texto en una página web, texto de entrada (formulario web)
+    o en el correo, y pulse con el botón derecho del ratón.
+    <p>
+    <ul>
+      <li>
+      Si el texto tiene el formato de una dirección, tendrá la opción de abrirlo directamente
+      (o hacerlo en una nueva pestaña) con la opción "Abrir selección".
+      </li>
+      <li>
+      Si el texto <i>no</i> parece un enlace, tendrá un submenú que le permitirá
+      ser tratado como si fuera un enlace, o realizar algunas conversiones
+      personalizadas primero (<i>p.ej.</i>, añadir "www." y ".com").
+      </li>
+    </ul>
+
+    <h3>Funcionalidad</h3>
+    <ul>
+      <li>
+      URL Link es una pequeña extensión para Firefox y Thunderbird que le
+      permite seleccionar texto en correos, mensajes y página web, y abrirlo
+      en una ventana del navegador como si fuera un enlace.
+      </li>
+
+      <li>
+      En correos electrónicos, recompone los enlaces que han sido cortados en
+      varias lineas, y reemplazando los espacios en blanco con el caracter %20,
+      por lo que podrá seguir enlaces de red 'file:' (que son autodetectados
+      por Windows X: o las redes de referencia UNC).
+      </li>
+
+      <li>
+      En páginas web, permite también seleccionar enlaces de texto
+      en cuadros de edición, y permite tratarlos como si fueran enlaces reales.
+      Siempre permite también seguir los enlaces y analizar las entradas mailto:.
+      </li>
+
+      <li>
+      Rompe los enlaces 'mailto:' (de este modo convierte 
+      mailto:someone@somesite.com a http://www.somesite.com), para que pueda visitar
+      la página web relacionada.
+      </li>
+
+      <li>
+      Puede 'seguir' los enlaces javascript: que generen una ventana emergente
+      (p.ej., http://www.kelkoo.co.uk/ - aunque recientemente han cambiado algún
+      codigo de sus enlaces y la extensión falla :-( Espero arreglarlo en la
+      versión 2.0).
+      </li>
+    </ul>
+
+    <h3>Cambios futuros</h3>
+    <p>
+    <ul>
+      <li>
+      Mejora del análisis de código `javascript:', al menos los popups de www.kelkoo.co.uk
+      son redireccionados de nuevo.
+      </li>
+      <li>
+      Posiblemente permitir algún submenú personalizado como entrada del
+      menú principal.
+      </li>
+    </ul>
+
+    <!-- START DO NOT TRANSLATE -->
+    <h3>Translations</h3>
+    <p>
+    If you would like to help by translating URL Link to your native language,
+    you can either sign up to <a
+      href="http://www.babelzilla.org/">Babelzilla</a> and do it automatically,
+    or <a href="mailto:mozilla@fnxweb.com">email me</a> translated versions of
+    the data files you'll find <a href="http://www.fnxweb.com/data/urllink/">on
+      my website</a>.
+    </p>
+    <p>
+    Don't include this section of the help file, though!
+    <p>
+    <!-- END DO NOT TRANSLATE -->
+
+    <h3>Contacto</h3>
+    <ul>
+      <li>
+      La <a href="http://www.fnxweb.com/software-mozilla">pagina de Mozilla</a> del autor.
+      </li>
+      <li>
+      Página oficial de URL Link's en <a href="https://addons.mozilla.org/firefox/403/">Mozilla add-ons</a>
+      </li>
+      <li>
+      <a href="mailto:mozilla@fnxweb.com">Email del autor</a>
+      </li>
+    </ul>
+
+    <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+      src="http://www.w3.org/Icons/valid-html401" alt="Valid HTML 4.01
+      Transitional" height="31" width="88"></a>
+    </p>
+  </body>
+</html>

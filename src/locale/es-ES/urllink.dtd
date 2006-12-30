@@ -1,0 +1,20 @@
+<!-- $Id: urllink.dtd 686 2006-10-14 09:37:58Z neil $ -->
+<!ENTITY popup-urllink-open-tab.label "Abrir dirección seleccionada en una nueva pestaña">
+<!ENTITY popup-urllink-open-link.label "Abrir dirección seleccionada">
+<!ENTITY popup-urllink-open-tab-as.label "Abrir selección en una nueva pestaña">
+<!ENTITY popup-urllink-open-link-as.label "Abrir selección">
+<!ENTITY popup-urllink-open-as-is.label "Inalterado">
+<!ENTITY urllink-prefs-title "URL Link - Opciones">
+<!ENTITY urllink-prefs-editmenu "Editar menú">
+<!ENTITY urllink-prefs-newentry "Nueva entrada">
+<!ENTITY urllink-prefs-up "Subir">
+<!ENTITY urllink-prefs-down "Bajar">
+<!ENTITY urllink-prefs-defaults "Valores por defecto">
+<!ENTITY urllink-prefs-delete "Borrar">
+<!ENTITY urllink-prefs-add "Añadir">
+<!ENTITY urllink-prefs-help "Ayuda">
+<!ENTITY urllink-prefs-cancel "Cancelar">
+<!ENTITY urllink-prefs-apply "Aplicar">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "Lista de elementos del menú; &apos;*&apos; es reemplazado por la selección">
+<!ENTITY urllink-prefs-entry-tip "Nuevo elemento de menú; &apos;*&apos; es reemplazado por la selección">
