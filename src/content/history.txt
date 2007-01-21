@@ -1,6 +1,9 @@
 URLLink XPI  (C) Neil Bird  mozilla@fnxweb.com
   $Id$
 
+2.00.3 : 21-jan-07
+- Fix typo. limiting use to Thunderbord 1.5 (should be 1.5.0.*).
+
 2.00.2 : 30-dec-06
 - Loads more translations
 - More advanced javascript: processing (should work with kelkoo again)
