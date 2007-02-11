@@ -291,7 +291,7 @@ function unmangleURL(url,wasLink)
 
 
 /* Callback from XUL */
-function urllinkBrowserOpenLink(astab,format)
+function urllinkBrowserOpenLink(event,astab,format)
 {
     var browser = getBrowser();
     var lnk;
@@ -328,7 +328,15 @@ function urllinkBrowserOpenLink(astab,format)
     }
     else
     {
-        /* Window */
-        window.loadURI( lnk, referrer );
+        if (event.shiftKey)
+        {
+            /* New window */
+            window.open( lnk, referrer );
+        }
+        else
+        {
+            /* Follow link */
+            window.loadURI( lnk, referrer );
+        }
     }
 }

@@ -52,17 +52,17 @@
 
         <menuitem id="urllink-browser-open-tab"
             label="&popup-urllink-open-tab.label;"
-            oncommand="urllinkBrowserOpenLink(1,'','')"/>
+            oncommand="urllinkBrowserOpenLink(event,1,'','')"/>
         <menuitem id="urllink-browser-open-link"
             label="&popup-urllink-open-link.label;"
-            oncommand="urllinkBrowserOpenLink(0,'','')"/>
+            oncommand="urllinkBrowserOpenLink(event,0,'','')"/>
 
         <menu id="urllink-browser-open-tab-as"
             label="&popup-urllink-open-tab-as.label;">
             <menupopup id="urllink-browser-open-tab-as-popup">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
-                    oncommand="urllinkBrowserOpenLink(1,'*')"/>
+                    oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
                 <menuseparator/>
             </menupopup>
         </menu>
@@ -72,7 +72,7 @@
             <menupopup id="urllink-browser-open-link-as-popup">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
-                    oncommand="urllinkBrowserOpenLink(0,'*')"/>
+                    oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
                 <menuseparator/>
             </menupopup>
         </menu>

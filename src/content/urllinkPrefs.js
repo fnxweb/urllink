@@ -22,12 +22,21 @@ var newitembox;
 
 function openNewWindow(url)
 {
-    // [culled from Download Manager/downbarpref]
-    // If I open it from my preferences window the "about" window is modal for some reason
-    // open it from the browser window, it is not modal
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
-    var wrecent = wm.getMostRecentWindow("navigator:browser");
-    wrecent.open(url);
+    alert("inThunderbird = " + inThunderbird());
+    if (inThunderbird())
+    {
+        // Have to hope browser has URL Link installed as well for now ...
+        launchExternalURL(url);
+    }
+    else
+    {
+        // [culled from Download Manager/downbarpref]
+        // If I open it from my preferences window the "about" window is modal for some reason
+        // open it from the browser window, it is not modal
+        var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+        var wrecent = wm.getMostRecentWindow("navigator:browser");
+        wrecent.open(url);
+    }
 }
 
 

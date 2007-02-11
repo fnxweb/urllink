@@ -52,14 +52,14 @@
 
         <menuitem id="urllink-mail-open-link"
             label="&popup-urllink-open-link.label;"
-            oncommand="urllinkMailOpenLink('','')"/>
+            oncommand="urllinkMailOpenLink(event,'','')"/>
 
         <menu id="urllink-mail-open-link-as"
             label="&popup-urllink-open-link-as.label;">
             <menupopup id="urllink-mail-open-link-as-popup">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
-                    oncommand="urllinkMailOpenLink('','')"/>
+                    oncommand="urllinkMailOpenLink(event,'','')"/>
                 <menuseparator/>
             </menupopup>
         </menu>

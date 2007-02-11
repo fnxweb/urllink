@@ -23,8 +23,7 @@ window.addEventListener("load",urllinkMailInit,false);
 
 function urllinkMailInit()
 {
-    if (navigator.userAgent.search(/Thunderbird/gi) != -1)
-        inThunderbird = true;
+    inThunderbird();
 
     if (document.getElementById("messagePaneContext"))
         document.getElementById("messagePaneContext").addEventListener("popupshowing",urllinkMailContext,false);
@@ -35,7 +34,7 @@ function urllinkMailInit()
 /* raw version */
 function rawOpenNewWindowWith(url)
 {
-    if (!inThunderbird)
+    if (!inThunderbird())
     {
         /* Local browser - (from contentAreaUtils.js) to not sec. check file: URIs */
         if (url.search(/^file:/) == -1)
@@ -55,10 +54,7 @@ function rawOpenNewWindowWith(url)
     }
     else
     {
-        /* Remote browser */
-        var messenger = Components.classes["@mozilla.org/messenger;1"].createInstance();
-        messenger = messenger.QueryInterface(Components.interfaces.nsIMessenger);
-        messenger.launchExternalURL(url);
+        launchExternalURL(url);
     }
 }
 
@@ -198,7 +194,7 @@ function urllinkMailContext()
 }
 
 
-function urllinkMailOpenLink(astab,format)  /* astab not used in mailer */
+function urllinkMailOpenLink(event,astab,format)  /* event/astab not used in mailer */
 {
     var wasLink = false;
     var selURL;

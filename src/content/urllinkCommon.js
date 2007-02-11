@@ -47,7 +47,8 @@ var urllinkAlternateMailMenuItems = new Array(
     "urllink-mail-open-link-as" );
 var urllinkAlternateMailMenus = new Array(
     "urllink-mail-open-link-as-popup" );
-var inThunderbird = false;
+var isInThunderbird = false;
+var checkedIsInThunderbird = false;
 
 
 /* Menu defaults */
@@ -57,6 +58,18 @@ var defaultMenuItems = new Array(
     "www.*.org",
     "www.*.net",
     "ftp." );
+
+
+function inThunderbird()
+{
+    if (!checkedIsInThunderbird)
+    {
+        checkedIsInThunderbird = true;
+        if (navigator.userAgent.search(/Thunderbird/gi) != -1)
+            isInThunderbird = true;
+    }
+    return isInThunderbird;
+}
 
 
 function getStringbundle()
@@ -189,7 +202,7 @@ function regenerateMenu( menuname, func, astab )
             if (menuitem)
             {
                 menuitem.setAttribute("label", withStr+" '"+format+"'");
-                menuitem.setAttribute("oncommand", func+"("+astab+",'"+format+"')");
+                menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format+"')");
                 menuitem.setAttribute("temp","true");
                 submenu.appendChild(menuitem);
             }
@@ -239,4 +252,14 @@ function regenerateMenu( menuname, func, astab )
 function getReferrer()
 {
     return ioService.newURI(document.location, null, null);
+}
+
+
+/* For Thunderbird, to open links in a remote browser */
+function launchExternalURL(url)
+{
+    /* Remote browser */
+    var messenger = Components.classes["@mozilla.org/messenger;1"].createInstance();
+    messenger = messenger.QueryInterface(Components.interfaces.nsIMessenger);
+    messenger.launchExternalURL(url);
 }
