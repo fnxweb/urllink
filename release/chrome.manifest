@@ -9,6 +9,7 @@ locale urllink da-DK jar:chrome/urllink.jar!/locale/da-DK/
 locale urllink de-DE jar:chrome/urllink.jar!/locale/de-DE/
 locale urllink en-US jar:chrome/urllink.jar!/locale/en-US/
 locale urllink es-ES jar:chrome/urllink.jar!/locale/es-ES/
+locale urllink fi-FI jar:chrome/urllink.jar!/locale/fi-FI/
 locale urllink fr-FR jar:chrome/urllink.jar!/locale/fr-FR/
 locale urllink hr-HR jar:chrome/urllink.jar!/locale/hr-HR/
 locale urllink hu-HU jar:chrome/urllink.jar!/locale/hu-HU/

@@ -1,0 +1,20 @@
+<!-- $Id: urllink.dtd 720 2007-02-11 13:13:38Z neil $ -->
+<!ENTITY popup-urllink-open-tab.label "Avaa Valittu URL uudessa Välilehdessä.">
+<!ENTITY popup-urllink-open-link.label "Avaa Valittu URL">
+<!ENTITY popup-urllink-open-tab-as.label "Avaa Valinta uudessa Välilehdessä.">
+<!ENTITY popup-urllink-open-link-as.label "Avaa Valinta">
+<!ENTITY popup-urllink-open-as-is.label "Muuttumaton">
+<!ENTITY urllink-prefs-title "URL Link Asetukset">
+<!ENTITY urllink-prefs-editmenu "Muokkaa Valikko">
+<!ENTITY urllink-prefs-newentry "Uusi Sijainti">
+<!ENTITY urllink-prefs-up "Ylös">
+<!ENTITY urllink-prefs-down "Alas">
+<!ENTITY urllink-prefs-defaults "Perusasetukset">
+<!ENTITY urllink-prefs-delete "Poista">
+<!ENTITY urllink-prefs-add "Lisää">
+<!ENTITY urllink-prefs-help "Apua">
+<!ENTITY urllink-prefs-cancel "Peruuta">
+<!ENTITY urllink-prefs-apply "Käytä">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-list-tip "Lista valikosta; &apos;*&apos; on korvattu valinnalla.">
+<!ENTITY urllink-prefs-entry-tip "Uusi valikkokohde; &apos;*&apos;on korvattu valinnalla.">
