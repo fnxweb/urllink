@@ -18,3 +18,4 @@
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-list-tip "List of menu items;  '*' is replaced by the selection">
 <!ENTITY urllink-prefs-entry-tip "New menu item;  '*' is replaced by the selection">
+<!ENTITY urllink-help-title "URL Link Help">

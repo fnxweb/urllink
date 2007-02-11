@@ -237,7 +237,7 @@ function regenerateMenu( menuname, func, astab )
                 if (menuitem)
                 {
                     menuitem.setAttribute("label", text);
-                    menuitem.setAttribute("oncommand", func+"("+astab+",'"+format+"')");
+                    menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format+"')");
                     menuitem.setAttribute("temp","true");
                     submenu.appendChild(menuitem);
                 }

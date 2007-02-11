@@ -86,7 +86,7 @@
 
         <hbox>
             <hbox>
-                <button label="&urllink-prefs-help;" oncommand="openNewWindow('chrome://urllink/locale/help.html');"/>
+                <button label="&urllink-prefs-help;" oncommand="openDialog('chrome://urllink/content/urllinkHelp.xul','URL Link','dialog=no,width=640,height=512');"/>
             </hbox>
             <spacer flex="1"/>
             <hbox pack="end">
