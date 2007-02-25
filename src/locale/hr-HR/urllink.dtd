@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "Otvori odabranu web adresu u novoj kartici">
 <!ENTITY popup-urllink-open-link.label "Otvori odabranu web adresu">
 <!ENTITY popup-urllink-open-tab-as.label "Otvori odabrano u novoj kartici">
@@ -18,3 +17,4 @@
 <!ENTITY urllink-prefs-ok "Uredu">
 <!ENTITY urllink-prefs-list-tip "Popis stavki izbornika;  &apos;*&apos; je zamijenjen s odabranim">
 <!ENTITY urllink-prefs-entry-tip "Nova stavka izbornika;  &apos;*&apos; je zamijenjena s odabranim">
+<!ENTITY urllink-help-title "URL Link Pomoć">

@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "Apri URL selezionato in nuova scheda">
 <!ENTITY popup-urllink-open-link.label "Apri URL selezionato">
 <!ENTITY popup-urllink-open-tab-as.label "Apri selezione in nuova scheda">
@@ -18,3 +17,4 @@
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-list-tip "Lista delle voci di menu;  &apos;*&apos; è sostituito dalla selezione">
 <!ENTITY urllink-prefs-entry-tip "Nuova voce di menu;  &apos;*&apos; è sostituito dalla selezione">
+<!ENTITY urllink-help-title "Contenuti guida">

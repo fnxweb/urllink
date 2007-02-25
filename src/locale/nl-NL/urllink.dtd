@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "Geselecteerde URL in nieuw tabblad openen">
 <!ENTITY popup-urllink-open-link.label "Geselecteerde URL openen">
 <!ENTITY popup-urllink-open-tab-as.label "Selectie in nieuw tabblad openen">
@@ -9,7 +8,7 @@
 <!ENTITY urllink-prefs-newentry "Nieuwe ingave">
 <!ENTITY urllink-prefs-up "Omhoog">
 <!ENTITY urllink-prefs-down "Naar beneden">
-<!ENTITY urllink-prefs-defaults "Standaardwaardes">
+<!ENTITY urllink-prefs-defaults "Standaardwaarden">
 <!ENTITY urllink-prefs-delete "Verwijderen">
 <!ENTITY urllink-prefs-add "Toevoegen">
 <!ENTITY urllink-prefs-help "Help">
@@ -18,3 +17,4 @@
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-list-tip "Lijst van menu-onderdelen; &apos;*&apos; wordt vervangen door de selectie">
 <!ENTITY urllink-prefs-entry-tip "Nieuw menu-onderdeel; &apos;*&apos; wordt vervangen door de selectie">
+<!ENTITY urllink-help-title "URL Link help">

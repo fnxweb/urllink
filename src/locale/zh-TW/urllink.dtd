@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "用新視窗開啟已選取的網址">
 <!ENTITY popup-urllink-open-link.label "開啟已選取的網址">
 <!ENTITY popup-urllink-open-tab-as.label "用新視窗開啟選取範圍">
@@ -18,3 +17,4 @@
 <!ENTITY urllink-prefs-ok "確定">
 <!ENTITY urllink-prefs-list-tip "選單項目列表；選取範圍會取代&apos;*&apos;">
 <!ENTITY urllink-prefs-entry-tip "新增選單項目；選取範圍會取代&apos;*&apos;">
+<!ENTITY urllink-help-title "URL Link 說明">

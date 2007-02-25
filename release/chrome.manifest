@@ -18,6 +18,7 @@ locale urllink nl-NL jar:chrome/urllink.jar!/locale/nl-NL/
 locale urllink pl-PL jar:chrome/urllink.jar!/locale/pl-PL/
 locale urllink pt-BR jar:chrome/urllink.jar!/locale/pt-BR/
 locale urllink ru-RU jar:chrome/urllink.jar!/locale/ru-RU/
+locale urllink sk-SK jar:chrome/urllink.jar!/locale/sk-SK/
 locale urllink uk-UA jar:chrome/urllink.jar!/locale/uk-UA/
 locale urllink zh-TW jar:chrome/urllink.jar!/locale/zh-TW/
 
