@@ -29,7 +29,7 @@ prefs = prefs.getBranch("extensions.urllink.");
 
 
 /* Our bits */
-var urllinkBrowserMenuSep = "urllink-browser-sep";
+var urllinkBrowserMenuSep = "urllink-browser-sep-";
 var urllinkBrowserMenuItems = new Array(
     "urllink-browser-open-tab",
     "urllink-browser-open-link" );
@@ -40,7 +40,7 @@ var urllinkAlternateBrowserMenus = new Array(
     "urllink-browser-open-link-as-popup", /* Order sic. */
     "urllink-browser-open-tab-as-popup" );
 
-var urllinkMailMenuSep = "urllink-mail-sep";
+var urllinkMailMenuSep = "urllink-mail-sep-";
 var urllinkMailMenuItems = new Array(
     "urllink-mail-open-link" );
 var urllinkAlternateMailMenuItems = new Array(

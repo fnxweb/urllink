@@ -181,14 +181,17 @@ function urllinkMailContext()
             menuitem.hidden = !isTextOrUrlSelection || isURL;
         }
     }
-    /* Hide separator if both of the above hidden */
+    /* Hide separators if both of the above hidden */
     {
-        var menuitem = document.getElementById(urllinkMailMenuSep);
-        if (menuitem)
+        for (var i=0; i<2; i++)
         {
-            menuitem.hidden =
-                (!(isTextOrUrlSelection && isURL))  &&
-                (!isTextOrUrlSelection || isURL);
+            var menuitem = document.getElementById(urllinkMailMenuSep + i);
+            if (menuitem)
+            {
+                menuitem.hidden =
+                    (!(isTextOrUrlSelection && isURL))  &&
+                    (!isTextOrUrlSelection || isURL);
+            }
         }
     }
 }

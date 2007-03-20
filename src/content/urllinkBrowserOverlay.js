@@ -138,14 +138,17 @@ function urllinkBrowserContext()
             menuitem.hidden = !isLinkOrUrlSelection || isURL;
         }
     }
-    /* Hide separator if both of the above hidden */
+    /* Hide separators if both of the above hidden */
     {
-        var menuitem = document.getElementById(urllinkBrowserMenuSep);
-        if (menuitem)
+        for (var i=0; i<2; i++)
         {
-            menuitem.hidden =
-                (!(isLinkOrUrlSelection && isURL))  &&
-                (!isLinkOrUrlSelection || isURL);
+            var menuitem = document.getElementById(urllinkBrowserMenuSep + i);
+            if (menuitem)
+            {
+                menuitem.hidden =
+                    (!(isLinkOrUrlSelection && isURL))  &&
+                    (!isLinkOrUrlSelection || isURL);
+            }
         }
     }
 }

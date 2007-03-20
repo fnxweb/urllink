@@ -48,17 +48,20 @@
     </stringbundleset>
 
     <popup id="contentAreaContextMenu">
-        <menuseparator id="urllink-browser-sep"/>
+        <!-- <menuseparator id="urllink-browser-sep-0" insertbefore="context-openlink"/> -->
 
         <menuitem id="urllink-browser-open-tab"
             label="&popup-urllink-open-tab.label;"
-            oncommand="urllinkBrowserOpenLink(event,1,'','')"/>
+            oncommand="urllinkBrowserOpenLink(event,1,'','')"
+            insertbefore="context-openlink"/>
         <menuitem id="urllink-browser-open-link"
             label="&popup-urllink-open-link.label;"
-            oncommand="urllinkBrowserOpenLink(event,0,'','')"/>
+            oncommand="urllinkBrowserOpenLink(event,0,'','')"
+            insertbefore="context-openlink"/>
 
         <menu id="urllink-browser-open-tab-as"
-            label="&popup-urllink-open-tab-as.label;">
+            label="&popup-urllink-open-tab-as.label;"
+            insertbefore="context-openlink">
             <menupopup id="urllink-browser-open-tab-as-popup">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
@@ -68,7 +71,8 @@
         </menu>
 
         <menu id="urllink-browser-open-link-as"
-            label="&popup-urllink-open-link-as.label;">
+            label="&popup-urllink-open-link-as.label;"
+            insertbefore="context-openlink">
             <menupopup id="urllink-browser-open-link-as-popup">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
@@ -77,6 +81,7 @@
             </menupopup>
         </menu>
 
+        <menuseparator id="urllink-browser-sep-1" insertbefore="context-openlink"/>
     </popup>
 
 </overlay>

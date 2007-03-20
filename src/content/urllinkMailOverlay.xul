@@ -48,14 +48,16 @@
     </stringbundleset>
 
     <popup id="messagePaneContext" insertafter="context-copy">
-        <menuseparator id="urllink-mail-sep"/>
+        <!-- <menuseparator id="urllink-mail-sep-0" insertbefore="messagePaneContext-replySender"/> -->
 
         <menuitem id="urllink-mail-open-link"
             label="&popup-urllink-open-link.label;"
-            oncommand="urllinkMailOpenLink(event,'','')"/>
+            oncommand="urllinkMailOpenLink(event,'','')"
+            insertbefore="messagePaneContext-replySender"/>
 
         <menu id="urllink-mail-open-link-as"
-            label="&popup-urllink-open-link-as.label;">
+            label="&popup-urllink-open-link-as.label;"
+            insertbefore="messagePaneContext-replySender">
             <menupopup id="urllink-mail-open-link-as-popup">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
@@ -64,6 +66,7 @@
             </menupopup>
         </menu>
 
+        <menuseparator id="urllink-mail-sep-1" insertbefore="messagePaneContext-replySender"/>
     </popup>
 
 </overlay>
