@@ -111,10 +111,16 @@ function deleteItem()
 }
 
 
-function addItem()
+function addItem(force)
 {
     var newitem = newitembox.value;
-    if (newitem != "")
+    var selecteditem = "";
+    var idx = listbox.selectedIndex;
+    if (idx != -1)
+    {
+        selecteditem = listbox.getItemAtIndex(idx).label;
+    }
+    if (newitem != ""  &&  (force  ||  newitem != selecteditem))
     {
         listbox.appendItem(newitem,"");
         var idx = listbox.getRowCount() - 1;

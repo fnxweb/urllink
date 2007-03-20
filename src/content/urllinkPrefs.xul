@@ -68,7 +68,7 @@
                     <separator class="small"/>
                     <hbox>
                         <description value="&urllink-prefs-newentry;:"/>
-                        <textbox id="urllinkNewItem" wrap="off" onchange="addItem();" label="New entry"
+                        <textbox id="urllinkNewItem" wrap="off" onchange="addItem(0);" label="New entry"
                             tooltiptext="&urllink-prefs-entry-tip;"/>
                     </hbox>
                 </vbox>
@@ -79,7 +79,7 @@
                     <button label="&urllink-prefs-defaults;" oncommand="setDefaults();"/>
                     <spacer height="20px"/>
                     <button label="&urllink-prefs-delete;" oncommand="deleteItem();"/>
-                    <button label="&urllink-prefs-add;" oncommand="addItem();"/>
+                    <button label="&urllink-prefs-add;" oncommand="addItem(1);"/>
                 </vbox>
             </hbox>
         </groupbox>

@@ -233,7 +233,15 @@ function regenerateMenu( menuname, func, astab )
                 }
 
                 /* Create menuitem */
-                var menuitem = document.createElement("menuitem");
+                var menuitem;
+                if (prefstr.search(/^--*$/) == 0)
+                {
+                    menuitem = document.createElement("menuseparator");
+                }
+                else
+                {
+                    menuitem = document.createElement("menuitem");
+                }
                 if (menuitem)
                 {
                     menuitem.setAttribute("label", text);
