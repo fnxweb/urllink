@@ -57,7 +57,9 @@ var defaultMenuItems = new Array(
     "www.*.com",
     "www.*.org",
     "www.*.net",
-    "ftp." );
+    "ftp.",
+    "--",
+    "Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search" );
 
 
 function inThunderbird()
