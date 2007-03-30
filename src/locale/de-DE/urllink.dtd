@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "Öffne markierte URL in neuem Tab">
 <!ENTITY popup-urllink-open-link.label "Öffne markierte URL">
 <!ENTITY popup-urllink-open-tab-as.label "Öffne Auswahl in neuem Tab">
@@ -19,3 +18,5 @@
 <!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "Liste der Menüeinträge;  '*' wird durch die Auswahl ersetzt">
 <!ENTITY urllink-prefs-entry-tip "Neuer Menüeintrag;  '*' wird durch die Auswahl ersetzt">
+<!ENTITY urllink-help-title "URL Link Hilfe">
+<!ENTITY urllink-changelog-title "URL Link Changelog">

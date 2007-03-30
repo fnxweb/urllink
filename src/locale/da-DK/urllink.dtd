@@ -1,4 +1,3 @@
-<!-- $Id: urllink.dtd 686 2006-10-14 09:37:58Z neil $ -->
 <!ENTITY popup-urllink-open-tab.label "Åbn den valgte URL i et nyt faneblad">
 <!ENTITY popup-urllink-open-link.label "Åbn den valgte URL">
 <!ENTITY popup-urllink-open-tab-as.label "Åbn det markerede i et nyt faneblad">
@@ -19,3 +18,5 @@
 <!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "Oversigt over menupunkter; &apos;*&apos; erstattes af det markerede">
 <!ENTITY urllink-prefs-entry-tip "Nyt menupunkt; &apos;*&apos; erstattes af det markerede">
+<!ENTITY urllink-help-title "URL Link Hjælp">
+<!ENTITY urllink-changelog-title "URL Link Changelog">

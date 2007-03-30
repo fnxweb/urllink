@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "Open Selected URL in New Tab">
 <!ENTITY popup-urllink-open-link.label "Open Selected URL">
 <!ENTITY popup-urllink-open-tab-as.label "Open Selection in New Tab">
@@ -20,3 +19,4 @@
 <!ENTITY urllink-prefs-list-tip "List of menu items;  '*' is replaced by the selection">
 <!ENTITY urllink-prefs-entry-tip "New menu item;  '*' is replaced by the selection">
 <!ENTITY urllink-help-title "URL Link Help">
+<!ENTITY urllink-changelog-title "URL Link Changelog">

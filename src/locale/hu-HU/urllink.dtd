@@ -1,4 +1,3 @@
-<!-- $Id$ -->
 <!ENTITY popup-urllink-open-tab.label "Kiválasztott URL megnyitása új lapon">
 <!ENTITY popup-urllink-open-link.label "Kiválasztott URL megnyitása">
 <!ENTITY popup-urllink-open-tab-as.label "Kijelölt rész megnyitása új lapon">
@@ -19,4 +18,5 @@
 <!ENTITY urllink-prefs-changelog "Változások">
 <!ENTITY urllink-prefs-list-tip "Menü pontok listája;  '*' helyére kerül a kijelölt rész">
 <!ENTITY urllink-prefs-entry-tip "Új menü pont;  '*' helyére kerül a kijelölt rész">
-
+<!ENTITY urllink-help-title "URL Link Súgó">
+<!ENTITY urllink-changelog-title "URL Link Változások">

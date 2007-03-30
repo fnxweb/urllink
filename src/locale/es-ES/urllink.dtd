@@ -19,3 +19,4 @@
 <!ENTITY urllink-prefs-list-tip "Lista de elementos del menú; &apos;*&apos; es reemplazado por la selección">
 <!ENTITY urllink-prefs-entry-tip "Nuevo elemento de menú; &apos;*&apos; es reemplazado por la selección">
 <!ENTITY urllink-help-title "URL Link - Ayuda">
+<!ENTITY urllink-changelog-title "URL Link - Lista de cambios">

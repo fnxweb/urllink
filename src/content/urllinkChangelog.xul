@@ -41,10 +41,10 @@
 
 <window id="urllink-changelog"
     class="dialog"
-    title="&urllink-help-title;"
+    title="&urllink-changelog-title;"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-    <browser src="chrome://urllink/content/history.txt" type="content" flex="1"/>
+    <browser src="chrome://urllink/content/history.html" type="content" flex="1"/>
 
 </window>
 <!-- vim: set ft=xml -->
