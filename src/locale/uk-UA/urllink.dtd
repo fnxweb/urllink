@@ -16,5 +16,6 @@
 <!ENTITY urllink-prefs-cancel "Відміна">
 <!ENTITY urllink-prefs-apply "Застосувати">
 <!ENTITY urllink-prefs-ok "ОК">
+<!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "Список пунктів меню; &apos;*&apos; переміщений по виділенню">
 <!ENTITY urllink-prefs-entry-tip "Новий пункт меню; &apos;*&apos; переміщений по виділенню">

@@ -15,6 +15,7 @@
 <!ENTITY urllink-prefs-cancel "Peruuta">
 <!ENTITY urllink-prefs-apply "Käytä">
 <!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "Lista valikosta; &apos;*&apos; on korvattu valinnalla.">
 <!ENTITY urllink-prefs-entry-tip "Uusi valikkokohde; &apos;*&apos;on korvattu valinnalla.">
 <!ENTITY urllink-help-title "URL Link Apu">

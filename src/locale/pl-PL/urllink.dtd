@@ -15,6 +15,7 @@
 <!ENTITY urllink-prefs-cancel "Anuluj">
 <!ENTITY urllink-prefs-apply "Zastosuj">
 <!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-changelog "Opis zmian">
 <!ENTITY urllink-prefs-list-tip "Wieloznacznik &quot;*&quot; jest zamieniany przez zaznaczenie">
 <!ENTITY urllink-prefs-entry-tip "Wieloznacznik &quot;*&quot; jest zamieniany przez zaznaczenie">
 <!ENTITY urllink-help-title "URL Link Help">

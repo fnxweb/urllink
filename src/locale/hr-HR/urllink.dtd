@@ -15,6 +15,7 @@
 <!ENTITY urllink-prefs-cancel "Odustani">
 <!ENTITY urllink-prefs-apply "Primijeni">
 <!ENTITY urllink-prefs-ok "Uredu">
+<!ENTITY urllink-prefs-changelog "Popis promjena">
 <!ENTITY urllink-prefs-list-tip "Popis stavki izbornika;  &apos;*&apos; je zamijenjen s odabranim">
 <!ENTITY urllink-prefs-entry-tip "Nova stavka izbornika;  &apos;*&apos; je zamijenjena s odabranim">
 <!ENTITY urllink-help-title "URL Link Pomoć">

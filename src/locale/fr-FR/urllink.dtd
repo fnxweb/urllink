@@ -16,5 +16,6 @@
 <!ENTITY urllink-prefs-cancel "Annuler">
 <!ENTITY urllink-prefs-apply "Valider">
 <!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "'*' est remplacé par le texte sélectionné">
 <!ENTITY urllink-prefs-entry-tip "'*' est remplacé par le texte sélectionné">

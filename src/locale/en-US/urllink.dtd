@@ -16,6 +16,7 @@
 <!ENTITY urllink-prefs-cancel "Cancel">
 <!ENTITY urllink-prefs-apply "Apply">
 <!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "List of menu items;  '*' is replaced by the selection">
 <!ENTITY urllink-prefs-entry-tip "New menu item;  '*' is replaced by the selection">
 <!ENTITY urllink-help-title "URL Link Help">

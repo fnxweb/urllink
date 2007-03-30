@@ -84,8 +84,12 @@
             </hbox>
         </groupbox>
 
+        <hbox pack="start">
+            <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,width=640,height=512');"/>
+        </hbox>
+
         <hbox>
-            <hbox>
+            <hbox pack="start">
                 <button label="&urllink-prefs-help;" oncommand="openDialog('chrome://urllink/content/urllinkHelp.xul','URL Link','dialog=no,width=640,height=512');"/>
             </hbox>
             <spacer flex="1"/>
