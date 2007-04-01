@@ -15,8 +15,8 @@
 <!ENTITY urllink-prefs-cancel "Fortryd">
 <!ENTITY urllink-prefs-apply "Anvend">
 <!ENTITY urllink-prefs-ok "OK">
-<!ENTITY urllink-prefs-changelog "Changelog">
+<!ENTITY urllink-prefs-changelog "Ændringslog">
 <!ENTITY urllink-prefs-list-tip "Oversigt over menupunkter; &apos;*&apos; erstattes af det markerede">
 <!ENTITY urllink-prefs-entry-tip "Nyt menupunkt; &apos;*&apos; erstattes af det markerede">
-<!ENTITY urllink-help-title "URL Link Hjælp">
-<!ENTITY urllink-changelog-title "URL Link Changelog">
+<!ENTITY urllink-changelog-title "URL Link Ændringslog">
+<!ENTITY urllink-help-title "URL Link hjælp">
