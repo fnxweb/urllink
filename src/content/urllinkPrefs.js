@@ -22,11 +22,10 @@ var newitembox;
 
 function openNewWindow(url)
 {
-    alert("inThunderbird = " + inThunderbird());
-    if (inThunderbird())
+    if (urllinkCommon.inThunderbird())
     {
         // Have to hope browser has URL Link installed as well for now ...
-        launchExternalURL(url);
+        urllinkCommon.launchExternalURL(url);
     }
     else
     {
@@ -81,9 +80,9 @@ function setDefaults()
     {
         listbox.removeItemAt(0);
     }
-    for (var i=0; i<defaultMenuItems.length; i++)
+    for (var i=0; i<urllinkCommon.defaultMenuItems.length; i++)
     {
-        listbox.appendItem( defaultMenuItems[i], "" );
+        listbox.appendItem( urllinkCommon.defaultMenuItems[i], "" );
     }
 }
 
@@ -150,7 +149,7 @@ function loadPrefs()
         newitembox = document.getElementById("urllinkNewItem");
         listbox.addEventListener("select",onPrefsSelect, false);
     }
-    if (prefs.getPrefType("submenu.0") != nsIPrefBranch.PREF_STRING)
+    if (urllinkCommon.prefs.getPrefType("submenu.0") != nsIPrefBranch.PREF_STRING)
     {
         /* Nothing yet */
         setDefaults();
@@ -165,9 +164,9 @@ function loadPrefs()
 
         /* Read prefs into list */
         var n = 0;
-        while (prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING)
+        while (urllinkCommon.prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING)
         {
-            listbox.appendItem( prefs.getCharPref("submenu."+n), "" );
+            listbox.appendItem( urllinkCommon.prefs.getCharPref("submenu."+n), "" );
             n++;
         }
     }
@@ -178,11 +177,11 @@ function setPrefs(doclose)
 {
     /* Blat current prefs */
     var n = 0;
-    while (prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING)
+    while (urllinkCommon.prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING)
     {
-        if (prefs.prefHasUserValue("submenu."+n))
+        if (urllinkCommon.prefs.prefHasUserValue("submenu."+n))
         {
-            prefs.clearUserPref("submenu."+n);
+            urllinkCommon.prefs.clearUserPref("submenu."+n);
         }
         n++;
     }
@@ -191,7 +190,7 @@ function setPrefs(doclose)
     var n = 0;
     while (n < listbox.getRowCount())
     {
-        prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).label );
+        urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).label );
         n++;
     }
 

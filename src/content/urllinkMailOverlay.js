@@ -23,7 +23,7 @@ window.addEventListener("load",urllinkMailInit,false);
 
 function urllinkMailInit()
 {
-    inThunderbird();
+    urllinkCommon.urllinkInit();
 
     if (document.getElementById("messagePaneContext"))
         document.getElementById("messagePaneContext").addEventListener("popupshowing",urllinkMailContext,false);
@@ -34,7 +34,7 @@ function urllinkMailInit()
 /* raw version */
 function rawOpenNewWindowWith(url)
 {
-    if (!inThunderbird())
+    if (!urllinkCommon.inThunderbird())
     {
         /* Local browser - (from contentAreaUtils.js) to not sec. check file: URIs */
         if (url.search(/^file:/) == -1)
@@ -49,12 +49,12 @@ function rawOpenNewWindowWith(url)
         if (wintype == "navigator:browser")
             charsetArg = "charset=" + window._content.document.characterSet;
 
-        var referrer = getReferrer();
+        var referrer = urllinkCommon.getReferrer();
         window.openDialog(getBrowserURL(), "_blank", "chrome,all,dialog=no", url, charsetArg, referrer);
     }
     else
     {
-        launchExternalURL(url);
+        urllinkCommon.launchExternalURL(url);
     }
 }
 
@@ -156,9 +156,9 @@ function urllinkMailContext()
     }
 
     /* Visible if selection and looks like URL */
-    for (var i=0; i<urllinkMailMenuItems.length; i++)
+    for (var i=0; i<urllinkCommon.urllinkMailMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkMailMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuItems[i]);
         if (menuitem)
         {
             menuitem.hidden = !(isTextOrUrlSelection && isURL);
@@ -168,14 +168,14 @@ function urllinkMailContext()
     if (! (!isTextOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
-        for (var i=0; i<urllinkAlternateMailMenus.length; i++)
+        for (var i=0; i<urllinkCommon.urllinkAlternateMailMenus.length; i++)
         {
-            regenerateMenu( urllinkAlternateMailMenus[i], 'urllinkMailOpenLink', 0 );
+            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateMailMenus[i], 'urllinkMailOpenLink', 0 );
         }
     }
-    for (var i=0; i<urllinkAlternateMailMenuItems.length; i++)
+    for (var i=0; i<urllinkCommon.urllinkAlternateMailMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkAlternateMailMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkAlternateMailMenuItems[i]);
         if (menuitem)
         {
             menuitem.hidden = !isTextOrUrlSelection || isURL;
@@ -185,7 +185,7 @@ function urllinkMailContext()
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(urllinkMailMenuSep + i);
+            var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuSep + i);
             if (menuitem)
             {
                 menuitem.hidden =
@@ -205,7 +205,7 @@ function urllinkMailOpenLink(event,astab,format)  /* event/astab not used in mai
     var suffix = {val:''};
 
     /* Determine prefix/suffix by splitting on '*' */
-    splitFormat( format, prefix, suffix );
+    urllinkCommon.splitFormat( format, prefix, suffix );
 
     if (gContextMenu.isTextSelected)
     {
@@ -217,5 +217,5 @@ function urllinkMailOpenLink(event,astab,format)  /* event/astab not used in mai
         selURL = gContextMenu.link.href;
     }
     selURL = unmangleURL(selURL,wasLink);
-    rawOpenNewWindowWith( fixURL( prefix.val + selURL + suffix.val ) );
+    rawOpenNewWindowWith( urllinkCommon.fixURL( prefix.val + selURL + suffix.val ) );
 }

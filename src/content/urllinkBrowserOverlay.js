@@ -23,6 +23,8 @@ window.addEventListener("load",urllinkBrowserInit,false);
 
 function urllinkBrowserInit()
 {
+    urllinkCommon.urllinkInit();
+
     var contentAreaContextMenu = document.getElementById("contentAreaContextMenu");
     if (contentAreaContextMenu)
         contentAreaContextMenu.addEventListener("popupshowing",urllinkBrowserContext,false);
@@ -113,9 +115,9 @@ function urllinkBrowserContext()
     }
 
     /* Main menu buttons visible if selection and looks like URL */
-    for (var i=0; i<urllinkBrowserMenuItems.length; i++)
+    for (var i=0; i<urllinkCommon.urllinkBrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkBrowserMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i]);
         if (menuitem)
         {
             menuitem.hidden = !(isLinkOrUrlSelection && isURL);
@@ -125,9 +127,9 @@ function urllinkBrowserContext()
     if (! (!isLinkOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
-        for (var i=0; i<urllinkAlternateBrowserMenus.length; i++)
+        for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenus.length; i++)
         {
-            regenerateMenu( urllinkAlternateBrowserMenus[i], 'urllinkBrowserOpenLink', i );
+            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateBrowserMenus[i], 'urllinkBrowserOpenLink', i );
         }
     }
     for (var i=0; i<urllinkAlternateBrowserMenuItems.length; i++)
@@ -142,7 +144,7 @@ function urllinkBrowserContext()
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(urllinkBrowserMenuSep + i);
+            var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuSep + i);
             if (menuitem)
             {
                 menuitem.hidden =
@@ -303,7 +305,7 @@ function urllinkBrowserOpenLink(event,astab,format)
     var suffix = {val:''};
 
     /* Determine prefix/suffix by splitting on '*' */
-    splitFormat( format, prefix, suffix );
+    urllinkCommon.splitFormat( format, prefix, suffix );
 
     if (gContextMenu.isTextSelected)
     {
@@ -318,13 +320,13 @@ function urllinkBrowserOpenLink(event,astab,format)
         lnk = gContextMenu.link.href;
         wasLink = true;
     }
-    lnk = fixURL( prefix.val + unmangleURL( lnk, wasLink ) + suffix.val );
+    lnk = urllinkCommon.fixURL( prefix.val + unmangleURL( lnk, wasLink ) + suffix.val );
 
-    var referrer = getReferrer();
+    var referrer = urllinkCommon.getReferrer();
     if (astab == 1)
     {
         /* Tab */
-        var loadInBackground = prefManager.getBoolPref("browser.tabs.loadInBackground");
+        var loadInBackground = urllinkCommon.prefManager.getBoolPref("browser.tabs.loadInBackground");
         var tab = browser.addTab( lnk, referrer );
         if (!loadInBackground)
             browser.selectedTab = tab;
