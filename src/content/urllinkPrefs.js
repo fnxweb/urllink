@@ -18,6 +18,7 @@
 
 var listbox; /* = document.getElementById("urllinkMenuItems"); */
 var newitembox;
+var topmenu;
 
 
 function openNewWindow(url)
@@ -145,11 +146,13 @@ function loadPrefs()
 {
     if (!listbox)
     {
+        urllinkCommon.urllinkInit();
         listbox = document.getElementById("urllinkMenuItems");
         newitembox = document.getElementById("urllinkNewItem");
+        topmenu = document.getElementById("urllinkTopmenu");
         listbox.addEventListener("select",onPrefsSelect, false);
     }
-    if (urllinkCommon.prefs.getPrefType("submenu.0") != nsIPrefBranch.PREF_STRING)
+    if (urllinkCommon.prefs.getPrefType("submenu.0") != urllinkCommon.nsIPrefBranch.PREF_STRING)
     {
         /* Nothing yet */
         setDefaults();
@@ -164,12 +167,13 @@ function loadPrefs()
 
         /* Read prefs into list */
         var n = 0;
-        while (urllinkCommon.prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING)
+        while (urllinkCommon.prefs.getPrefType("submenu."+n) == urllinkCommon.nsIPrefBranch.PREF_STRING)
         {
             listbox.appendItem( urllinkCommon.prefs.getCharPref("submenu."+n), "" );
             n++;
         }
     }
+    topmenu.checked = urllinkCommon.prefs.getBoolPref("topmenu");
 }
 
 
@@ -177,7 +181,7 @@ function setPrefs(doclose)
 {
     /* Blat current prefs */
     var n = 0;
-    while (urllinkCommon.prefs.getPrefType("submenu."+n) == nsIPrefBranch.PREF_STRING)
+    while (urllinkCommon.prefs.getPrefType("submenu."+n) == urllinkCommon.nsIPrefBranch.PREF_STRING)
     {
         if (urllinkCommon.prefs.prefHasUserValue("submenu."+n))
         {
@@ -193,6 +197,7 @@ function setPrefs(doclose)
         urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).label );
         n++;
     }
+    urllinkCommon.prefs.setBoolPref("topmenu", topmenu.checked);
 
     /* Done */
     if (doclose)

@@ -48,17 +48,18 @@
     </stringbundleset>
 
     <popup id="messagePaneContext" insertafter="context-copy">
-        <!-- <menuseparator id="urllink-mail-sep-0" insertbefore="messagePaneContext-replySender"/> -->
+        <!-- top version -->
+        <!-- <menuseparator id="urllink-mail-sep-0-top" insertbefore="messagePaneContext-replySender"/> -->
 
-        <menuitem id="urllink-mail-open-link"
+        <menuitem id="urllink-mail-open-link-top"
             label="&popup-urllink-open-link.label;"
             oncommand="urllinkMailOpenLink(event,'','')"
             insertbefore="messagePaneContext-replySender"/>
 
-        <menu id="urllink-mail-open-link-as"
+        <menu id="urllink-mail-open-link-as-top"
             label="&popup-urllink-open-link-as.label;"
             insertbefore="messagePaneContext-replySender">
-            <menupopup id="urllink-mail-open-link-as-popup">
+            <menupopup id="urllink-mail-open-link-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     oncommand="urllinkMailOpenLink(event,'','')"/>
@@ -66,7 +67,26 @@
             </menupopup>
         </menu>
 
-        <menuseparator id="urllink-mail-sep-1" insertbefore="messagePaneContext-replySender"/>
+        <menuseparator id="urllink-mail-sep-1-top" insertbefore="messagePaneContext-replySender"/>
+
+        <!-- bottom version -->
+        <menuseparator id="urllink-mail-sep-0-bottom"/>
+
+        <menuitem id="urllink-mail-open-link-bottom"
+            label="&popup-urllink-open-link.label;"
+            oncommand="urllinkMailOpenLink(event,'','')"/>
+
+        <menu id="urllink-mail-open-link-as-bottom"
+            label="&popup-urllink-open-link-as.label;">
+            <menupopup id="urllink-mail-open-link-as-popup-bottom">
+                <menuitem
+                    label="&popup-urllink-open-as-is.label;"
+                    oncommand="urllinkMailOpenLink(event,'','')"/>
+                <menuseparator/>
+            </menupopup>
+        </menu>
+
+        <!-- <menuseparator id="urllink-mail-sep-1" insertbefore="messagePaneContext-replySender"/> -->
     </popup>
 
 </overlay>

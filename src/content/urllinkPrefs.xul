@@ -55,7 +55,6 @@
     </stringbundleset>
 
     <vbox>
-
         <groupbox>
             <caption label="&urllink-prefs-editmenu;"/>
             <hbox>
@@ -86,6 +85,7 @@
 
         <hbox pack="start">
             <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,width=640,height=512');"/>
+            <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
         </hbox>
 
         <hbox>

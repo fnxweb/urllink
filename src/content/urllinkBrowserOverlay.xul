@@ -50,19 +50,20 @@
     <popup id="contentAreaContextMenu">
         <!-- <menuseparator id="urllink-browser-sep-0" insertbefore="context-openlink"/> -->
 
-        <menuitem id="urllink-browser-open-tab"
+        <!-- top version -->
+        <menuitem id="urllink-browser-open-tab-top"
             label="&popup-urllink-open-tab.label;"
             oncommand="urllinkBrowserOpenLink(event,1,'','')"
             insertbefore="context-openlink"/>
-        <menuitem id="urllink-browser-open-link"
+        <menuitem id="urllink-browser-open-link-top"
             label="&popup-urllink-open-link.label;"
             oncommand="urllinkBrowserOpenLink(event,0,'','')"
             insertbefore="context-openlink"/>
 
-        <menu id="urllink-browser-open-tab-as"
+        <menu id="urllink-browser-open-tab-as-top"
             label="&popup-urllink-open-tab-as.label;"
             insertbefore="context-openlink">
-            <menupopup id="urllink-browser-open-tab-as-popup">
+            <menupopup id="urllink-browser-open-tab-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
@@ -70,10 +71,10 @@
             </menupopup>
         </menu>
 
-        <menu id="urllink-browser-open-link-as"
+        <menu id="urllink-browser-open-link-as-top"
             label="&popup-urllink-open-link-as.label;"
             insertbefore="context-openlink">
-            <menupopup id="urllink-browser-open-link-as-popup">
+            <menupopup id="urllink-browser-open-link-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
@@ -81,7 +82,39 @@
             </menupopup>
         </menu>
 
-        <menuseparator id="urllink-browser-sep-1" insertbefore="context-openlink"/>
+        <menuseparator id="urllink-browser-sep-1-top" insertafter="context-openlink"/>
+
+        <!-- bottom version -->
+        <menuseparator id="urllink-browser-sep-0-bottom"/>
+
+        <menuitem id="urllink-browser-open-tab-bottom"
+            label="&popup-urllink-open-tab.label;"
+            oncommand="urllinkBrowserOpenLink(event,1,'','')"/>
+        <menuitem id="urllink-browser-open-link-bottom"
+            label="&popup-urllink-open-link.label;"
+            oncommand="urllinkBrowserOpenLink(event,0,'','')"/>
+
+        <menu id="urllink-browser-open-tab-as-bottom"
+            label="&popup-urllink-open-tab-as.label;">
+            <menupopup id="urllink-browser-open-tab-as-popup-bottom">
+                <menuitem
+                    label="&popup-urllink-open-as-is.label;"
+                    oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
+                <menuseparator/>
+            </menupopup>
+        </menu>
+
+        <menu id="urllink-browser-open-link-as-bottom"
+            label="&popup-urllink-open-link-as.label;">
+            <menupopup id="urllink-browser-open-link-as-popup-bottom">
+                <menuitem
+                    label="&popup-urllink-open-as-is.label;"
+                    oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
+                <menuseparator/>
+            </menupopup>
+        </menu>
+
+        <!-- <menuseparator id="urllink-browser-sep-1-bottom" insertafter="context-openlink"/> -->
     </popup>
 
 </overlay>

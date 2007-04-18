@@ -158,10 +158,15 @@ function urllinkMailContext()
     /* Visible if selection and looks like URL */
     for (var i=0; i<urllinkCommon.urllinkMailMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
             menuitem.hidden = !(isTextOrUrlSelection && isURL);
+        }
+        menuitem = document.getElementById(urllinkCommon.urllinkMailMenuItems[i] + urllinkCommon.menuPosAlt());
+        if (menuitem)
+        {
+            menuitem.hidden = true;
         }
     }
     /* Visible if selection and doesn't look like URL */
@@ -170,27 +175,38 @@ function urllinkMailContext()
         /* Alternate menus not hidden;  regenerate from current prefs. */
         for (var i=0; i<urllinkCommon.urllinkAlternateMailMenus.length; i++)
         {
-            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateMailMenus[i], 'urllinkMailOpenLink', 0 );
+            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateMailMenus[i] + urllinkCommon.menuPos(),
+                'urllinkMailOpenLink', 0 );
         }
     }
     for (var i=0; i<urllinkCommon.urllinkAlternateMailMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkAlternateMailMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkAlternateMailMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
             menuitem.hidden = !isTextOrUrlSelection || isURL;
+        }
+        menuitem = document.getElementById(urllinkCommon.urllinkAlternateMailMenuItems[i] + urllinkCommon.menuPosAlt());
+        if (menuitem)
+        {
+            menuitem.hidden = true;
         }
     }
     /* Hide separators if both of the above hidden */
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuSep + i);
+            var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuSep + i + urllinkCommon.menuPos());
             if (menuitem)
             {
                 menuitem.hidden =
                     (!(isTextOrUrlSelection && isURL))  &&
                     (!isTextOrUrlSelection || isURL);
+            }
+            menuitem = document.getElementById(urllinkCommon.urllinkMailMenuSep + i + urllinkCommon.menuPosAlt());
+            if (menuitem)
+            {
+                menuitem.hidden = true;
             }
         }
     }

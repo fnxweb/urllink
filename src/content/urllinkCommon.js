@@ -48,6 +48,7 @@ var urllinkCommon =
         "urllink-mail-open-link-as" ),
     urllinkAlternateMailMenus : new Array(
         "urllink-mail-open-link-as-popup" ),
+
     isInThunderbird : false,
     checkedIsInThunderbird : false,
 
@@ -69,9 +70,9 @@ var urllinkCommon =
         {
             this.checkedIsInThunderbird = true;
             if (navigator.userAgent.search(/Thunderbird/gi) != -1)
-                isInThunderbird = true;
+                this.isInThunderbird = true;
         }
-        return isInThunderbird;
+        return this.isInThunderbird;
     },
 
 
@@ -92,6 +93,17 @@ var urllinkCommon =
             }
         }
         return bundle;
+    },
+
+
+    menuPos: function ()
+    {
+        return (this.prefs.getBoolPref("topmenu") ? "-top" : "-bottom");
+    },
+
+    menuPosAlt: function ()
+    {
+        return (!this.prefs.getBoolPref("topmenu") ? "-top" : "-bottom");
     },
 
 

@@ -117,10 +117,15 @@ function urllinkBrowserContext()
     /* Main menu buttons visible if selection and looks like URL */
     for (var i=0; i<urllinkCommon.urllinkBrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
             menuitem.hidden = !(isLinkOrUrlSelection && isURL);
+        }
+        menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPosAlt());
+        if (menuitem)
+        {
+            menuitem.hidden = true;
         }
     }
     /* Alternate submenus visible if selection and doesn't look like URL */
@@ -129,27 +134,38 @@ function urllinkBrowserContext()
         /* Alternate menus not hidden;  regenerate from current prefs. */
         for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenus.length; i++)
         {
-            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateBrowserMenus[i], 'urllinkBrowserOpenLink', i );
+            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateBrowserMenus[i] + urllinkCommon.menuPos(),
+                'urllinkBrowserOpenLink', i );
         }
     }
-    for (var i=0; i<urllinkAlternateBrowserMenuItems.length; i++)
+    for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkAlternateBrowserMenuItems[i]);
+        var menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
             menuitem.hidden = !isLinkOrUrlSelection || isURL;
+        }
+        menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPosAlt());
+        if (menuitem)
+        {
+            menuitem.hidden = true;
         }
     }
     /* Hide separators if both of the above hidden */
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuSep + i);
+            var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuSep + i + urllinkCommon.menuPos());
             if (menuitem)
             {
                 menuitem.hidden =
                     (!(isLinkOrUrlSelection && isURL))  &&
                     (!isLinkOrUrlSelection || isURL);
+            }
+            menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuSep + i + urllinkCommon.menuPosAlt());
+            if (menuitem)
+            {
+                menuitem.hidden = true;
             }
         }
     }
