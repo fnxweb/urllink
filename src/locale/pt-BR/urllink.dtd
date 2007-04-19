@@ -18,5 +18,5 @@
 <!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-list-tip "Lista de itens do menu; &apos;*&apos; é substituído pela seleção">
 <!ENTITY urllink-prefs-entry-tip "Novo item do menu; &apos;*&apos; é substituído pela seleção">
-<!ENTITY urllink-help-title "Ajuda URL Link">
-<!ENTITY urllink-changelog-title "URL Link Changelog">
+<!ENTITY urllink-help-title "Link de Ajuda">
+<!ENTITY urllink-changelog-title "Link de Mudanças">

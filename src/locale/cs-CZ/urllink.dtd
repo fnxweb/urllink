@@ -15,7 +15,7 @@
 <!ENTITY urllink-prefs-cancel "Zrušit">
 <!ENTITY urllink-prefs-apply "Použít">
 <!ENTITY urllink-prefs-ok "OK">
-<!ENTITY urllink-prefs-changelog "Changelog">
+<!ENTITY urllink-prefs-changelog "Seznam změn">
 <!ENTITY urllink-prefs-list-tip "Seznam položek menu; &apos;*&apos; bude zaměněno za výběr">
 <!ENTITY urllink-prefs-entry-tip "Nová položka menu; &apos;*&apos; bude zaměněno za výběr">
 <!ENTITY urllink-help-title "Nápověda k URL Link">

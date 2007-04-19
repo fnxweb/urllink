@@ -1,5 +1,5 @@
-<!ENTITY popup-urllink-open-tab.label "Ouvrir l'adresse sélectionnée dans un nouvel onglet">
-<!ENTITY popup-urllink-open-link.label "Ouvrir l'adresse sélectionnée">
+<!ENTITY popup-urllink-open-tab.label "Ouvrir l&apos;adresse sélectionnée dans un nouvel onglet">
+<!ENTITY popup-urllink-open-link.label "Ouvrir l&apos;adresse sélectionnée">
 <!ENTITY popup-urllink-open-tab-as.label "Ouvrir la sélection dans un nouvel onglet">
 <!ENTITY popup-urllink-open-link-as.label "Ouvrir la sélection">
 <!ENTITY popup-urllink-open-as-is.label "Inchangée">
@@ -16,7 +16,7 @@
 <!ENTITY urllink-prefs-apply "Valider">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Changelog">
-<!ENTITY urllink-prefs-list-tip "'*' est remplacé par le texte sélectionné">
-<!ENTITY urllink-prefs-entry-tip "'*' est remplacé par le texte sélectionné">
+<!ENTITY urllink-prefs-list-tip "&apos;*&apos; est remplacé par le texte sélectionné">
+<!ENTITY urllink-prefs-entry-tip "&apos;*&apos; est remplacé par le texte sélectionné">
 <!ENTITY urllink-help-title "URL Link Aide">
 <!ENTITY urllink-changelog-title "URL Link Changelog">

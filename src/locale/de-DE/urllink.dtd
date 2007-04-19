@@ -16,7 +16,7 @@
 <!ENTITY urllink-prefs-apply "Anwenden">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Changelog">
-<!ENTITY urllink-prefs-list-tip "Liste der Menüeinträge;  '*' wird durch die Auswahl ersetzt">
-<!ENTITY urllink-prefs-entry-tip "Neuer Menüeintrag;  '*' wird durch die Auswahl ersetzt">
+<!ENTITY urllink-prefs-list-tip "Liste der Menüeinträge;  &apos;*&apos; wird durch die Auswahl ersetzt">
+<!ENTITY urllink-prefs-entry-tip "Neuer Menüeintrag;  &apos;*&apos; wird durch die Auswahl ersetzt">
 <!ENTITY urllink-help-title "URL Link Hilfe">
 <!ENTITY urllink-changelog-title "URL Link Changelog">

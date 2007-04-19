@@ -1,0 +1,22 @@
+<!ENTITY popup-urllink-open-tab.label "Отвори изабрани URL у новом језичку">
+<!ENTITY popup-urllink-open-link.label "Отвори изабрани URL">
+<!ENTITY popup-urllink-open-tab-as.label "Отвори селекцију у новом језичку">
+<!ENTITY popup-urllink-open-link-as.label "Отвори селекцију">
+<!ENTITY popup-urllink-open-as-is.label "Не промоњену">
+<!ENTITY urllink-prefs-title "URL Link подешавања">
+<!ENTITY urllink-prefs-editmenu "Уреди мени">
+<!ENTITY urllink-prefs-newentry "Нова ставка">
+<!ENTITY urllink-prefs-up "Горе">
+<!ENTITY urllink-prefs-down "Доле">
+<!ENTITY urllink-prefs-defaults "Подразумевано">
+<!ENTITY urllink-prefs-delete "Избрисати">
+<!ENTITY urllink-prefs-add "Додај">
+<!ENTITY urllink-prefs-help "Помоћ">
+<!ENTITY urllink-prefs-cancel "Поништи">
+<!ENTITY urllink-prefs-apply "Примени">
+<!ENTITY urllink-prefs-ok "У реду">
+<!ENTITY urllink-prefs-changelog "Changelog">
+<!ENTITY urllink-prefs-list-tip "Листа ставки менија; &apos;*&apos; ће заменити селекција">
+<!ENTITY urllink-prefs-entry-tip "Нова ставка менија; &apos;*&apos; ће заменити селекција">
+<!ENTITY urllink-help-title "URL Link помоћ">
+<!ENTITY urllink-changelog-title "URL Link Changelog">

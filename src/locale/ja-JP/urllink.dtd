@@ -1,0 +1,22 @@
+<!ENTITY popup-urllink-open-tab.label "選択したURLを新しいタブで開く">
+<!ENTITY popup-urllink-open-link.label "選択したURLを開く">
+<!ENTITY popup-urllink-open-tab-as.label "選択部分を新しいタブで開く">
+<!ENTITY popup-urllink-open-link-as.label "選択部分を開く">
+<!ENTITY popup-urllink-open-as-is.label "変更せずに">
+<!ENTITY urllink-prefs-title "URL Linkの設定">
+<!ENTITY urllink-prefs-editmenu "メニューを編集">
+<!ENTITY urllink-prefs-newentry "新しいエントリー">
+<!ENTITY urllink-prefs-up "上へ">
+<!ENTITY urllink-prefs-down "下へ">
+<!ENTITY urllink-prefs-defaults "初期設定">
+<!ENTITY urllink-prefs-delete "削除">
+<!ENTITY urllink-prefs-add "追加">
+<!ENTITY urllink-prefs-help "ヘルプ">
+<!ENTITY urllink-prefs-cancel "キャンセル">
+<!ENTITY urllink-prefs-apply "適用">
+<!ENTITY urllink-prefs-ok "OK">
+<!ENTITY urllink-prefs-changelog "変更履歴（英語）">
+<!ENTITY urllink-prefs-list-tip "メニュー項目一覧; &apos;*&apos;は選択文字列で置換されます">
+<!ENTITY urllink-prefs-entry-tip "新しいメニュー項目; &apos;*&apos;は選択文字列で置換されます">
+<!ENTITY urllink-help-title "URL Linkのヘルプ">
+<!ENTITY urllink-changelog-title "URL Linkの変更履歴">
