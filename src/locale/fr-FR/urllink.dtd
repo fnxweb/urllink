@@ -16,6 +16,8 @@
 <!ENTITY urllink-prefs-apply "Valider">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Changelog">
+<!ENTITY urllink-prefs-topmenu "Show at top of context menu">
+<!ENTITY urllink-prefs-topmenu-tip "Determines the position of URL Link items within the context menu">
 <!ENTITY urllink-prefs-list-tip "&apos;*&apos; est remplacé par le texte sélectionné">
 <!ENTITY urllink-prefs-entry-tip "&apos;*&apos; est remplacé par le texte sélectionné">
 <!ENTITY urllink-help-title "URL Link Aide">

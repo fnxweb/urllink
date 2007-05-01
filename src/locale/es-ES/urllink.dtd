@@ -16,6 +16,8 @@
 <!ENTITY urllink-prefs-apply "Aplicar">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Lista de cambios">
+<!ENTITY urllink-prefs-topmenu "Mostrar al principio del menú contextual">
+<!ENTITY urllink-prefs-topmenu-tip "Determina la posición de los elementos de URL Link en el menú contextual">
 <!ENTITY urllink-prefs-list-tip "Lista de elementos del menú; &apos;*&apos; es reemplazado por la selección">
 <!ENTITY urllink-prefs-entry-tip "Nuevo elemento de menú; &apos;*&apos; es reemplazado por la selección">
 <!ENTITY urllink-help-title "URL Link - Ayuda">

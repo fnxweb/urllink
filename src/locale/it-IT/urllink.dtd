@@ -16,6 +16,8 @@
 <!ENTITY urllink-prefs-apply "Applica">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Cronologia delle modifiche">
+<!ENTITY urllink-prefs-topmenu "Mostra in cima al menu contestuale">
+<!ENTITY urllink-prefs-topmenu-tip "Determina la posizione delle voci di menu di URL Link nel menu contestuale">
 <!ENTITY urllink-prefs-list-tip "Lista delle voci di menu;  &apos;*&apos; è sostituito dalla selezione">
 <!ENTITY urllink-prefs-entry-tip "Nuova voce di menu;  &apos;*&apos; è sostituito dalla selezione">
 <!ENTITY urllink-help-title "Contenuti guida">

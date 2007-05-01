@@ -16,7 +16,9 @@
 <!ENTITY urllink-prefs-apply "Zastosuj">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Opis zmian">
-<!ENTITY urllink-prefs-list-tip "Wieloznacznik &quot;*&quot; jest zamieniany przez zaznaczenie">
-<!ENTITY urllink-prefs-entry-tip "Wieloznacznik &quot;*&quot; jest zamieniany przez zaznaczenie">
-<!ENTITY urllink-help-title "URL Link Help">
-<!ENTITY urllink-changelog-title "URL Link Opis zmian">
+<!ENTITY urllink-prefs-topmenu "Wyświetl na górze menu kontekstowego">
+<!ENTITY urllink-prefs-topmenu-tip "Określa położenie elementów rozszerzenia w menu kontekstowym">
+<!ENTITY urllink-prefs-list-tip "Lista elementów menu &quot;*&quot; jest zamieniana przez zaznaczenie">
+<!ENTITY urllink-prefs-entry-tip "Nowy element menu &quot;*&quot; jest zamieniany przez zaznaczenie">
+<!ENTITY urllink-help-title "URL Link - pomoc">
+<!ENTITY urllink-changelog-title "URL Link - opis zmian">

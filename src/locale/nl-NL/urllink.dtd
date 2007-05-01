@@ -16,7 +16,9 @@
 <!ENTITY urllink-prefs-apply "Toepassen">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Wijzigingsoverzicht">
+<!ENTITY urllink-prefs-topmenu "Bovenaan in contextmenu weergeven">
+<!ENTITY urllink-prefs-topmenu-tip "Bepaalt de positie van URL Link onderdelen in het contextmenu">
 <!ENTITY urllink-prefs-list-tip "Lijst van menu-onderdelen; &apos;*&apos; wordt vervangen door de selectie">
 <!ENTITY urllink-prefs-entry-tip "Nieuw menu-onderdeel; &apos;*&apos; wordt vervangen door de selectie">
 <!ENTITY urllink-help-title "URL Link Help">
-<!ENTITY urllink-changelog-title "URL Link Wijzigingsoverzicht">
+<!ENTITY urllink-changelog-title "URL Link wijzigingsoverzicht">

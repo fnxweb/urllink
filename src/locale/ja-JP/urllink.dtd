@@ -16,6 +16,8 @@
 <!ENTITY urllink-prefs-apply "適用">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "変更履歴（英語）">
+<!ENTITY urllink-prefs-topmenu "コンテキストメニューの一番上に表示">
+<!ENTITY urllink-prefs-topmenu-tip "URL Link関連の項目をコンテキストメニューのどこに配置するか決定します">
 <!ENTITY urllink-prefs-list-tip "メニュー項目一覧; &apos;*&apos;は選択文字列で置換されます">
 <!ENTITY urllink-prefs-entry-tip "新しいメニュー項目; &apos;*&apos;は選択文字列で置換されます">
 <!ENTITY urllink-help-title "URL Linkのヘルプ">

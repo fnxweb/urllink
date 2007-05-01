@@ -15,8 +15,10 @@
 <!ENTITY urllink-prefs-cancel "Поништи">
 <!ENTITY urllink-prefs-apply "Примени">
 <!ENTITY urllink-prefs-ok "У реду">
-<!ENTITY urllink-prefs-changelog "Changelog">
+<!ENTITY urllink-prefs-changelog "Измене">
+<!ENTITY urllink-prefs-topmenu "Прикажи на врху контекстног менија">
+<!ENTITY urllink-prefs-topmenu-tip "Одређује позицију URL Link ставки у контектсном менију">
 <!ENTITY urllink-prefs-list-tip "Листа ставки менија; &apos;*&apos; ће заменити селекција">
 <!ENTITY urllink-prefs-entry-tip "Нова ставка менија; &apos;*&apos; ће заменити селекција">
 <!ENTITY urllink-help-title "URL Link помоћ">
-<!ENTITY urllink-changelog-title "URL Link Changelog">
+<!ENTITY urllink-changelog-title "URL Link измене">

@@ -16,6 +16,8 @@
 <!ENTITY urllink-prefs-apply "Käytä">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Muutosloki">
+<!ENTITY urllink-prefs-topmenu "Näytä päällimmäisenä kontekstivalikossa">
+<!ENTITY urllink-prefs-topmenu-tip "Määrittää URL Linkin kohteen sijainnin kontekstivalikossa">
 <!ENTITY urllink-prefs-list-tip "Lista valikosta; &apos;*&apos; on korvattu valinnalla.">
 <!ENTITY urllink-prefs-entry-tip "Uusi valikkokohde; &apos;*&apos;on korvattu valinnalla.">
 <!ENTITY urllink-help-title "URL Link Apu">

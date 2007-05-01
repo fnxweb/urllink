@@ -16,6 +16,8 @@
 <!ENTITY urllink-prefs-apply "Alkalmaz">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Változások">
+<!ENTITY urllink-prefs-topmenu "Show at top of context menu">
+<!ENTITY urllink-prefs-topmenu-tip "Determines the position of URL Link items within the context menu">
 <!ENTITY urllink-prefs-list-tip "Menü pontok listája;  &apos;*&apos; helyére kerül a kijelölt rész">
 <!ENTITY urllink-prefs-entry-tip "Új menü pont;  &apos;*&apos; helyére kerül a kijelölt rész">
 <!ENTITY urllink-help-title "URL Link Súgó">
