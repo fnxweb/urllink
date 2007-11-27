@@ -47,6 +47,10 @@
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
     </stringbundleset>
 
+    <keyset id="urllinkMailKeys">
+        <key id="urllinkMailKeyOpen" key="]" modifiers="ctrl" onkeypress="urllinkMailOpenLink(event,'','')"/>
+    </keyset>
+
     <popup id="messagePaneContext" insertafter="context-copy">
         <!-- top version -->
         <!-- <menuseparator id="urllink-mail-sep-0-top" insertbefore="messagePaneContext-replySender"/> -->
