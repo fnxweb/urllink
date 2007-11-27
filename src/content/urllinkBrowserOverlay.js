@@ -62,9 +62,7 @@ function getBestSelection(context)
     else
         searchStr = context.searchSelected();
 
-    searchStr = searchStr.replace(/^\s+/, "");
-    searchStr = searchStr.replace(/((\n|\r)[> ]*)+/g, ""); /* include removing standard quote marks */
-    searchStr = searchStr.replace(/\s+$/, "");
+    searchStr = urllinkCommon.tidySelection(searchStr);
 
     return searchStr;
 }

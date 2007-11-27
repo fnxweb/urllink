@@ -68,10 +68,7 @@ function rawSearchSelected(context)
     /* var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow); */
     var searchStr = focusedWindow.getSelection();
     searchStr = searchStr.toString();
-    searchStr = searchStr.replace( /^\s+/, "" );
-    searchStr = searchStr.replace(/((\n|\r)[> ]*)+/g, ""); /* include removing standard quote marks */
-    searchStr = searchStr.replace(/\t/g, " ");
-    searchStr = searchStr.replace(/\s+$/,"");
+    searchStr = urllinkCommon.tidySelection(searchStr);
     return searchStr;
 }
 

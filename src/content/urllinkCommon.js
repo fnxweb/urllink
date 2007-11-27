@@ -55,13 +55,14 @@ var urllinkCommon =
 
     /* Menu defaults */
     defaultMenuItems : new Array(
-        "www.",
+        "www.*",
         "www.*.com",
         "www.*.org",
         "www.*.net",
-        "ftp.",
+        "ftp.*",
         "--",
-        "Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search" ),
+        "In Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0",
+        "In Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search" ),
 
 
     inThunderbird: function ()
@@ -143,6 +144,30 @@ var urllinkCommon =
     },
 
 
+    /* utf8Encode funny characters */
+    utf8Encode: function (url)
+    {
+        var retval = '';
+        var len = url.length;
+        for (var i = 0; i < len; ++i)
+        {
+            var ch = url.charAt(i);
+            /* Include ":/%" as chars we'll let through even though they're not 'valid' */
+            if( /[A-Za-z0-9-_.!~*'():/%]/.test(ch) )
+            {
+                /* Allowed */
+                retval += ch;
+            }
+            else
+            {
+                /* Must encode */
+                retval += encodeURIComponent( url[i] );
+            }
+        }
+        return retval;
+    },
+
+
     /* make sure URL has some sort of protocol, & change common 'errors' */
     fixURL: function (url)
     {
@@ -165,9 +190,25 @@ var urllinkCommon =
 
         /* Change common faults */
         url.replace(/&amp;/ig,'&');
-        url.replace(/\\/g,'/');
+
+        /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
+         * but that seems to be illegal.
+         */
+        url = this.utf8Encode(url);
 
         return url;
+    },
+
+
+    /* Tidy up selected string */
+    tidySelection: function ( str )
+    {
+        str = str.replace(/\t/g, " ");              /* tabs to space */
+        str = str.replace(/^\s+/, "");              /* strip leading space */
+        str = str.replace(/((\n|\r)[> ]*)+/g, "");  /* remove standard quote marks */
+        str = str.replace(/\s+$/, "");              /* strip spaces at the end */
+        str = str.replace(/\\/g,"/");               /* backslash to forward slash */
+        return str;
     },
 
 
