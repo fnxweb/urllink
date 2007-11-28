@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Apri URL selezionato in nuova scheda">
+<!ENTITY popup-urllink-open-tab.shortcut "s">
 <!ENTITY popup-urllink-open-link.label "Apri URL selezionato">
+<!ENTITY popup-urllink-open-link.shortcut "A">
 <!ENTITY popup-urllink-open-tab-as.label "Apri selezione in nuova scheda">
+<!ENTITY popup-urllink-open-tab-as.shortcut "s">
 <!ENTITY popup-urllink-open-link-as.label "Apri selezione">
+<!ENTITY popup-urllink-open-link-as.shortcut "A">
 <!ENTITY popup-urllink-open-as-is.label "Inalterata">
+<!ENTITY popup-urllink-open-as-is.shortcut "I">
 <!ENTITY urllink-prefs-title "Impostazioni di URL Link">
 <!ENTITY urllink-prefs-editmenu "Personalizzazione del menu">
 <!ENTITY urllink-prefs-newentry "Nuovo elemento">

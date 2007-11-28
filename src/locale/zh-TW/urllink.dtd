@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "用新視窗開啟已選取的網址">
+<!ENTITY popup-urllink-open-tab.shortcut "T">
 <!ENTITY popup-urllink-open-link.label "開啟已選取的網址">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "用新視窗開啟選取範圍">
+<!ENTITY popup-urllink-open-tab-as.shortcut "T">
 <!ENTITY popup-urllink-open-link-as.label "開啟選取範圍">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "直接貼上">
+<!ENTITY popup-urllink-open-as-is.shortcut "U">
 <!ENTITY urllink-prefs-title "URL Link 偏好設定">
 <!ENTITY urllink-prefs-editmenu "編輯選單">
 <!ENTITY urllink-prefs-newentry "新項目">

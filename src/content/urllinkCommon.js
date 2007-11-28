@@ -152,8 +152,8 @@ var urllinkCommon =
         for (var i = 0; i < len; ++i)
         {
             var ch = url.charAt(i);
-            /* Include ":/%" as chars we'll let through even though they're not 'valid' */
-            if( /[A-Za-z0-9-_.!~*'():/%]/.test(ch) )
+            /* Include certain chars we'll let through even though they're not 'valid' */
+            if( /[A-Za-z0-9-_.!~*'():/%?&=]/.test(ch) )
             {
                 /* Allowed */
                 retval += ch;
@@ -229,6 +229,38 @@ var urllinkCommon =
     },
 
 
+    /* Extract accelkey from label */
+    extractLabel: function ( accel, label )
+    {
+        var idx = label.val.search(/&/);
+        if (idx != -1)
+        {
+            accel.val = label.val[idx+1];
+            label.val = label.val.substr(0,idx) + label.val.substr(idx+1);
+        }
+    },
+
+
+    /* Pull out | and & bits from format string */
+    processFormat: function ( formatstr, withstr, accel, text, format )
+    {
+        /* formatstr = 'displaystr|format' */
+        var barpos = formatstr.search('\\|');
+        if (barpos == -1)
+        {
+            format.val = formatstr;
+            this.extractLabel( accel, format );
+            text.val = withstr + " '" + format.val + "'";
+        }
+        else
+        {
+            text.val = formatstr.substr(0,barpos);
+            format.val = formatstr.substr(barpos+1);
+            this.extractLabel( accel, text );
+        }
+    },
+
+
     /* Recreate named menu from prefs. */
     regenerateMenu: function ( menuname, func, astab )
     {
@@ -261,12 +293,22 @@ var urllinkCommon =
             /* Nothing yet */
             for (var i = 0;  i < this.defaultMenuItems.length;  i++)
             {
-                var format = defaultMenuItems[i];
+                var formatstr = defaultMenuItems[i];
                 var menuitem = document.createElement("menuitem");
                 if (menuitem)
                 {
-                    menuitem.setAttribute("label", withStr+" '"+format+"'");
-                    menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format+"')");
+                    var accel = {val:''};
+                    var text = {val:''};
+                    var format = {val:''};
+
+                    /* Pull out | and & bits */
+                    this.processFormat( formatstr, withStr, accel, text, format );
+
+                    /* Flesh out menu */
+                    menuitem.setAttribute("label", withStr+" '"+format.val+"'");
+                    if (accel.val != '')
+                        menuitem.setAttribute("accesskey", accel.val);
+                    menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format.val+"')");
                     menuitem.setAttribute("temp","true");
                     submenu.appendChild(menuitem);
                 }
@@ -279,26 +321,12 @@ var urllinkCommon =
             while (this.prefs.getPrefType("submenu."+n) == this.nsIPrefBranch.PREF_STRING  &&
                    this.prefs.prefHasUserValue("submenu."+n))
             {
-                var prefstr = this.prefs.getCharPref("submenu."+n);
-                if (prefstr)
+                var formatstr = this.prefs.getCharPref("submenu."+n);
+                if (formatstr)
                 {
-                    /* prefstr = 'displaystr|format' */
-                    var barpos = prefstr.search('\\|');
-                    var text, format;
-                    if (barpos == -1)
-                    {
-                        text = withStr + " '" + prefstr + "'";
-                        format = prefstr;
-                    }
-                    else
-                    {
-                        text = prefstr.substr(0,barpos);
-                        format = prefstr.substr(barpos+1);
-                    }
-
                     /* Create menuitem */
                     var menuitem;
-                    if (prefstr.search(/^--*$/) == 0)
+                    if (formatstr.search(/^--*$/) == 0)
                     {
                         menuitem = document.createElement("menuseparator");
                     }
@@ -308,8 +336,18 @@ var urllinkCommon =
                     }
                     if (menuitem)
                     {
-                        menuitem.setAttribute("label", text);
-                        menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format+"')");
+                        var accel = {val:''};
+                        var text = {val:''};
+                        var format = {val:''};
+
+                        /* Pull out | and & bits */
+                        this.processFormat( formatstr, withStr, accel, text, format );
+
+                        /* Flesh out menu */
+                        menuitem.setAttribute("label", text.val);
+                        if (accel.val != '')
+                            menuitem.setAttribute("accesskey", accel.val);
+                        menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format.val+"')");
                         menuitem.setAttribute("temp","true");
                         submenu.appendChild(menuitem);
                     }

@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Відкрити виділене посилання в новій вкладці">
+<!ENTITY popup-urllink-open-tab.shortcut "к">
 <!ENTITY popup-urllink-open-link.label "Відкрити виділене посилання">
+<!ENTITY popup-urllink-open-link.shortcut "В">
 <!ENTITY popup-urllink-open-tab-as.label "Відкрити виділене в новій вкладці">
+<!ENTITY popup-urllink-open-tab-as.shortcut "к">
 <!ENTITY popup-urllink-open-link-as.label "Відкрити виділене">
+<!ENTITY popup-urllink-open-link-as.shortcut "В">
 <!ENTITY popup-urllink-open-as-is.label "Не змінено">
+<!ENTITY popup-urllink-open-as-is.shortcut "Н">
 <!ENTITY urllink-prefs-title "Налаштування URL Link">
 <!ENTITY urllink-prefs-editmenu "Змінити меню">
 <!ENTITY urllink-prefs-newentry "Новий пункт">

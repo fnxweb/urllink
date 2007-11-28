@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Otvoriť vybranú adresu na novej karte">
+<!ENTITY popup-urllink-open-tab.shortcut "k">
 <!ENTITY popup-urllink-open-link.label "Otvoriť vybranú adresu">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "Otvoriť výber na novej karte">
+<!ENTITY popup-urllink-open-tab-as.shortcut "k">
 <!ENTITY popup-urllink-open-link-as.label "Otvoriť výber">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "bez zmeny">
+<!ENTITY popup-urllink-open-as-is.shortcut "b">
 <!ENTITY urllink-prefs-title "Predvoľby URL Link">
 <!ENTITY urllink-prefs-editmenu "Úprava ponuky">
 <!ENTITY urllink-prefs-newentry "Nová položka">

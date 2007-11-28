@@ -47,8 +47,12 @@
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
     </stringbundleset>
 
-    <keyset id="urllinkMailKeys">
-        <key id="urllinkMailKeyOpen" key="]" modifiers="ctrl" onkeypress="urllinkMailOpenLink(event,'','')"/>
+    <keyset id="mainKeyset">
+        <key id="urllink-mail-open-link-key"
+            modifiers="accel"
+            key="VK_CLOSE_BRACKET"
+            oncommand="alert('woo hoo')"/>
+            <!-- oncommand="urllinkMailOpenLink(event,'','')"/> -->
     </keyset>
 
     <popup id="messagePaneContext" insertafter="context-copy">
@@ -57,15 +61,20 @@
 
         <menuitem id="urllink-mail-open-link-top"
             label="&popup-urllink-open-link.label;"
+            accesskey="&popup-urllink-open-link.shortcut;"
+            key="urllink-mail-open-link-key"
             oncommand="urllinkMailOpenLink(event,'','')"
             insertbefore="messagePaneContext-replySender"/>
 
         <menu id="urllink-mail-open-link-as-top"
             label="&popup-urllink-open-link-as.label;"
+            accesskey="&popup-urllink-open-link-as.shortcut;"
             insertbefore="messagePaneContext-replySender">
             <menupopup id="urllink-mail-open-link-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
+                    key="urllink-mail-open-link-key"
                     oncommand="urllinkMailOpenLink(event,'','')"/>
                 <menuseparator/>
             </menupopup>
@@ -78,13 +87,18 @@
 
         <menuitem id="urllink-mail-open-link-bottom"
             label="&popup-urllink-open-link.label;"
+            accesskey="&popup-urllink-open-link.shortcut;"
+            key="urllink-mail-open-link-key"
             oncommand="urllinkMailOpenLink(event,'','')"/>
 
         <menu id="urllink-mail-open-link-as-bottom"
-            label="&popup-urllink-open-link-as.label;">
+            label="&popup-urllink-open-link-as.label;"
+            accesskey="&popup-urllink-open-link-as.shortcut;">
             <menupopup id="urllink-mail-open-link-as-popup-bottom">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
+                    key="urllink-mail-open-link-key"
                     oncommand="urllinkMailOpenLink(event,'','')"/>
                 <menuseparator/>
             </menupopup>

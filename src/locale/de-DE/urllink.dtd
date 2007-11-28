@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Öffne markierte URL in neuem Tab">
+<!ENTITY popup-urllink-open-tab.shortcut "T">
 <!ENTITY popup-urllink-open-link.label "Öffne markierte URL">
+<!ENTITY popup-urllink-open-link.shortcut "f">
 <!ENTITY popup-urllink-open-tab-as.label "Öffne Auswahl in neuem Tab">
+<!ENTITY popup-urllink-open-tab-as.shortcut "T">
 <!ENTITY popup-urllink-open-link-as.label "Öffne Auswahl">
+<!ENTITY popup-urllink-open-link-as.shortcut "f">
 <!ENTITY popup-urllink-open-as-is.label "Unverändert">
+<!ENTITY popup-urllink-open-as-is.shortcut "U">
 <!ENTITY urllink-prefs-title "URL Link Einstellungen">
 <!ENTITY urllink-prefs-editmenu "Menü bearbeiten">
 <!ENTITY urllink-prefs-newentry "Neuer Eintrag">

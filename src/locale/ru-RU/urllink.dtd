@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Открыть выделенную ссылку в новой вкладке">
+<!ENTITY popup-urllink-open-tab.shortcut "в">
 <!ENTITY popup-urllink-open-link.label "Открыть выделнную ссылку">
+<!ENTITY popup-urllink-open-link.shortcut "О">
 <!ENTITY popup-urllink-open-tab-as.label "Открыть выделенное в новой вкладке">
+<!ENTITY popup-urllink-open-tab-as.shortcut "в">
 <!ENTITY popup-urllink-open-link-as.label "Открыть выделенное">
+<!ENTITY popup-urllink-open-link-as.shortcut "О">
 <!ENTITY popup-urllink-open-as-is.label "Не изменено">
+<!ENTITY popup-urllink-open-as-is.shortcut "Н">
 <!ENTITY urllink-prefs-title "Настройки URL Link">
 <!ENTITY urllink-prefs-editmenu "Изменить меню">
 <!ENTITY urllink-prefs-newentry "Новый пункт">

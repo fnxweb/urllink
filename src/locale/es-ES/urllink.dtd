@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Abrir la dirección seleccionada en una nueva pestaña">
+<!ENTITY popup-urllink-open-tab.shortcut "p">
 <!ENTITY popup-urllink-open-link.label "Abrir la dirección seleccionada">
+<!ENTITY popup-urllink-open-link.shortcut "A">
 <!ENTITY popup-urllink-open-tab-as.label "Abrir la selección en una nueva pestaña">
+<!ENTITY popup-urllink-open-tab-as.shortcut "p">
 <!ENTITY popup-urllink-open-link-as.label "Abrir la selección">
+<!ENTITY popup-urllink-open-link-as.shortcut "A">
 <!ENTITY popup-urllink-open-as-is.label "No alterado">
+<!ENTITY popup-urllink-open-as-is.shortcut "N">
 <!ENTITY urllink-prefs-title "URL Link - Opciones">
 <!ENTITY urllink-prefs-editmenu "Editar menú">
 <!ENTITY urllink-prefs-newentry "Nueva entrada">

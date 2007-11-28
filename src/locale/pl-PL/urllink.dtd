@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Otwórz zaznaczony adres URL w nowej karcie">
+<!ENTITY popup-urllink-open-tab.shortcut "k">
 <!ENTITY popup-urllink-open-link.label "Otwórz zaznaczony adres URL">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "Otwórz zaznaczenie w nowej karcie">
+<!ENTITY popup-urllink-open-tab-as.shortcut "k">
 <!ENTITY popup-urllink-open-link-as.label "Otwórz zaznaczenie">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "Bez użycia wzorca">
+<!ENTITY popup-urllink-open-as-is.shortcut "u">
 <!ENTITY urllink-prefs-title "URL Link - ustawienia">
 <!ENTITY urllink-prefs-editmenu "Edytuj menu">
 <!ENTITY urllink-prefs-newentry "Nowy wzorzec">

@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Отвори изабрани URL у новом језичку">
+<!ENTITY popup-urllink-open-tab.shortcut "ј">
 <!ENTITY popup-urllink-open-link.label "Отвори изабрани URL">
+<!ENTITY popup-urllink-open-link.shortcut "О">
 <!ENTITY popup-urllink-open-tab-as.label "Отвори селекцију у новом језичку">
+<!ENTITY popup-urllink-open-tab-as.shortcut "ј">
 <!ENTITY popup-urllink-open-link-as.label "Отвори селекцију">
+<!ENTITY popup-urllink-open-link-as.shortcut "О">
 <!ENTITY popup-urllink-open-as-is.label "Не промоњену">
+<!ENTITY popup-urllink-open-as-is.shortcut "Н">
 <!ENTITY urllink-prefs-title "URL Link подешавања">
 <!ENTITY urllink-prefs-editmenu "Уреди мени">
 <!ENTITY urllink-prefs-newentry "Нова ставка">

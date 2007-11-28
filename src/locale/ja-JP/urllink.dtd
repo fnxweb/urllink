@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "選択したURLを新しいタブで開く">
+<!ENTITY popup-urllink-open-tab.shortcut "T">
 <!ENTITY popup-urllink-open-link.label "選択したURLを開く">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "選択部分を新しいタブで開く">
+<!ENTITY popup-urllink-open-tab-as.shortcut "T">
 <!ENTITY popup-urllink-open-link-as.label "選択部分を開く">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "変更せずに">
+<!ENTITY popup-urllink-open-as-is.shortcut "U">
 <!ENTITY urllink-prefs-title "URL Linkの設定">
 <!ENTITY urllink-prefs-editmenu "メニューを編集">
 <!ENTITY urllink-prefs-newentry "新しいエントリー">

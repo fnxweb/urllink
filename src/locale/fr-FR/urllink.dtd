@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Ouvrir l&apos;adresse sélectionnée dans un nouvel onglet">
+<!ENTITY popup-urllink-open-tab.shortcut "g">
 <!ENTITY popup-urllink-open-link.label "Ouvrir l&apos;adresse sélectionnée">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "Ouvrir la sélection dans un nouvel onglet">
+<!ENTITY popup-urllink-open-tab-as.shortcut "g">
 <!ENTITY popup-urllink-open-link-as.label "Ouvrir la sélection">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "Inchangée">
+<!ENTITY popup-urllink-open-as-is.shortcut "I">
 <!ENTITY urllink-prefs-title "Options">
 <!ENTITY urllink-prefs-editmenu "Éditer le menu contextuel">
 <!ENTITY urllink-prefs-newentry "Nouvelle entrée">

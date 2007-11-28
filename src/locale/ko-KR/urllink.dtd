@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "새 탭으로 선택된 URL 열기">
+<!ENTITY popup-urllink-open-tab.shortcut "T">
 <!ENTITY popup-urllink-open-link.label "선택된 URL 열기">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "새 탭으로 선택된 것 열기">
+<!ENTITY popup-urllink-open-tab-as.shortcut "T">
 <!ENTITY popup-urllink-open-link-as.label "선택된 것 열기">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "변경하지 않음">
+<!ENTITY popup-urllink-open-as-is.shortcut "U">
 <!ENTITY urllink-prefs-title "URL Link 환경설정">
 <!ENTITY urllink-prefs-editmenu "메뉴 편집">
 <!ENTITY urllink-prefs-newentry "새 종류">

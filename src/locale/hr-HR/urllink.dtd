@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Otvori odabranu web adresu u novoj kartici">
+<!ENTITY popup-urllink-open-tab.shortcut "k">
 <!ENTITY popup-urllink-open-link.label "Otvori odabranu web adresu">
+<!ENTITY popup-urllink-open-link.shortcut "O">
 <!ENTITY popup-urllink-open-tab-as.label "Otvori odabrano u novoj kartici">
+<!ENTITY popup-urllink-open-tab-as.shortcut "k">
 <!ENTITY popup-urllink-open-link-as.label "Otvori odabrano">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "Nepromijenjeno">
+<!ENTITY popup-urllink-open-as-is.shortcut "N">
 <!ENTITY urllink-prefs-title "URL Link Svojstva">
 <!ENTITY urllink-prefs-editmenu "Uredi izbornik">
 <!ENTITY urllink-prefs-newentry "Novi unos">

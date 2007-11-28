@@ -1,8 +1,13 @@
 <!ENTITY popup-urllink-open-tab.label "Přejít na vybranou adresu v novém panelu">
+<!ENTITY popup-urllink-open-tab.shortcut "p">
 <!ENTITY popup-urllink-open-link.label "Přejít na vybranou adresu">
+<!ENTITY popup-urllink-open-link.shortcut "a">
 <!ENTITY popup-urllink-open-tab-as.label "Otevřít výběr v novém panelu">
+<!ENTITY popup-urllink-open-tab-as.shortcut "p">
 <!ENTITY popup-urllink-open-link-as.label "Otevřít výběr">
+<!ENTITY popup-urllink-open-link-as.shortcut "O">
 <!ENTITY popup-urllink-open-as-is.label "beze změny">
+<!ENTITY popup-urllink-open-as-is.shortcut "b">
 <!ENTITY urllink-prefs-title "Nastavení URL Link">
 <!ENTITY urllink-prefs-editmenu "Úpravy menu">
 <!ENTITY urllink-prefs-newentry "Nová položka">
