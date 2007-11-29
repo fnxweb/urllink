@@ -63,22 +63,23 @@
         <!-- top version -->
         <menuitem id="urllink-browser-open-tab-top"
             label="&popup-urllink-open-tab.label;"
-            key="&popup-urllink-open-tab.label.shortcut;"
+            accesskey="&popup-urllink-open-tab.shortcut;"
             oncommand="urllinkBrowserOpenLink(event,1,'','')"
             insertbefore="context-openlink"/>
         <menuitem id="urllink-browser-open-link-top"
             label="&popup-urllink-open-link.label;"
-            key="&popup-urllink-open-link.label.shortcut;"
+            accesskey="&popup-urllink-open-link.shortcut;"
             oncommand="urllinkBrowserOpenLink(event,0,'','')"
             insertbefore="context-openlink"/>
 
         <menu id="urllink-browser-open-tab-as-top"
             label="&popup-urllink-open-tab-as.label;"
-            key="&popup-urllink-open-tab-as.label.shortcut;"
+            accesskey="&popup-urllink-open-tab-as.shortcut;"
             insertbefore="context-openlink">
             <menupopup id="urllink-browser-open-tab-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
                     oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
                 <menuseparator/>
             </menupopup>
@@ -86,12 +87,12 @@
 
         <menu id="urllink-browser-open-link-as-top"
             label="&popup-urllink-open-link-as.label;"
-            key="&popup-urllink-open-link-as.label.shortcut;"
+            accesskey="&popup-urllink-open-link-as.shortcut;"
             insertbefore="context-openlink">
             <menupopup id="urllink-browser-open-link-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
-                    key="&popup-urllink-open-as-is.label.shortcut;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
                     oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
                 <menuseparator/>
             </menupopup>
@@ -104,20 +105,20 @@
 
         <menuitem id="urllink-browser-open-tab-bottom"
             label="&popup-urllink-open-tab.label;"
-            key="&popup-urllink-open-tab.label.shortcut;"
+            accesskey="&popup-urllink-open-tab.shortcut;"
             oncommand="urllinkBrowserOpenLink(event,1,'','')"/>
         <menuitem id="urllink-browser-open-link-bottom"
             label="&popup-urllink-open-link.label;"
-            key="&popup-urllink-open-link.label.shortcut;"
+            accesskey="&popup-urllink-open-link.shortcut;"
             oncommand="urllinkBrowserOpenLink(event,0,'','')"/>
 
         <menu id="urllink-browser-open-tab-as-bottom"
             label="&popup-urllink-open-tab-as.label;"
-            key="&popup-urllink-open-tab-as.label.shortcut;">
+            accesskey="&popup-urllink-open-tab-as.shortcut;">
             <menupopup id="urllink-browser-open-tab-as-popup-bottom">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
-                    key="&popup-urllink-open-as-is.label.shortcut;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
                     oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
                 <menuseparator/>
             </menupopup>
@@ -125,11 +126,11 @@
 
         <menu id="urllink-browser-open-link-as-bottom"
             label="&popup-urllink-open-link-as.label;"
-            key="&popup-urllink-open-link-as.label.shortcut;">
+            accesskey="&popup-urllink-open-link-as.shortcut;">
             <menupopup id="urllink-browser-open-link-as-popup-bottom">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
-                    key="&popup-urllink-open-as-is.label.shortcut;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
                     oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
                 <menuseparator/>
             </menupopup>

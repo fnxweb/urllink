@@ -27,3 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "新增選單項目；選取範圍會取代&apos;*&apos;">
 <!ENTITY urllink-help-title "URL Link 說明">
 <!ENTITY urllink-changelog-title "URL Link 更新日誌">
+<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
+<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
+<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
+<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
+<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
+<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">

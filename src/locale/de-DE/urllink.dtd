@@ -27,3 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "Neuer Menüeintrag;  &apos;*&apos; wird durch die Auswahl ersetzt">
 <!ENTITY urllink-help-title "URL Link Hilfe">
 <!ENTITY urllink-changelog-title "URL Link Changelog">
+<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
+<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
+<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
+<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
+<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
+<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">

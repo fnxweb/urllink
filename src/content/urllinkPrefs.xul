@@ -84,8 +84,17 @@
         </groupbox>
 
         <hbox pack="start">
-            <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,width=640,height=512');"/>
-            <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
+            <vbox pack="end">
+                <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,width=640,height=512');"/>
+            </vbox>
+            <groupbox>
+                <vbox pack="end">
+                    <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
+                    <checkbox id="urllinkNewWindow" label="&urllink-prefs-newwindow;" tooltiptext="&urllink-prefs-newwindow-tip;"/>
+                    <checkbox id="urllinkOpenOnly" label="&urllink-prefs-openonly;" tooltiptext="&urllink-prefs-openonly-tip;"/>
+                    <checkbox id="urllinkTabOnly" label="&urllink-prefs-tabonly;" tooltiptext="&urllink-prefs-tabonly-tip;"/>
+                </vbox>
+            </groupbox>>
         </hbox>
 
         <hbox>

@@ -5,6 +5,13 @@
 <body> <pre>
 URL Link XPI  (C) Neil Bird  mozilla@fnxweb.com
 
+  2.01.00a : 29-nov-07
+  - Make Thunderbird text selection better to allow spaces in text but remove line breaks
+  - Add menu shortcuts, and parse '&amp;' from prefs. to let users add their own
+  - Should now cope with multiple selection (Firefox 3);  these are added with spaces between them
+  - Default 'www.' and 'ftp.' options have '*' in them now, as there was a report of it failing otherwise
+  - Given up trying to make keyboard shortcuts work cleanly.  Use the &lt;menu&gt; button and the menu shortcuts ...
+
 2.01.0 : 01-may-07
 Rolling up changes from the following beta releases:
 
@@ -24,7 +31,7 @@ Rolling up changes from the following beta releases:
   - Add special page for Help so that it works in Thunderbird
 
 2.00.3 : 21-jan-07
-- Fix typo. limiting use to Thunderbord 1.5 (should be 1.5.0.*).
+- Fix typo. limiting use to Thunderbird 1.5 (should be 1.5.0.*).
 
 2.00.2 : 30-dec-06
 - Loads more translations
@@ -57,7 +64,7 @@ Rolling up changes from the following beta releases:
   This will now also work in Firefox, for what it's worth.
 
 1.06.7 : 31-jan-06
-- Correctly strip <cr> from browser selections
+- Correctly strip &lt;cr&gt; from browser selections
   (workaround toString() bug)
 - Fix 'open with ftp.'
 
@@ -119,7 +126,7 @@ Rolling up changes from the following beta releases:
 - Rename to URL link, incorporating textlink
 
 0.06 : 12-mar-03
-- only convert <space> to "%20" for file: URLs, assume others
+- only convert &lt;space&gt; to "%20" for file: URLs, assume others
   should be "" (Moz bug converts &lt;CR&gt;s to &lt;space&gt;?)
 
 0.05 : 02-jan-03

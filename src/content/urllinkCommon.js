@@ -55,14 +55,14 @@ var urllinkCommon =
 
     /* Menu defaults */
     defaultMenuItems : new Array(
-        'www.*',
-        'www.*.com',
-        'www.*.org',
-        'www.*.net',
-        'ftp.*',
+        '&www.*',
+        'www.*.&com',
+        'www.*.&org',
+        'www.*.&net',
+        '&ftp.*',
         '--',
-        'In Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0',
-        'In Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search' ),
+        'In &Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0',
+        'In Wi&kipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search' ),
 
 
     inThunderbird: function ()

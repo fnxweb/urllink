@@ -27,3 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "Nová položka ponuky; &apos;*&apos; bude nahradené výberom">
 <!ENTITY urllink-help-title "Pomocník k URL Link">
 <!ENTITY urllink-changelog-title "Denník zmien k URL Link">
+<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
+<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
+<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
+<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
+<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
+<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">
