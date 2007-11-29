@@ -47,13 +47,19 @@
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
     </stringbundleset>
 
-    <keyset id="mainKeyset">
-        <key id="urllink-mail-open-link-key"
-            modifiers="accel"
-            key="VK_CLOSE_BRACKET"
-            oncommand="alert('woo hoo')"/>
-            <!-- oncommand="urllinkMailOpenLink(event,'','')"/> -->
-    </keyset>
+    <!-- I can't make this become available to, e.g., KeyConfig -->
+    <!-- <commandset id="tasksCommands"> -->
+    <!--     <command id="cmd_urllinkopen" label="URLLink Open" oncommand="urllinkMailOpenLink(event,'','')"/> -->
+    <!-- </commandset> -->
+
+    <!-- ctrl-] doesn't work;
+         I don't want to impose anything else on people here, let them use the <menu> button and the shortcuts -->
+    <!-- <keyset id="mailKeys"> -->
+        <!-- <key id="urllinkMailOpenLinkKey" -->
+        <!--     modifiers="accel" -->
+        <!--     keycode="VK_CLOSE_BRACKET" -->
+        <!--     oncommand="urllinkMailOpenLink(event,'','')"/> -->
+    <!-- </keyset> -->
 
     <popup id="messagePaneContext" insertafter="context-copy">
         <!-- top version -->

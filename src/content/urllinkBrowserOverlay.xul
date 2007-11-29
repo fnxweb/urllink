@@ -47,10 +47,15 @@
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
     </stringbundleset>
 
-    <keyset id="urllinkBrowserKeys">
-        <key id="urllinkBrowserKeyOpen" key="]" modifiers="ctrl" onkeypress="urllinkBrowserOpenLink(event,0,'','')"/>
-        <key id="urllinkBrowserKeyTabOpen" key="]" modifiers="alt ctrl" onkeypress="urllinkBrowserOpenLink(event,1,'','')"/>
-    </keyset>
+    <!-- ctrl-] doesn't work;
+         I don't want to impose anything else on people here, let them use the <menu> button and the shortcuts
+        'browserKeys' name TBD, don't know what works yet -->
+    <!-- <keyset id="browserKeys"> -->
+    <!--     <key id="urllinkBrowserOpenKey" key="]" modifiers="ctrl" -->
+    <!--         oncommand="urllinkBrowserOpenLink(event,0,'','')"/> -->
+    <!--     <key id="urllinkBrowserTabOpenKey" key="]" modifiers="alt,ctrl" -->
+    <!--         oncommand="urllinkBrowserOpenLink(event,1,'','')"/> -->
+    <!-- </keyset> -->
 
     <popup id="contentAreaContextMenu">
         <!-- <menuseparator id="urllink-browser-sep-0" insertbefore="context-openlink"/> -->
