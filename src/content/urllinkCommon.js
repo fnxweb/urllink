@@ -30,24 +30,24 @@ var urllinkCommon =
 
 
     /* Our bits */
-    urllinkBrowserMenuSep : "urllink-browser-sep-",
+    urllinkBrowserMenuSep : 'urllink-browser-sep-',
     urllinkBrowserMenuItems : new Array(
-        "urllink-browser-open-tab",
-        "urllink-browser-open-link" ),
+        'urllink-browser-open-tab',
+        'urllink-browser-open-link' ),
     urllinkAlternateBrowserMenuItems : new Array(
-        "urllink-browser-open-tab-as",
-        "urllink-browser-open-link-as" ),
+        'urllink-browser-open-tab-as',
+        'urllink-browser-open-link-as' ),
     urllinkAlternateBrowserMenus : new Array(
-        "urllink-browser-open-link-as-popup", /* Order sic. */
-        "urllink-browser-open-tab-as-popup" ),
+        'urllink-browser-open-link-as-popup', /* Order sic. */
+        'urllink-browser-open-tab-as-popup' ),
 
-    urllinkMailMenuSep : "urllink-mail-sep-",
+    urllinkMailMenuSep : 'urllink-mail-sep-',
     urllinkMailMenuItems : new Array(
-        "urllink-mail-open-link" ),
+        'urllink-mail-open-link' ),
     urllinkAlternateMailMenuItems : new Array(
-        "urllink-mail-open-link-as" ),
+        'urllink-mail-open-link-as' ),
     urllinkAlternateMailMenus : new Array(
-        "urllink-mail-open-link-as-popup" ),
+        'urllink-mail-open-link-as-popup' ),
 
     isInThunderbird : false,
     checkedIsInThunderbird : false,
@@ -55,14 +55,14 @@ var urllinkCommon =
 
     /* Menu defaults */
     defaultMenuItems : new Array(
-        "www.*",
-        "www.*.com",
-        "www.*.org",
-        "www.*.net",
-        "ftp.*",
-        "--",
-        "In Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0",
-        "In Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search" ),
+        'www.*',
+        'www.*.com',
+        'www.*.org',
+        'www.*.net',
+        'ftp.*',
+        '--',
+        'In Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0',
+        'In Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search' ),
 
 
     inThunderbird: function ()
@@ -80,13 +80,13 @@ var urllinkCommon =
     getStringbundle: function ()
     {
         var bundle;
-        var stringset = document.getElementById("stringbundleset");
+        var stringset = document.getElementById('stringbundleset');
         if (stringset)
         {
             var nodes = stringset.childNodes;
             for (var i=0;  i < nodes.length;  i++)
             {
-                if (nodes[i].id == "urllink-strings")
+                if (nodes[i].id == 'urllink-strings')
                 {
                     bundle = nodes[i];
                     break;
@@ -99,12 +99,12 @@ var urllinkCommon =
 
     menuPos: function ()
     {
-        return (this.prefs.getBoolPref("topmenu") ? "-top" : "-bottom");
+        return (this.prefs.getBoolPref('topmenu') ? '-top' : '-bottom');
     },
 
     menuPosAlt: function ()
     {
-        return (!this.prefs.getBoolPref("topmenu") ? "-top" : "-bottom");
+        return (!this.prefs.getBoolPref('topmenu') ? '-top' : '-bottom');
     },
 
 
@@ -124,20 +124,20 @@ var urllinkCommon =
 
         this.nsIPrefBranch = Components.interfaces.nsIPrefBranch;
         this.prefManager =
-            Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-        this.ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
-        this.prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).
-            getBranch("extensions.urllink.");
+            Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+        this.ioService = Components.classes['@mozilla.org/network/io-service;1'].getService(Components.interfaces.nsIIOService);
+        this.prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService).
+            getBranch('extensions.urllink.');
 
         this.inThunderbird();
 
-        if (!this.prefs.prefHasUserValue("firsttime"))
+        if (!this.prefs.prefHasUserValue('firsttime'))
         {
             var stringdb = this.getStringbundle();
             if (stringdb)
             {
-                var intro = stringdb.getString("intro-message");
-                this.prefs.setBoolPref("firsttime",true);
+                var intro = stringdb.getString('intro-message');
+                this.prefs.setBoolPref('firsttime',true);
                 alert(intro);
             }
         }
@@ -176,15 +176,15 @@ var urllinkCommon =
         {
             if (url.search(/^ftp/) == 0)
             {
-                url = "ftp://" + url;
+                url = 'ftp://' + url;
             }
             else if (url.search(/@/) >= 0)
             {
-                url = "mailto:" + url;
+                url = 'mailto:' + url;
             }
             else
             {
-                url = "http://" + url;
+                url = 'http://' + url;
             }
         }
 
@@ -203,11 +203,11 @@ var urllinkCommon =
     /* Tidy up selected string */
     tidySelection: function ( str )
     {
-        str = str.replace(/\t/g, " ");              /* tabs to space */
-        str = str.replace(/^\s+/, "");              /* strip leading space */
-        str = str.replace(/((\n|\r)[> ]*)+/g, "");  /* remove standard quote marks */
-        str = str.replace(/\s+$/, "");              /* strip spaces at the end */
-        str = str.replace(/\\/g,"/");               /* backslash to forward slash */
+        str = str.replace(/\t/g, ' ');              /* tabs to space */
+        str = str.replace(/^[\n\r ]+/, '');         /* strip leading space */
+        str = str.replace(/((\n|\r)[> ]*)+/g, '');  /* remove standard quote marks */
+        str = str.replace(/[\n\r ]+$/, '');         /* strip spaces at the end */
+        str = str.replace(/\\/g,'/');               /* backslash to forward slash */
         return str;
     },
 
@@ -273,7 +273,7 @@ var urllinkCommon =
         /* Delete existing */
         for (var i = 0;  i < submenu.childNodes.length; )
         {
-            if (submenu.childNodes[i].hasAttribute("temp"))
+            if (submenu.childNodes[i].hasAttribute('temp'))
             {
                 var olditem = submenu.removeChild( submenu.childNodes[i] );
                 delete olditem;
@@ -286,15 +286,15 @@ var urllinkCommon =
 
         /* Add new */
         var stringdb = this.getStringbundle();
-        var withStr = ( stringdb ? stringdb.getString("popup-urllink-open-as") : '' );
+        var withStr = ( stringdb ? stringdb.getString('popup-urllink-open-as') : '' );
 
-        if (this.prefs.getPrefType("submenu.0") != this.nsIPrefBranch.PREF_STRING)
+        if (this.prefs.getPrefType('submenu.0') != this.nsIPrefBranch.PREF_STRING)
         {
             /* Nothing yet */
             for (var i = 0;  i < this.defaultMenuItems.length;  i++)
             {
                 var formatstr = defaultMenuItems[i];
-                var menuitem = document.createElement("menuitem");
+                var menuitem = document.createElement('menuitem');
                 if (menuitem)
                 {
                     var accel = {val:''};
@@ -305,11 +305,11 @@ var urllinkCommon =
                     this.processFormat( formatstr, withStr, accel, text, format );
 
                     /* Flesh out menu */
-                    menuitem.setAttribute("label", withStr+" '"+format.val+"'");
+                    menuitem.setAttribute('label', withStr+" '"+format.val+"'");
                     if (accel.val != '')
-                        menuitem.setAttribute("accesskey", accel.val);
-                    menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format.val+"')");
-                    menuitem.setAttribute("temp","true");
+                        menuitem.setAttribute('accesskey', accel.val);
+                    menuitem.setAttribute('oncommand', func+'(event,'+astab+",'"+format.val+"')");
+                    menuitem.setAttribute('temp','true');
                     submenu.appendChild(menuitem);
                 }
             }
@@ -318,21 +318,21 @@ var urllinkCommon =
         {
             /* Load prefs */
             var n = 0;
-            while (this.prefs.getPrefType("submenu."+n) == this.nsIPrefBranch.PREF_STRING  &&
-                   this.prefs.prefHasUserValue("submenu."+n))
+            while (this.prefs.getPrefType('submenu.'+n) == this.nsIPrefBranch.PREF_STRING  &&
+                   this.prefs.prefHasUserValue('submenu.'+n))
             {
-                var formatstr = this.prefs.getCharPref("submenu."+n);
+                var formatstr = this.prefs.getCharPref('submenu.'+n);
                 if (formatstr)
                 {
                     /* Create menuitem */
                     var menuitem;
                     if (formatstr.search(/^--*$/) == 0)
                     {
-                        menuitem = document.createElement("menuseparator");
+                        menuitem = document.createElement('menuseparator');
                     }
                     else
                     {
-                        menuitem = document.createElement("menuitem");
+                        menuitem = document.createElement('menuitem');
                     }
                     if (menuitem)
                     {
@@ -344,11 +344,11 @@ var urllinkCommon =
                         this.processFormat( formatstr, withStr, accel, text, format );
 
                         /* Flesh out menu */
-                        menuitem.setAttribute("label", text.val);
+                        menuitem.setAttribute('label', text.val);
                         if (accel.val != '')
-                            menuitem.setAttribute("accesskey", accel.val);
-                        menuitem.setAttribute("oncommand", func+"(event,"+astab+",'"+format.val+"')");
-                        menuitem.setAttribute("temp","true");
+                            menuitem.setAttribute('accesskey', accel.val);
+                        menuitem.setAttribute('oncommand', func+"(event,"+astab+",'"+format.val+"')");
+                        menuitem.setAttribute('temp','true');
                         submenu.appendChild(menuitem);
                     }
                 }
@@ -369,7 +369,7 @@ var urllinkCommon =
     launchExternalURL: function (url)
     {
         /* Remote browser */
-        var messenger = Components.classes["@mozilla.org/messenger;1"].createInstance();
+        var messenger = Components.classes['@mozilla.org/messenger;1'].createInstance();
         messenger = messenger.QueryInterface(Components.interfaces.nsIMessenger);
         messenger.launchExternalURL(url);
     }
@@ -377,4 +377,4 @@ var urllinkCommon =
 }
 
 
-//window.addEventListener("load", urllinkCommon.urllinkInit, true);
+//window.addEventListener('load', urllinkCommon.urllinkInit, true);

@@ -18,15 +18,15 @@
 
 
 /* Every time a new window is made, urllinkMailInit will be called */
-window.addEventListener("load",urllinkMailInit,false);
+window.addEventListener('load',urllinkMailInit,false);
 
 
 function urllinkMailInit()
 {
     urllinkCommon.urllinkInit();
 
-    if (document.getElementById("messagePaneContext"))
-        document.getElementById("messagePaneContext").addEventListener("popupshowing",urllinkMailContext,false);
+    if (document.getElementById('messagePaneContext'))
+        document.getElementById('messagePaneContext').addEventListener('popupshowing',urllinkMailContext,false);
 }
 
 
@@ -46,16 +46,91 @@ function rawOpenNewWindowWith(url)
          */
         var charsetArg = null;
         var wintype = document.firstChild.getAttribute('windowtype');
-        if (wintype == "navigator:browser")
-            charsetArg = "charset=" + window._content.document.characterSet;
+        if (wintype == 'navigator:browser')
+            charsetArg = 'charset=' + window._content.document.characterSet;
 
         var referrer = urllinkCommon.getReferrer();
-        window.openDialog(getBrowserURL(), "_blank", "chrome,all,dialog=no", url, charsetArg, referrer);
+        window.openDialog(getBrowserURL(), '_blank', 'chrome,all,dialog=no', url, charsetArg, referrer);
     }
     else
     {
         urllinkCommon.launchExternalURL(url);
     }
+}
+
+
+/* Selection ranges can contain spans of children;  this decodes them */
+function spanString(span)
+{
+    var text = '';
+    var nodes = span.childNodes.length;
+    for (var n = 0;  n < nodes;  ++n)
+    {
+        var bit = span.childNodes[n];
+        if (bit.data)
+        {
+            text += bit.data;
+        }
+        else if (bit.className)
+        {
+            if (bit.className == 'moz-txt-link-freetext' || bit.className == 'moz-txt-tag')
+            {
+                text += bit.innerHTML;
+            }
+            else if (bit.className == 'moz-txt-slash')
+            {
+                text += spanString(bit);
+            }
+        }
+    }
+
+    return text;
+}
+
+
+/* Raw access to text of a selection.
+ * Default toString op. mangles \n to space
+ */
+function selectionString(sel)
+{
+    var ranges = sel.rangeCount;
+    var text = '';
+    for (var r = 0;  r < ranges;  ++r)
+    {
+        var range = sel.getRangeAt(r);
+        var frag = range.cloneContents();
+        var nodes = frag.childNodes.length;
+        if (text != '')
+            text += ' ';
+
+        for (var n = 0;  n < nodes;  ++n)
+        {
+            var bit = frag.childNodes[n];
+            if (bit.data)
+            {
+                text += bit.data;
+            }
+            else if (bit.className)
+            {
+                if (bit.className == 'moz-txt-link-freetext' || bit.className == 'moz-txt-tag')
+                {
+                    text += bit.innerHTML;
+                }
+                else if (bit.className == 'moz-txt-slash')
+                {
+                    text += spanString(bit);
+                }
+            }
+        }
+    }
+
+    /* This can end up empty (!);  seemingly when the view is pseudo-HTML and the quoted text is the blue line.
+     * Fall back to toString();  annoyingly, in this instance the pigging thing does have the '\n's in  :-/
+     */
+    if (text == '')
+        text = sel.toString();
+
+    return text;
 }
 
 
@@ -67,7 +142,8 @@ function rawSearchSelected(context)
     var focusedWindow = document.commandDispatcher.focusedWindow;
     /* var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow); */
     var searchStr = focusedWindow.getSelection();
-    searchStr = searchStr.toString();
+    /* searchStr = searchStr.toString(); */
+    searchStr = selectionString(searchStr);
     searchStr = urllinkCommon.tidySelection(searchStr);
     return searchStr;
 }
@@ -85,37 +161,25 @@ function unmangleURL(url,wasLink)
     url = url.replace(/^\<(.*)\>$/, "$1");
 
     /* NT remote spec. */
-    url = url.replace(/^\\\\/, "file://///");
+    url = url.replace(/^\\\\/, 'file://///');
     /* Yucky drive spec. */
     url = url.replace(/^([A-Z]:)\\/, "file:///$1/");
 
     /* strip bad leading characters */
-    url = url.replace(/^[^-0-9_a-zA-Z]+/, "");
+    url = url.replace(/^[^-0-9_a-zA-Z]+/, '');
     /* strip bad ending characters */
-    url = url.replace(/[\.,\'\"\)\?!>\]]+$/, "");
-    /* Convert inner spaces */
-    if (url.search(/^file:/) == 0)
-    {
-        url = url.replace(/ /g, "%20");
-    }
-    else
-    {
-        /* Temp: workaround mozilla toString() bug that replaces <CR><LF> with <space>.
-         *       https://bugzilla.mozilla.org/show_bug.cgi?id=183496
-         *       Breaks links that have legitimate (!?) '>'s in, but there will be fewer of these than those we fix..
-         */
-        url = url.replace(/[ >]/g, "");
-        /* url = url.replace(/ /g, ""); */
-    }
+    url = url.replace(/[\.,\'\"\)\?!>\]]+$/, '');
 
-    /* Convert [remaining] Doze dir seps. */
-    url = url.replace(/\\/g, "/");
+    /* Strip spaces and mail-quote chars */
+    url = url.replace(/[\n\r]+ *(> *)*/g, '');
+    /* Keep any spaces that are left */
+    url = url.replace(/ /g, '%20');
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
      */
     if (wasLink  &&  url.search(/^mailto:/) == 0)
-        url = url.replace(/^mailto:.*@/,"");
+        url = url.replace(/^mailto:.*@/,'');
 
     return url;
 }

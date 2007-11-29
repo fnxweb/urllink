@@ -18,16 +18,16 @@
 
 
 /* Every time a new browser window is made, urllinkBrowserInit will be called */
-window.addEventListener("load",urllinkBrowserInit,false);
+window.addEventListener('load',urllinkBrowserInit,false);
 
 
 function urllinkBrowserInit()
 {
     urllinkCommon.urllinkInit();
 
-    var contentAreaContextMenu = document.getElementById("contentAreaContextMenu");
+    var contentAreaContextMenu = document.getElementById('contentAreaContextMenu');
     if (contentAreaContextMenu)
-        contentAreaContextMenu.addEventListener("popupshowing",urllinkBrowserContext,false);
+        contentAreaContextMenu.addEventListener('popupshowing',urllinkBrowserContext,false);
 }
 
 
@@ -41,7 +41,7 @@ function urllinkGetTextBoxText(field)
     else if (field.parentNode && field.parentNode.value)
         tb = field.parentNode;
     else
-        return "";
+        return '';
 
     if (tb.selectionStart == tb.selectionEnd)
         return tb.value;
@@ -171,16 +171,16 @@ function urllinkBrowserContext()
 
 
 /* Some sites (e.g., kelkoo) obfuisctae their js links with base64! */
-var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
 function decode64(realinput)
 {
-    var output = "";
+    var output = '';
     var chr1, chr2, chr3;
     var enc1, enc2, enc3, enc4;
     var i = 0;
 
     // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
-    var input = realinput.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+    var input = realinput.replace(/[^A-Za-z0-9\+\/\=]/g, '');
     if (input != realinput)
     {
         /* Not Base64 */
@@ -270,13 +270,13 @@ function getBestJavascriptArg(url)
 function unmangleURL(url,wasLink)
 {
     /* strip bad leading characters */
-    url = url.replace(/^[^-0-9_a-zA-Z]+/, "");
+    url = url.replace(/^[^-0-9_a-zA-Z]+/, '');
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
      */
     if (wasLink  &&  url.search(/^mailto:/) == 0)
-        url = url.replace(/^mailto:.*@/,"");
+        url = url.replace(/^mailto:.*@/,'');
 
     /* Remove any JavaScript waffle */
     if (url.search(/^javascript:/) == 0)
@@ -303,7 +303,7 @@ function unmangleURL(url,wasLink)
     }
 
     /* strip bad ending characters */
-    url = url.replace(/[\.,\'\"\)\?!>\]]+$/, "");
+    url = url.replace(/[\.,\'\"\)\?!>\]]+$/, '');
 
     return url;
 }
@@ -340,7 +340,7 @@ function urllinkBrowserOpenLink(event,astab,format)
     if (astab == 1)
     {
         /* Tab */
-        var loadInBackground = urllinkCommon.prefManager.getBoolPref("browser.tabs.loadInBackground");
+        var loadInBackground = urllinkCommon.prefManager.getBoolPref('browser.tabs.loadInBackground');
         var tab = browser.addTab( lnk, referrer );
         if (!loadInBackground)
             browser.selectedTab = tab;
