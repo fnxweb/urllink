@@ -19,6 +19,9 @@
 var listbox; /* = document.getElementById("urllinkMenuItems"); */
 var newitembox;
 var topmenu;
+var newwindow;
+var openonly;
+var tabonly;
 
 
 function openNewWindow(url)
@@ -150,6 +153,9 @@ function loadPrefs()
         listbox = document.getElementById("urllinkMenuItems");
         newitembox = document.getElementById("urllinkNewItem");
         topmenu = document.getElementById("urllinkTopmenu");
+        newwindow = document.getElementById("urllinkNewWindow");
+        openonly = document.getElementById("urllinkOpenOnly");
+        tabonly = document.getElementById("urllinkTabOnly");
         listbox.addEventListener("select",onPrefsSelect, false);
     }
     if (urllinkCommon.prefs.getPrefType("submenu.0") != urllinkCommon.nsIPrefBranch.PREF_STRING)
@@ -174,6 +180,14 @@ function loadPrefs()
         }
     }
     topmenu.checked = urllinkCommon.prefs.getBoolPref("topmenu");
+    newwindow.checked = urllinkCommon.prefs.getBoolPref("newwindow");
+    openonly.checked = urllinkCommon.prefs.getBoolPref("openonly");
+    tabonly.checked = urllinkCommon.prefs.getBoolPref("tabonly");
+    if (openonly.checked  &&  tabonly.checked)
+    {
+        tabonly.checked = false;
+        urllinkCommon.prefs.setBoolPref("tabonly", tabonly.checked);
+    }
 }
 
 
@@ -197,7 +211,12 @@ function setPrefs(doclose)
         urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).label );
         n++;
     }
+    if (openonly.checked  &&  tabonly.checked)
+        tabonly.checked = false;
     urllinkCommon.prefs.setBoolPref("topmenu", topmenu.checked);
+    urllinkCommon.prefs.setBoolPref("newwindow", newwindow.checked);
+    urllinkCommon.prefs.setBoolPref("openonly", openonly.checked);
+    urllinkCommon.prefs.setBoolPref("tabonly", tabonly.checked);
 
     /* Done */
     if (doclose)

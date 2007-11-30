@@ -107,6 +107,11 @@ var urllinkCommon =
         return (!this.prefs.getBoolPref('topmenu') ? '-top' : '-bottom');
     },
 
+    getBoolPref: function (name)
+    {
+        return this.prefs.getBoolPref(name);
+    },
+
 
     /* Minor annoyance */
     doneInitCheck : false,

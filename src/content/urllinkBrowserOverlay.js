@@ -112,13 +112,20 @@ function urllinkBrowserContext()
         }
     }
 
+    /* May be showing only main open or only tab open bits */
+    var openonly = urllinkCommon.prefs.getBoolPref("openonly");
+    var tabonly  = urllinkCommon.prefs.getBoolPref("tabonly");
+
     /* Main menu buttons visible if selection and looks like URL */
     for (var i=0; i<urllinkCommon.urllinkBrowserMenuItems.length; i++)
     {
         var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
-            menuitem.hidden = !(isLinkOrUrlSelection && isURL);
+            if ((openonly  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (tabonly  &&  menuitem.id.search(/open-link/) >= 0))
+                menuitem.hidden = true;
+            else
+                menuitem.hidden = !(isLinkOrUrlSelection && isURL);
         }
         menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPosAlt());
         if (menuitem)
@@ -126,14 +133,16 @@ function urllinkBrowserContext()
             menuitem.hidden = true;
         }
     }
+
     /* Alternate submenus visible if selection and doesn't look like URL */
     if (! (!isLinkOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
         for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenus.length; i++)
         {
-            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateBrowserMenus[i] + urllinkCommon.menuPos(),
-                'urllinkBrowserOpenLink', i );
+            var menuitem_id = urllinkCommon.urllinkAlternateBrowserMenus[i] + urllinkCommon.menuPos();
+            if ((!openonly  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!tabonly  &&  menuitem_id.search(/open-link/) >= 0))
+                urllinkCommon.regenerateMenu( menuitem_id, 'urllinkBrowserOpenLink', i );
         }
     }
     for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenuItems.length; i++)
@@ -141,7 +150,10 @@ function urllinkBrowserContext()
         var menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
-            menuitem.hidden = !isLinkOrUrlSelection || isURL;
+            if ((openonly  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (tabonly  &&  menuitem.id.search(/open-link/) >= 0) )
+                menuitem.hidden = true;
+            else
+                menuitem.hidden = !isLinkOrUrlSelection || isURL;
         }
         menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPosAlt());
         if (menuitem)
@@ -149,6 +161,7 @@ function urllinkBrowserContext()
             menuitem.hidden = true;
         }
     }
+
     /* Hide separators if both of the above hidden */
     {
         for (var i=0; i<2; i++)
@@ -347,7 +360,10 @@ function urllinkBrowserOpenLink(event,astab,format)
     }
     else
     {
-        if (event.shiftKey)
+        var newwindow = urllinkCommon.getBoolPref('newwindow');
+        var usewindow = ( (!newwindow  &&  event.shiftKey)  ||  (newwindow  &&  !event.shiftKey) );
+
+        if (usewindow)
         {
             /* New window */
             window.open( lnk, referrer );
