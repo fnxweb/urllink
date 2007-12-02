@@ -11,9 +11,9 @@
 <!ENTITY urllink-prefs-title "Impostazioni di URL Link">
 <!ENTITY urllink-prefs-editmenu "Personalizzazione del menu">
 <!ENTITY urllink-prefs-newentry "Nuovo elemento">
-<!ENTITY urllink-prefs-up "Su">
-<!ENTITY urllink-prefs-down "Giù">
-<!ENTITY urllink-prefs-defaults "Predefinite">
+<!ENTITY urllink-prefs-up "Sposta su">
+<!ENTITY urllink-prefs-down "Sposta giù">
+<!ENTITY urllink-prefs-defaults "Predefiniti">
 <!ENTITY urllink-prefs-delete "Elimina">
 <!ENTITY urllink-prefs-add "Aggiungi">
 <!ENTITY urllink-prefs-help "Contenuti guida">
@@ -27,9 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "Nuova voce di menu;  &apos;*&apos; è sostituito dalla selezione">
 <!ENTITY urllink-help-title "Contenuti guida">
 <!ENTITY urllink-changelog-title "Cronologia delle modifiche">
-<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
-<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-newwindow "Apri i link in una nuova finestra">
+<!ENTITY urllink-prefs-newwindow-tip "Apre i link in una nuova finestra di Firefox come opzione predefinita">
+<!ENTITY urllink-prefs-openonly "Mostra solo &apos;Apri in nuova finestra&apos; ">
+<!ENTITY urllink-prefs-openonly-tip "Nasconde la voce del menu contestuale di Firefox &apos;Apri in nuova scheda&apos;">
+<!ENTITY urllink-prefs-tabonly "Mostra solo &apos;Apri in nuova scheda&apos;">
+<!ENTITY urllink-prefs-tabonly-tip "Nasconde la voce del menu contestuale di Firefox &apos;Apri in nuova finestra&apos;">

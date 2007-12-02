@@ -27,9 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "새 메뉴 항목; &apos;*&apos;는 선택한 것을 대신합니다.">
 <!ENTITY urllink-help-title "URL Link 도움말">
 <!ENTITY urllink-changelog-title "URL Link 변경사항">
-<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
-<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-newwindow "새 창을 선호 (Firefox)">
+<!ENTITY urllink-prefs-newwindow-tip "새 창 열기를 기본으로 (&lt;Shift&gt;로 일반 동작)">
+<!ENTITY urllink-prefs-openonly "&apos;열기&apos;선택사항만 표시(Firefox)">
+<!ENTITY urllink-prefs-openonly-tip "&apos;탭으로 열기&apos; 선택사항 감추기">
+<!ENTITY urllink-prefs-tabonly "&apos;탭으로 열기&apos; 선택사항만 표시(Firefox)">
+<!ENTITY urllink-prefs-tabonly-tip "일반 &apos;열기&apos; 선택사항 감추기">

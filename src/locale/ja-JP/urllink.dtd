@@ -27,9 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "新しいメニュー項目; &apos;*&apos;は選択文字列で置換されます">
 <!ENTITY urllink-help-title "URL Linkのヘルプ">
 <!ENTITY urllink-changelog-title "URL Linkの変更履歴">
-<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
-<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-newwindow "新しいウィンドウで開くようにする（Firefox）">
+<!ENTITY urllink-prefs-newwindow-tip "デフォルトで新しいウィンドウで開（Shift押下時と同様）">
+<!ENTITY urllink-prefs-openonly "「開く」の項目だけを表示する（Firefox）">
+<!ENTITY urllink-prefs-openonly-tip "「タブで開く」の項目を隠す">
+<!ENTITY urllink-prefs-tabonly "「タブで開く」の項目だけを表示する（Firefox）">
+<!ENTITY urllink-prefs-tabonly-tip "通常の「開く」の項目を隠す">

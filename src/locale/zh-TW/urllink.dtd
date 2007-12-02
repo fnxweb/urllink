@@ -1,12 +1,12 @@
-<!ENTITY popup-urllink-open-tab.label "用新視窗開啟已選取的網址">
+<!ENTITY popup-urllink-open-tab.label "用新視窗開啟已選取的網址 (T)">
 <!ENTITY popup-urllink-open-tab.shortcut "T">
-<!ENTITY popup-urllink-open-link.label "開啟已選取的網址">
+<!ENTITY popup-urllink-open-link.label "開啟已選取的網址(O)">
 <!ENTITY popup-urllink-open-link.shortcut "O">
-<!ENTITY popup-urllink-open-tab-as.label "用新視窗開啟選取範圍">
+<!ENTITY popup-urllink-open-tab-as.label "用新視窗開啟選取範圍(T)">
 <!ENTITY popup-urllink-open-tab-as.shortcut "T">
-<!ENTITY popup-urllink-open-link-as.label "開啟選取範圍">
+<!ENTITY popup-urllink-open-link-as.label "開啟選取範圍(O)">
 <!ENTITY popup-urllink-open-link-as.shortcut "O">
-<!ENTITY popup-urllink-open-as-is.label "直接貼上">
+<!ENTITY popup-urllink-open-as-is.label "直接貼上(U)">
 <!ENTITY popup-urllink-open-as-is.shortcut "U">
 <!ENTITY urllink-prefs-title "URL Link 偏好設定">
 <!ENTITY urllink-prefs-editmenu "編輯選單">
@@ -27,9 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "新增選單項目；選取範圍會取代&apos;*&apos;">
 <!ENTITY urllink-help-title "URL Link 說明">
 <!ENTITY urllink-changelog-title "URL Link 更新日誌">
-<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
-<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-newwindow "新視窗類型 (Firefox)">
+<!ENTITY urllink-prefs-newwindow-tip "依默認值開啟新視窗(按 &lt;Shift&gt; 基本上一樣)">
+<!ENTITY urllink-prefs-openonly "只顯示&quot;開啟&quot;選項 (Firefox)">
+<!ENTITY urllink-prefs-openonly-tip "隱藏&quot;於分頁開啟&quot;選項">
+<!ENTITY urllink-prefs-tabonly "只顯示&quot;於分頁開啟&quot;選項 (Firefox)">
+<!ENTITY urllink-prefs-tabonly-tip "隱藏標準的&quot;開啟&quot;選項">
