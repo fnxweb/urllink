@@ -113,8 +113,8 @@ function urllinkBrowserContext()
     }
 
     /* May be showing only main open or only tab open bits */
-    var openonly = urllinkCommon.prefs.getBoolPref("openonly");
-    var tabonly  = urllinkCommon.prefs.getBoolPref("tabonly");
+    var hidetab = urllinkCommon.prefs.getBoolPref("hidetab");
+    var hideopen  = urllinkCommon.prefs.getBoolPref("hideopen");
 
     /* Main menu buttons visible if selection and looks like URL */
     for (var i=0; i<urllinkCommon.urllinkBrowserMenuItems.length; i++)
@@ -122,7 +122,7 @@ function urllinkBrowserContext()
         var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
-            if ((openonly  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (tabonly  &&  menuitem.id.search(/open-link/) >= 0))
+            if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0))
                 menuitem.hidden = true;
             else
                 menuitem.hidden = !(isLinkOrUrlSelection && isURL);
@@ -141,7 +141,7 @@ function urllinkBrowserContext()
         for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenus.length; i++)
         {
             var menuitem_id = urllinkCommon.urllinkAlternateBrowserMenus[i] + urllinkCommon.menuPos();
-            if ((!openonly  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!tabonly  &&  menuitem_id.search(/open-link/) >= 0))
+            if ((!hidetab  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!hideopen  &&  menuitem_id.search(/open-link/) >= 0))
                 urllinkCommon.regenerateMenu( menuitem_id, 'urllinkBrowserOpenLink', i );
         }
     }
@@ -150,7 +150,7 @@ function urllinkBrowserContext()
         var menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPos());
         if (menuitem)
         {
-            if ((openonly  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (tabonly  &&  menuitem.id.search(/open-link/) >= 0) )
+            if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0) )
                 menuitem.hidden = true;
             else
                 menuitem.hidden = !isLinkOrUrlSelection || isURL;

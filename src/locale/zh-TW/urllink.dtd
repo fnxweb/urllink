@@ -33,3 +33,5 @@
 <!ENTITY urllink-prefs-openonly-tip "隱藏&quot;於分頁開啟&quot;選項">
 <!ENTITY urllink-prefs-tabonly "只顯示&quot;於分頁開啟&quot;選項 (Firefox)">
 <!ENTITY urllink-prefs-tabonly-tip "隱藏標準的&quot;開啟&quot;選項">
+<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
+<!ENTITY urllink-prefs-bothoptions "Show both open options">

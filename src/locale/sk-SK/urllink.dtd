@@ -29,7 +29,7 @@
 <!ENTITY urllink-changelog-title "Denník zmien k URL Link">
 <!ENTITY urllink-prefs-newwindow "Otvárať výber v novom okne (Firefox)">
 <!ENTITY urllink-prefs-newwindow-tip "Predvolene otvárať v novom okne (ako sa to zvyčajne robí klávesom Shift)">
-<!ENTITY urllink-prefs-openonly "Zobraziť len možnosť &apos;Otvoriť&apos; (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Skryť možnosť &apos;Otvoriť na karte&apos;">
-<!ENTITY urllink-prefs-tabonly "Zobraziť len možnosť &apos;Otvoriť na karte&apos; (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Skryť klasickú možnosť &apos;Otvoriť&apos;">
+<!ENTITY urllink-prefs-hidetab "Skryť možnosť &apos;Otvoriť na karte&apos;">
+<!ENTITY urllink-prefs-hideopen "Skryť klasickú možnosť &apos;Otvoriť&apos;">
+<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
+<!ENTITY urllink-prefs-bothoptions "Show both open options">

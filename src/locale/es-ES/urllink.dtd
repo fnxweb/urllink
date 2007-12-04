@@ -29,7 +29,7 @@
 <!ENTITY urllink-changelog-title "URL Link - Lista de cambios">
 <!ENTITY urllink-prefs-newwindow "Nueva ventana (Firefox)">
 <!ENTITY urllink-prefs-newwindow-tip "Abrir una nueva ventana por defecto (como sucede al pulsar &lt;Mayús&gt;)">
-<!ENTITY urllink-prefs-openonly "Mostrar sólo las opciones de &apos;Abrir&apos; (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Ocultar las opciones &apos;Abrir en pestaña&apos;">
-<!ENTITY urllink-prefs-tabonly "Mostrar sólo las opciones &apos;Abrir en pestaña&apos; (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Ocultar las opciones normales de &apos;Abrir&apos;">
+<!ENTITY urllink-prefs-hidetab "Ocultar las opciones &apos;Abrir en pestaña&apos;">
+<!ENTITY urllink-prefs-hideopen "Ocultar las opciones normales de &apos;Abrir&apos;">
+<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
+<!ENTITY urllink-prefs-bothoptions "Show both open options">

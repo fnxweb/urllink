@@ -29,7 +29,7 @@
 <!ENTITY urllink-changelog-title "URL Linkの変更履歴">
 <!ENTITY urllink-prefs-newwindow "新しいウィンドウで開くようにする（Firefox）">
 <!ENTITY urllink-prefs-newwindow-tip "デフォルトで新しいウィンドウで開（Shift押下時と同様）">
-<!ENTITY urllink-prefs-openonly "「開く」の項目だけを表示する（Firefox）">
-<!ENTITY urllink-prefs-openonly-tip "「タブで開く」の項目を隠す">
-<!ENTITY urllink-prefs-tabonly "「タブで開く」の項目だけを表示する（Firefox）">
-<!ENTITY urllink-prefs-tabonly-tip "通常の「開く」の項目を隠す">
+<!ENTITY urllink-prefs-hidetab "「タブで開く」の項目を隠す">
+<!ENTITY urllink-prefs-hideopen "通常の「開く」の項目を隠す">
+<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
+<!ENTITY urllink-prefs-bothoptions "Show both open options">

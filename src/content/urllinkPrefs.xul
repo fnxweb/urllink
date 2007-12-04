@@ -87,14 +87,18 @@
             <vbox pack="end">
                 <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,width=640,height=512');"/>
             </vbox>
-            <groupbox>
-                <vbox pack="end">
-                    <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
-                    <checkbox id="urllinkNewWindow" label="&urllink-prefs-newwindow;" tooltiptext="&urllink-prefs-newwindow-tip;"/>
-                    <checkbox id="urllinkOpenOnly" label="&urllink-prefs-openonly;" tooltiptext="&urllink-prefs-openonly-tip;"/>
-                    <checkbox id="urllinkTabOnly" label="&urllink-prefs-tabonly;" tooltiptext="&urllink-prefs-tabonly-tip;"/>
-                </vbox>
-            </groupbox>>
+            <vbox pack="end">
+                <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
+                <checkbox id="urllinkNewWindow" label="&urllink-prefs-newwindow;" tooltiptext="&urllink-prefs-newwindow-tip;"/>
+                <groupbox>
+                    <caption label="&urllink-prefs-firefoxonly;"/>
+                    <radiogroup id="urllinkOpenOptions">
+                        <radio id="urllinkBothOptions" label="&urllink-prefs-bothoptions;"/>
+                        <radio id="urllinkHideTab" label="&urllink-prefs-hidetab;"/>
+                        <radio id="urllinkHideOpen" label="&urllink-prefs-hideopen;"/>
+                    </radiogroup>
+                </groupbox>>
+            </vbox>
         </hbox>
 
         <hbox>

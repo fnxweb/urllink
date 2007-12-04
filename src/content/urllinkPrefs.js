@@ -20,8 +20,7 @@ var listbox; /* = document.getElementById("urllinkMenuItems"); */
 var newitembox;
 var topmenu;
 var newwindow;
-var openonly;
-var tabonly;
+var openoptions;
 
 
 function openNewWindow(url)
@@ -154,10 +153,23 @@ function loadPrefs()
         newitembox = document.getElementById("urllinkNewItem");
         topmenu = document.getElementById("urllinkTopmenu");
         newwindow = document.getElementById("urllinkNewWindow");
-        openonly = document.getElementById("urllinkOpenOnly");
-        tabonly = document.getElementById("urllinkTabOnly");
+        openoptions = document.getElementById("urllinkOpenOptions");
         listbox.addEventListener("select",onPrefsSelect, false);
     }
+
+    /* Fix old prefs */
+    if (urllinkCommon.prefs.getPrefType("openonly") == urllinkCommon.nsIPrefBranch.PREF_BOOL)
+    {
+        urllinkCommon.prefs.setBoolPref("hidetab", urllinkCommon.prefs.getPrefType("openonly"));
+        urllinkCommon.prefs.clearUserPref("openonly");
+    }
+    if (urllinkCommon.prefs.getPrefType("tabonly") == urllinkCommon.nsIPrefBranch.PREF_BOOL)
+    {
+        urllinkCommon.prefs.setBoolPref("hideopen", urllinkCommon.prefs.getPrefType("tabonly"));
+        urllinkCommon.prefs.clearUserPref("tabonly");
+    }
+
+    /* Now submenu */
     if (urllinkCommon.prefs.getPrefType("submenu.0") != urllinkCommon.nsIPrefBranch.PREF_STRING)
     {
         /* Nothing yet */
@@ -179,15 +191,16 @@ function loadPrefs()
             n++;
         }
     }
+
+    /* And rest */
     topmenu.checked = urllinkCommon.prefs.getBoolPref("topmenu");
     newwindow.checked = urllinkCommon.prefs.getBoolPref("newwindow");
-    openonly.checked = urllinkCommon.prefs.getBoolPref("openonly");
-    tabonly.checked = urllinkCommon.prefs.getBoolPref("tabonly");
-    if (openonly.checked  &&  tabonly.checked)
-    {
-        tabonly.checked = false;
-        urllinkCommon.prefs.setBoolPref("tabonly", tabonly.checked);
-    }
+    if (urllinkCommon.prefs.getBoolPref("hidetab"))
+        openoptions.selectedIndex = 1;  /* hide tab */
+    else if (urllinkCommon.prefs.getBoolPref("hideopen"))
+        openoptions.selectedIndex = 2;  /* hide open */
+    else
+        openoptions.selectedIndex = 0;  /* have both */
 }
 
 
@@ -211,12 +224,22 @@ function setPrefs(doclose)
         urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).label );
         n++;
     }
-    if (openonly.checked  &&  tabonly.checked)
-        tabonly.checked = false;
     urllinkCommon.prefs.setBoolPref("topmenu", topmenu.checked);
     urllinkCommon.prefs.setBoolPref("newwindow", newwindow.checked);
-    urllinkCommon.prefs.setBoolPref("openonly", openonly.checked);
-    urllinkCommon.prefs.setBoolPref("tabonly", tabonly.checked);
+    switch (openoptions.selectedIndex)
+    {
+        case 1:
+            urllinkCommon.prefs.setBoolPref("hidetab", true);
+            urllinkCommon.prefs.setBoolPref("hideopen", false);
+            break;
+        case 2:
+            urllinkCommon.prefs.setBoolPref("hidetab", false);
+            urllinkCommon.prefs.setBoolPref("hideopen", true);
+            break;
+        default:
+            urllinkCommon.prefs.setBoolPref("hidetab", false);
+            urllinkCommon.prefs.setBoolPref("hideopen", false);
+    }
 
     /* Done */
     if (doclose)

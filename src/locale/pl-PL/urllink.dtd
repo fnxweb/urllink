@@ -27,9 +27,9 @@
 <!ENTITY urllink-prefs-entry-tip "Nowy element menu &quot;*&quot; jest zamieniany przez zaznaczenie">
 <!ENTITY urllink-help-title "URL Link - pomoc">
 <!ENTITY urllink-changelog-title "URL Link - opis zmian">
-<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox)">
+<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox only)">
 <!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-openonly "Only show 'Open' options (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "Hide the 'open in tab' options">
-<!ENTITY urllink-prefs-tabonly "Only show 'Open in Tab' options (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-hidetab "Hide the 'open in tab' options">
+<!ENTITY urllink-prefs-hideopen "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
+<!ENTITY urllink-prefs-bothoptions "Show both open options">
