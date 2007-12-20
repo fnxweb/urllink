@@ -177,7 +177,7 @@ var urllinkCommon =
     fixURL: function (url)
     {
         /* Check proto */
-        if (url.search(/^mailto:/) == -1  &&  url.search(/^\w+:\/\//) == -1)
+        if (url.search(/^mailto:/) == -1  &&  url.search(/^[_-\w]+:\/\//) == -1)
         {
             if (url.search(/^ftp/) == 0)
             {
