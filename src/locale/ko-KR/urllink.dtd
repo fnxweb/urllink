@@ -31,5 +31,5 @@
 <!ENTITY urllink-prefs-newwindow-tip "새 창 열기를 기본으로 (&lt;Shift&gt;로 일반 동작)">
 <!ENTITY urllink-prefs-hidetab "&apos;탭으로 열기&apos; 선택사항 감추기">
 <!ENTITY urllink-prefs-hideopen "일반 &apos;열기&apos; 선택사항 감추기">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-prefs-firefoxonly "메뉴 제어 (Firefox 전용)">
+<!ENTITY urllink-prefs-bothoptions "선택 사항 열기 모두 표시">

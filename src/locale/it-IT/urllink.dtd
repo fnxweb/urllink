@@ -29,7 +29,7 @@
 <!ENTITY urllink-changelog-title "Cronologia delle modifiche">
 <!ENTITY urllink-prefs-newwindow "Apri i link in una nuova finestra">
 <!ENTITY urllink-prefs-newwindow-tip "Apre i link in una nuova finestra di Firefox come opzione predefinita">
-<!ENTITY urllink-prefs-hidetab "Nasconde la voce del menu contestuale di Firefox &apos;Apri in nuova scheda&apos;">
-<!ENTITY urllink-prefs-hideopen "Nasconde la voce del menu contestuale di Firefox &apos;Apri in nuova finestra&apos;">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-prefs-hidetab "&apos;Apri in una finestra&apos;">
+<!ENTITY urllink-prefs-hideopen "&apos;Apri in una scheda&apos;">
+<!ENTITY urllink-prefs-firefoxonly "Elementi da visualizzare nel menu">
+<!ENTITY urllink-prefs-bothoptions "Entrambi gli elementi">

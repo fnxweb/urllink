@@ -31,5 +31,5 @@
 <!ENTITY urllink-prefs-newwindow-tip "Abrir una nueva ventana por defecto (como sucede al pulsar &lt;Mayús&gt;)">
 <!ENTITY urllink-prefs-hidetab "Ocultar las opciones &apos;Abrir en pestaña&apos;">
 <!ENTITY urllink-prefs-hideopen "Ocultar las opciones normales de &apos;Abrir&apos;">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-prefs-firefoxonly "Menú control (sólo en Firefox)">
+<!ENTITY urllink-prefs-bothoptions "Mostrar ambas opciones de abrir">

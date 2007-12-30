@@ -31,5 +31,5 @@
 <!ENTITY urllink-prefs-newwindow-tip "Abrir nova janela por padrão (&lt;Shift&gt; normalmente faz isso)">
 <!ENTITY urllink-prefs-hidetab "Esconder a opção &apos;abrir na aba&apos;">
 <!ENTITY urllink-prefs-hideopen "Esconder a opção &apos;abrir&apos;">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-prefs-firefoxonly "Controle do Menu (somente Firefox)">
+<!ENTITY urllink-prefs-bothoptions "Mostrar opções de abertura">

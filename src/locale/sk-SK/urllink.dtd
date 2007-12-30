@@ -31,5 +31,5 @@
 <!ENTITY urllink-prefs-newwindow-tip "Predvolene otvárať v novom okne (ako sa to zvyčajne robí klávesom Shift)">
 <!ENTITY urllink-prefs-hidetab "Skryť možnosť &apos;Otvoriť na karte&apos;">
 <!ENTITY urllink-prefs-hideopen "Skryť klasickú možnosť &apos;Otvoriť&apos;">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-prefs-firefoxonly "Ovládanie ponuky (Firefox)">
+<!ENTITY urllink-prefs-bothoptions "Zobraziť obe možnosti otvorenia">

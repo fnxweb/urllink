@@ -29,7 +29,7 @@
 <!ENTITY urllink-changelog-title "URL Link - opis zmian">
 <!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox only)">
 <!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-hidetab "Hide the 'open in tab' options">
-<!ENTITY urllink-prefs-hideopen "Hide the normal 'open' options">
+<!ENTITY urllink-prefs-hidetab "Hide the &apos;open in tab&apos; options">
+<!ENTITY urllink-prefs-hideopen "Hide the normal &apos;open&apos; options">
 <!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
 <!ENTITY urllink-prefs-bothoptions "Show both open options">

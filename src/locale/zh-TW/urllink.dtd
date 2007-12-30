@@ -29,9 +29,7 @@
 <!ENTITY urllink-changelog-title "URL Link 更新日誌">
 <!ENTITY urllink-prefs-newwindow "新視窗類型 (Firefox)">
 <!ENTITY urllink-prefs-newwindow-tip "依默認值開啟新視窗(按 &lt;Shift&gt; 基本上一樣)">
-<!ENTITY urllink-prefs-openonly "只顯示&quot;開啟&quot;選項 (Firefox)">
-<!ENTITY urllink-prefs-openonly-tip "隱藏&quot;於分頁開啟&quot;選項">
-<!ENTITY urllink-prefs-tabonly "只顯示&quot;於分頁開啟&quot;選項 (Firefox)">
-<!ENTITY urllink-prefs-tabonly-tip "隱藏標準的&quot;開啟&quot;選項">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-prefs-hidetab "隱藏 &quot;開啟於新分頁&quot; 選項">
+<!ENTITY urllink-prefs-hideopen "隱藏有關 &quot;開啟&quot; 選項">
+<!ENTITY urllink-prefs-firefoxonly "選單控制 (Firefox only)">
+<!ENTITY urllink-prefs-bothoptions "顯示兩個 開啟 選項">
