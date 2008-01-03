@@ -177,7 +177,7 @@ var urllinkCommon =
     fixURL: function (url)
     {
         /* Check proto */
-        if (url.search(/^mailto:/) == -1  &&  url.search(/^[_-\w]+:\/\//) == -1)
+        if (url.search(/^mailto:/) == -1  &&  url.search(/^[-_\w]+:\/\//) == -1)
         {
             if (url.search(/^ftp/) == 0)
             {
@@ -199,7 +199,7 @@ var urllinkCommon =
         /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
          * but that seems to be illegal.
          */
-        url = this.utf8Encode(url);
+        url = urllinkCommon.utf8Encode(url);
 
         return url;
     },

@@ -166,7 +166,7 @@ function unmangleURL(url,wasLink)
     url = url.replace(/^([A-Z]:)\\/, "file:///$1/");
 
     /* strip bad leading characters */
-    url = url.replace(/^[^-0-9_a-zA-Z]+/, '');
+    url = url.replace(/^[\.,\'\"\)\?!>\]]+/, '');
     /* strip bad ending characters */
     url = url.replace(/[\.,\'\"\)\?!>\]]+$/, '');
 

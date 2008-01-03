@@ -283,7 +283,7 @@ function getBestJavascriptArg(url)
 function unmangleURL(url,wasLink)
 {
     /* strip bad leading characters */
-    url = url.replace(/^[^-0-9_a-zA-Z]+/, '');
+    url = url.replace(/^[\.,\'\"\)\?!>\]]+/, '');
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
@@ -317,6 +317,11 @@ function unmangleURL(url,wasLink)
 
     /* strip bad ending characters */
     url = url.replace(/[\.,\'\"\)\?!>\]]+$/, '');
+
+    /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
+     * but that seems to be illegal.
+     */
+    url = urllinkCommon.utf8Encode(url);
 
     return url;
 }
