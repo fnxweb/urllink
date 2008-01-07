@@ -49,7 +49,7 @@ function itemUp()
     {
         var item = listbox.removeItemAt(idx);
         idx--;
-        listbox.insertItemAt( idx, item.label, item.value );
+        listbox.insertItemAt( idx, item.getAttribute("label"), item.getAttribute("value") );
         listbox.selectedIndex = idx;
         listbox.ensureIndexIsVisible( idx );
     }
@@ -65,11 +65,11 @@ function itemDown()
         idx++;
         if (idx == listbox.getRowCount())
         {
-            listbox.appendItem( item.label, item.value );
+            listbox.appendItem( item.getAttribute("label"), item.getAttribute("value") );
         }
         else
         {
-            listbox.insertItemAt( idx, item.label, item.value );
+            listbox.insertItemAt( idx, item.getAttribute("label"), item.getAttribute("value") );
         }
         listbox.selectedIndex = idx;
         listbox.ensureIndexIsVisible( idx );
@@ -120,7 +120,7 @@ function addItem(force)
     var idx = listbox.selectedIndex;
     if (idx != -1)
     {
-        selecteditem = listbox.getItemAtIndex(idx).label;
+        selecteditem = listbox.getItemAtIndex(idx).getAttribute("label");
     }
     if (newitem != ""  &&  (force  ||  newitem != selecteditem))
     {
@@ -139,7 +139,7 @@ function onPrefsSelect()
     var idx = listbox.selectedIndex;
     if (idx != -1)
     {
-        newitembox.value = listbox.getItemAtIndex(idx).label;
+        newitembox.value = listbox.getItemAtIndex(idx).getAttribute("label");
     }
 }
 
@@ -221,7 +221,7 @@ function setPrefs(doclose)
     var n = 0;
     while (n < listbox.getRowCount())
     {
-        urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).label );
+        urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).getAttribute("label") );
         n++;
     }
     urllinkCommon.prefs.setBoolPref("topmenu", topmenu.checked);

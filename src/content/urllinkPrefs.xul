@@ -97,7 +97,7 @@
                         <radio id="urllinkHideTab" label="&urllink-prefs-hidetab;"/>
                         <radio id="urllinkHideOpen" label="&urllink-prefs-hideopen;"/>
                     </radiogroup>
-                </groupbox>>
+                </groupbox>
             </vbox>
         </hbox>
 
