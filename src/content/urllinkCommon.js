@@ -31,30 +31,30 @@ var urllinkCommon =
 
     /* Our bits */
     urllinkBrowserMenuSep : 'urllink-browser-sep-',
-    urllinkBrowserMenuItems : new Array(
+    urllinkBrowserMenuItems : [
         'urllink-browser-open-tab',
-        'urllink-browser-open-link' ),
-    urllinkAlternateBrowserMenuItems : new Array(
+        'urllink-browser-open-link' ],
+    urllinkAlternateBrowserMenuItems : [
         'urllink-browser-open-tab-as',
-        'urllink-browser-open-link-as' ),
-    urllinkAlternateBrowserMenus : new Array(
+        'urllink-browser-open-link-as' ],
+    urllinkAlternateBrowserMenus : [
         'urllink-browser-open-link-as-popup', /* Order sic. */
-        'urllink-browser-open-tab-as-popup' ),
+        'urllink-browser-open-tab-as-popup' ],
 
     urllinkMailMenuSep : 'urllink-mail-sep-',
-    urllinkMailMenuItems : new Array(
-        'urllink-mail-open-link' ),
-    urllinkAlternateMailMenuItems : new Array(
-        'urllink-mail-open-link-as' ),
-    urllinkAlternateMailMenus : new Array(
-        'urllink-mail-open-link-as-popup' ),
+    urllinkMailMenuItems : [
+        'urllink-mail-open-link' ],
+    urllinkAlternateMailMenuItems : [
+        'urllink-mail-open-link-as' ],
+    urllinkAlternateMailMenus : [
+        'urllink-mail-open-link-as-popup' ],
 
     isInThunderbird : false,
     checkedIsInThunderbird : false,
 
 
     /* Menu defaults */
-    defaultMenuItems : new Array(
+    defaultMenuItems : [
         '&www.*',
         'www.*.&com',
         'www.*.&org',
@@ -62,7 +62,7 @@ var urllinkCommon =
         '&ftp.*',
         '--',
         'In &Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0',
-        'In Wi&kipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search' ),
+        'In Wi&kipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search' ],
 
 
     inThunderbird: function ()
@@ -298,7 +298,7 @@ var urllinkCommon =
             /* Nothing yet */
             for (var i = 0;  i < this.defaultMenuItems.length;  i++)
             {
-                var formatstr = defaultMenuItems[i];
+                var formatstr = this.defaultMenuItems[i];
                 var menuitem = document.createElement('menuitem');
                 if (menuitem)
                 {
