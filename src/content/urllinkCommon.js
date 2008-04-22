@@ -194,7 +194,7 @@ var urllinkCommon =
         }
 
         /* Change common faults */
-        url.replace(/&amp;/ig,'&');
+        url = url.replace(/&amp;/ig,'&');
 
         /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
          * but that seems to be illegal.

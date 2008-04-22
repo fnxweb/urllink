@@ -73,11 +73,11 @@ function spanString(span)
         }
         else if (bit.className)
         {
-            if (bit.className == 'moz-txt-link-freetext' || bit.className == 'moz-txt-tag')
+            if (bit.className.search(/^moz-txt-link/) == 0 || bit.className.search(/^moz-txt-tag/) == 0)
             {
                 text += bit.innerHTML;
             }
-            else if (bit.className == 'moz-txt-slash')
+            else if (bit.className.search(/^moz-txt-slash/) == 0)
             {
                 text += spanString(bit);
             }
@@ -112,11 +112,11 @@ function selectionString(sel)
             }
             else if (bit.className)
             {
-                if (bit.className == 'moz-txt-link-freetext' || bit.className == 'moz-txt-tag')
+                if (bit.className.search(/^moz-txt-link/) == 0 || bit.className.search(/^moz-txt-tag/) == 0)
                 {
                     text += bit.innerHTML;
                 }
-                else if (bit.className == 'moz-txt-slash')
+                else if (bit.className.search(/^moz-txt-slash/) == 0)
                 {
                     text += spanString(bit);
                 }
