@@ -227,6 +227,10 @@ function decode64(realinput)
 /* find largest best javascript arg */
 function getBestJavascriptArg(url)
 {
+    /* Avoid twatting the app. if a link that contains an embedded JS app. is clicked! */
+    if (url.length > 1024)
+        return '';
+
     /* Strip leader */
     url = url.replace(/^javascript:.*?\(/, '');
 

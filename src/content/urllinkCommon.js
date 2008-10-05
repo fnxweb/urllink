@@ -266,6 +266,39 @@ var urllinkCommon =
     },
 
 
+    /* Process menu format strings into menu items */
+    generateMenuItem: function ( submenu, func, astab, withStr, formatstr )
+    {
+        /* Create menuitem */
+        var menuitem;
+        if (formatstr.search(/^--*$/) == 0)
+        {
+            menuitem = document.createElement('menuseparator');
+        }
+        else
+        {
+            menuitem = document.createElement('menuitem');
+        }
+        if (menuitem)
+        {
+            var accel = {val:''};
+            var text = {val:''};
+            var format = {val:''};
+
+            /* Pull out | and & bits */
+            this.processFormat( formatstr, withStr, accel, text, format );
+
+            /* Flesh out menu */
+            menuitem.setAttribute('label', text.val);
+            if (accel.val != '')
+                menuitem.setAttribute('accesskey', accel.val);
+            menuitem.setAttribute('oncommand', func+"(event,"+astab+",'"+format.val+"')");
+            menuitem.setAttribute('temp','true');
+            submenu.appendChild(menuitem);
+        }
+    },
+
+
     /* Recreate named menu from prefs. */
     regenerateMenu: function ( menuname, func, astab )
     {
@@ -299,24 +332,8 @@ var urllinkCommon =
             for (var i = 0;  i < this.defaultMenuItems.length;  i++)
             {
                 var formatstr = this.defaultMenuItems[i];
-                var menuitem = document.createElement('menuitem');
-                if (menuitem)
-                {
-                    var accel = {val:''};
-                    var text = {val:''};
-                    var format = {val:''};
-
-                    /* Pull out | and & bits */
-                    this.processFormat( formatstr, withStr, accel, text, format );
-
-                    /* Flesh out menu */
-                    menuitem.setAttribute('label', withStr+" '"+format.val+"'");
-                    if (accel.val != '')
-                        menuitem.setAttribute('accesskey', accel.val);
-                    menuitem.setAttribute('oncommand', func+'(event,'+astab+",'"+format.val+"')");
-                    menuitem.setAttribute('temp','true');
-                    submenu.appendChild(menuitem);
-                }
+                if (formatstr)
+                    this.generateMenuItem( submenu, func, astab, withStr, formatstr );
             }
         }
         else
@@ -328,35 +345,7 @@ var urllinkCommon =
             {
                 var formatstr = this.prefs.getCharPref('submenu.'+n);
                 if (formatstr)
-                {
-                    /* Create menuitem */
-                    var menuitem;
-                    if (formatstr.search(/^--*$/) == 0)
-                    {
-                        menuitem = document.createElement('menuseparator');
-                    }
-                    else
-                    {
-                        menuitem = document.createElement('menuitem');
-                    }
-                    if (menuitem)
-                    {
-                        var accel = {val:''};
-                        var text = {val:''};
-                        var format = {val:''};
-
-                        /* Pull out | and & bits */
-                        this.processFormat( formatstr, withStr, accel, text, format );
-
-                        /* Flesh out menu */
-                        menuitem.setAttribute('label', text.val);
-                        if (accel.val != '')
-                            menuitem.setAttribute('accesskey', accel.val);
-                        menuitem.setAttribute('oncommand', func+"(event,"+astab+",'"+format.val+"')");
-                        menuitem.setAttribute('temp','true');
-                        submenu.appendChild(menuitem);
-                    }
-                }
+                    this.generateMenuItem( submenu, func, astab, withStr, formatstr );
                 n++;
             }
         }
