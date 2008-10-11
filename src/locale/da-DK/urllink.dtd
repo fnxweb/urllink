@@ -26,10 +26,10 @@
 <!ENTITY urllink-prefs-list-tip "Oversigt over menupunkter; &apos;*&apos; erstattes af det markerede">
 <!ENTITY urllink-prefs-entry-tip "Nyt menupunkt; &apos;*&apos; erstattes af det markerede">
 <!ENTITY urllink-help-title "URL Link Hjælp">
-<!ENTITY urllink-changelog-title "URL Link Changelog">
-<!ENTITY urllink-prefs-newwindow "Prefer new window (Firefox only)">
-<!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
-<!ENTITY urllink-prefs-hidetab "Hide the &apos;open in tab&apos; options">
-<!ENTITY urllink-prefs-hideopen "Hide the normal &apos;open&apos; options">
-<!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
-<!ENTITY urllink-prefs-bothoptions "Show both open options">
+<!ENTITY urllink-changelog-title "URL Link Ændringslog">
+<!ENTITY urllink-prefs-newwindow "Foretræk nyt vindue (kun Firefox)">
+<!ENTITY urllink-prefs-newwindow-tip "Åbn nyt vindue som standard (som &lt;Skift&gt; normalt gør)">
+<!ENTITY urllink-prefs-hidetab "Skjuler &apos;åbn i nyt faneblad&apos; mulighederne">
+<!ENTITY urllink-prefs-hideopen "Skjuler den normale &apos;åben&apos; mulighed">
+<!ENTITY urllink-prefs-firefoxonly "Menukontrol (kun Firefox)">
+<!ENTITY urllink-prefs-bothoptions "Vis begge åben-muligheder">

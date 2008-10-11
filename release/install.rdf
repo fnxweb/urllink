@@ -8,7 +8,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.02.2</em:version>
+        <em:version>2.02.3</em:version>
         <em:type>2</em:type>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
@@ -32,6 +32,9 @@
         <em:contributor>kustodian/babelzilla.org - Serbian (Yugoslavia)</em:contributor>
         <em:contributor>Kippis/babelzilla.org - Japanese</em:contributor>
         <em:contributor>wtspout/babelzilla.org - Korean</em:contributor>
+        <em:contributor>gezmen/babelzilla.org - Turkish</em:contributor>
+        <em:contributor>catalan/babelzilla.org - Catalan</em:contributor>
+        <em:contributor>cest713/babelzilla.org - Chinese (Simplified)</em:contributor>
         <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <em:optionsURL>chrome://urllink/content/urllinkPrefs.xul</em:optionsURL>
@@ -42,8 +45,8 @@
         <em:targetApplication>
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-                <em:minVersion>1.5</em:minVersion>
-                <em:maxVersion>3.0b5</em:maxVersion>
+                <em:minVersion>2.0</em:minVersion>
+                <em:maxVersion>3.0.*</em:maxVersion>
             </Description>
         </em:targetApplication>
 
