@@ -287,7 +287,13 @@ function getBestJavascriptArg(url)
 function unmangleURL(url,wasLink)
 {
     /* strip bad leading characters */
-    url = url.replace(/^[\.,\'\"\)\?!>\]]+/, '');
+    /* Allow '(' if there's a following ')' (e.g., wikipedia) */
+    var bracketed = (url.search(/\(.*\)/) != -1);
+    var illegalChars = (bracketed  ?  /^[\.,\'\"\?!>\]]+/  :  /^[\.,\'\"\(\)\?!>\]]+/);
+    url = url.replace(illegalChars, '');
+
+    /* Non-break spaces for within HTML (seen in TB) */
+    url = url.replace(/\xA0/g, ' ');
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
@@ -320,7 +326,9 @@ function unmangleURL(url,wasLink)
     }
 
     /* strip bad ending characters */
-    url = url.replace(/[\.,\'\"\)\?!>\]]+$/, '');
+    /* Allow ')' if there's a preceeding '(' (e.g., wikipedia) */
+    illegalChars = (bracketed  ?  /[\.,\'\"\?!>\]]+$/  :  /[\.,\'\"\?!>\]\(\)]+$/);
+    url = url.replace(illegalChars, '');
 
     /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
      * but that seems to be illegal.

@@ -158,7 +158,7 @@ var urllinkCommon =
         {
             var ch = url.charAt(i);
             /* Include certain chars we'll let through even though they're not 'valid' */
-            if( /[A-Za-z0-9-_.!~*'():/%?&=#]/.test(ch) )
+            if( /[A-Za-z0-9-_.!~*'():/%?&=#@]/.test(ch) )
             {
                 /* Allowed */
                 retval += ch;
