@@ -25,8 +25,11 @@ function urllinkMailInit()
 {
     urllinkCommon.urllinkInit();
 
-    if (document.getElementById('messagePaneContext'))
-        document.getElementById('messagePaneContext').addEventListener('popupshowing',urllinkMailContext,false);
+    var context = document.getElementById('messagePaneContext');    /* TB 2 */
+    if (!context)
+        context = document.getElementById('mailContext');           /* TB 3 */
+    if (context)
+        context.addEventListener('popupshowing',urllinkMailContext,false);
 }
 
 
@@ -185,20 +188,22 @@ function unmangleURL(url,wasLink)
 }
 
 
+/* Called on popup display */
 function urllinkMailContext()
 {
     var isTextOrUrlSelection = false, isURL = false;
 
     if (gContextMenu)
     {
-        isTextOrUrlSelection = ( gContextMenu.isTextSelected || gContextMenu.onLink );
+        /* TB2 has isTextSelected, TB3 has isContentSelected */
+        isTextOrUrlSelection = ( gContextMenu.isTextSelected || gContextMenu.onLink || gContextMenu.isContentSelected );
         if (isTextOrUrlSelection)
         {
             /* See if selection looks like a URL
              * Always use selection if it exists
              */
             var sel;
-            if (gContextMenu.isTextSelected)
+            if (gContextMenu.isTextSelected  ||  gContextMenu.isContentSelected)
             {
                 sel = rawSearchSelected(gContextMenu);
                 sel = unmangleURL(sel,false);
@@ -230,6 +235,7 @@ function urllinkMailContext()
             menuitem.hidden = true;
         }
     }
+
     /* Visible if selection and doesn't look like URL */
     if (! (!isTextOrUrlSelection || isURL))
     {
@@ -253,6 +259,7 @@ function urllinkMailContext()
             menuitem.hidden = true;
         }
     }
+
     /* Hide separators if both of the above hidden */
     {
         for (var i=0; i<2; i++)
@@ -284,7 +291,8 @@ function urllinkMailOpenLink(event,astab,format)  /* event/astab not used in mai
     /* Determine prefix/suffix by splitting on '*' */
     urllinkCommon.splitFormat( format, prefix, suffix );
 
-    if (gContextMenu.isTextSelected)
+    /* TB2 has isTextSelected, TB3 has isContentSelected */
+    if (gContextMenu.isTextSelected  ||  gContextMenu.isContentSelected)
     {
         selURL = rawSearchSelected(gContextMenu);
     }

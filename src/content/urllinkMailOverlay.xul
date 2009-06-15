@@ -61,6 +61,8 @@
         <!--     oncommand="urllinkMailOpenLink(event,'','')"/> -->
     <!-- </keyset> -->
 
+
+    <!-- ThunderBird <= 2.0 -->
     <popup id="messagePaneContext" insertafter="context-copy">
         <!-- top version -->
         <!-- <menuseparator id="urllink-mail-sep-0-top" insertbefore="messagePaneContext-replySender"/> -->
@@ -111,6 +113,61 @@
         </menu>
 
         <!-- <menuseparator id="urllink-mail-sep-1" insertbefore="messagePaneContext-replySender"/> -->
+    </popup>
+
+
+    <!-- ThunderBird >= 3.0 -->
+    <popup id="mailContext" insertafter="mailContext-copy">
+        <!-- top version -->
+        <!-- <menuseparator id="urllink-mail-sep-0-top" insertbefore="mailContext-replySender"/> -->
+
+        <menuitem id="urllink-mail-open-link-top"
+            label="&popup-urllink-open-link.label;"
+            accesskey="&popup-urllink-open-link.shortcut;"
+            key="urllink-mail-open-link-key"
+            oncommand="urllinkMailOpenLink(event,'','')"
+            insertbefore="mailContext-replySender"/>
+
+        <menu id="urllink-mail-open-link-as-top"
+            label="&popup-urllink-open-link-as.label;"
+            accesskey="&popup-urllink-open-link-as.shortcut;"
+            insertbefore="mailContext-replySender">
+            <menupopup id="urllink-mail-open-link-as-popup-top">
+                <menuitem
+                    label="&popup-urllink-open-as-is.label;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
+                    key="urllink-mail-open-link-key"
+                    oncommand="urllinkMailOpenLink(event,'','')"/>
+                <menuseparator/>
+            </menupopup>
+        </menu>
+
+        <menuseparator id="urllink-mail-sep-0-top" insertbefore="mailContext-replySender"/>
+
+        <!-- bottom version -->
+        <!-- Seems to be a redundant sep alerady there ... -->
+        <!-- <menuseparator id="urllink-mail-sep-0-bottom"/> -->
+
+        <menuitem id="urllink-mail-open-link-bottom"
+            label="&popup-urllink-open-link.label;"
+            accesskey="&popup-urllink-open-link.shortcut;"
+            key="urllink-mail-open-link-key"
+            oncommand="urllinkMailOpenLink(event,'','')"/>
+
+        <menu id="urllink-mail-open-link-as-bottom"
+            label="&popup-urllink-open-link-as.label;"
+            accesskey="&popup-urllink-open-link-as.shortcut;">
+            <menupopup id="urllink-mail-open-link-as-popup-bottom">
+                <menuitem
+                    label="&popup-urllink-open-as-is.label;"
+                    accesskey="&popup-urllink-open-as-is.shortcut;"
+                    key="urllink-mail-open-link-key"
+                    oncommand="urllinkMailOpenLink(event,'','')"/>
+                <menuseparator/>
+            </menupopup>
+        </menu>
+
+        <!-- <menuseparator id="urllink-mail-sep-1" insertbefore="mailContext-replySender"/> -->
     </popup>
 
 </overlay>
