@@ -33,3 +33,6 @@
 <!ENTITY urllink-prefs-hideopen "일반 &apos;열기&apos; 선택사항 감추기">
 <!ENTITY urllink-prefs-firefoxonly "메뉴 제어 (Firefox 전용)">
 <!ENTITY urllink-prefs-bothoptions "선택 사항 열기 모두 표시">
+<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
+<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">

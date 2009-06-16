@@ -33,3 +33,6 @@
 <!ENTITY urllink-prefs-hideopen "隐藏普通的开始选项">
 <!ENTITY urllink-prefs-firefoxonly "菜单控制">
 <!ENTITY urllink-prefs-bothoptions "显示双开的选项">
+<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
+<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">

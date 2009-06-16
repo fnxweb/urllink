@@ -33,3 +33,6 @@
 <!ENTITY urllink-prefs-hideopen "Skryť klasickú možnosť &apos;Otvoriť&apos;">
 <!ENTITY urllink-prefs-firefoxonly "Ovládanie ponuky (Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Zobraziť obe možnosti otvorenia">
+<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
+<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">

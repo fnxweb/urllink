@@ -33,3 +33,6 @@
 <!ENTITY urllink-prefs-hideopen "Skjuler den normale &apos;åben&apos; mulighed">
 <!ENTITY urllink-prefs-firefoxonly "Menukontrol (kun Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Vis begge åben-muligheder">
+<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
+<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">

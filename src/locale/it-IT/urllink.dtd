@@ -33,3 +33,6 @@
 <!ENTITY urllink-prefs-hideopen "&apos;Apri in una scheda&apos;">
 <!ENTITY urllink-prefs-firefoxonly "Elementi da visualizzare nel menu">
 <!ENTITY urllink-prefs-bothoptions "Entrambi gli elementi">
+<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
+<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
