@@ -91,49 +91,63 @@ function spanString(span)
 }
 
 
+/* Process a node's children */
+function selectionStringFrag(frag,text,recurse)
+{
+    if (recurse >= 10)
+        return;
+
+    var nodes = frag.val.childNodes.length;
+    var textsep = (text.val == ''  ?  ''  :  ' ');
+
+    for (var n = 0;  n < nodes;  ++n)
+    {
+        var bit = frag.val.childNodes[n];
+        if (bit.data)
+        {
+            text.val += textsep + bit.data;
+        }
+        else if (bit.className)
+        {
+            if (bit.className.search(/^moz-txt-link/) == 0  ||  bit.className.search(/^moz-txt-tag/) == 0)
+            {
+                text.val += textsep + bit.innerHTML;
+            }
+            else if (bit.className.search(/^moz-txt-slash/) == 0)
+            {
+                text.val += textsep + spanString(bit);
+            }
+        }
+        else if (bit.childNodes  &&  bit.childNodes.length)
+        {
+            var newfrag = {val : bit };
+            selectionStringFrag( newfrag, text, recurse+1 );
+        }
+    }
+}
+
+
 /* Raw access to text of a selection.
  * Default toString op. mangles \n to space
  */
 function selectionString(sel)
 {
     var ranges = sel.rangeCount;
-    var text = '';
+    var text = {val  : ''};
     for (var r = 0;  r < ranges;  ++r)
     {
         var range = sel.getRangeAt(r);
-        var frag = range.cloneContents();
-        var nodes = frag.childNodes.length;
-        if (text != '')
-            text += ' ';
-
-        for (var n = 0;  n < nodes;  ++n)
-        {
-            var bit = frag.childNodes[n];
-            if (bit.data)
-            {
-                text += bit.data;
-            }
-            else if (bit.className)
-            {
-                if (bit.className.search(/^moz-txt-link/) == 0 || bit.className.search(/^moz-txt-tag/) == 0)
-                {
-                    text += bit.innerHTML;
-                }
-                else if (bit.className.search(/^moz-txt-slash/) == 0)
-                {
-                    text += spanString(bit);
-                }
-            }
-        }
+        var frag = {val : range.cloneContents()};
+        selectionStringFrag( frag, text, 0 );
     }
 
     /* This can end up empty (!);  seemingly when the view is pseudo-HTML and the quoted text is the blue line.
      * Fall back to toString();  annoyingly, in this instance the pigging thing does have the '\n's in  :-/
      */
-    if (text == '')
-        text = sel.toString();
+    if (text.val == '')
+        text.val = sel.toString();
 
-    return text;
+    return text.val;
 }
 
 
