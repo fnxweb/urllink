@@ -55,33 +55,65 @@
     </stringbundleset>
 
     <vbox>
-        <groupbox>
-            <caption label="&urllink-prefs-editmenu;"/>
-            <hbox>
-                <vbox>
-                    <image src="chrome://urllink/content/urllink.png" width="32" height="32"/>
-                </vbox>
-                <vbox>
-                    <listbox id="urllinkMenuItems" tooltiptext="&urllink-prefs-list-tip;">
-                    </listbox>
-                    <separator class="small"/>
+        <tabbox>
+            <tabs>
+                <tab label="&urllink-prefs-editmenu;"/>
+                <tab label="&urllink-prefs-editsandr;"/>
+            </tabs>
+            <tabpanels>
+                <tabpanel>
                     <hbox>
-                        <description value="&urllink-prefs-newentry;:"/>
-                        <textbox id="urllinkNewItem" wrap="off" onchange="addItem(0);" label="New entry"
-                            tooltiptext="&urllink-prefs-entry-tip;"/>
+                        <vbox>
+                            <image src="chrome://urllink/content/urllink.png" width="32" height="32"/>
+                        </vbox>
+                        <vbox>
+                            <listbox id="urllinkMenuItems" tooltiptext="&urllink-prefs-list-tip;">
+                            </listbox>
+                            <separator class="small"/>
+                            <hbox>
+                                <description value="&urllink-prefs-newentry;:"/>
+                                <textbox id="urllinkNewMenuItem" wrap="off" onchange="addItem(menuitemsListbox,newmenuitembox,0);"
+                                    tooltiptext="&urllink-prefs-entry-tip;"/>
+                            </hbox>
+                        </vbox>
+                        <vbox>
+                            <button label="&urllink-prefs-up;" oncommand="itemUp(menuitemsListbox);"/>
+                            <button label="&urllink-prefs-down;" oncommand="itemDown(menuitemsListbox);"/>
+                            <spacer height="20px"/>
+                            <button label="&urllink-prefs-defaults;" oncommand="setMenuDefaults();"/>
+                            <spacer height="20px"/>
+                            <button label="&urllink-prefs-delete;" oncommand="deleteItem(menuitemsListbox);"/>
+                            <button label="&urllink-prefs-add;" oncommand="addItem(menuitemsListbox,newmenuitembox,1);"/>
+                        </vbox>
                     </hbox>
-                </vbox>
-                <vbox>
-                    <button label="&urllink-prefs-up;" oncommand="itemUp();"/>
-                    <button label="&urllink-prefs-down;" oncommand="itemDown();"/>
-                    <spacer height="20px"/>
-                    <button label="&urllink-prefs-defaults;" oncommand="setDefaults();"/>
-                    <spacer height="20px"/>
-                    <button label="&urllink-prefs-delete;" oncommand="deleteItem();"/>
-                    <button label="&urllink-prefs-add;" oncommand="addItem(1);"/>
-                </vbox>
-            </hbox>
-        </groupbox>
+                </tabpanel>
+                <tabpanel>
+                    <hbox>
+                        <vbox>
+                            <image src="chrome://urllink/content/urllink.png" width="32" height="32"/>
+                        </vbox>
+                        <vbox>
+                            <listbox id="urllinkSandrItems" tooltiptext="&urllink-prefs-sandr-list-tip;"/>
+                            <separator class="small"/>
+                            <hbox>
+                                <description value="&urllink-prefs-newentry;"/>
+                                <textbox id="urllinkNewSandrItem" wrap="off" onchange="addItem(sandritemsListbox,newsandritembox,0);"
+                                    tooltiptext="&urllink-prefs-sandr-entry-tip;"/>
+                            </hbox>
+                        </vbox>
+                        <vbox>
+                            <button label="&urllink-prefs-up;" oncommand="itemUp(sandritemsListbox);"/>
+                            <button label="&urllink-prefs-down;" oncommand="itemDown(sandritemsListbox);"/>
+                            <spacer height="20px"/>
+                            <button label="&urllink-prefs-defaults;" oncommand="setSandrDefaults();"/>
+                            <spacer height="20px"/>
+                            <button label="&urllink-prefs-delete;" oncommand="deleteItem(sandritemsListbox);"/>
+                            <button label="&urllink-prefs-add;" oncommand="addItem(sandritemsListbox,newsandritembox,1);"/>
+                        </vbox>
+                    </hbox>
+                </tabpanel>
+            </tabpanels>
+        </tabbox>
 
         <hbox pack="start">
             <vbox pack="end">

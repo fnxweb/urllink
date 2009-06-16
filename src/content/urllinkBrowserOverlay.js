@@ -292,6 +292,9 @@ function unmangleURL(url,wasLink)
     var illegalChars = (bracketed  ?  /^[\.,\'\"\?!>\]]+/  :  /^[\.,\'\"\(\)\?!>\]]+/);
     url = url.replace(illegalChars, '');
 
+    /* Perform custom search and replaces */
+    url = urllinkCommon.customSearchAndReplace(url);
+
     /* Non-break spaces for within HTML (seen in TB) */
     url = url.replace(/\xA0/g, ' ');
 

@@ -16,8 +16,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-var listbox; /* = document.getElementById("urllinkMenuItems"); */
-var newitembox;
+var menuitemsListbox; /* = document.getElementById("urllinkMenuItems"); */
+var newmenuitembox;
+var sandritemsListbox;
+var newsandritembox;
 var topmenu;
 var newwindow;
 var openoptions;
@@ -42,7 +44,7 @@ function openNewWindow(url)
 }
 
 
-function itemUp()
+function itemUp(listbox)
 {
     var idx = listbox.selectedIndex;
     if (idx >= 1)
@@ -56,7 +58,7 @@ function itemUp()
 }
 
 
-function itemDown()
+function itemDown(listbox)
 {
     var idx = listbox.selectedIndex;
     if (idx != -1  &&  idx < listbox.getRowCount() - 1)
@@ -77,20 +79,20 @@ function itemDown()
 }
 
 
-function setDefaults()
+function setDefaults(listbox,defaults)
 {
     while (listbox.getRowCount() > 0)
     {
         listbox.removeItemAt(0);
     }
-    for (var i=0; i<urllinkCommon.defaultMenuItems.length; i++)
+    for (var i=0; i<defaults.length; i++)
     {
-        listbox.appendItem( urllinkCommon.defaultMenuItems[i], "" );
+        listbox.appendItem( defaults[i], "" );
     }
 }
 
 
-function deleteItem()
+function deleteItem(listbox)
 {
     var idx = listbox.selectedIndex;
     if (idx != -1)
@@ -113,7 +115,7 @@ function deleteItem()
 }
 
 
-function addItem(force)
+function addItem(listbox,newitembox,force)
 {
     var newitem = newitembox.value;
     var selecteditem = "";
@@ -133,66 +135,94 @@ function addItem(force)
 }
 
 
-function onPrefsSelect()
+/* Click on menu items list */
+function onPrefsMenuSelect()
 {
     /* Set text entry to selection for 'editing' of exiting entries */
-    var idx = listbox.selectedIndex;
+    var idx = menuitemsListbox.selectedIndex;
     if (idx != -1)
     {
-        newitembox.value = listbox.getItemAtIndex(idx).getAttribute("label");
+        newmenuitembox.value = menuitemsListbox.getItemAtIndex(idx).getAttribute("label");
+    }
+}
+
+
+/* Click on search-and-replace items list */
+function onPrefsSandrSelect()
+{
+    /* Set text entry to selection for 'editing' of exiting entries */
+    var idx = sandritemsListbox.selectedIndex;
+    if (idx != -1)
+    {
+        newsandritembox.value = sandritemsListbox.getItemAtIndex(idx).getAttribute("label");
     }
 }
 
 
 function loadPrefs()
 {
-    if (!listbox)
+    if (!menuitemsListbox)
     {
         urllinkCommon.urllinkInit();
-        listbox = document.getElementById("urllinkMenuItems");
-        newitembox = document.getElementById("urllinkNewItem");
+
+        menuitemsListbox = document.getElementById("urllinkMenuItems");
+        newmenuitembox = document.getElementById("urllinkNewMenuItem");
+        sandritemsListbox = document.getElementById("urllinkSandrItems");
+        newsandritembox = document.getElementById("urllinkNewSandrItem");
         topmenu = document.getElementById("urllinkTopmenu");
         newwindow = document.getElementById("urllinkNewWindow");
         openoptions = document.getElementById("urllinkOpenOptions");
-        listbox.addEventListener("select",onPrefsSelect, false);
+        menuitemsListbox.addEventListener("select",onPrefsMenuSelect, false);
+        sandritemsListbox.addEventListener("select",onPrefsSandrSelect, false);
     }
 
-    /* Fix old prefs */
-    if (urllinkCommon.prefs.getPrefType("openonly") == urllinkCommon.nsIPrefBranch.PREF_BOOL)
-    {
-        urllinkCommon.prefs.setBoolPref("hidetab", urllinkCommon.prefs.getPrefType("openonly"));
-        urllinkCommon.prefs.clearUserPref("openonly");
-    }
-    if (urllinkCommon.prefs.getPrefType("tabonly") == urllinkCommon.nsIPrefBranch.PREF_BOOL)
-    {
-        urllinkCommon.prefs.setBoolPref("hideopen", urllinkCommon.prefs.getPrefType("tabonly"));
-        urllinkCommon.prefs.clearUserPref("tabonly");
-    }
-
-    /* Now submenu */
+    /* Set up submenu */
     if (urllinkCommon.prefs.getPrefType("submenu.0") != urllinkCommon.nsIPrefBranch.PREF_STRING)
     {
         /* Nothing yet */
-        setDefaults();
+        setDefaults( menuitemsListbox, urllinkCommon.defaultMenuItems );
     }
     else
     {
         /* Clear list */
-        while (listbox.getRowCount() > 0)
+        while (menuitemsListbox.getRowCount() > 0)
         {
-            listbox.removeItemAt(0);
+            menuitemsListbox.removeItemAt(0);
         }
 
         /* Read prefs into list */
         var n = 0;
         while (urllinkCommon.prefs.getPrefType("submenu."+n) == urllinkCommon.nsIPrefBranch.PREF_STRING)
         {
-            listbox.appendItem( urllinkCommon.prefs.getCharPref("submenu."+n), "" );
+            menuitemsListbox.appendItem( urllinkCommon.prefs.getCharPref("submenu."+n), "" );
             n++;
         }
     }
 
-    /* And rest */
+    /* Set up submenu */
+    if (urllinkCommon.prefs.getPrefType("sandr.0") != urllinkCommon.nsIPrefBranch.PREF_STRING)
+    {
+        /* Nothing yet */
+        setDefaults( sandritemsListbox, urllinkCommon.defaultSandrItems );
+    }
+    else
+    {
+        /* Clear list */
+        while (sandritemsListbox.getRowCount() > 0)
+        {
+            sandritemsListbox.removeItemAt(0);
+        }
+
+        /* Read prefs into list */
+        var n = 0;
+        while (urllinkCommon.prefs.getPrefType("sandr."+n) == urllinkCommon.nsIPrefBranch.PREF_STRING)
+        {
+            sandritemsListbox.appendItem( urllinkCommon.prefs.getCharPref("sandr."+n), "" );
+            n++;
+        }
+    }
+
+    /* And the rest */
     topmenu.checked = urllinkCommon.prefs.getBoolPref("topmenu");
     newwindow.checked = urllinkCommon.prefs.getBoolPref("newwindow");
     if (urllinkCommon.prefs.getBoolPref("hidetab"))
@@ -216,12 +246,27 @@ function setPrefs(doclose)
         }
         n++;
     }
+    n = 0;
+    while (urllinkCommon.prefs.getPrefType("sandr."+n) == urllinkCommon.nsIPrefBranch.PREF_STRING)
+    {
+        if (urllinkCommon.prefs.prefHasUserValue("sandr."+n))
+        {
+            urllinkCommon.prefs.clearUserPref("sandr."+n);
+        }
+        n++;
+    }
 
     /* Replace prefs */
-    var n = 0;
-    while (n < listbox.getRowCount())
+    n = 0;
+    while (n < menuitemsListbox.getRowCount())
     {
-        urllinkCommon.prefs.setCharPref( "submenu."+n, listbox.getItemAtIndex(n).getAttribute("label") );
+        urllinkCommon.prefs.setCharPref( "submenu."+n, menuitemsListbox.getItemAtIndex(n).getAttribute("label") );
+        n++;
+    }
+    n = 0;
+    while (n < sandritemsListbox.getRowCount())
+    {
+        urllinkCommon.prefs.setCharPref( "sandr."+n, sandritemsListbox.getItemAtIndex(n).getAttribute("label") );
         n++;
     }
     urllinkCommon.prefs.setBoolPref("topmenu", topmenu.checked);

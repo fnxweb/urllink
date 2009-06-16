@@ -163,10 +163,8 @@ function unmangleURL(url,wasLink)
     /* Remove OutLook delims. now */
     url = url.replace(/^\<(.*)\>$/, "$1");
 
-    /* NT remote spec. */
-    url = url.replace(/^\\\\/, 'file://///');
-    /* Yucky drive spec. */
-    url = url.replace(/^([A-Z]:)\\/, "file:///$1/");
+    /* Perform custom search and replaces */
+    url = urllinkCommon.customSearchAndReplace(url);
 
     /* strip bad leading characters */
     url = url.replace(/^[\.,\'\"\)\?!>\]]+/, '');

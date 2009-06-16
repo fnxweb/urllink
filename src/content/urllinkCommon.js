@@ -19,6 +19,8 @@
 
 var urllinkCommon =
 {
+    /* Current version;  get this programatically? */
+    version : "2.02.4",
 
     /* Access to moz */
     nsIPrefBranch : false,
@@ -63,6 +65,12 @@ var urllinkCommon =
         '--',
         'In &Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0',
         'In Wi&kipedia|http://en.wikipedia.org/wiki/Special:Search?search=*&sourceid=mozilla-search' ],
+
+    /* Search and replace defaults */
+    defaultSandrItems : [
+        '^//||file:///',            /* convert Windows UNC into file: URL */
+        '^([A-Za-z]:)||file:///$1/' /* convert Windows drive letter into file: URL */
+        ],
 
 
     inThunderbird: function ()
@@ -349,6 +357,69 @@ var urllinkCommon =
                 n++;
             }
         }
+    },
+
+
+    /* Perform an individual preference-defined search and replace operation on the given string */
+    singleSearchAndReplace: function (str,sandr)
+    {
+        /* Separate out lhs (regex) and rhs (repl) */
+        var barpos = sandr.search('\\|\\|');
+        if (barpos != -1)
+        {
+            /* Got 'em */
+            var restr = sandr.substr(0,barpos);
+            var repl = sandr.substr(barpos+2);
+            var reopt = '';
+
+            /* May have regex opts (e.g. 'g') */
+            var barpos = repl.search('\\|\\|');
+            if (barpos != -1)
+            {
+                reopt = repl.substr(barpos+2);
+                repl = repl.substr(0,barpos);
+            }
+
+            /* Do it */
+            if (restr)
+            {
+                var regex = new RegExp( restr, reopt );
+                if (regex)
+                    str = str.replace( regex, repl );
+            }
+        }
+        return str;
+    },
+
+
+    /* Perform the preference-defined search and replace operations on the given string */
+    customSearchAndReplace: function (str)
+    {
+        /* Any user defined ones? */
+        if (this.prefs.getPrefType('sandr.0') != this.nsIPrefBranch.PREF_STRING)
+        {
+            /* Nothing yet */
+            for (var i = 0;  i < this.defaultSandrItems.length;  i++)
+            {
+                var sandr = this.defaultSandrItems[i];
+                if (sandr)
+                    str = this.singleSearchAndReplace(str,sandr);
+            }
+        }
+        else
+        {
+            /* Load prefs */
+            var n = 0;
+            while (this.prefs.getPrefType('sandr.'+n) == this.nsIPrefBranch.PREF_STRING  &&
+                   this.prefs.prefHasUserValue('sandr.'+n))
+            {
+                var sandr = this.prefs.getCharPref('submenu.'+n);
+                if (sandr)
+                    str = this.singleSearchAndReplace(str,sandr);
+                n++;
+            }
+        }
+        return str;
     },
 
 
