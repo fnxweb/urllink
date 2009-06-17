@@ -96,7 +96,7 @@
                             <listbox id="urllinkSandrItems" tooltiptext="&urllink-prefs-sandr-list-tip;"/>
                             <separator class="small"/>
                             <hbox>
-                                <description value="&urllink-prefs-newentry;"/>
+                                <description value="&urllink-prefs-newentry;:"/>
                                 <textbox id="urllinkNewSandrItem" wrap="off" onchange="addItem(sandritemsListbox,newsandritembox,0);"
                                     tooltiptext="&urllink-prefs-sandr-entry-tip;"/>
                             </hbox>
