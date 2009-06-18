@@ -91,31 +91,48 @@ function spanString(span)
 }
 
 
+/* Add a new text fragment to the existing text */
+function addNewText( text, newtext )
+{
+    /* Add spaces in between fragments */
+    var textsep = (text.val == ''  ?  ''  :  ' ');
+
+    /* If we have a \n\r span in our URL, it's a link that's been broken across lines.
+     * Almost certainly, this has been done on a space or a hyphen, so if the new line
+     * isn't preceeded by a space or hyphen, add a space (Outlook can often split on
+     * a space, but then not include the space, only the \n!).
+     */
+    newtext = newtext.replace( /([^- ])[\n\r]+/g, "$1 \n" );
+
+    /* Do it */
+    text.val += textsep + newtext;
+}
+
+
 /* Process a node's children */
-function selectionStringFrag(frag,text,recurse)
+function selectionStringFrag( frag, text, recurse )
 {
     if (recurse >= 10)
         return;
 
     var nodes = frag.val.childNodes.length;
-    var textsep = (text.val == ''  ?  ''  :  ' ');
 
     for (var n = 0;  n < nodes;  ++n)
     {
         var bit = frag.val.childNodes[n];
         if (bit.data)
         {
-            text.val += textsep + bit.data;
+            addNewText( text, bit.data );
         }
         else if (bit.className)
         {
             if (bit.className.search(/^moz-txt-link/) == 0  ||  bit.className.search(/^moz-txt-tag/) == 0)
             {
-                text.val += textsep + bit.innerHTML;
+                addNewText( text, bit.innerHTML );
             }
             else if (bit.className.search(/^moz-txt-slash/) == 0)
             {
-                text.val += textsep + spanString(bit);
+                addNewText( text, spanString(bit) );
             }
         }
         else if (bit.childNodes  &&  bit.childNodes.length)
@@ -169,8 +186,7 @@ function rawSearchSelected(context)
 /* strip bad leading and trailing characters
  * assume no leading/terminating white space (searchSelected() removes this)
  * as a work-around of a seeming bug in Moz. which gives us " " in lieu of
- * <CR> from some emails, assume " " is never valid in URLs and cut it out,
- * only 'fixing' them to %20 if the URL seems to be a file.
+ * <CR> from some emails.
  */
 function unmangleURL(url,wasLink)
 {
@@ -185,10 +201,10 @@ function unmangleURL(url,wasLink)
     /* strip bad ending characters */
     url = url.replace(/[\.,\'\"\)\?!>\]]+$/, '');
 
-    /* Strip spaces and mail-quote chars */
-    url = url.replace(/[\n\r]+ *(> *)*/g, '');
-    /* Keep any spaces that are left */
-    url = url.replace(/ /g, '%20');
+    /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
+     * but that seems to be illegal.
+     */
+    url = urllinkCommon.utf8Encode(url);
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]

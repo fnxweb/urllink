@@ -20,7 +20,7 @@
 var urllinkCommon =
 {
     /* Current version;  get this programatically? */
-    version : "2.02.4",
+    version : "2.02.99a",
 
     /* Access to moz */
     nsIPrefBranch : false,
@@ -69,7 +69,7 @@ var urllinkCommon =
     /* Search and replace defaults */
     defaultSandrItems : [
         '^//||file:///',            /* convert Windows UNC into file: URL */
-        '^([A-Za-z]:)||file:///$1/' /* convert Windows drive letter into file: URL */
+        '^([A-Za-z]:)||file:///$1'  /* convert Windows drive letter into file: URL */
         ],
 
 
@@ -372,7 +372,9 @@ var urllinkCommon =
             var repl = sandr.substr(barpos+2);
             var reopt = '';
 
-            /* May have regex opts (e.g. 'g') */
+            /* May have regex opts (e.g. 'g')
+             * Use 'D' for debug alerts
+             */
             var barpos = repl.search('\\|\\|');
             if (barpos != -1)
             {
@@ -380,12 +382,23 @@ var urllinkCommon =
                 repl = repl.substr(0,barpos);
             }
 
+            /* Debug? */
+            var actualreopt = reopt.replace(/D/,'');
+            var debug = (actualreopt != reopt);
+
             /* Do it */
             if (restr)
             {
-                var regex = new RegExp( restr, reopt );
+                var regex = new RegExp( restr, actualreopt );
                 if (regex)
-                    str = str.replace( regex, repl );
+                {
+                    var newstr = str.replace( regex, repl );
+                    if (debug)
+                    {
+                        alert( "URL Link debug\nConversion: '" + sandr + "'\nFrom: '" + str + "'\nTo: '" + newstr + "'" );
+                    }
+                    str = newstr;
+                }
             }
         }
         return str;
@@ -413,7 +426,7 @@ var urllinkCommon =
             while (this.prefs.getPrefType('sandr.'+n) == this.nsIPrefBranch.PREF_STRING  &&
                    this.prefs.prefHasUserValue('sandr.'+n))
             {
-                var sandr = this.prefs.getCharPref('submenu.'+n);
+                var sandr = this.prefs.getCharPref('sandr.'+n);
                 if (sandr)
                     str = this.singleSearchAndReplace(str,sandr);
                 n++;
