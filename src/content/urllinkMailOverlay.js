@@ -94,15 +94,34 @@ function spanString(span)
 /* Add a new text fragment to the existing text */
 function addNewText( text, newtext )
 {
-    /* Add spaces in between fragments */
-    var textsep = (text.val == ''  ?  ''  :  ' ');
+    /* Add spaces in between fragments, unless fragment starts a new line */
+    var textsep = (text.val == ''  ||  newtext.search(/^\n/) == 0  ?  ''  :  ' ');
 
     /* If we have a \n\r span in our URL, it's a link that's been broken across lines.
-     * Almost certainly, this has been done on a space or a hyphen, so if the new line
-     * isn't preceeded by a space or hyphen, add a space (Outlook can often split on
-     * a space, but then not include the space, only the \n!).
+     * Now, Outlook generally just splits links, and will often lose any split space
+     * in lieu of the newline.  So we can't tell whether the thing was split 'cos it
+     * was too long, or split on a space.
+     * What we'll do, is if there are spaces elsewhere in the selection, presume there
+     * was a split-on-space and add in a missing space before the newline (as it won't
+     * have split on a word if it could have done so no a space).  Else, if no spaces,
+     * we'll presume it was a long URL that just been split 'cos Outlook is rubbish,
+     * and join the frags with no editing.
      */
-    newtext = newtext.replace( /([^- ])[\n\r]+/g, "$1 \n" );
+    if (newtext.search(/[\n\r]/) != -1)
+    {
+        /* Have a newline, so make a tentive version of what we want */
+        var temp = text.val + newtext;
+        /* remove standard quote marks, as they'll have bogus spaces in */
+        temp = temp.replace(/((\n|\r)[> ]*)+/g, '\n');
+        temp = temp.replace(/^[\n\r ]+/, '');         /* strip leading space */
+        if (temp.search(/ /) != -1)
+        {
+            /* Have spaces in the string, so presume split on space
+             * Need to cope with newtext *starting* with the \n
+             */
+            newtext = newtext.replace( /(^|[^ ])[\n\r]+/g, "$1 \n" );
+        }
+    }
 
     /* Do it */
     text.val += textsep + newtext;
