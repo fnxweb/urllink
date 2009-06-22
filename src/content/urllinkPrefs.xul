@@ -47,33 +47,33 @@
     onload="loadPrefs(); sizeToContent();"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-    <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/>
-    <script type="application/x-javascript" src="chrome://urllink/content/urllinkPrefs.js"/>
+    <!-- <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/> -->
+    <!-- <script type="application/x-javascript" src="chrome://urllink/content/urllinkPrefs.js"/> -->
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
     </stringbundleset>
 
     <vbox>
-        <tabbox>
+        <tabbox flex="1">
             <tabs>
                 <tab label="&urllink-prefs-editmenu;"/>
                 <tab label="&urllink-prefs-editsandr;"/>
             </tabs>
-            <tabpanels>
-                <tabpanel>
-                    <hbox>
+            <tabpanels flex="1">
+                <tabpanel flex="1">
+                    <hbox flex="1">
                         <vbox>
                             <image src="chrome://urllink/content/urllink.png" width="32" height="32"/>
                         </vbox>
-                        <vbox>
+                        <vbox flex="1">
                             <listbox id="urllinkMenuItems" tooltiptext="&urllink-prefs-list-tip;">
                             </listbox>
                             <separator class="small"/>
                             <hbox>
                                 <description value="&urllink-prefs-newentry;:"/>
-                                <textbox id="urllinkNewMenuItem" wrap="off" onchange="addItem(menuitemsListbox,newmenuitembox,0);"
-                                    tooltiptext="&urllink-prefs-entry-tip;"/>
+                                <textbox id="urllinkNewMenuItem" onchange="addItem(menuitemsListbox,newmenuitembox,0);"
+                                    flex="1" tooltiptext="&urllink-prefs-entry-tip;"/>
                             </hbox>
                         </vbox>
                         <vbox>
@@ -87,18 +87,18 @@
                         </vbox>
                     </hbox>
                 </tabpanel>
-                <tabpanel>
-                    <hbox>
+                <tabpanel flex="1">
+                    <hbox flex="1">
                         <vbox>
                             <image src="chrome://urllink/content/urllink.png" width="32" height="32"/>
                         </vbox>
-                        <vbox>
+                        <vbox flex="1">
                             <listbox id="urllinkSandrItems" tooltiptext="&urllink-prefs-sandr-list-tip;"/>
                             <separator class="small"/>
                             <hbox>
                                 <description value="&urllink-prefs-newentry;:"/>
-                                <textbox id="urllinkNewSandrItem" wrap="off" onchange="addItem(sandritemsListbox,newsandritembox,0);"
-                                    tooltiptext="&urllink-prefs-sandr-entry-tip;"/>
+                                <textbox id="urllinkNewSandrItem" onchange="addItem(sandritemsListbox,newsandritembox,0);"
+                                    flex="1" tooltiptext="&urllink-prefs-sandr-entry-tip;"/>
                             </hbox>
                         </vbox>
                         <vbox>
