@@ -47,8 +47,8 @@
     onload="loadPrefs(); sizeToContent();"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-    <!-- <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/> -->
-    <!-- <script type="application/x-javascript" src="chrome://urllink/content/urllinkPrefs.js"/> -->
+    <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/>
+    <script type="application/x-javascript" src="chrome://urllink/content/urllinkPrefs.js"/>
 
     <stringbundleset id="stringbundleset">
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
