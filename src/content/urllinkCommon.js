@@ -146,6 +146,7 @@ var urllinkCommon =
 
         if (!this.prefs.prefHasUserValue('firsttime'))
         {
+            /* First-time use message */
             var stringdb = this.getStringbundle();
             if (stringdb)
             {
@@ -154,6 +155,25 @@ var urllinkCommon =
                 alert(intro);
             }
         }
+        else
+        {
+            /* See if major version has changed
+             * Firstly, fake an entry if not yet stored version
+             */
+            if (!this.prefs.prefHasUserValue('lastversion'))
+                this.prefs.setCharPref('lastversion','0.00.0');
+
+            /* Now get major versions */
+            var lastversion = this.prefs.getCharPref('lastversion').replace(/^([0-9]+\.[0-9]+).*/,'$1');
+            var version = this.version.replace(/^([0-9]+\.[0-9]+).*/,'$1');
+
+            /* Show changelog if there have been major changes */
+            if (lastversion != version)
+                openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link - Latest Changes',
+                        'dialog=no,width=640,height=512');
+        }
+
+        this.prefs.setCharPref('lastversion',this.version);
     },
 
 
