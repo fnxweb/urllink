@@ -97,7 +97,7 @@
                             <separator class="small"/>
                             <hbox>
                                 <description value="&urllink-prefs-newentry;:"/>
-                                <textbox id="NewSandrItem" onchange="fnxweb.urllink.addItem(fnxweb.urllink.sandritemsListbox,fnxweb.urllink.newsandritembox,0);"
+                                <textbox id="urllinkNewSandrItem" onchange="fnxweb.urllink.addItem(fnxweb.urllink.sandritemsListbox,fnxweb.urllink.newsandritembox,0);"
                                     flex="1" tooltiptext="&urllink-prefs-sandr-entry-tip;"/>
                             </hbox>
                         </vbox>
