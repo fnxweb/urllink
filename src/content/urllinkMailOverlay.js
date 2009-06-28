@@ -17,27 +17,25 @@
  */
 
 
-/* Every time a new window is made, urllinkMailInit will be called */
-window.addEventListener('load',urllinkMailInit,false);
-
-
-function urllinkMailInit()
+fnxweb.urllink.MailInit = function()
 {
-    urllinkCommon.urllinkInit();
+    fnxweb.urllink.common.Init();
 
     var context = document.getElementById('messagePaneContext');    /* TB 2 */
     if (!context)
         context = document.getElementById('mailContext');           /* TB 3 */
     if (context)
-        context.addEventListener('popupshowing',urllinkMailContext,false);
+        context.addEventListener('popupshowing',fnxweb.urllink.MailContext,false);
 }
 
+/* Every time a new window is made, urllinkMailInit will be called */
+window.addEventListener('load',fnxweb.urllink.MailInit,false);
 
 
 /* raw version */
-function rawOpenNewWindowWith(url)
+fnxweb.urllink.rawOpenNewWindowWith = function(url)
 {
-    if (!urllinkCommon.inThunderbird())
+    if (!fnxweb.urllink.common.inThunderbird())
     {
         /* Local browser - (from contentAreaUtils.js) to not sec. check file: URIs */
         if (url.search(/^file:/) == -1)
@@ -52,19 +50,20 @@ function rawOpenNewWindowWith(url)
         if (wintype == 'navigator:browser')
             charsetArg = 'charset=' + window._content.document.characterSet;
 
-        var referrer = urllinkCommon.getReferrer();
+        var referrer = fnxweb.urllink.common.getReferrer();
         window.openDialog(getBrowserURL(), '_blank', 'chrome,all,dialog=no', url, charsetArg, referrer);
     }
     else
     {
-        urllinkCommon.launchExternalURL(url);
+        fnxweb.urllink.common.launchExternalURL(url);
     }
 }
 
 
 /* Selection ranges can contain spans of children;  this decodes them */
-function spanString(span)
+fnxweb.urllink.spanString = function(span)
 {
+    var me = fnxweb.urllink;
     var text = '';
     var nodes = span.childNodes.length;
     for (var n = 0;  n < nodes;  ++n)
@@ -82,7 +81,7 @@ function spanString(span)
             }
             else if (bit.className.search(/^moz-txt-slash/) == 0)
             {
-                text += spanString(bit);
+                text += me.spanString(bit);
             }
         }
     }
@@ -92,7 +91,7 @@ function spanString(span)
 
 
 /* Add a new text fragment to the existing text */
-function addNewText( text, newtext )
+fnxweb.urllink.addNewText = function( text, newtext )
 {
     /* Add spaces in between fragments, unless fragment starts a new line */
     var textsep = (text.val == ''  ||  newtext.search(/^\n/) == 0  ?  ''  :  ' ');
@@ -129,11 +128,12 @@ function addNewText( text, newtext )
 
 
 /* Process a node's children */
-function selectionStringFrag( frag, text, recurse )
+fnxweb.urllink.selectionStringFrag = function( frag, text, recurse )
 {
     if (recurse >= 10)
         return;
 
+    var me = fnxweb.urllink;
     var nodes = frag.val.childNodes.length;
 
     for (var n = 0;  n < nodes;  ++n)
@@ -141,23 +141,23 @@ function selectionStringFrag( frag, text, recurse )
         var bit = frag.val.childNodes[n];
         if (bit.data)
         {
-            addNewText( text, bit.data );
+            me.addNewText( text, bit.data );
         }
         else if (bit.className)
         {
             if (bit.className.search(/^moz-txt-link/) == 0  ||  bit.className.search(/^moz-txt-tag/) == 0)
             {
-                addNewText( text, bit.innerHTML );
+                me.addNewText( text, bit.innerHTML );
             }
             else if (bit.className.search(/^moz-txt-slash/) == 0)
             {
-                addNewText( text, spanString(bit) );
+                me.addNewText( text, spanString(bit) );
             }
         }
         else if (bit.childNodes  &&  bit.childNodes.length)
         {
             var newfrag = {val : bit };
-            selectionStringFrag( newfrag, text, recurse+1 );
+            me.selectionStringFrag( newfrag, text, recurse+1 );
         }
     }
 }
@@ -166,15 +166,16 @@ function selectionStringFrag( frag, text, recurse )
 /* Raw access to text of a selection.
  * Default toString op. mangles \n to space
  */
-function selectionString(sel)
+fnxweb.urllink.selectionString = function(sel)
 {
+    var me = fnxweb.urllink;
     var ranges = sel.rangeCount;
     var text = {val  : ''};
     for (var r = 0;  r < ranges;  ++r)
     {
         var range = sel.getRangeAt(r);
         var frag = {val : range.cloneContents()};
-        selectionStringFrag( frag, text, 0 );
+        me.selectionStringFrag( frag, text, 0 );
     }
 
     /* This can end up empty (!);  seemingly when the view is pseudo-HTML and the quoted text is the blue line.
@@ -190,14 +191,14 @@ function selectionString(sel)
 /* Raw version of comm/nsContextMenu.js:searchSelected
  * Now using mail/base/content/nsContextMenu.js
  */
-function rawSearchSelected(context)
+fnxweb.urllink.rawSearchSelected = function(context)
 {
     var focusedWindow = document.commandDispatcher.focusedWindow;
     /* var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow); */
     var searchStr = focusedWindow.getSelection();
     /* searchStr = searchStr.toString(); */
-    searchStr = selectionString(searchStr);
-    searchStr = urllinkCommon.tidySelection(searchStr);
+    searchStr = fnxweb.urllink.selectionString(searchStr);
+    searchStr = fnxweb.urllink.common.tidySelection(searchStr);
     return searchStr;
 }
 
@@ -207,13 +208,13 @@ function rawSearchSelected(context)
  * as a work-around of a seeming bug in Moz. which gives us " " in lieu of
  * <CR> from some emails.
  */
-function unmangleURL(url,wasLink)
+fnxweb.urllink.unmangleURL = function(url,wasLink)
 {
     /* Remove OutLook delims. now */
     url = url.replace(/^\<(.*)\>$/, "$1");
 
     /* Perform custom search and replaces */
-    url = urllinkCommon.customSearchAndReplace(url);
+    url = fnxweb.urllink.common.customSearchAndReplace(url);
 
     /* strip bad leading characters */
     url = url.replace(/^[\.,\'\"\)\?!>\]]+/, '');
@@ -223,7 +224,7 @@ function unmangleURL(url,wasLink)
     /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
      * but that seems to be illegal.
      */
-    url = urllinkCommon.utf8Encode(url);
+    url = fnxweb.urllink.common.utf8Encode(url);
 
     /* If it's a mail link in an actual hyperlink, strip off up to the '@' (convert mail link into web link)
      * If it's a textual mailto:, we'll activate it [if user wants a fake web link, don't select the "mailto:"!]
@@ -236,8 +237,10 @@ function unmangleURL(url,wasLink)
 
 
 /* Called on popup display */
-function urllinkMailContext()
+fnxweb.urllink.MailContext = function()
 {
+    var me = fnxweb.urllink;
+    var mc = me.common;
     var isTextOrUrlSelection = false, isURL = false;
 
     if (gContextMenu)
@@ -252,8 +255,8 @@ function urllinkMailContext()
             var sel;
             if (gContextMenu.isTextSelected  ||  gContextMenu.isContentSelected)
             {
-                sel = rawSearchSelected(gContextMenu);
-                sel = unmangleURL(sel,false);
+                sel = me.rawSearchSelected(gContextMenu);
+                sel = me.unmangleURL(sel,false);
             }
             else if (gContextMenu.onLink)
             {
@@ -269,14 +272,14 @@ function urllinkMailContext()
     }
 
     /* Visible if selection and looks like URL */
-    for (var i=0; i<urllinkCommon.urllinkMailMenuItems.length; i++)
+    for (var i=0; i<mc.MailMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuItems[i] + urllinkCommon.menuPos());
+        var menuitem = document.getElementById(mc.MailMenuItems[i] + mc.menuPos());
         if (menuitem)
         {
             menuitem.hidden = !(isTextOrUrlSelection && isURL);
         }
-        menuitem = document.getElementById(urllinkCommon.urllinkMailMenuItems[i] + urllinkCommon.menuPosAlt());
+        menuitem = document.getElementById(mc.MailMenuItems[i] + mc.menuPosAlt());
         if (menuitem)
         {
             menuitem.hidden = true;
@@ -287,20 +290,20 @@ function urllinkMailContext()
     if (! (!isTextOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
-        for (var i=0; i<urllinkCommon.urllinkAlternateMailMenus.length; i++)
+        for (var i=0; i<mc.AlternateMailMenus.length; i++)
         {
-            urllinkCommon.regenerateMenu( urllinkCommon.urllinkAlternateMailMenus[i] + urllinkCommon.menuPos(),
-                'urllinkMailOpenLink', 0 );
+            mc.regenerateMenu( mc.AlternateMailMenus[i] + mc.menuPos(),
+                'fnxweb.urllink.MailOpenLink', 0 );
         }
     }
-    for (var i=0; i<urllinkCommon.urllinkAlternateMailMenuItems.length; i++)
+    for (var i=0; i<mc.AlternateMailMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkAlternateMailMenuItems[i] + urllinkCommon.menuPos());
+        var menuitem = document.getElementById(mc.AlternateMailMenuItems[i] + mc.menuPos());
         if (menuitem)
         {
             menuitem.hidden = !isTextOrUrlSelection || isURL;
         }
-        menuitem = document.getElementById(urllinkCommon.urllinkAlternateMailMenuItems[i] + urllinkCommon.menuPosAlt());
+        menuitem = document.getElementById(mc.AlternateMailMenuItems[i] + mc.menuPosAlt());
         if (menuitem)
         {
             menuitem.hidden = true;
@@ -311,14 +314,14 @@ function urllinkMailContext()
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(urllinkCommon.urllinkMailMenuSep + i + urllinkCommon.menuPos());
+            var menuitem = document.getElementById(mc.MailMenuSep + i + mc.menuPos());
             if (menuitem)
             {
                 menuitem.hidden =
                     (!(isTextOrUrlSelection && isURL))  &&
                     (!isTextOrUrlSelection || isURL);
             }
-            menuitem = document.getElementById(urllinkCommon.urllinkMailMenuSep + i + urllinkCommon.menuPosAlt());
+            menuitem = document.getElementById(mc.MailMenuSep + i + mc.menuPosAlt());
             if (menuitem)
             {
                 menuitem.hidden = true;
@@ -328,26 +331,27 @@ function urllinkMailContext()
 }
 
 
-function urllinkMailOpenLink(event,astab,format)  /* event/astab not used in mailer */
+fnxweb.urllink.MailOpenLink = function(event,astab,format)  /* event/astab not used in mailer */
 {
+    var me = fnxweb.urllink;
     var wasLink = false;
     var selURL;
     var prefix = {val:''};
     var suffix = {val:''};
 
     /* Determine prefix/suffix by splitting on '*' */
-    urllinkCommon.splitFormat( format, prefix, suffix );
+    fnxweb.urllink.common.splitFormat( format, prefix, suffix );
 
     /* TB2 has isTextSelected, TB3 has isContentSelected */
     if (gContextMenu.isTextSelected  ||  gContextMenu.isContentSelected)
     {
-        selURL = rawSearchSelected(gContextMenu);
+        selURL = me.rawSearchSelected(gContextMenu);
     }
     else if (gContextMenu.onLink)
     {
         wasLink = true;
         selURL = gContextMenu.link.href;
     }
-    selURL = unmangleURL(selURL,wasLink);
-    rawOpenNewWindowWith( urllinkCommon.fixURL( prefix.val + selURL + suffix.val ) );
+    selURL = me.unmangleURL(selURL,wasLink);
+    me.rawOpenNewWindowWith( fnxweb.urllink.common.fixURL( prefix.val + selURL + suffix.val ) );
 }

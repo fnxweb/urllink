@@ -17,7 +17,12 @@
  */
 
 
-var urllinkCommon =
+/* Clean up namespace */
+if (!fnxweb)  var fnxweb = {};
+if (!fnxweb.urllink)  fnxweb.urllink = {};
+
+
+fnxweb.urllink.common =
 {
     /* Current version;  get this programatically? */
     version : "2.02.99a",
@@ -32,23 +37,23 @@ var urllinkCommon =
 
 
     /* Our bits */
-    urllinkBrowserMenuSep : 'urllink-browser-sep-',
-    urllinkBrowserMenuItems : [
+    BrowserMenuSep : 'urllink-browser-sep-',
+    BrowserMenuItems : [
         'urllink-browser-open-tab',
         'urllink-browser-open-link' ],
-    urllinkAlternateBrowserMenuItems : [
+    AlternateBrowserMenuItems : [
         'urllink-browser-open-tab-as',
         'urllink-browser-open-link-as' ],
-    urllinkAlternateBrowserMenus : [
+    AlternateBrowserMenus : [
         'urllink-browser-open-link-as-popup', /* Order sic. */
         'urllink-browser-open-tab-as-popup' ],
 
-    urllinkMailMenuSep : 'urllink-mail-sep-',
-    urllinkMailMenuItems : [
+    MailMenuSep : 'urllink-mail-sep-',
+    MailMenuItems : [
         'urllink-mail-open-link' ],
-    urllinkAlternateMailMenuItems : [
+    AlternateMailMenuItems : [
         'urllink-mail-open-link-as' ],
-    urllinkAlternateMailMenus : [
+    AlternateMailMenus : [
         'urllink-mail-open-link-as-popup' ],
 
     isInThunderbird : false,
@@ -124,7 +129,7 @@ var urllinkCommon =
     /* Minor annoyance */
     doneInitCheck : false,
 
-    urllinkInit: function ()
+    Init: function ()
     {
         if (this.doneInitCheck)
         {
@@ -227,7 +232,7 @@ var urllinkCommon =
         /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
          * but that seems to be illegal.
          */
-        url = urllinkCommon.utf8Encode(url);
+        url = this.utf8Encode(url);
 
         return url;
     },
@@ -473,6 +478,3 @@ var urllinkCommon =
     }
 
 }
-
-
-//window.addEventListener('load', urllinkCommon.urllinkInit, true);

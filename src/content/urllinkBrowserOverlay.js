@@ -17,21 +17,21 @@
  */
 
 
-/* Every time a new browser window is made, urllinkBrowserInit will be called */
-window.addEventListener('load',urllinkBrowserInit,false);
-
-
-function urllinkBrowserInit()
+fnxweb.urllink.BrowserInit = function()
 {
-    urllinkCommon.urllinkInit();
+    fnxweb.urllink.common.Init();
 
     var contentAreaContextMenu = document.getElementById('contentAreaContextMenu');
     if (contentAreaContextMenu)
-        contentAreaContextMenu.addEventListener('popupshowing',urllinkBrowserContext,false);
+        contentAreaContextMenu.addEventListener('popupshowing',fnxweb.urllink.BrowserContext,false);
 }
 
+/* Every time a new browser window is made, urllinkBrowserInit will be called */
+window.addEventListener('load',fnxweb.urllink.BrowserInit,false);
 
-function urllinkGetTextBoxText(field)
+
+
+fnxweb.urllink.GetTextBoxText = function(field)
 {
     /* field seems to sometimes be a div under the actual input object, so check parent */
     var tb;
@@ -50,7 +50,7 @@ function urllinkGetTextBoxText(field)
 }
 
 
-function getBestSelection(context)
+fnxweb.urllink.getBestSelection = function(context)
 {
     var focusedWindow = document.commandDispatcher.focusedWindow;
     var searchStr;
@@ -62,14 +62,14 @@ function getBestSelection(context)
     else
         searchStr = context.searchSelected();
 
-    searchStr = urllinkCommon.tidySelection(searchStr);
+    searchStr = fnxweb.urllink.common.tidySelection(searchStr);
 
     return searchStr;
 }
 
 
 /* Callback upon context-menu trigger */
-function urllinkBrowserContext()
+fnxweb.urllink.BrowserContext = function()
 {
     var isLinkOrUrlSelection = false, isURL = false;
 
@@ -88,7 +88,7 @@ function urllinkBrowserContext()
             }
             else if (gContextMenu.onTextInput)
             {
-                sel = urllinkGetTextBoxText( gContextMenu.target );
+                sel = fnxweb.urllink.GetTextBoxText( gContextMenu.target );
             }
             else if (gContextMenu.onLink)
             {
@@ -113,13 +113,13 @@ function urllinkBrowserContext()
     }
 
     /* May be showing only main open or only tab open bits */
-    var hidetab = urllinkCommon.prefs.getBoolPref("hidetab");
-    var hideopen  = urllinkCommon.prefs.getBoolPref("hideopen");
+    var hidetab = fnxweb.urllink.common.prefs.getBoolPref("hidetab");
+    var hideopen  = fnxweb.urllink.common.prefs.getBoolPref("hideopen");
 
     /* Main menu buttons visible if selection and looks like URL */
-    for (var i=0; i<urllinkCommon.urllinkBrowserMenuItems.length; i++)
+    for (var i=0; i<fnxweb.urllink.common.BrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPos());
+        var menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuItems[i] + fnxweb.urllink.common.menuPos());
         if (menuitem)
         {
             if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0))
@@ -127,7 +127,7 @@ function urllinkBrowserContext()
             else
                 menuitem.hidden = !(isLinkOrUrlSelection && isURL);
         }
-        menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuItems[i] + urllinkCommon.menuPosAlt());
+        menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuItems[i] + fnxweb.urllink.common.menuPosAlt());
         if (menuitem)
         {
             menuitem.hidden = true;
@@ -138,16 +138,16 @@ function urllinkBrowserContext()
     if (! (!isLinkOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
-        for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenus.length; i++)
+        for (var i=0; i<fnxweb.urllink.common.AlternateBrowserMenus.length; i++)
         {
-            var menuitem_id = urllinkCommon.urllinkAlternateBrowserMenus[i] + urllinkCommon.menuPos();
+            var menuitem_id = fnxweb.urllink.common.AlternateBrowserMenus[i] + fnxweb.urllink.common.menuPos();
             if ((!hidetab  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!hideopen  &&  menuitem_id.search(/open-link/) >= 0))
-                urllinkCommon.regenerateMenu( menuitem_id, 'urllinkBrowserOpenLink', i );
+                fnxweb.urllink.common.regenerateMenu( menuitem_id, 'fnxweb.urllink.BrowserOpenLink', i );
         }
     }
-    for (var i=0; i<urllinkCommon.urllinkAlternateBrowserMenuItems.length; i++)
+    for (var i=0; i<fnxweb.urllink.common.AlternateBrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPos());
+        var menuitem = document.getElementById(fnxweb.urllink.common.AlternateBrowserMenuItems[i] + fnxweb.urllink.common.menuPos());
         if (menuitem)
         {
             if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0) )
@@ -155,7 +155,7 @@ function urllinkBrowserContext()
             else
                 menuitem.hidden = !isLinkOrUrlSelection || isURL;
         }
-        menuitem = document.getElementById(urllinkCommon.urllinkAlternateBrowserMenuItems[i] + urllinkCommon.menuPosAlt());
+        menuitem = document.getElementById(fnxweb.urllink.common.AlternateBrowserMenuItems[i] + fnxweb.urllink.common.menuPosAlt());
         if (menuitem)
         {
             menuitem.hidden = true;
@@ -166,14 +166,14 @@ function urllinkBrowserContext()
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuSep + i + urllinkCommon.menuPos());
+            var menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuSep + i + fnxweb.urllink.common.menuPos());
             if (menuitem)
             {
                 menuitem.hidden =
                     (!(isLinkOrUrlSelection && isURL))  &&
                     (!isLinkOrUrlSelection || isURL);
             }
-            menuitem = document.getElementById(urllinkCommon.urllinkBrowserMenuSep + i + urllinkCommon.menuPosAlt());
+            menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuSep + i + fnxweb.urllink.common.menuPosAlt());
             if (menuitem)
             {
                 menuitem.hidden = true;
@@ -184,9 +184,9 @@ function urllinkBrowserContext()
 
 
 /* Some sites (e.g., kelkoo) obfuisctae their js links with base64! */
-var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-function decode64(realinput)
+fnxweb.urllink.decode64 = function(realinput)
 {
+    var keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
     var output = '';
     var chr1, chr2, chr3;
     var enc1, enc2, enc3, enc4;
@@ -225,7 +225,7 @@ function decode64(realinput)
 
 
 /* find largest best javascript arg */
-function getBestJavascriptArg(url)
+fnxweb.urllink.getBestJavascriptArg = function(url)
 {
     /* Avoid twatting the app. if a link that contains an embedded JS app. is clicked! */
     if (url.length > 1024)
@@ -284,7 +284,7 @@ function getBestJavascriptArg(url)
 
 
 /* strip bad leading and trailing characters */
-function unmangleURL(url,wasLink)
+fnxweb.urllink.unmangleURL = function(url,wasLink)
 {
     /* strip bad leading characters */
     /* Allow '(' if there's a following ')' (e.g., wikipedia) */
@@ -293,7 +293,7 @@ function unmangleURL(url,wasLink)
     url = url.replace(illegalChars, '');
 
     /* Perform custom search and replaces */
-    url = urllinkCommon.customSearchAndReplace(url);
+    url = fnxweb.urllink.common.customSearchAndReplace(url);
 
     /* Non-break spaces for within HTML (seen in TB) */
     url = url.replace(/\xA0/g, ' ');
@@ -336,14 +336,14 @@ function unmangleURL(url,wasLink)
     /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
      * but that seems to be illegal.
      */
-    url = urllinkCommon.utf8Encode(url);
+    url = fnxweb.urllink.common.utf8Encode(url);
 
     return url;
 }
 
 
 /* Callback from XUL */
-function urllinkBrowserOpenLink(event,astab,format)
+fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
 {
     var browser = getBrowser();
     var lnk;
@@ -352,7 +352,7 @@ function urllinkBrowserOpenLink(event,astab,format)
     var suffix = {val:''};
 
     /* Determine prefix/suffix by splitting on '*' */
-    urllinkCommon.splitFormat( format, prefix, suffix );
+    fnxweb.urllink.common.splitFormat( format, prefix, suffix );
 
     if (gContextMenu.isTextSelected)
     {
@@ -360,27 +360,27 @@ function urllinkBrowserOpenLink(event,astab,format)
     }
     else if (gContextMenu.onTextInput)
     {
-        lnk = urllinkGetTextBoxText(gContextMenu.target);
+        lnk = fnxweb.urllink.GetTextBoxText(gContextMenu.target);
     }
     else if (gContextMenu.onLink)
     {
         lnk = gContextMenu.link.href;
         wasLink = true;
     }
-    lnk = urllinkCommon.fixURL( prefix.val + unmangleURL( lnk, wasLink ) + suffix.val );
+    lnk = fnxweb.urllink.common.fixURL( prefix.val + unmangleURL( lnk, wasLink ) + suffix.val );
 
-    var referrer = urllinkCommon.getReferrer();
+    var referrer = fnxweb.urllink.common.getReferrer();
     if (astab == 1)
     {
         /* Tab */
-        var loadInBackground = urllinkCommon.prefManager.getBoolPref('browser.tabs.loadInBackground');
+        var loadInBackground = fnxweb.urllink.common.prefManager.getBoolPref('browser.tabs.loadInBackground');
         var tab = browser.addTab( lnk, referrer );
         if (!loadInBackground)
             browser.selectedTab = tab;
     }
     else
     {
-        var newwindow = urllinkCommon.getBoolPref('newwindow');
+        var newwindow = fnxweb.urllink.common.getBoolPref('newwindow');
         var usewindow = ( (!newwindow  &&  event.shiftKey)  ||  (newwindow  &&  !event.shiftKey) );
 
         if (usewindow)

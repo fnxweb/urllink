@@ -64,12 +64,12 @@
         <menuitem id="urllink-browser-open-tab-top"
             label="&popup-urllink-open-tab.label;"
             accesskey="&popup-urllink-open-tab.shortcut;"
-            oncommand="urllinkBrowserOpenLink(event,1,'','')"
+            oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'','')"
             insertbefore="context-openlink"/>
         <menuitem id="urllink-browser-open-link-top"
             label="&popup-urllink-open-link.label;"
             accesskey="&popup-urllink-open-link.shortcut;"
-            oncommand="urllinkBrowserOpenLink(event,0,'','')"
+            oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'','')"
             insertbefore="context-openlink"/>
 
         <menu id="urllink-browser-open-tab-as-top"
@@ -80,7 +80,7 @@
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     accesskey="&popup-urllink-open-as-is.shortcut;"
-                    oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
+                    oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'*')"/>
                 <menuseparator/>
             </menupopup>
         </menu>
@@ -93,7 +93,7 @@
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     accesskey="&popup-urllink-open-as-is.shortcut;"
-                    oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
+                    oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'*')"/>
                 <menuseparator/>
             </menupopup>
         </menu>
@@ -106,11 +106,11 @@
         <menuitem id="urllink-browser-open-tab-bottom"
             label="&popup-urllink-open-tab.label;"
             accesskey="&popup-urllink-open-tab.shortcut;"
-            oncommand="urllinkBrowserOpenLink(event,1,'','')"/>
+            oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'','')"/>
         <menuitem id="urllink-browser-open-link-bottom"
             label="&popup-urllink-open-link.label;"
             accesskey="&popup-urllink-open-link.shortcut;"
-            oncommand="urllinkBrowserOpenLink(event,0,'','')"/>
+            oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'','')"/>
 
         <menu id="urllink-browser-open-tab-as-bottom"
             label="&popup-urllink-open-tab-as.label;"
@@ -119,7 +119,7 @@
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     accesskey="&popup-urllink-open-as-is.shortcut;"
-                    oncommand="urllinkBrowserOpenLink(event,1,'*')"/>
+                    oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'*')"/>
                 <menuseparator/>
             </menupopup>
         </menu>
@@ -131,7 +131,7 @@
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
                     accesskey="&popup-urllink-open-as-is.shortcut;"
-                    oncommand="urllinkBrowserOpenLink(event,0,'*')"/>
+                    oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'*')"/>
                 <menuseparator/>
             </menupopup>
         </menu>

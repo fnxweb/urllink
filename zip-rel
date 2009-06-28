@@ -1,4 +1,5 @@
 #!/bin/bash
+/bin/rm -f ../urllink.xpi
 installver=$(grep em:version install.rdf | sed -e 's/^.*version>\(.*\)<.*/\1/')
 configver=$(grep version\ : ../src/content/urllinkCommon.js | sed -e 's/^.*version : "\(.*\)".*/\1/')
 if [ $installver != "$configver" ];  then

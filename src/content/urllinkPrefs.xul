@@ -44,7 +44,7 @@
     title="&urllink-prefs-title;"
     orient="vertical"
     autostretch="always"
-    onload="loadPrefs(); sizeToContent();"
+    onload="fnxweb.urllink.loadPrefs(); sizeToContent();"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
     <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/>
@@ -72,18 +72,18 @@
                             <separator class="small"/>
                             <hbox>
                                 <description value="&urllink-prefs-newentry;:"/>
-                                <textbox id="urllinkNewMenuItem" onchange="addItem(menuitemsListbox,newmenuitembox,0);"
+                                <textbox id="urllinkNewMenuItem" onchange="fnxweb.urllink.addItem(fnxweb.urllink.menuitemsListbox,fnxweb.urllink.newmenuitembox,0);"
                                     flex="1" tooltiptext="&urllink-prefs-entry-tip;"/>
                             </hbox>
                         </vbox>
                         <vbox>
-                            <button label="&urllink-prefs-up;" oncommand="itemUp(menuitemsListbox);"/>
-                            <button label="&urllink-prefs-down;" oncommand="itemDown(menuitemsListbox);"/>
+                            <button label="&urllink-prefs-up;" oncommand="fnxweb.urllink.itemUp(fnxweb.urllink.menuitemsListbox);"/>
+                            <button label="&urllink-prefs-down;" oncommand="fnxweb.urllink.itemDown(fnxweb.urllink.menuitemsListbox);"/>
                             <spacer height="20px"/>
-                            <button label="&urllink-prefs-defaults;" oncommand="setMenuDefaults();"/>
+                            <button label="&urllink-prefs-defaults;" oncommand="fnxweb.urllink.setMenuDefaults();"/>
                             <spacer height="20px"/>
-                            <button label="&urllink-prefs-delete;" oncommand="deleteItem(menuitemsListbox);"/>
-                            <button label="&urllink-prefs-add;" oncommand="addItem(menuitemsListbox,newmenuitembox,1);"/>
+                            <button label="&urllink-prefs-delete;" oncommand="fnxweb.urllink.deleteItem(fnxweb.urllink.menuitemsListbox);"/>
+                            <button label="&urllink-prefs-add;" oncommand="fnxweb.urllink.addItem(fnxweb.urllink.menuitemsListbox,fnxweb.urllink.newmenuitembox,1);"/>
                         </vbox>
                     </hbox>
                 </tabpanel>
@@ -97,18 +97,18 @@
                             <separator class="small"/>
                             <hbox>
                                 <description value="&urllink-prefs-newentry;:"/>
-                                <textbox id="urllinkNewSandrItem" onchange="addItem(sandritemsListbox,newsandritembox,0);"
+                                <textbox id="NewSandrItem" onchange="fnxweb.urllink.addItem(fnxweb.urllink.sandritemsListbox,fnxweb.urllink.newsandritembox,0);"
                                     flex="1" tooltiptext="&urllink-prefs-sandr-entry-tip;"/>
                             </hbox>
                         </vbox>
                         <vbox>
-                            <button label="&urllink-prefs-up;" oncommand="itemUp(sandritemsListbox);"/>
-                            <button label="&urllink-prefs-down;" oncommand="itemDown(sandritemsListbox);"/>
+                            <button label="&urllink-prefs-up;" oncommand="fnxweb.urllink.itemUp(fnxweb.urllink.sandritemsListbox);"/>
+                            <button label="&urllink-prefs-down;" oncommand="fnxweb.urllink.itemDown(fnxweb.urllink.sandritemsListbox);"/>
                             <spacer height="20px"/>
-                            <button label="&urllink-prefs-defaults;" oncommand="setSandrDefaults();"/>
+                            <button label="&urllink-prefs-defaults;" oncommand="fnxweb.urllink.setSandrDefaults();"/>
                             <spacer height="20px"/>
-                            <button label="&urllink-prefs-delete;" oncommand="deleteItem(sandritemsListbox);"/>
-                            <button label="&urllink-prefs-add;" oncommand="addItem(sandritemsListbox,newsandritembox,1);"/>
+                            <button label="&urllink-prefs-delete;" oncommand="fnxweb.urllink.deleteItem(fnxweb.urllink.sandritemsListbox);"/>
+                            <button label="&urllink-prefs-add;" oncommand="fnxweb.urllink.addItem(fnxweb.urllink.sandritemsListbox,fnxweb.urllink.newsandritembox,1);"/>
                         </vbox>
                     </hbox>
                 </tabpanel>
@@ -140,8 +140,8 @@
             <spacer flex="1"/>
             <hbox pack="end">
                 <button label="&urllink-prefs-cancel;" oncommand="window.close();"/>
-                <button label="&urllink-prefs-apply;" oncommand="setPrefs(0);"/>
-                <button label="&urllink-prefs-ok;" oncommand="setPrefs(1);"/>
+                <button label="&urllink-prefs-apply;" oncommand="fnxweb.urllink.setPrefs(0);"/>
+                <button label="&urllink-prefs-ok;" oncommand="fnxweb.urllink.setPrefs(1);"/>
             </hbox>
         </hbox>
 
