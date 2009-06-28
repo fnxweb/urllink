@@ -28,7 +28,7 @@ fnxweb.urllink.MailInit = function()
         context.addEventListener('popupshowing',fnxweb.urllink.MailContext,false);
 }
 
-/* Every time a new window is made, urllinkMailInit will be called */
+/* Every time a new window is made, MailInit will be called */
 window.addEventListener('load',fnxweb.urllink.MailInit,false);
 
 
@@ -151,7 +151,7 @@ fnxweb.urllink.selectionStringFrag = function( frag, text, recurse )
             }
             else if (bit.className.search(/^moz-txt-slash/) == 0)
             {
-                me.addNewText( text, spanString(bit) );
+                me.addNewText( text, me.spanString(bit) );
             }
         }
         else if (bit.childNodes  &&  bit.childNodes.length)

@@ -26,7 +26,7 @@ fnxweb.urllink.BrowserInit = function()
         contentAreaContextMenu.addEventListener('popupshowing',fnxweb.urllink.BrowserContext,false);
 }
 
-/* Every time a new browser window is made, urllinkBrowserInit will be called */
+/* Every time a new browser window is made, BrowserInit will be called */
 window.addEventListener('load',fnxweb.urllink.BrowserInit,false);
 
 
@@ -71,6 +71,7 @@ fnxweb.urllink.getBestSelection = function(context)
 /* Callback upon context-menu trigger */
 fnxweb.urllink.BrowserContext = function()
 {
+    var me = fnxweb.urllink;
     var isLinkOrUrlSelection = false, isURL = false;
 
     if (gContextMenu)
@@ -84,7 +85,7 @@ fnxweb.urllink.BrowserContext = function()
             var sel = '';
             if (gContextMenu.isTextSelected)
             {
-                sel = getBestSelection(gContextMenu);
+                sel = me.getBestSelection(gContextMenu);
             }
             else if (gContextMenu.onTextInput)
             {
@@ -100,7 +101,7 @@ fnxweb.urllink.BrowserContext = function()
                 else
                     isLinkOrUrlSelection = false;
             }
-            sel = unmangleURL(sel,wasLink);
+            sel = me.unmangleURL(sel,wasLink);
             if (isLinkOrUrlSelection && sel.search(/^(mailto:|\w+:\/\/|www\.|ftp\.|.*@)/) == 0)
                 isURL = true;
         }
@@ -273,7 +274,7 @@ fnxweb.urllink.getBestJavascriptArg = function(url)
     }
 
     /* Is out best actualy base64 (e.g,. kelkoo?) */
-    var decoded = decode64(best);
+    var decoded = fnxweb.urllink.decode64(best);
     if (decoded != '')
     {
          best = decoded;
@@ -308,7 +309,7 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     if (url.search(/^javascript:/) == 0)
     {
         /* Get out first string arg. */
-        url = getBestJavascriptArg(url);
+        url = fnxweb.urllink.getBestJavascriptArg(url);
 
         /* Full URL?  If not, prefix current site */
         if (url.search(/^\w+:\/\//) == -1)
@@ -345,6 +346,8 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
 /* Callback from XUL */
 fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
 {
+    var me = fnxweb.urllink;
+    var mc = me.common;
     var browser = getBrowser();
     var lnk;
     var wasLink = false;
@@ -352,35 +355,35 @@ fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
     var suffix = {val:''};
 
     /* Determine prefix/suffix by splitting on '*' */
-    fnxweb.urllink.common.splitFormat( format, prefix, suffix );
+    mc.splitFormat( format, prefix, suffix );
 
     if (gContextMenu.isTextSelected)
     {
-        lnk = getBestSelection(gContextMenu);
+        lnk = me.getBestSelection(gContextMenu);
     }
     else if (gContextMenu.onTextInput)
     {
-        lnk = fnxweb.urllink.GetTextBoxText(gContextMenu.target);
+        lnk = me.GetTextBoxText(gContextMenu.target);
     }
     else if (gContextMenu.onLink)
     {
         lnk = gContextMenu.link.href;
         wasLink = true;
     }
-    lnk = fnxweb.urllink.common.fixURL( prefix.val + unmangleURL( lnk, wasLink ) + suffix.val );
+    lnk = mc.fixURL( prefix.val + me.unmangleURL( lnk, wasLink ) + suffix.val );
 
-    var referrer = fnxweb.urllink.common.getReferrer();
+    var referrer = mc.getReferrer();
     if (astab == 1)
     {
         /* Tab */
-        var loadInBackground = fnxweb.urllink.common.prefManager.getBoolPref('browser.tabs.loadInBackground');
+        var loadInBackground = mc.prefManager.getBoolPref('browser.tabs.loadInBackground');
         var tab = browser.addTab( lnk, referrer );
         if (!loadInBackground)
             browser.selectedTab = tab;
     }
     else
     {
-        var newwindow = fnxweb.urllink.common.getBoolPref('newwindow');
+        var newwindow = mc.getBoolPref('newwindow');
         var usewindow = ( (!newwindow  &&  event.shiftKey)  ||  (newwindow  &&  !event.shiftKey) );
 
         if (usewindow)
