@@ -211,7 +211,7 @@ fnxweb.urllink.rawSearchSelected = function(context)
 fnxweb.urllink.unmangleURL = function(url,wasLink)
 {
     /* Remove OutLook delims. now */
-    url = url.replace(/^\<(.*)\>$/, "$1");
+    url = url.replace(/^[< ]+(.*)[ >]+$/, "$1");
 
     /* Perform custom search and replaces */
     url = fnxweb.urllink.common.customSearchAndReplace(url);
