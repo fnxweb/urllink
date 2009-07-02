@@ -23,16 +23,16 @@
 <!ENTITY urllink-prefs-changelog "Wijzigingsoverzicht">
 <!ENTITY urllink-prefs-topmenu "Bovenaan in contextmenu weergeven">
 <!ENTITY urllink-prefs-topmenu-tip "Bepaalt de positie van URL Link onderdelen in het contextmenu">
-<!ENTITY urllink-prefs-list-tip "Lijst van menu-onderdelen; &apos;*&apos; wordt vervangen door de selectie">
-<!ENTITY urllink-prefs-entry-tip "Nieuw menu-onderdeel; &apos;*&apos; wordt vervangen door de selectie">
+<!ENTITY urllink-prefs-list-tip "Lijst van menu-onderdelen; ‘*’ wordt vervangen door de selectie">
+<!ENTITY urllink-prefs-entry-tip "Nieuw menu-onderdeel; ‘*’ wordt vervangen door de selectie">
 <!ENTITY urllink-help-title "URL Link Help">
 <!ENTITY urllink-changelog-title "URL Link wijzigingsoverzicht">
 <!ENTITY urllink-prefs-newwindow "Voorkeur geven aan nieuw venster (alleen Firefox)">
 <!ENTITY urllink-prefs-newwindow-tip "Standaard in nieuw venster openen (zoals &lt;Shift&gt; normaal doet)">
-<!ENTITY urllink-prefs-hidetab "De &apos;In tabblad openen&apos; opties verbergen">
-<!ENTITY urllink-prefs-hideopen "De normale &apos;Openen&apos; opties verbergen">
+<!ENTITY urllink-prefs-hidetab "De ‘In tabblad openen’ opties verbergen">
+<!ENTITY urllink-prefs-hideopen "De normale ‘Openen’-opties verbergen">
 <!ENTITY urllink-prefs-firefoxonly "Menu-instellingen (alleen Firefox)">
-<!ENTITY urllink-prefs-bothoptions "Beide &apos;Openen&apos; opties weergeven">
-<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
-<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-bothoptions "Beide ‘Openen’-opties weergeven">
+<!ENTITY urllink-prefs-editsandr "Strings voor zoeken en vervangen bewerken">
+<!ENTITY urllink-prefs-sandr-list-tip "Lijst van te zoeken en vervangen items. Opmaak is &apos;RegEx||Vervanging&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "Nieuw te zoeken en vervangen item. Opmaak is &apos;RegEx||Vervanging&apos;">
