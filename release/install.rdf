@@ -8,7 +8,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.02.99a</em:version>
+        <em:version>2.03.1</em:version>
         <em:type>2</em:type>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
