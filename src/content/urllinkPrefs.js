@@ -94,6 +94,17 @@ fnxweb.urllink.setDefaults = function(listbox,defaults)
     }
 }
 
+fnxweb.urllink.setMenuDefaults = function()
+{
+    fnxweb.urllink.setDefaults( fnxweb.urllink.menuitemsListbox, fnxweb.urllink.common.defaultMenuItems );
+}
+
+fnxweb.urllink.setSandrDefaults = function()
+{
+    fnxweb.urllink.setDefaults( fnxweb.urllink.sandritemsListbox, fnxweb.urllink.common.defaultSandrItems );
+}
+
+
 
 fnxweb.urllink.deleteItem = function(listbox)
 {

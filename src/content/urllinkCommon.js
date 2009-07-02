@@ -175,7 +175,7 @@ fnxweb.urllink.common =
             /* Show changelog if there have been major changes */
             if (lastversion != version)
                 openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link - Latest Changes',
-                        'dialog=no,width=640,height=512');
+                        'dialog=no,modal=no,resizable=yes,width=640,height=512');
         }
 
         this.prefs.setCharPref('lastversion',this.version);

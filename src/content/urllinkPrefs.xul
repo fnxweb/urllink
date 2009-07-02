@@ -44,6 +44,8 @@
     title="&urllink-prefs-title;"
     orient="vertical"
     autostretch="always"
+    modal="no"
+    resizable="yes"
     onload="fnxweb.urllink.loadPrefs(); sizeToContent();"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
@@ -117,7 +119,7 @@
 
         <hbox pack="start">
             <vbox pack="end">
-                <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,width=640,height=512');"/>
+                <button label="&urllink-prefs-changelog;" oncommand="openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link','dialog=no,modal=no,resizable=yes,width=640,height=512');"/>
             </vbox>
             <vbox pack="end">
                 <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
@@ -135,7 +137,7 @@
 
         <hbox>
             <hbox pack="start">
-                <button label="&urllink-prefs-help;" oncommand="openDialog('chrome://urllink/content/urllinkHelp.xul','URL Link','dialog=no,width=640,height=512');"/>
+                <button label="&urllink-prefs-help;" oncommand="openDialog('chrome://urllink/content/urllinkHelp.xul','URL Link','dialog=no,modal=no,resizable=yes,width=640,height=512');"/>
             </hbox>
             <spacer flex="1"/>
             <hbox pack="end">
