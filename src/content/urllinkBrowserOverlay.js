@@ -62,7 +62,8 @@ fnxweb.urllink.GetBestSelection = function(context)
     else if (context)
         searchStr = context.searchSelected();
 
-    searchStr = fnxweb.urllink.common.tidySelection(searchStr);
+    if (searchStr != '')
+        searchStr = fnxweb.urllink.common.tidySelection(searchStr);
 
     return searchStr;
 }
@@ -375,6 +376,9 @@ fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
         lnk = gContextMenu.link.href;
         wasLink = true;
     }
+
+    if (lnk == '')
+        return;
     lnk = mc.fixURL( prefix.val + me.unmangleURL( lnk, wasLink ) + suffix.val );
 
     var referrer = mc.getReferrer();
