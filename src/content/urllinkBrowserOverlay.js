@@ -50,7 +50,7 @@ fnxweb.urllink.GetTextBoxText = function(field)
 }
 
 
-fnxweb.urllink.getBestSelection = function(context)
+fnxweb.urllink.GetBestSelection = function(context)
 {
     var focusedWindow = document.commandDispatcher.focusedWindow;
     var searchStr;
@@ -59,7 +59,7 @@ fnxweb.urllink.getBestSelection = function(context)
         searchStr = focusedWindow.getSelection();
         searchStr = searchStr.toString();
     }
-    else
+    else if (context)
         searchStr = context.searchSelected();
 
     searchStr = fnxweb.urllink.common.tidySelection(searchStr);
@@ -85,7 +85,7 @@ fnxweb.urllink.BrowserContext = function()
             var sel = '';
             if (gContextMenu.isTextSelected)
             {
-                sel = me.getBestSelection(gContextMenu);
+                sel = me.GetBestSelection(gContextMenu);
             }
             else if (gContextMenu.onTextInput)
             {
@@ -357,9 +357,14 @@ fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
     /* Determine prefix/suffix by splitting on '*' */
     mc.splitFormat( format, prefix, suffix );
 
-    if (gContextMenu.isTextSelected)
+    if (!gContextMenu)
     {
-        lnk = me.getBestSelection(gContextMenu);
+        /* Come in here for shortcut keys */
+        lnk = me.GetBestSelection(gContextMenu);
+    }
+    else if (gContextMenu.isTextSelected)
+    {
+        lnk = me.GetBestSelection(gContextMenu);
     }
     else if (gContextMenu.onTextInput)
     {
