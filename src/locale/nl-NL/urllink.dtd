@@ -28,11 +28,11 @@
 <!ENTITY urllink-help-title "URL Link Help">
 <!ENTITY urllink-changelog-title "URL Link wijzigingsoverzicht">
 <!ENTITY urllink-prefs-newwindow "Voorkeur geven aan nieuw venster (alleen Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "Standaard in nieuw venster openen (zoals &lt;Shift&gt; normaal doet)">
+<!ENTITY urllink-prefs-newwindow-tip "Standaard in nieuw venster openen (zoals <Shift> normaal doet)">
 <!ENTITY urllink-prefs-hidetab "De ‘In tabblad openen’ opties verbergen">
-<!ENTITY urllink-prefs-hideopen "De normale ‘Openen’-opties verbergen">
+<!ENTITY urllink-prefs-hideopen "De normale ‘Openen’ opties verbergen">
 <!ENTITY urllink-prefs-firefoxonly "Menu-instellingen (alleen Firefox)">
-<!ENTITY urllink-prefs-bothoptions "Beide ‘Openen’-opties weergeven">
-<!ENTITY urllink-prefs-editsandr "Strings voor zoeken en vervangen bewerken">
-<!ENTITY urllink-prefs-sandr-list-tip "Lijst van te zoeken en vervangen items. Opmaak is &apos;RegEx||Vervanging&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "Nieuw te zoeken en vervangen item. Opmaak is &apos;RegEx||Vervanging&apos;">
+<!ENTITY urllink-prefs-bothoptions "Beide ‘Openen’ opties weergeven">
+<!ENTITY urllink-prefs-editsandr "‘Zoeken en Vervangen’-strings bewerken">
+<!ENTITY urllink-prefs-sandr-list-tip "Lijst van items voor zoeken en vervangen. Opmaak is ‘RegEx||Vervanging’">
+<!ENTITY urllink-prefs-sandr-entry-tip "Nieuw item voor zoeken en vervangen. Opmaak is ‘RegEx||Vervanging’">

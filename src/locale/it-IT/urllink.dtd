@@ -29,10 +29,10 @@
 <!ENTITY urllink-changelog-title "Cronologia delle modifiche">
 <!ENTITY urllink-prefs-newwindow "Apri i link in una nuova finestra">
 <!ENTITY urllink-prefs-newwindow-tip "Apre i link in una nuova finestra di Firefox come opzione predefinita">
-<!ENTITY urllink-prefs-hidetab "&apos;Apri in una finestra&apos;">
-<!ENTITY urllink-prefs-hideopen "&apos;Apri in una scheda&apos;">
-<!ENTITY urllink-prefs-firefoxonly "Elementi da visualizzare nel menu">
-<!ENTITY urllink-prefs-bothoptions "Entrambi gli elementi">
-<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
-<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-hidetab "Mostra solo 'Apri in nuova finestra' ">
+<!ENTITY urllink-prefs-hideopen "Mostra solo 'Apri in nuova scheda'">
+<!ENTITY urllink-prefs-firefoxonly "Visualizzazione dei menu">
+<!ENTITY urllink-prefs-bothoptions "Mostra entrambe le voci">
+<!ENTITY urllink-prefs-editsandr "Stringhe di ricerca/sostituzione">
+<!ENTITY urllink-prefs-sandr-list-tip "Lista di stringhe di ricerca e sostituzione degli elementi. Il formato è &apos;Espressione regolare||elemento&apos;">
+<!ENTITY urllink-prefs-sandr-entry-tip "Nuova stringa di ricerca e sostituzione degli elementi. Il formato è &apos;Espressione regolare||elemento&apos;">

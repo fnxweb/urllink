@@ -13,7 +13,7 @@
     在網頁，文字框或電郵中選取文字, 然後按右鍵。
     <ul>
       <li>
-      如果文字像是一個網址，您可以經"開啟選取範圍"直接開啟它 (或開啟到分頁)。
+      如果文字像是一個網址，您可以經"開啟選項"直接開啟它 (或開啟到分頁)。
       </li>
       <li>
       如果文字<i>不</i>像是一個網址，會有子選單將該文字變成一個網址；
@@ -64,34 +64,7 @@
       我希望到2.0版時可以有效。)
       </li>
     </ul>
-  <h3>Custom search and replace</h3>
-    <p>
-    Custom search and replacements can be applied to the selection.  The
-    default settings are two values that were in earlier versions of URL Link
-    (for Thunderbird) and which can now be added to or replaced.  The
-    replacement is done after leading &amp; trailing rubbish has been
-    removed, and after all backslashes have been converted to forward
-    slashes.
-    <p>
-    The entry format in the preferences tab is
-    “searchRegExp||Replacement||regExpFlags”.  The final “||” and flags are
-    optional;  the most likely (JavaScript) flag you may want is 'g' for
-    “global” (or “replace-all”).  The replacement may contain the usual “$n”
-    search pattern references.
-    <p>
-    <i>E.g.</i>, you receive emails with Windows file links like
-    “\\server\share\file”.  However, you are on a Linux box with the Windows
-    share mapped to “/mnt/smb/username/share”.  You would need to add an
-    entry to the end of the list (note that backslashes have already been
-    converted and the default entries convert “//server/share” to
-    “file:///server/share”) of the form:
-    “file:///server/share||file:///mnt/smb/username/share”.
-    <p>
-    If you need to debug your expressions, add the special (to URL Link) RegExp
-    flag “D”, as in: ‘from||to||D’.  Then, URL Link will open an alert window
-    telling you what your expression is (“Conversion:”), what the selection is
-    at that point (“From:”) and what the expression has done to the selection
-    (“To:”).
+
     <h3>將來</h3>
     <ul>
       <li>

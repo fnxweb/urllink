@@ -23,16 +23,16 @@
 <!ENTITY urllink-prefs-changelog "변경사항">
 <!ENTITY urllink-prefs-topmenu "문맥메뉴 상단에 표시">
 <!ENTITY urllink-prefs-topmenu-tip "문맥메뉴 내 URL Link 항목의 위치를 결정합니다">
-<!ENTITY urllink-prefs-list-tip "메뉴 항목의 목록; &apos;*&apos;는 선택한 것을 대신합니다.">
-<!ENTITY urllink-prefs-entry-tip "새 메뉴 항목; &apos;*&apos;는 선택한 것을 대신합니다.">
+<!ENTITY urllink-prefs-list-tip "메뉴 항목의 목록; '*'는 선택한 것을 대신합니다.">
+<!ENTITY urllink-prefs-entry-tip "새 메뉴 항목; '*'는 선택한 것을 대신합니다.">
 <!ENTITY urllink-help-title "URL Link 도움말">
 <!ENTITY urllink-changelog-title "URL Link 변경사항">
 <!ENTITY urllink-prefs-newwindow "새 창을 선호 (Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "새 창 열기를 기본으로 (&lt;Shift&gt;로 일반 동작)">
-<!ENTITY urllink-prefs-hidetab "&apos;탭으로 열기&apos; 선택사항 감추기">
-<!ENTITY urllink-prefs-hideopen "일반 &apos;열기&apos; 선택사항 감추기">
+<!ENTITY urllink-prefs-newwindow-tip "새 창 열기를 기본으로 (<Shift>로 일반 동작)">
+<!ENTITY urllink-prefs-hidetab "'탭으로 열기' 선택사항 감추기">
+<!ENTITY urllink-prefs-hideopen "일반 '열기' 선택사항 감추기">
 <!ENTITY urllink-prefs-firefoxonly "메뉴 제어 (Firefox 전용)">
 <!ENTITY urllink-prefs-bothoptions "선택 사항 열기 모두 표시">
-<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
-<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-editsandr "검색 후 대체 문장 편집">
+<!ENTITY urllink-prefs-sandr-list-tip "검색 후 대체 항목 목록. 형식은 '정규표현식||대체어'">
+<!ENTITY urllink-prefs-sandr-entry-tip "새 검색 후 대체 항목. 형식은 '정규표현식||대체어'">

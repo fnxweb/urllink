@@ -78,10 +78,37 @@
       </li>
     </ul>
 
+    <h3>Cerca i reemplaçament personalitzats</h3>
+    <p>
+    Podeu aplicar cerques i reemplaçaments a la selecció.
+    Els paràmetres per defecte són dos valors que ja existien en versions anteriors de l'URL Link
+    (per al Thunderbird) i que ara podeu afegir o reemplaçar. El reemplaçament
+    es realitza després d'eliminar el caràcter &amp; del davant, i després de convertir totes les
+    barres inverses (\) en barres inclinades (/).
+    <p>
+    El format de les entrades de la pestanya de preferències és 
+    “cercaExpReg||Reemplaçamet||indicadorsExpReg”. Els caràcters “||” del final i els indicadors
+    són opcionals; segurament, l'indicador (JavaScript) més habitual que utilitzareu és 'g' (que vol dir
+    “global” o “reemplaça-ho tot”). El reemplaçament pot contenir les referències de patró de cerca “$n”
+    habituals.
+    <p>
+    <i>Per exemple</i>, suposeu que rebeu un correu electrònic que conté enllaços a un fitxer del Windows com ara 
+    “\\servidor\recurs_compartit\fitxer”. Però esteu en un sistema Linux i el recurs compartit del Windows
+    està mapat com a “/mnt/smb/nom_usuari/recurs_compartit”. Per tant, caldria que afegíssiu una entrada
+    al final de la llista (tingueu en compte que les barres inverses ja s'han convertit i que les entrades
+    per defecte converteixen “//servidor/recurs_compartit” en “file:///servidor/recurs_conpartit”) amb aquest format:
+    “file:///servidor/recurs_compartit||file:///mnt/smb/nom_usuari/recurs_compartit”.
+    <p>
+    Si us cal depurar les expressions, afegiu l'indicador d'expressió regular especial (per a l'URL Link) 
+    “D”, per exemple: ‘from||to||D’. Així, l'URL Link obrirà una finestra d'alerta
+    que us indicarà quina és la vostra expressió (“Conversió:”), quina és la selecció en aquest
+    moment (“From:”) i què ha fet l'expressió a la selecció (“To:”).
+
     <h3>Canvis previstos</h3>
     <ul>
       <li>
-      Substitució automàtica de text per adreces URL, que l'usuari podrà personalitzar.
+      Ampliar la cerca i reemplaçament personalitzats quan sigui estable per permetre també executar codi 
+      JavaScript arbitrari a la selecció.
       </li>
       <li>
       Possiblement, es permetrà que alguns dels elements del submenú personalitzats es mostrin
@@ -102,16 +129,16 @@
       </li>
     </ul>
 
-    <h3>Licence</h3>
+    <h3>Llicència</h3>
     <p>
-    This source code, like the Mozilla source, is licensed under a
-    disjunctive tri-licence giving you the choice of one of the three
-    following sets of free software/open source licensing terms:
+    Aquest codi font, tal com el codi font del Mozilla, té una llicència triple disjuntiva
+    i us dóna l'opció d'escollir un dels conjunts següents de termes de llicència
+    de programari lliure i de codi obert:
     </p>
     <ul>
-      <li><a href="MPL-1.1.html">Mozilla Public License, version 1.1</a> or later</li>
-      <li><a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License, version 2.0</a> or later</li>
-      <li><a href="http://www.gnu.org/licenses/lgpl-2.1.html">GNU Lesser General Public License, version 2.1</a> or later</li>
+      <li><a href="MPL-1.1.html">Mozilla Public License, versió 1.1</a> o posterior</li>
+      <li><a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License, versió 2.0</a> o posterior</li>
+      <li><a href="http://www.gnu.org/licenses/lgpl-2.1.html">GNU Lesser General Public License, versió 2.1</a> o posterior</li>
     </ul>
 
     <p>
