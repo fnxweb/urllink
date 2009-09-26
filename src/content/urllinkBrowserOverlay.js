@@ -358,7 +358,7 @@ fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
     /* Determine prefix/suffix by splitting on '*' */
     mc.splitFormat( format, prefix, suffix );
 
-    if (!gContextMenu)
+    if (!mc.isDefined('gContextMenu')  ||  !gContextMenu)
     {
         /* Come in here for shortcut keys */
         lnk = me.GetBestSelection(gContextMenu);

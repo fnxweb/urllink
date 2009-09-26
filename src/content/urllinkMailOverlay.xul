@@ -49,10 +49,10 @@
 
     <!-- For keyconfig extension -->
     <commandset id="mainCommandSet">
-        <command id="cmd_urllinkopen" label="URLLink Open" oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
+        <command id="cmd_urllinkopen" label="URL Link open" oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
     </commandset>
     <commandset id="tasksCommands">
-        <command id="cmd_urllinkopen" label="URLLink Open" oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
+        <command id="cmd_urllinkopen" label="URL Link open" oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
     </commandset>
 
     <!-- ctrl-] / alt-ctrl-] -->

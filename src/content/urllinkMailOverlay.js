@@ -346,7 +346,6 @@ fnxweb.urllink.MailOpenLink = function(event,astab,format)  /* event/astab not u
     mc.splitFormat( format, prefix, suffix );
 
     /* TB2 has isTextSelected, TB3 has isContentSelected */
-    var isdef = mc.isDefined('gContextMenu');
     if (!mc.isDefined('gContextMenu')  ||
             gContextMenu  &&  (gContextMenu.isTextSelected || gContextMenu.isContentSelected))
     {

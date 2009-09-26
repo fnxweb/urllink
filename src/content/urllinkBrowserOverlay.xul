@@ -47,12 +47,20 @@
         <stringbundle id="urllink-strings" src="chrome://urllink/locale/urllink.properties"/>
     </stringbundleset>
 
+    <!-- For keyconfig extension -->
+    <commandset id="mainCommandSet">
+        <command id="cmd_urllinkopen" label="URL Link open" oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'','')"/>
+        <command id="cmd_urllinkopentab" label="URL Link open in tab" oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'','')"/>
+    </commandset>
+    <commandset id="tasksCommands">
+        <command id="cmd_urllinkopen" label="URL Link open" oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'','')"/>
+        <command id="cmd_urllinkopentab" label="URL Link Open in tab" oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'','')"/>
+    </commandset>
+
     <!-- ctrl-] / alt-ctrl-] -->
     <keyset>
-        <key id="urllinkBrowserOpenKey" modifiers="control" key="]"
-            oncommand="fnxweb.urllink.BrowserOpenLink(event,0,'','')"/>
-        <key id="urllinkBrowserTabOpenKey" modifiers="alt control" key="]"
-            oncommand="fnxweb.urllink.BrowserOpenLink(event,1,'','')"/>
+        <key id="urllinkBrowserOpenKey" modifiers="control" key="]" command="cmd_urllinkopen"/>
+        <key id="urllinkBrowserTabOpenKey" modifiers="alt control" key="]" command="cmd_urllinkopentab"/>
     </keyset>
 
 
