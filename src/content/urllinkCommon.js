@@ -238,6 +238,13 @@ fnxweb.urllink.common =
     },
 
 
+    /* Check variable is defined (used for ContextMenu against key chortcuts */
+    isDefined: function ( variable )
+    {
+        return (typeof(window[variable]) == 'undefined')? false : true;
+    },
+
+
     /* Tidy up selected string */
     tidySelection: function ( str )
     {

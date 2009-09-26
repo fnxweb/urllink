@@ -191,14 +191,15 @@ fnxweb.urllink.selectionString = function(sel)
 /* Raw version of comm/nsContextMenu.js:searchSelected
  * Now using mail/base/content/nsContextMenu.js
  */
-fnxweb.urllink.rawSearchSelected = function(context)
+fnxweb.urllink.rawSearchSelected = function()
 {
     var focusedWindow = document.commandDispatcher.focusedWindow;
     /* var searchStr = focusedWindow.__proto__.getSelection.call(focusedWindow); */
     var searchStr = focusedWindow.getSelection();
     /* searchStr = searchStr.toString(); */
     searchStr = fnxweb.urllink.selectionString(searchStr);
-    searchStr = fnxweb.urllink.common.tidySelection(searchStr);
+    if (searchStr != '')
+        searchStr = fnxweb.urllink.common.tidySelection(searchStr);
     return searchStr;
 }
 
@@ -255,8 +256,9 @@ fnxweb.urllink.MailContext = function()
             var sel;
             if (gContextMenu.isTextSelected  ||  gContextMenu.isContentSelected)
             {
-                sel = me.rawSearchSelected(gContextMenu);
-                sel = me.unmangleURL(sel,false);
+                sel = me.rawSearchSelected();
+                if (sel != '')
+                    sel = me.unmangleURL(sel,false);
             }
             else if (gContextMenu.onLink)
             {
@@ -334,24 +336,29 @@ fnxweb.urllink.MailContext = function()
 fnxweb.urllink.MailOpenLink = function(event,astab,format)  /* event/astab not used in mailer */
 {
     var me = fnxweb.urllink;
+    var mc = me.common;
     var wasLink = false;
     var selURL;
     var prefix = {val:''};
     var suffix = {val:''};
 
     /* Determine prefix/suffix by splitting on '*' */
-    fnxweb.urllink.common.splitFormat( format, prefix, suffix );
+    mc.splitFormat( format, prefix, suffix );
 
     /* TB2 has isTextSelected, TB3 has isContentSelected */
-    if (gContextMenu.isTextSelected  ||  gContextMenu.isContentSelected)
+    var isdef = mc.isDefined('gContextMenu');
+    if (!mc.isDefined('gContextMenu')  ||
+            gContextMenu  &&  (gContextMenu.isTextSelected || gContextMenu.isContentSelected))
     {
-        selURL = me.rawSearchSelected(gContextMenu);
+        selURL = me.rawSearchSelected();
     }
     else if (gContextMenu.onLink)
     {
         wasLink = true;
         selURL = gContextMenu.link.href;
     }
+    if (selURL == '')
+        return;
     selURL = me.unmangleURL(selURL,wasLink);
     me.rawOpenNewWindowWith( fnxweb.urllink.common.fixURL( prefix.val + selURL + suffix.val ) );
 }
