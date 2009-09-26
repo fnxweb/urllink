@@ -31,6 +31,7 @@
 <!ENTITY urllink-prefs-newwindow-tip "Open new window by default (as &lt;Shift&gt; normally does)">
 <!ENTITY urllink-prefs-hidetab "Hide the &apos;open in tab&apos; options">
 <!ENTITY urllink-prefs-hideopen "Hide the normal &apos;open&apos; options">
+<!ENTITY urllink-prefs-onlyurls "Only work when selection looks like a URL">
 <!ENTITY urllink-prefs-firefoxonly "Menu control (Firefox only)">
 <!ENTITY urllink-prefs-bothoptions "Show both open options">
 <!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">

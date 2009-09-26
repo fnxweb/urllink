@@ -25,7 +25,7 @@ if (!fnxweb.urllink)  fnxweb.urllink = {};
 fnxweb.urllink.common =
 {
     /* Current version;  get this programatically? */
-    version : "2.03.1",
+    version : "2.03.2",
 
     /* Access to moz */
     nsIPrefBranch : false,
