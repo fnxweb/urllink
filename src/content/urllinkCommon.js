@@ -157,7 +157,9 @@ fnxweb.urllink.common =
             {
                 var intro = stringdb.getString('intro-message');
                 this.prefs.setBoolPref('firsttime',true);
-                alert(intro);
+                setTimeout( function() {    /* allow delay for MacOS to size main window */
+                        alert(intro);
+                        }, 1 );
             }
         }
         else
@@ -174,8 +176,11 @@ fnxweb.urllink.common =
 
             /* Show changelog if there have been major changes */
             if (lastversion != version)
-                openDialog('chrome://urllink/content/urllinkChangelog.xul','URL Link - Latest Changes',
-                        'dialog=no,modal=no,resizable=yes,width=640,height=512');
+                setTimeout( function() {    /* allow delay for MacOS to size main window */
+                        openDialog(
+                            'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
+                            'dialog=no,modal=no,resizable=yes,width=640,height=512');
+                        }, 1 );
         }
 
         this.prefs.setCharPref('lastversion',this.version);
