@@ -25,7 +25,7 @@ if (!fnxweb.urllink)  fnxweb.urllink = {};
 fnxweb.urllink.common =
 {
     /* Current version;  get this programatically? */
-    version : "2.03.2",
+    version : "2.03.3",
 
     /* Access to moz */
     nsIPrefBranch : false,
@@ -83,7 +83,7 @@ fnxweb.urllink.common =
         if (!this.checkedIsInThunderbird)
         {
             this.checkedIsInThunderbird = true;
-            if (navigator.userAgent.search(/Thunderbird/gi) != -1)
+            if (navigator.userAgent.search(/Thunderbird/gi) != -1  ||  navigator.userAgent.search(/Shredder/gi) != -1)
                 this.isInThunderbird = true;
         }
         return this.isInThunderbird;

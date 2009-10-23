@@ -212,7 +212,12 @@ fnxweb.urllink.loadPrefs = function()
         var n = 0;
         while (mc.prefs.getPrefType("submenu."+n) == mc.nsIPrefBranch.PREF_STRING)
         {
-            me.menuitemsListbox.appendItem( mc.prefs.getCharPref("submenu."+n), "" );
+            try
+            {
+                me.menuitemsListbox.appendItem( mc.prefs.getCharPref("submenu."+n), "" );
+            }
+            catch (err)
+            {}
             n++;
         }
     }
@@ -235,7 +240,12 @@ fnxweb.urllink.loadPrefs = function()
         var n = 0;
         while (mc.prefs.getPrefType("sandr."+n) == mc.nsIPrefBranch.PREF_STRING)
         {
-            me.sandritemsListbox.appendItem( mc.prefs.getCharPref("sandr."+n), "" );
+            try
+            {
+                me.sandritemsListbox.appendItem( mc.prefs.getCharPref("sandr."+n), "" );
+            }
+            catch (err)
+            {}
             n++;
         }
     }
