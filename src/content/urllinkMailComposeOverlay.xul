@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- $Id$ -->
+<!-- $Id: urllinkMailOverlay.xul 818 2009-09-26 12:53:42Z neil $ -->
 <!-- ***** BEGIN LICENSE BLOCK *****
    - Version: MPL 1.1/GPL 2.0/LGPL 2.1
    -
@@ -37,7 +37,7 @@
 %urllinkDTD;
 ]>
 
-<overlay id="urllinkMailOverlay"
+<overlay id="urllinkMailComposeOverlay"
     xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
     <script type="application/x-javascript" src="chrome://urllink/content/urllinkCommon.js"/>
@@ -61,22 +61,23 @@
     </keyset>
 
 
-    <!-- ThunderBird <= 2.0 -->
-    <popup id="messagePaneContext" insertafter="context-copy">
-        <!-- top version -->
-        <!-- <menuseparator id="urllink-mail-sep-0-top" insertbefore="messagePaneContext-replySender"/> -->
+    <!-- ThunderBird <= 2.0 - compose -->
+    <popup id="msgComposeContext"> <!-- insertafter="context-copy" -->
+        <!-- top version (bottom only, though) -->
+
+        <menuseparator id="urllink-mail-sep-1-top"/> <!-- insertbefore="messagePaneContext-replySender" -->
 
         <menuitem id="urllink-mail-open-link-top"
             label="&popup-urllink-open-link.label;"
             accesskey="&popup-urllink-open-link.shortcut;"
             key="urllink-mail-open-link-key"
-            oncommand="fnxweb.urllink.MailOpenLink(event,'','')"
-            insertbefore="messagePaneContext-replySender"/>
+            oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
+            <!-- insertbefore="messagePaneContext-replySender" -->
 
         <menu id="urllink-mail-open-link-as-top"
             label="&popup-urllink-open-link-as.label;"
-            accesskey="&popup-urllink-open-link-as.shortcut;"
-            insertbefore="messagePaneContext-replySender">
+            accesskey="&popup-urllink-open-link-as.shortcut;">
+            <!-- insertbefore="messagePaneContext-replySender" -->
             <menupopup id="urllink-mail-open-link-as-popup-top">
                 <menuitem
                     label="&popup-urllink-open-as-is.label;"
@@ -86,8 +87,6 @@
                 <menuseparator/>
             </menupopup>
         </menu>
-
-        <menuseparator id="urllink-mail-sep-1-top" insertbefore="messagePaneContext-replySender"/>
 
         <!-- bottom version -->
         <menuseparator id="urllink-mail-sep-0-bottom"/>
@@ -111,62 +110,6 @@
             </menupopup>
         </menu>
 
-        <!-- <menuseparator id="urllink-mail-sep-1" insertbefore="messagePaneContext-replySender"/> -->
-    </popup>
-
-
-    <!-- ThunderBird >= 3.0 -->
-    <popup id="mailContext" insertafter="mailContext-copy">
-        <!-- top version -->
-        <!-- <menuseparator id="urllink-mail-sep-0-top" insertbefore="mailContext-replySender"/> -->
-
-        <menuitem id="urllink-mail-open-link-top"
-            label="&popup-urllink-open-link.label;"
-            accesskey="&popup-urllink-open-link.shortcut;"
-            key="urllink-mail-open-link-key"
-            oncommand="fnxweb.urllink.MailOpenLink(event,'','')"
-            insertbefore="mailContext-replySender"/>
-
-        <menu id="urllink-mail-open-link-as-top"
-            label="&popup-urllink-open-link-as.label;"
-            accesskey="&popup-urllink-open-link-as.shortcut;"
-            insertbefore="mailContext-replySender">
-            <menupopup id="urllink-mail-open-link-as-popup-top">
-                <menuitem
-                    label="&popup-urllink-open-as-is.label;"
-                    accesskey="&popup-urllink-open-as-is.shortcut;"
-                    key="urllink-mail-open-link-key"
-                    oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-                <menuseparator/>
-            </menupopup>
-        </menu>
-
-        <menuseparator id="urllink-mail-sep-0-top" insertbefore="mailContext-replySender"/>
-
-        <!-- bottom version -->
-        <!-- Seems to be a redundant sep alerady there ... -->
-        <!-- <menuseparator id="urllink-mail-sep-0-bottom"/> -->
-
-        <menuitem id="urllink-mail-open-link-bottom"
-            label="&popup-urllink-open-link.label;"
-            accesskey="&popup-urllink-open-link.shortcut;"
-            key="urllink-mail-open-link-key"
-            oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-
-        <menu id="urllink-mail-open-link-as-bottom"
-            label="&popup-urllink-open-link-as.label;"
-            accesskey="&popup-urllink-open-link-as.shortcut;">
-            <menupopup id="urllink-mail-open-link-as-popup-bottom">
-                <menuitem
-                    label="&popup-urllink-open-as-is.label;"
-                    accesskey="&popup-urllink-open-as-is.shortcut;"
-                    key="urllink-mail-open-link-key"
-                    oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-                <menuseparator/>
-            </menupopup>
-        </menu>
-
-        <!-- <menuseparator id="urllink-mail-sep-1" insertbefore="mailContext-replySender"/> -->
     </popup>
 
 </overlay>

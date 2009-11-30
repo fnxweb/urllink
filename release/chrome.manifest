@@ -3,6 +3,7 @@
 content urllink jar:chrome/urllink.jar!/content/
 overlay chrome://browser/content/browser.xul chrome://urllink/content/urllinkBrowserOverlay.xul
 overlay chrome://messenger/content/mailWindowOverlay.xul chrome://urllink/content/urllinkMailOverlay.xul
+overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://urllink/content/urllinkMailComposeOverlay.xul
 
 locale urllink ca-AD jar:chrome/urllink.jar!/locale/ca-AD/
 locale urllink cs-CZ jar:chrome/urllink.jar!/locale/cs-CZ/

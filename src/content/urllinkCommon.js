@@ -25,7 +25,7 @@ if (!fnxweb.urllink)  fnxweb.urllink = {};
 fnxweb.urllink.common =
 {
     /* Current version;  get this programatically? */
-    version : "2.03.3",
+    version : "2.03.4",
 
     /* Access to moz */
     nsIPrefBranch : false,
@@ -253,12 +253,13 @@ fnxweb.urllink.common =
     /* Tidy up selected string */
     tidySelection: function ( str )
     {
-        str = str.replace('\xAD','');               /* seen in Google 'did you mean' links */
-        str = str.replace(/\t/g, ' ');              /* tabs to space */
-        str = str.replace(/^[\n\r ]+/, '');         /* strip leading space */
-        str = str.replace(/((\n|\r)[> ]*)+/g, '');  /* remove standard quote marks */
-        str = str.replace(/[\n\r ]+$/, '');         /* strip spaces at the end */
-        str = str.replace(/\\/g,'/');               /* backslash to forward slash */
+        str = str.replace('\xAD','');                   /* seen in Google 'did you mean' links */
+        str = str.replace(/\t/g, ' ');                  /* tabs to space */
+        str = str.replace(/^[\n\r ]+/, '');             /* strip leading space */
+        str = str.replace(/((\n|\r) *>[> ]*)+/g, '');   /* remove standard quote marks */
+        str = str.replace(/[\n\r ]+$/, '');             /* strip spaces at the end */
+        str = str.replace(/\\/g,'/');                   /* backslash to forward slash */
+        str = str.replace(/(\n|\r| )+/g, ' ');          /* amy remaining multiple newlines/spaces to single spaces */
         return str;
     },
 

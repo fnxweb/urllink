@@ -24,6 +24,8 @@ fnxweb.urllink.MailInit = function()
     var context = document.getElementById('messagePaneContext');    /* TB 2 */
     if (!context)
         context = document.getElementById('mailContext');           /* TB 3 */
+    if (!context)
+        context = document.getElementById('msgComposeContext');     /* TB 2 compose */
     if (context)
         context.addEventListener('popupshowing',fnxweb.urllink.MailContext,false);
 }
@@ -94,7 +96,12 @@ fnxweb.urllink.spanString = function(span)
 fnxweb.urllink.addNewText = function( text, newtext )
 {
     /* Add spaces in between fragments, unless fragment starts a new line */
+    /* Actually, don't;  seem to get text split in TB3 into fragments that then
+     * don't want spaces inserted between them.  Can't remember why I thought this was
+     * a good idea, so remove it until that use case surfaces again, then try tos
+     * differentiate!
     var textsep = (text.val == ''  ||  newtext.search(/^\n/) == 0  ?  ''  :  ' ');
+     */
 
     /* If we have a \n\r span in our URL, it's a link that's been broken across lines.
      * Now, Outlook generally just splits links, and will often lose any split space
@@ -111,7 +118,7 @@ fnxweb.urllink.addNewText = function( text, newtext )
         /* Have a newline, so make a tentive version of what we want */
         var temp = text.val + newtext;
         /* remove standard quote marks, as they'll have bogus spaces in */
-        temp = temp.replace(/((\n|\r)[> ]*)+/g, '\n');
+        temp = temp.replace(/((\n|\r) *>[> ]*)+/g, '\n');
         temp = temp.replace(/^[\n\r ]+/, '');         /* strip leading space */
         if (temp.search(/ /) != -1)
         {
@@ -123,7 +130,7 @@ fnxweb.urllink.addNewText = function( text, newtext )
     }
 
     /* Do it */
-    text.val += textsep + newtext;
+    text.val += /* textsep + */ newtext;
 }
 
 
@@ -244,7 +251,7 @@ fnxweb.urllink.MailContext = function()
     var mc = me.common;
     var isTextOrUrlSelection = false, isURL = false;
 
-    if (gContextMenu)
+    if (mc.isDefined('gContextMenu'))
     {
         /* TB2 has isTextSelected, TB3 has isContentSelected */
         isTextOrUrlSelection = ( gContextMenu.isTextSelected || gContextMenu.onLink || gContextMenu.isContentSelected );
@@ -268,10 +275,20 @@ fnxweb.urllink.MailContext = function()
                 if (sel.search(/^mailto:/) != 0)
                     isTextOrUrlSelection = false;
             }
-            if (isTextOrUrlSelection && sel.search(/^(mailto:|\w+:\/\/|www\.|ftp\.|.*@)/) == 0)
-                isURL = true;
         }
     }
+    else
+    {
+        /* No context menu item (?);  come here for Compose window popup */
+        sel = me.rawSearchSelected();
+        if (sel != '')
+        {
+            isTextOrUrlSelection = true;
+            sel = me.unmangleURL(sel,false);
+        }
+    }
+    if (isTextOrUrlSelection && sel.search(/^(mailto:|\w+:\/\/|www\.|ftp\.|.*@)/) == 0)
+        isURL = true;
 
     /* Visible if selection and looks like URL */
     for (var i=0; i<mc.MailMenuItems.length; i++)
