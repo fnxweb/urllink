@@ -103,6 +103,13 @@ fnxweb.urllink.addNewText = function( text, newtext )
     var textsep = (text.val == ''  ||  newtext.search(/^\n/) == 0  ?  ''  :  ' ');
      */
 
+    /* If we've been passed some HTML, then certain characters will have been escaped
+     * by Thunderbird;  we'll have been passed the raw 'fixed' HTML as opposed to the
+     * display text, which is wht we want, so undo the escape.  TBD - there may
+     * be more that just '&' that we care about
+     */
+    newtext = newtext.replace( /&amp;/g, '&' );
+
     /* If we have a \n\r span in our URL, it's a link that's been broken across lines.
      * Now, Outlook generally just splits links, and will often lose any split space
      * in lieu of the newline.  So we can't tell whether the thing was split 'cos it

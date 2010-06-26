@@ -254,6 +254,7 @@ fnxweb.urllink.common =
     tidySelection: function ( str )
     {
         str = str.replace('\xAD','');                   /* seen in Google 'did you mean' links */
+        str = str.replace('\xA0','');                   /* seen in Thunderbird compose window */
         str = str.replace(/\t/g, ' ');                  /* tabs to space */
         str = str.replace(/^[\n\r ]+/, '');             /* strip leading space */
         str = str.replace(/((\n|\r) *>[> ]*)+/g, '');   /* remove standard quote marks */
