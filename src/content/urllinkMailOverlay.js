@@ -98,7 +98,7 @@ fnxweb.urllink.addNewText = function( text, newtext )
     /* Add spaces in between fragments, unless fragment starts a new line */
     /* Actually, don't;  seem to get text split in TB3 into fragments that then
      * don't want spaces inserted between them.  Can't remember why I thought this was
-     * a good idea, so remove it until that use case surfaces again, then try tos
+     * a good idea, so remove it until that use case surfaces again, then try to
      * differentiate!
     var textsep = (text.val == ''  ||  newtext.search(/^\n/) == 0  ?  ''  :  ' ');
      */
@@ -119,13 +119,16 @@ fnxweb.urllink.addNewText = function( text, newtext )
      * have split on a word if it could have done so no a space).  Else, if no spaces,
      * we'll presume it was a long URL that just been split 'cos Outlook is rubbish,
      * and join the frags with no editing.
+     * Since we're dealing with spaces/new-lines at this point, we also need to copy the
+     * quote-removal code from common, as that needs to be dnoe herebefore we can remove
+     * any rogue newlines:  we remove those here as they're no longer useful, but common
+     * will later on try to convert them to spaces (as that's what Firefox needs()).
      */
+    newtext = newtext.replace(/((\n|\r) *>[> ]*)+/g, '\n');
     if (newtext.search(/[\n\r]/) != -1)
     {
         /* Have a newline, so make a tentive version of what we want */
         var temp = text.val + newtext;
-        /* remove standard quote marks, as they'll have bogus spaces in */
-        temp = temp.replace(/((\n|\r) *>[> ]*)+/g, '\n');
         temp = temp.replace(/^[\n\r ]+/, '');         /* strip leading space */
         if (temp.search(/ /) != -1)
         {
@@ -135,6 +138,9 @@ fnxweb.urllink.addNewText = function( text, newtext )
             newtext = newtext.replace( /(^|[^ ])[\n\r]+/g, "$1 \n" );
         }
     }
+
+    /* Now remove any newlines left that will otherwise end up as spaces */
+    newtext = newtext.replace( /[\n\r]+/g, '' );
 
     /* Do it */
     text.val += /* textsep + */ newtext;
