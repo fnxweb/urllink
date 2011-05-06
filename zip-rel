@@ -1,10 +1,10 @@
 #!/bin/bash
 /bin/rm -f ../urllink.xpi
-installver=$(grep em:version install.rdf | sed -e 's/^.*version>\(.*\)<.*/\1/')
-configver=$(grep version\ : ../src/content/urllinkCommon.js | sed -e 's/^.*version : "\(.*\)".*/\1/')
-if [ $installver != "$configver" ];  then
-    echo "ERROR: versions mismatch in ../src/content/urllinkCommon.js ($configver) and install.rdf ($installver)"
-    exit 1
-else
-    zip -vrX9 ../urllink.xpi $(find . -type f | grep -v '\.svn')
-fi
+##installver=$(grep em:version install.rdf | sed -e 's/^.*version>\(.*\)<.*/\1/')
+##configver=$(grep version\ : chrome/urllink/content/urllinkCommon.js | sed -e 's/^.*version : "\(.*\)".*/\1/')
+##if [ $installver != "$configver" ];  then
+    ##echo "ERROR: versions mismatch in chrome/urllink/content/urllinkCommon.js ($configver) and install.rdf ($installver)"
+    ##exit 1
+##else
+    zip -vrX9 ../urllink.xpi $(find . -type f | grep -v -e '\.svn' -e babelzilla)
+##fi

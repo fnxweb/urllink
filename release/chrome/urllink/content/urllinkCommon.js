@@ -24,8 +24,9 @@ if (!fnxweb.urllink)  fnxweb.urllink = {};
 
 fnxweb.urllink.common =
 {
-    /* Current version;  get this programatically? */
-    version : "2.03.4",
+    /* Current version */
+    version : '',
+    addonID : '{139a120b-c2ea-41d2-bf70-542d9f063dfd}',
 
     /* Access to moz */
     nsIPrefBranch : false,
@@ -129,6 +130,29 @@ fnxweb.urllink.common =
     /* Minor annoyance */
     doneInitCheck : false,
 
+    checkVersion : function (myversion)
+    {
+        this.version = myversion;
+
+        /* See if major version has changed
+         * Firstly, fake an entry if not yet stored version
+         */
+        if (!this.prefs.prefHasUserValue('lastversion'))
+            this.prefs.setCharPref('lastversion','0.00.0');
+
+        /* Now get major versions */
+        var lastversion = this.prefs.getCharPref('lastversion').replace(/^([0-9]+\.[0-9]+).*/,'$1');
+        var version = this.version.replace(/^([0-9]+\.[0-9]+).*/,'$1');
+
+        /* Show changelog if there have been major changes */
+        if (lastversion != version)
+            setTimeout( function() {    /* allow delay for MacOS to size main window */
+                    openDialog(
+                        'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
+                        'dialog=no,modal=no,resizable=yes,width=640,height=512');
+                    }, 1 );
+    },
+
     Init: function ()
     {
         if (this.doneInitCheck)
@@ -164,23 +188,27 @@ fnxweb.urllink.common =
         }
         else
         {
-            /* See if major version has changed
-             * Firstly, fake an entry if not yet stored version
+            /* Async. req. for our version so we can check it & maybe produce a changelog.
+            /* http://siphon9.net/loune/2010/07/getting-your-firefox-extension-version-number/
              */
-            if (!this.prefs.prefHasUserValue('lastversion'))
-                this.prefs.setCharPref('lastversion','0.00.0');
+            var ascope = { };
 
-            /* Now get major versions */
-            var lastversion = this.prefs.getCharPref('lastversion').replace(/^([0-9]+\.[0-9]+).*/,'$1');
-            var version = this.version.replace(/^([0-9]+\.[0-9]+).*/,'$1');
+            if (typeof(Components.classes["@mozilla.org/extensions/manager;1"]) != 'undefined')
+            {
+                var extMan = Components.classes["@mozilla.org/extensions/manager;1"].
+                    getService(Components.interfaces.nsIExtensionManager);
+                var ext = extMan.getItemForID(this.addonID);
+                ext.QueryInterface(Components.interfaces.nsIUpdateItem);
+                this.checkVersion(ext.version);
+                return;
+            }
 
-            /* Show changelog if there have been major changes */
-            if (lastversion != version)
-                setTimeout( function() {    /* allow delay for MacOS to size main window */
-                        openDialog(
-                            'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
-                            'dialog=no,modal=no,resizable=yes,width=640,height=512');
-                        }, 1 );
+            if (typeof(Components.utils) != 'undefined' && typeof(Components.utils.import) != 'undefined')
+            {
+                Components.utils.import("resource://gre/modules/AddonManager.jsm", ascope);
+            }
+
+            ascope.AddonManager.getAddonByID(this.addonID, function (addon) {fnxweb.urllink.common.checkVersion(addon.version);} );
         }
 
         this.prefs.setCharPref('lastversion',this.version);

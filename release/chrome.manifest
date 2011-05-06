@@ -1,32 +1,32 @@
 # $Id$
 
-content urllink jar:chrome/urllink.jar!/content/
+content urllink chrome/urllink/content/
 overlay chrome://browser/content/browser.xul chrome://urllink/content/urllinkBrowserOverlay.xul
 overlay chrome://messenger/content/mailWindowOverlay.xul chrome://urllink/content/urllinkMailOverlay.xul
 overlay chrome://messenger/content/messengercompose/messengercompose.xul chrome://urllink/content/urllinkMailComposeOverlay.xul
 
-locale urllink ca-AD jar:chrome/urllink.jar!/locale/ca-AD/
-locale urllink cs-CZ jar:chrome/urllink.jar!/locale/cs-CZ/
-locale urllink da-DK jar:chrome/urllink.jar!/locale/da-DK/
-locale urllink de-DE jar:chrome/urllink.jar!/locale/de-DE/
-locale urllink en-US jar:chrome/urllink.jar!/locale/en-US/
-locale urllink es-ES jar:chrome/urllink.jar!/locale/es-ES/
-locale urllink fi-FI jar:chrome/urllink.jar!/locale/fi-FI/
-locale urllink fr-FR jar:chrome/urllink.jar!/locale/fr-FR/
-locale urllink hr-HR jar:chrome/urllink.jar!/locale/hr-HR/
-locale urllink hu-HU jar:chrome/urllink.jar!/locale/hu-HU/
-locale urllink it-IT jar:chrome/urllink.jar!/locale/it-IT/
-locale urllink ja-JP jar:chrome/urllink.jar!/locale/ja-JP/
-locale urllink ko-KR jar:chrome/urllink.jar!/locale/ko-KR/
-locale urllink nl-NL jar:chrome/urllink.jar!/locale/nl-NL/
-locale urllink pl-PL jar:chrome/urllink.jar!/locale/pl-PL/
-locale urllink pt-BR jar:chrome/urllink.jar!/locale/pt-BR/
-locale urllink ru-RU jar:chrome/urllink.jar!/locale/ru-RU/
-locale urllink sk-SK jar:chrome/urllink.jar!/locale/sk-SK/
-locale urllink sr-RS jar:chrome/urllink.jar!/locale/sr-RS/
-locale urllink tr-TR jar:chrome/urllink.jar!/locale/tr-TR/
-locale urllink uk-UA jar:chrome/urllink.jar!/locale/uk-UA/
-locale urllink zh-CN jar:chrome/urllink.jar!/locale/zh-CN/
-locale urllink zh-TW jar:chrome/urllink.jar!/locale/zh-TW/
+locale urllink ca-AD chrome/locale/ca-AD/
+locale urllink cs-CZ chrome/locale/cs-CZ/
+locale urllink da-DK chrome/locale/da-DK/
+locale urllink de-DE chrome/locale/de-DE/
+locale urllink en-US chrome/locale/en-US/
+locale urllink es-ES chrome/locale/es-ES/
+locale urllink fi-FI chrome/locale/fi-FI/
+locale urllink fr-FR chrome/locale/fr-FR/
+locale urllink hr-HR chrome/locale/hr-HR/
+locale urllink hu-HU chrome/locale/hu-HU/
+locale urllink it-IT chrome/locale/it-IT/
+locale urllink ja-JP chrome/locale/ja-JP/
+locale urllink ko-KR chrome/locale/ko-KR/
+locale urllink nl-NL chrome/locale/nl-NL/
+locale urllink pl-PL chrome/locale/pl-PL/
+locale urllink pt-BR chrome/locale/pt-BR/
+locale urllink ru-RU chrome/locale/ru-RU/
+locale urllink sk-SK chrome/locale/sk-SK/
+locale urllink sr-RS chrome/locale/sr-RS/
+locale urllink tr-TR chrome/locale/tr-TR/
+locale urllink uk-UA chrome/locale/uk-UA/
+locale urllink zh-CN chrome/locale/zh-CN/
+locale urllink zh-TW chrome/locale/zh-TW/
 
 # skin urllink classic/1.0 skin/

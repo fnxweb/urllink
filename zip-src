@@ -1,3 +1,0 @@
-#!/bin/bash
-/bin/rm -f ../release/chrome/urllink.jar
-zip -vrX9 ../release/chrome/urllink.jar $(find . -type f | grep -v -e '\.svn' -e babelzilla)
