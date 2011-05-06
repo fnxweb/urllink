@@ -151,6 +151,8 @@ fnxweb.urllink.common =
                         'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
                         'dialog=no,modal=no,resizable=yes,width=640,height=512');
                     }, 1 );
+
+        this.prefs.setCharPref('lastversion',this.version);
     },
 
     Init: function ()
@@ -210,8 +212,6 @@ fnxweb.urllink.common =
 
             ascope.AddonManager.getAddonByID(this.addonID, function (addon) {fnxweb.urllink.common.checkVersion(addon.version);} );
         }
-
-        this.prefs.setCharPref('lastversion',this.version);
     },
 
 
