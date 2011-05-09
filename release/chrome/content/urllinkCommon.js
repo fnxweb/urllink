@@ -58,7 +58,8 @@ fnxweb.urllink.common =
         'urllink-mail-open-link-as-popup' ],
 
     isInThunderbird : false,
-    checkedIsInThunderbird : false,
+    isInFirefox4Plus : false,
+    checkedApplication : false,
 
 
     /* Menu defaults */
@@ -79,15 +80,20 @@ fnxweb.urllink.common =
         ],
 
 
-    inThunderbird: function ()
+    checkApplication: function ()
     {
-        if (!this.checkedIsInThunderbird)
+        if (!this.checkedApplication)
         {
-            this.checkedIsInThunderbird = true;
+            this.checkedApplication = true;
             if (navigator.userAgent.search(/Thunderbird/gi) != -1  ||  navigator.userAgent.search(/Shredder/gi) != -1)
                 this.isInThunderbird = true;
+            if (navigator.userAgent.search(/Firefox\/([0-9])\./gi) != -1)
+            {
+                var vn = parseInt(navigator.userAgent.replace(/.*Firefox\/([0-9]+)\..*/gi,'$1'));
+                if (vn >= 4)
+                    this.isInFirefox4Plus = true;
+            }
         }
-        return this.isInThunderbird;
     },
 
 
@@ -173,7 +179,7 @@ fnxweb.urllink.common =
         this.prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefService).
             getBranch('extensions.urllink.');
 
-        this.inThunderbird();
+        this.checkApplication();
 
         if (!this.prefs.prefHasUserValue('firsttime'))
         {
