@@ -73,7 +73,7 @@ fnxweb.urllink.GetBestSelection = function(context)
 fnxweb.urllink.BrowserContext = function()
 {
     var me = fnxweb.urllink;
-    var isLinkOrUrlSelection = false, isURL = false;
+    var isLinkOrUrlSelection = false, isURL = false, isSimpleUrl = false;
 
     if (gContextMenu)
     {
@@ -87,6 +87,14 @@ fnxweb.urllink.BrowserContext = function()
             if (gContextMenu.isTextSelected)
             {
                 sel = me.GetBestSelection(gContextMenu);
+                /* Firefox 4 now does a little of what we do for simple & obvious URLs like "google.com";  not sure what it's
+                 * logic is, but we at least want to try to not duplicate menu options where possible.  So for non-line-split text
+                 * selections that start with http[s]/ftp (by protocol or hostname), neglect to proffer the "Open Selection"
+                 * options.  We'll always proffer the amendment submenus though, to allow for fixing up (e.g., "google.com" as
+                 * opposed to "www.google.com").
+                 */
+                if (sel.search(/^[ \t\n]*[a-zA-Z0-9_.]+[ \t\n]*$/) == 0)
+                    isSimpleUrl = true;
             }
             else if (gContextMenu.onTextInput)
             {
@@ -122,21 +130,24 @@ fnxweb.urllink.BrowserContext = function()
     var hideopen  = fnxweb.urllink.common.prefs.getBoolPref("hideopen");
 
     /* Main menu buttons visible if selection and looks like URL */
+    var anyVisible = false;
     for (var i=0; i<fnxweb.urllink.common.BrowserMenuItems.length; i++)
     {
         var menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuItems[i] + fnxweb.urllink.common.menuPos());
         if (menuitem)
         {
-            if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0))
+            if (fnxweb.urllink.common.isInFirefox4Plus && isSimpleUrl)
+                menuitem.hidden = true;
+            else if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0))
                 menuitem.hidden = true;
             else
                 menuitem.hidden = !(isLinkOrUrlSelection && isURL);
         }
         menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuItems[i] + fnxweb.urllink.common.menuPosAlt());
         if (menuitem)
-        {
             menuitem.hidden = true;
-        }
+        if (!menuitem.hidden)
+            anyVisible = true;
     }
 
     /* Alternate submenus visible if selection and doesn't look like URL */
@@ -162,9 +173,9 @@ fnxweb.urllink.BrowserContext = function()
         }
         menuitem = document.getElementById(fnxweb.urllink.common.AlternateBrowserMenuItems[i] + fnxweb.urllink.common.menuPosAlt());
         if (menuitem)
-        {
             menuitem.hidden = true;
-        }
+        if (!menuitem.hidden)
+            anyVisible = true;
     }
 
     /* Hide separators if both of the above hidden */
@@ -173,16 +184,10 @@ fnxweb.urllink.BrowserContext = function()
         {
             var menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuSep + i + fnxweb.urllink.common.menuPos());
             if (menuitem)
-            {
-                menuitem.hidden =
-                    (!(isLinkOrUrlSelection && isURL))  &&
-                    (!isLinkOrUrlSelection || isURL);
-            }
+                menuitem.hidden = !anyVisible;
             menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuSep + i + fnxweb.urllink.common.menuPosAlt());
             if (menuitem)
-            {
                 menuitem.hidden = true;
-            }
         }
     }
 }
