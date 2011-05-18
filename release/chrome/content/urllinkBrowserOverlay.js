@@ -92,8 +92,10 @@ fnxweb.urllink.BrowserContext = function()
                  * selections that start with http[s]/ftp (by protocol or hostname), neglect to proffer the "Open Selection"
                  * options.  We'll always proffer the amendment submenus though, to allow for fixing up (e.g., "google.com" as
                  * opposed to "www.google.com").
+                 * A really long URL regex is at http://flanders.co.nz/2009/11/08/a-good-url-regular-expression-repost/
+                 * ... but this should suffice for our purposes!
                  */
-                if (sel.search(/^[ \t\n]*[a-zA-Z0-9_.]+[ \t\n]*$/) == 0)
+                if (sel.search(/^[ \t\n]*([a-z]+:)?[a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
                     isSimpleUrl = true;
             }
             else if (gContextMenu.onTextInput)
