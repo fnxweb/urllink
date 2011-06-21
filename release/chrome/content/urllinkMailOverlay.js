@@ -37,7 +37,7 @@ window.addEventListener('load',fnxweb.urllink.MailInit,false);
 /* raw version */
 fnxweb.urllink.rawOpenNewWindowWith = function(url)
 {
-    if (!fnxweb.urllink.common.inThunderbird())
+    if (!fnxweb.urllink.common.isInThunderbird)
     {
         /* Local browser - (from contentAreaUtils.js) to not sec. check file: URIs */
         if (url.search(/^file:/) == -1)
