@@ -23,16 +23,19 @@
 <!ENTITY urllink-prefs-changelog "Измене">
 <!ENTITY urllink-prefs-topmenu "Прикажи на врху контекстног менија">
 <!ENTITY urllink-prefs-topmenu-tip "Одређује позицију URL Link ставки у контектсном менију">
-<!ENTITY urllink-prefs-list-tip "Листа ставки менија; &apos;*&apos; ће заменити селекција">
-<!ENTITY urllink-prefs-entry-tip "Нова ставка менија; &apos;*&apos; ће заменити селекција">
+<!ENTITY urllink-prefs-list-tip "Листа ставки менија; '*' ће заменити селекција">
+<!ENTITY urllink-prefs-entry-tip "Нова ставка менија; '*' ће заменити селекција">
 <!ENTITY urllink-help-title "URL Link помоћ">
 <!ENTITY urllink-changelog-title "URL Link измене">
 <!ENTITY urllink-prefs-newwindow "Подразумевај нови прозор (само Firefox)">
 <!ENTITY urllink-prefs-newwindow-tip "Подразумевано отварај нови прозор (као што то &lt;Shift&gt; иначе ради)">
-<!ENTITY urllink-prefs-hidetab "Сакриј &apos;отвори у језичку&apos; опцију">
-<!ENTITY urllink-prefs-hideopen "Сакрију нормалну &apos;отвори&apos; опцију">
+<!ENTITY urllink-prefs-hidetab "Сакриј 'отвори у језичку' опцију">
+<!ENTITY urllink-prefs-hideopen "Сакрију нормалну 'отвори' опцију">
+<!ENTITY urllink-prefs-onlyurls "Ради само када селекција изгледа као URL">
 <!ENTITY urllink-prefs-firefoxonly "Контрола менија (само Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Прикажи обе опције отварања">
 <!ENTITY urllink-prefs-editsandr "Уреди Претржи и Замени стрингове">
-<!ENTITY urllink-prefs-sandr-list-tip "Листа ставки за претрагу и замену. Формат је &apos;РегИзраз||Замена&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "Нова ставка за претрагу и замену. Формат је &apos;РегИзраз||Замена&apos;">
+<!ENTITY urllink-prefs-sandr-list-tip "Листа ставки за претрагу и замену. Формат је 'РегИзраз||Замена'">
+<!ENTITY urllink-prefs-sandr-entry-tip "Нова ставка за претрагу и замену. Формат је 'РегИзраз||Замена'">
+<!ENTITY urllink.key.open-link "URL Link отвори">
+<!ENTITY urllink.key.open-link-tab "URL Link отвори у језичку">

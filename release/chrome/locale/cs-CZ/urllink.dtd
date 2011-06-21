@@ -31,8 +31,11 @@
 <!ENTITY urllink-prefs-newwindow-tip "Standardně otevřít nové okno (jako běžně klávesou &lt;Shift&gt;)">
 <!ENTITY urllink-prefs-hidetab "Skrýt nastavení &apos;otevřít v záložce&apos;">
 <!ENTITY urllink-prefs-hideopen "Skrýt stanradní nastavení &apos;otevřít&apos;">
+<!ENTITY urllink-prefs-onlyurls "Pouze pokud výběr vypadá jako URL">
 <!ENTITY urllink-prefs-firefoxonly "Nastavení menu (pouze Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Zobrazit obě nastavení otevření">
 <!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
 <!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
 <!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink.key.open-link "Otevřít URL Link">
+<!ENTITY urllink.key.open-link-tab "Otevřít URL Link v záložce">

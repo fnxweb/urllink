@@ -28,11 +28,14 @@
 <!ENTITY urllink-help-title "URL Link 도움말">
 <!ENTITY urllink-changelog-title "URL Link 변경사항">
 <!ENTITY urllink-prefs-newwindow "새 창을 선호 (Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "새 창 열기를 기본으로 (<Shift>로 일반 동작)">
+<!ENTITY urllink-prefs-newwindow-tip "새 창 열기를 기본으로 (&lt;Shift&gt;로 일반 동작)">
 <!ENTITY urllink-prefs-hidetab "'탭으로 열기' 선택사항 감추기">
 <!ENTITY urllink-prefs-hideopen "일반 '열기' 선택사항 감추기">
+<!ENTITY urllink-prefs-onlyurls "선택한 것이 URL로 보이는 경우에만 동작">
 <!ENTITY urllink-prefs-firefoxonly "메뉴 제어 (Firefox 전용)">
 <!ENTITY urllink-prefs-bothoptions "선택 사항 열기 모두 표시">
 <!ENTITY urllink-prefs-editsandr "검색 후 대체 문장 편집">
 <!ENTITY urllink-prefs-sandr-list-tip "검색 후 대체 항목 목록. 형식은 '정규표현식||대체어'">
 <!ENTITY urllink-prefs-sandr-entry-tip "새 검색 후 대체 항목. 형식은 '정규표현식||대체어'">
+<!ENTITY urllink.key.open-link "URL Link 열기">
+<!ENTITY urllink.key.open-link-tab "URL Link 탭으로 열기">

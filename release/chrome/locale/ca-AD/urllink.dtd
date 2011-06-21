@@ -31,8 +31,11 @@
 <!ENTITY urllink-prefs-newwindow-tip "Obre una finestra nova per defecte (tal com es fa prement &lt;Majúscules&gt;)">
 <!ENTITY urllink-prefs-hidetab "Amaga les opcions d&apos;obrir en una pestanya">
 <!ENTITY urllink-prefs-hideopen "Amaga les opcions d&apos;obrir normals">
+<!ENTITY urllink-prefs-onlyurls "Obre només quan la selecció sigui semblant a un URL">
 <!ENTITY urllink-prefs-firefoxonly "Control del menú (només al Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Mostra les dues opcions d&apos;obrir">
 <!ENTITY urllink-prefs-editsandr "Edita les cadenes de cerca i reemplaçament">
 <!ENTITY urllink-prefs-sandr-list-tip "Llista d'elements de cerca i reemplaçament. El format és &apos;ExpReg||Reemplaçament&apos;">
 <!ENTITY urllink-prefs-sandr-entry-tip "Element nou de cerca i reemplaçament. El format és &apos;ExpReg||Reemplaçament&apos;">
+<!ENTITY urllink.key.open-link "URL Link: Obre l'enllaç">
+<!ENTITY urllink.key.open-link-tab "URL Link: Obre l'enllaç en una pestanya">

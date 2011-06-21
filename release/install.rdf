@@ -35,6 +35,9 @@
         <em:contributor>gezmen/babelzilla.org - Turkish</em:contributor>
         <em:contributor>catalan/babelzilla.org - Catalan</em:contributor>
         <em:contributor>cest713/babelzilla.org - Chinese (Simplified)</em:contributor>
+        <em:contributor>Lakrits/babelzilla.org - Swedish</em:contributor>
+        <em:contributor>mostafa1990/babelzilla.org - Persian</em:contributor>
+        <em:contributor>lloco/babelzilla.org - Portuguese (Portugal)</em:contributor>
         <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <em:optionsURL>chrome://urllink/content/urllinkPrefs.xul</em:optionsURL>

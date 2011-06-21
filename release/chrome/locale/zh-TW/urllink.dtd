@@ -23,16 +23,19 @@
 <!ENTITY urllink-prefs-changelog "更新日誌">
 <!ENTITY urllink-prefs-topmenu "顯示於右鍵選單的頂端">
 <!ENTITY urllink-prefs-topmenu-tip "設定URL Link在右鍵選單的位置">
-<!ENTITY urllink-prefs-list-tip "選單項目列表；選取範圍會取代&apos;*&apos;">
-<!ENTITY urllink-prefs-entry-tip "新增選單項目；選取範圍會取代&apos;*&apos;">
+<!ENTITY urllink-prefs-list-tip "選單項目列表；選取範圍會取代'*'">
+<!ENTITY urllink-prefs-entry-tip "新增選單項目；選取範圍會取代'*'">
 <!ENTITY urllink-help-title "URL Link 說明">
 <!ENTITY urllink-changelog-title "URL Link 更新日誌">
 <!ENTITY urllink-prefs-newwindow "新視窗類型 (Firefox)">
 <!ENTITY urllink-prefs-newwindow-tip "依默認值開啟新視窗(按 &lt;Shift&gt; 基本上一樣)">
 <!ENTITY urllink-prefs-hidetab "隱藏 &quot;開啟於新分頁&quot; 選項">
 <!ENTITY urllink-prefs-hideopen "隱藏有關 &quot;開啟&quot; 選項">
+<!ENTITY urllink-prefs-onlyurls "只有選取的範圍像網址才可以正常運作">
 <!ENTITY urllink-prefs-firefoxonly "選單控制 (Firefox only)">
 <!ENTITY urllink-prefs-bothoptions "顯示兩個 開啟 選項">
-<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
-<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-editsandr "編輯 搜尋與取代 字串">
+<!ENTITY urllink-prefs-sandr-list-tip "搜尋與取代 項目列表. 格式為 'RegEx||被取代的項目'">
+<!ENTITY urllink-prefs-sandr-entry-tip "新增 搜尋與取代 項目. 格式為 'RegEx||被取代的項目'">
+<!ENTITY urllink.key.open-link "開啟 URL Link">
+<!ENTITY urllink.key.open-link-tab "於新分頁開啟 URL Link">

@@ -17,22 +17,25 @@
 <!ENTITY urllink-prefs-delete "Slet">
 <!ENTITY urllink-prefs-add "Tilføj">
 <!ENTITY urllink-prefs-help "Hjælp">
-<!ENTITY urllink-prefs-cancel "Fortryd">
+<!ENTITY urllink-prefs-cancel "Annuller">
 <!ENTITY urllink-prefs-apply "Anvend">
 <!ENTITY urllink-prefs-ok "OK">
 <!ENTITY urllink-prefs-changelog "Ændringslog">
 <!ENTITY urllink-prefs-topmenu "Vis i toppen af kontekstmenu">
 <!ENTITY urllink-prefs-topmenu-tip "Afgør positionen for URL Link elementer i kontekstmenuen">
-<!ENTITY urllink-prefs-list-tip "Oversigt over menupunkter; &apos;*&apos; erstattes af det markerede">
-<!ENTITY urllink-prefs-entry-tip "Nyt menupunkt; &apos;*&apos; erstattes af det markerede">
+<!ENTITY urllink-prefs-list-tip "Oversigt over menupunkter. '*' erstattes af det markerede.">
+<!ENTITY urllink-prefs-entry-tip "Nyt menupunkt. '*' erstattes af det markerede.">
 <!ENTITY urllink-help-title "URL Link Hjælp">
 <!ENTITY urllink-changelog-title "URL Link Ændringslog">
 <!ENTITY urllink-prefs-newwindow "Foretræk nyt vindue (kun Firefox)">
-<!ENTITY urllink-prefs-newwindow-tip "Åbn nyt vindue som standard (som &lt;Skift&gt; normalt gør)">
-<!ENTITY urllink-prefs-hidetab "Skjuler &apos;åbn i nyt faneblad&apos; mulighederne">
-<!ENTITY urllink-prefs-hideopen "Skjuler den normale &apos;åben&apos; mulighed">
+<!ENTITY urllink-prefs-newwindow-tip "Åbn nyt vindue som standard (som &lt;Shift&amp;gt normalt gør)">
+<!ENTITY urllink-prefs-hidetab "Skjul 'åbn i nyt faneblad' mulighederne">
+<!ENTITY urllink-prefs-hideopen "Skjul de normale 'åbn' muligheder">
+<!ENTITY urllink-prefs-onlyurls "Virker kun når det markerede ligner en URL">
 <!ENTITY urllink-prefs-firefoxonly "Menukontrol (kun Firefox)">
-<!ENTITY urllink-prefs-bothoptions "Vis begge åben-muligheder">
-<!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
-<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-bothoptions "Vis begge &apos;åbn&apos; muligheder">
+<!ENTITY urllink-prefs-editsandr "Rediger Søg og erstat-strenge">
+<!ENTITY urllink-prefs-sandr-list-tip "Liste med Søg- og erstat-elementer. Formatet er 'RegEx||Erstatning'">
+<!ENTITY urllink-prefs-sandr-entry-tip "Nyt Søg- og erstat-element. Formatet er 'RegEx||Erstatning'">
+<!ENTITY urllink.key.open-link "URL Link åbn">
+<!ENTITY urllink.key.open-link-tab "URL Link åbn i faneblad">

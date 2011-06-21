@@ -23,16 +23,19 @@
 <!ENTITY urllink-prefs-changelog "Changelog">
 <!ENTITY urllink-prefs-topmenu "Mostrar no topo o menu do contexto">
 <!ENTITY urllink-prefs-topmenu-tip "Determinar a posição dos itens da URLS sem o menu do contexto">
-<!ENTITY urllink-prefs-list-tip "Lista de itens do menu; &apos;*&apos; é substituído pela seleção">
-<!ENTITY urllink-prefs-entry-tip "Novo item do menu; &apos;*&apos; é substituído pela seleção">
+<!ENTITY urllink-prefs-list-tip "Lista de itens do menu; '*' é substituído pela seleção">
+<!ENTITY urllink-prefs-entry-tip "Novo item do menu; '*' é substituído pela seleção">
 <!ENTITY urllink-help-title "Link de Ajuda">
 <!ENTITY urllink-changelog-title "Link de Mudanças">
 <!ENTITY urllink-prefs-newwindow "Preferir nova janela (Firefox only)">
 <!ENTITY urllink-prefs-newwindow-tip "Abrir nova janela por padrão (&lt;Shift&gt; normalmente faz isso)">
-<!ENTITY urllink-prefs-hidetab "Esconder a opção &apos;abrir na aba&apos;">
-<!ENTITY urllink-prefs-hideopen "Esconder a opção &apos;abrir&apos;">
+<!ENTITY urllink-prefs-hidetab "Esconder a opção 'abrir na aba'">
+<!ENTITY urllink-prefs-hideopen "Esconder a opção 'abrir'">
+<!ENTITY urllink-prefs-onlyurls "Funciona somente quando a seleção parece uma URL">
 <!ENTITY urllink-prefs-firefoxonly "Controle do Menu (somente Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Mostrar opções de abertura">
 <!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
-<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
-<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is 'RegEx||Replacement'">
+<!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is 'RegEx||Replacement'">
+<!ENTITY urllink.key.open-link "Abrir link da URL">
+<!ENTITY urllink.key.open-link-tab "Abrir link da URL em nova aba">

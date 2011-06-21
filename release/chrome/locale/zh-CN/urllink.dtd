@@ -31,8 +31,11 @@
 <!ENTITY urllink-prefs-newwindow-tip "打开默认新窗口">
 <!ENTITY urllink-prefs-hidetab "隐藏在标签中打开选项">
 <!ENTITY urllink-prefs-hideopen "隐藏普通的开始选项">
+<!ENTITY urllink-prefs-onlyurls "Only work when selection looks like a URL">
 <!ENTITY urllink-prefs-firefoxonly "菜单控制">
 <!ENTITY urllink-prefs-bothoptions "显示双开的选项">
 <!ENTITY urllink-prefs-editsandr "Edit Search and Replace strings">
 <!ENTITY urllink-prefs-sandr-list-tip "List of search and replace items. Format is &apos;RegEx||Replacement&apos;">
 <!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is &apos;RegEx||Replacement&apos;">
+<!ENTITY urllink.key.open-link "URL Link open">
+<!ENTITY urllink.key.open-link-tab "URL Link open in tab">

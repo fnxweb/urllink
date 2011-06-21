@@ -31,8 +31,11 @@
 <!ENTITY urllink-prefs-newwindow-tip "Predvolene otvárať v novom okne (ako sa to zvyčajne robí klávesom &lt;Shift&gt;)">
 <!ENTITY urllink-prefs-hidetab "Skryť možnosť 'Otvoriť na karte'">
 <!ENTITY urllink-prefs-hideopen "Skryť klasickú možnosť 'Otvoriť'">
+<!ENTITY urllink-prefs-onlyurls "Spracovať len ak má vybratý výraz tvar URL adresy">
 <!ENTITY urllink-prefs-firefoxonly "Ovládanie ponuky (Firefox)">
 <!ENTITY urllink-prefs-bothoptions "Zobraziť obe možnosti otvorenia">
 <!ENTITY urllink-prefs-editsandr "Úprava hľadaných a nahradených reťazcov">
 <!ENTITY urllink-prefs-sandr-list-tip "Zoznam hľadaných a nahradených položiek. Formát: 'RegEx||Replacement'">
 <!ENTITY urllink-prefs-sandr-entry-tip "Nové hľadané a nahradené položky. Formát: 'RegEx||Replacement'">
+<!ENTITY urllink.key.open-link "Otvoriť URL Link">
+<!ENTITY urllink.key.open-link-tab "Otvoriť URL Link na novej karte">
