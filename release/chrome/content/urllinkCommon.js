@@ -377,8 +377,11 @@ fnxweb.urllink.common =
             menuitem.setAttribute('label', text.val);
             if (accel.val != '')
                 menuitem.setAttribute('accesskey', accel.val);
-            menuitem.setAttribute('oncommand', func+"(event,"+astab+",'"+format.val+"')");
             menuitem.setAttribute('temp','true');
+            menuitem.addEventListener(
+                    'command',
+                    function (event) { func(event,astab,format.val); },
+                    true );
             submenu.appendChild(menuitem);
         }
     },

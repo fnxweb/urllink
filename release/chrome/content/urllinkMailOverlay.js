@@ -319,8 +319,7 @@ fnxweb.urllink.MailContext = function()
         /* Alternate menus not hidden;  regenerate from current prefs. */
         for (var i=0; i<mc.AlternateMailMenus.length; i++)
         {
-            mc.regenerateMenu( mc.AlternateMailMenus[i] + mc.menuPos(),
-                'fnxweb.urllink.MailOpenLink', 0 );
+            mc.regenerateMenu( mc.AlternateMailMenus[i] + mc.menuPos(), fnxweb.urllink.MailOpenLink, 0 );
         }
     }
     for (var i=0; i<mc.AlternateMailMenuItems.length; i++)

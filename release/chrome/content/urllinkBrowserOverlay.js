@@ -160,7 +160,7 @@ fnxweb.urllink.BrowserContext = function()
         {
             var menuitem_id = fnxweb.urllink.common.AlternateBrowserMenus[i] + fnxweb.urllink.common.menuPos();
             if ((!hidetab  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!hideopen  &&  menuitem_id.search(/open-link/) >= 0))
-                fnxweb.urllink.common.regenerateMenu( menuitem_id, 'fnxweb.urllink.BrowserOpenLink', i );
+                fnxweb.urllink.common.regenerateMenu( menuitem_id, fnxweb.urllink.BrowserOpenLink, i );
         }
     }
     for (var i=0; i<fnxweb.urllink.common.AlternateBrowserMenuItems.length; i++)
