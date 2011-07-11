@@ -304,22 +304,6 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     var illegalChars = (bracketed  ?  /^[\.,\'\"\?!>\]]+/  :  /^[\.,\'\"\(\)\?!>\]]+/);
     url = url.replace(illegalChars, '');
 
-    /* Attempt, for Windows file refs., to make non-ASCII chars. single-byte "code-page" char refs., and not UTF-8 */
-    if (url.search(/^(\/\/||[A-Za-z]:||file:\/\/\/[A-Za-z]:)/) == 0)
-    {
-        /* Looks like a Windows file, so use single chars. not UTF-8 */
-        var newurl = '';
-        for (var idx = 0;  idx < url.length;  ++idx)
-        {
-            var asc = url.charCodeAt(idx)
-            if (asc <= 126)
-                newurl += url[idx];
-            else
-                newurl += '%' + asc.toString(16);
-        }
-        url = newurl;
-    }
-
     /* Perform custom search and replaces */
     url = fnxweb.urllink.common.customSearchAndReplace(url);
 
