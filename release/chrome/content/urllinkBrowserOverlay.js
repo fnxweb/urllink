@@ -108,9 +108,9 @@ fnxweb.urllink.BrowserContext = function()
                 sel = gContextMenu.link.href;
                 /* Only do 'mailto' links, and 'javascript' refs. which have string args,
                  * and 'file' links which let Linux users map Windows file refs. to a local mount. */
-                if (sel.search(/^mailto:/) == 0  ||
-                    sel.search(/^javascript:.*\(.*['"].*['"]/) == 0  ||
-                    sel.search(/^file:/) == 0)
+                if (sel.search(/^mailto[:]/) == 0  ||
+                    sel.search(/^javascript[:].*\(.*['"].*['"]/) == 0  ||
+                    sel.search(/^file[:]/) == 0)
                     isURL = true;
                 else
                     isLinkOrUrlSelection = false;
@@ -244,7 +244,7 @@ fnxweb.urllink.getBestJavascriptArg = function(url)
         return '';
 
     /* Strip leader */
-    url = url.replace(/^javascript:.*?\(/, '');
+    url = url.replace(/^javascript[:].*?\(/, '');
 
     /* Loop through looking for best; '/' has precedence */
     var haveSlash = false;
@@ -317,7 +317,7 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
         url = url.replace(/^mailto:.*@/,'');
 
     /* Remove any JavaScript waffle */
-    if (url.search(/^javascript:/) == 0)
+    if (url.search(/^javascript[:]/) == 0)
     {
         /* Get out first string arg. */
         url = fnxweb.urllink.getBestJavascriptArg(url);
