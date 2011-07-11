@@ -106,8 +106,8 @@ fnxweb.urllink.BrowserContext = function()
             {
                 wasLink = true;
                 sel = gContextMenu.link.href;
-                /* Only do mailto: links and javascript: which have string args,
-                 * and file: links which let Linux users map Windows file refs. to a loncal mount. */
+                /* Only do 'mailto' links, and 'javascript' refs. which have string args,
+                 * and 'file' links which let Linux users map Windows file refs. to a local mount. */
                 if (sel.search(/^mailto:/) == 0  ||
                     sel.search(/^javascript:.*\(.*['"].*['"]/) == 0  ||
                     sel.search(/^file:/) == 0)
