@@ -345,11 +345,6 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     illegalChars = (bracketed  ?  /[\.,\'\"\?!>\]]+$/  :  /[\.,\'\"\?!>\]\(\)]+$/);
     url = url.replace(illegalChars, '');
 
-    /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
-     * but that seems to be illegal.
-     */
-    url = fnxweb.urllink.common.utf8Encode(url);
-
     return url;
 }
 

@@ -271,7 +271,10 @@ fnxweb.urllink.common =
         /* UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
          * but that seems to be illegal.
          */
-        url = this.utf8Encode(url);
+        /* Addendum:  let's not do this for Windows file: links, as an attempt to correctly handle non-Latin1
+         * filenames */
+        if (url.search(/^(\/\/|[A-Za-z]:|file:\/\/\/[A-Za-z]:)/) != 0)
+            url = this.utf8Encode(url);
 
         return url;
     },
