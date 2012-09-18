@@ -87,7 +87,7 @@ fnxweb.urllink.BrowserContext = function()
             if (gContextMenu.isTextSelected)
             {
                 sel = me.GetBestSelection(gContextMenu);
-                /* Firefox 4 now does a little of what we do for simple & obvious URLs like "google.com";  not sure what it's
+                /* Firefox 4 now does a little of what we do for simple & obvious URLs like "google.com";  not sure what its
                  * logic is, but we at least want to try to not duplicate menu options where possible.  So for non-line-split text
                  * selections that start with http[s]/ftp (by protocol or hostname), neglect to proffer the "Open Selection"
                  * options.  We'll always proffer the amendment submenus though, to allow for fixing up (e.g., "google.com" as
@@ -128,8 +128,8 @@ fnxweb.urllink.BrowserContext = function()
     }
 
     /* May be showing only main open or only tab open bits */
-    var hidetab = fnxweb.urllink.common.prefs.getBoolPref("hidetab");
-    var hideopen  = fnxweb.urllink.common.prefs.getBoolPref("hideopen");
+    var hidetab  = fnxweb.urllink.common.prefs.getBoolPref("hidetab");
+    var hideopen = fnxweb.urllink.common.prefs.getBoolPref("hideopen");
 
     /* Main menu buttons visible if selection and looks like URL */
     var anyVisible = false;
@@ -303,6 +303,16 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     var bracketed = (url.search(/\(.*\)/) != -1);
     var illegalChars = (bracketed  ?  /^[\.,\'\"\?!>\]]+/  :  /^[\.,\'\"\(\)\?!>\]]+/);
     url = url.replace(illegalChars, '');
+
+    /* How to deal with newlines in the selection?
+     * Sometimes it's a space in a ref. that's been broken across lines, sometimes it's just a break.
+     * Let's go with presuming that there'll only be legitimate spaces causing breaks in file: (and \\ & X:) URLs.
+     * Do it before the custom SnR so as to remove problematic CRs.
+     */
+    if (url.search(/^(file:|[A-Za-z]:|\/\/)/) == 0) /* backslashes have been converted by here */
+        url = url.replace(/(\n|\r| )+/g, ' ');  /* file URL, presume spaces */
+    else
+        url = url.replace(/(\n|\r| )+/g, '');   /* other, presume empty */
 
     /* Perform custom search and replaces */
     url = fnxweb.urllink.common.customSearchAndReplace(url);

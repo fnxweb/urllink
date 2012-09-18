@@ -234,6 +234,16 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     /* Remove OutLook delims. now */
     url = url.replace(/^[< ]+(.*)[ >]+$/, "$1");
 
+    /* How to deal with newlines in the selection?
+     * Sometimes it's a space in a ref. that's been broken across lines, sometimes it's just a break.
+     * Let's go with presuming that there'll only be legitimate spaces causing breaks in file:: (and \\ & X:) URLs.
+     * Do it before the custom SnR so as to remove problematic CRs.
+     */
+    if (url.search(/^(file:|[A-Za-z]:|\/\/)/) == 0) /* backslashes have been converted by here */
+        url = url.replace(/(\n|\r| )+/g, ' ');  /* presume spaces */
+    else
+        url = url.replace(/(\n|\r| )+/g, '');   /* presume empty */
+
     /* Perform custom search and replaces */
     url = fnxweb.urllink.common.customSearchAndReplace(url);
 

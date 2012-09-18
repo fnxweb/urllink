@@ -297,7 +297,7 @@ fnxweb.urllink.common =
         str = str.replace(/((\n|\r) *>[> ]*)+/g, '');   /* remove standard quote marks */
         str = str.replace(/[\n\r ]+$/, '');             /* strip spaces at the end */
         str = str.replace(/\\/g,'/');                   /* backslash to forward slash */
-        str = str.replace(/(\n|\r| )+/g, ' ');          /* amy remaining multiple newlines/spaces to single spaces */
+        /* Do CR->space conversion when we know a bit more about the original URL and whether it ought to be space or '' */
         return str;
     },
 
