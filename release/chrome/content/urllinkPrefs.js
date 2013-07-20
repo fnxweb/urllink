@@ -24,6 +24,7 @@ with (fnxweb.urllink)
     var newsandritembox;
     var topmenu;
     var newwindow;
+    var forcesubmenu;
     var openoptions;
 }
 
@@ -189,6 +190,7 @@ fnxweb.urllink.loadPrefs = function()
         me.newsandritembox = document.getElementById("urllinkNewSandrItem");
         me.topmenu = document.getElementById("urllinkTopmenu");
         me.newwindow = document.getElementById("urllinkNewWindow");
+        me.forcesubmenu = document.getElementById("urllinkForceSubmenu");
         me.openoptions = document.getElementById("urllinkOpenOptions");
         me.menuitemsListbox.addEventListener("select",me.onPrefsMenuSelect, false);
         me.sandritemsListbox.addEventListener("select",me.onPrefsSandrSelect, false);
@@ -253,6 +255,7 @@ fnxweb.urllink.loadPrefs = function()
     /* And the rest */
     me.topmenu.checked = mc.prefs.getBoolPref("topmenu");
     me.newwindow.checked = mc.prefs.getBoolPref("newwindow");
+    me.forcesubmenu.checked = mc.prefs.getBoolPref("forcesubmenu");
     if (mc.prefs.getBoolPref("hidetab"))
         me.openoptions.selectedIndex = 1;  /* hide tab */
     else if (mc.prefs.getBoolPref("hideopen"))
@@ -302,6 +305,7 @@ fnxweb.urllink.setPrefs = function(doclose)
     }
     mc.prefs.setBoolPref("topmenu", me.topmenu.checked);
     mc.prefs.setBoolPref("newwindow", me.newwindow.checked);
+    mc.prefs.setBoolPref("forcesubmenu", me.forcesubmenu.checked);
     switch (me.openoptions.selectedIndex)
     {
         case 1:

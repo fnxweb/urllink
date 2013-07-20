@@ -124,6 +124,7 @@
             <vbox pack="end">
                 <checkbox id="urllinkTopmenu" label="&urllink-prefs-topmenu;" tooltiptext="&urllink-prefs-topmenu-tip;"/>
                 <checkbox id="urllinkNewWindow" label="&urllink-prefs-newwindow;" tooltiptext="&urllink-prefs-newwindow-tip;"/>
+                <checkbox id="urllinkForceSubmenu" label="&urllink-prefs-forcesubmenu;" tooltiptext="&urllink-prefs-forcesubmenu-tip;"/>
                 <groupbox>
                     <caption label="&urllink-prefs-firefoxonly;"/>
                     <radiogroup id="urllinkOpenOptions">

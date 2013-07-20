@@ -73,6 +73,7 @@ fnxweb.urllink.GetBestSelection = function(context)
 fnxweb.urllink.BrowserContext = function()
 {
     var me = fnxweb.urllink;
+    var mc = me.common;
     var isLinkOrUrlSelection = false, isURL = false, isSimpleUrl = false;
 
     if (gContextMenu)
@@ -100,7 +101,7 @@ fnxweb.urllink.BrowserContext = function()
             }
             else if (gContextMenu.onTextInput)
             {
-                sel = fnxweb.urllink.GetTextBoxText( gContextMenu.target );
+                sel = me.GetTextBoxText( gContextMenu.target );
             }
             else if (gContextMenu.onLink)
             {
@@ -128,52 +129,53 @@ fnxweb.urllink.BrowserContext = function()
     }
 
     /* May be showing only main open or only tab open bits */
-    var hidetab  = fnxweb.urllink.common.prefs.getBoolPref("hidetab");
-    var hideopen = fnxweb.urllink.common.prefs.getBoolPref("hideopen");
+    var hidetab  = mc.prefs.getBoolPref("hidetab");
+    var hideopen = mc.prefs.getBoolPref("hideopen");
+    var forcesubmenu = mc.prefs.getBoolPref('forcesubmenu');
 
     /* Main menu buttons visible if selection and looks like URL */
     var anyVisible = false;
-    for (var i=0; i<fnxweb.urllink.common.BrowserMenuItems.length; i++)
+    for (var i=0; i<mc.BrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuItems[i] + fnxweb.urllink.common.menuPos());
+        var menuitem = document.getElementById(mc.BrowserMenuItems[i] + mc.menuPos());
         if (menuitem)
         {
-            if (fnxweb.urllink.common.isInFirefox4Plus && isSimpleUrl)
+            if (mc.isInFirefox4Plus && isSimpleUrl)
                 menuitem.hidden = true;
             else if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0))
                 menuitem.hidden = true;
             else
                 menuitem.hidden = !(isLinkOrUrlSelection && isURL);
         }
-        menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuItems[i] + fnxweb.urllink.common.menuPosAlt());
+        menuitem = document.getElementById(mc.BrowserMenuItems[i] + mc.menuPosAlt());
         if (menuitem)
             menuitem.hidden = true;
         if (!menuitem.hidden)
             anyVisible = true;
     }
 
-    /* Alternate submenus visible if selection and doesn't look like URL */
-    if (! (!isLinkOrUrlSelection || isURL))
+    /* Alternate submenus visible if selection and doesn't look like URL, or we force it */
+    if (forcesubmenu  ||  ! (!isLinkOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
-        for (var i=0; i<fnxweb.urllink.common.AlternateBrowserMenus.length; i++)
+        for (var i=0; i<mc.AlternateBrowserMenus.length; i++)
         {
-            var menuitem_id = fnxweb.urllink.common.AlternateBrowserMenus[i] + fnxweb.urllink.common.menuPos();
+            var menuitem_id = mc.AlternateBrowserMenus[i] + mc.menuPos();
             if ((!hidetab  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!hideopen  &&  menuitem_id.search(/open-link/) >= 0))
-                fnxweb.urllink.common.regenerateMenu( menuitem_id, fnxweb.urllink.BrowserOpenLink, i );
+                mc.regenerateMenu( menuitem_id, fnxweb.urllink.BrowserOpenLink, i );
         }
     }
-    for (var i=0; i<fnxweb.urllink.common.AlternateBrowserMenuItems.length; i++)
+    for (var i=0; i<mc.AlternateBrowserMenuItems.length; i++)
     {
-        var menuitem = document.getElementById(fnxweb.urllink.common.AlternateBrowserMenuItems[i] + fnxweb.urllink.common.menuPos());
+        var menuitem = document.getElementById(mc.AlternateBrowserMenuItems[i] + mc.menuPos());
         if (menuitem)
         {
             if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0) )
                 menuitem.hidden = true;
             else
-                menuitem.hidden = !isLinkOrUrlSelection || isURL;
+                menuitem.hidden = !forcesubmenu  &&  (!isLinkOrUrlSelection || isURL);
         }
-        menuitem = document.getElementById(fnxweb.urllink.common.AlternateBrowserMenuItems[i] + fnxweb.urllink.common.menuPosAlt());
+        menuitem = document.getElementById(mc.AlternateBrowserMenuItems[i] + mc.menuPosAlt());
         if (menuitem)
             menuitem.hidden = true;
         if (!menuitem.hidden)
@@ -184,10 +186,10 @@ fnxweb.urllink.BrowserContext = function()
     {
         for (var i=0; i<2; i++)
         {
-            var menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuSep + i + fnxweb.urllink.common.menuPos());
+            var menuitem = document.getElementById(mc.BrowserMenuSep + i + mc.menuPos());
             if (menuitem)
                 menuitem.hidden = !anyVisible;
-            menuitem = document.getElementById(fnxweb.urllink.common.BrowserMenuSep + i + fnxweb.urllink.common.menuPosAlt());
+            menuitem = document.getElementById(mc.BrowserMenuSep + i + mc.menuPosAlt());
             if (menuitem)
                 menuitem.hidden = true;
         }
@@ -304,15 +306,8 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     var illegalChars = (bracketed  ?  /^[\.,\'\"\?!>\]]+/  :  /^[\.,\'\"\(\)\?!>\]]+/);
     url = url.replace(illegalChars, '');
 
-    /* How to deal with newlines in the selection?
-     * Sometimes it's a space in a ref. that's been broken across lines, sometimes it's just a break.
-     * Let's go with presuming that there'll only be legitimate spaces causing breaks in file: (and \\ & X:) URLs.
-     * Do it before the custom SnR so as to remove problematic CRs.
-     */
-    if (url.search(/^(file:|[A-Za-z]:|\/\/)/) == 0) /* backslashes have been converted by here */
-        url = url.replace(/(\n|\r| )+/g, ' ');  /* file URL, presume spaces */
-    else
-        url = url.replace(/(\n|\r| )+/g, '');   /* other, presume empty */
+    /* How to deal with newlines in the selection? */
+    url = fnxweb.urllink.common.unmangleNewlines( url );
 
     /* Perform custom search and replaces */
     url = fnxweb.urllink.common.customSearchAndReplace(url);
@@ -412,7 +407,7 @@ fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
     }
     else
     {
-        var newwindow = mc.getBoolPref('newwindow');
+        var newwindow = mc.prefs.getBoolPref('newwindow');
         var usewindow = ( (!newwindow  &&  event.shiftKey)  ||  (newwindow  &&  !event.shiftKey) );
 
         if (usewindow)

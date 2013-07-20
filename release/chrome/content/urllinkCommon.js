@@ -58,6 +58,7 @@ fnxweb.urllink.common =
         'urllink-mail-open-link-as-popup' ],
 
     isInThunderbird : false,
+    isInThunderbird17Plus : false,
     isInFirefox4Plus : false,
     checkedApplication : false,
 
@@ -85,8 +86,13 @@ fnxweb.urllink.common =
         if (!this.checkedApplication)
         {
             this.checkedApplication = true;
-            if (navigator.userAgent.search(/Thunderbird/gi) != -1  ||  navigator.userAgent.search(/Shredder/gi) != -1)
+            if (navigator.userAgent.search(/Thunderbird|Shredder/gi) != -1)
+            {
                 this.isInThunderbird = true;
+                var vn = parseInt(navigator.userAgent.replace(/.*(Thunderbird|Shredder)\/([0-9]+)\..*/gi,'$2'));
+                if (vn >= 17)
+                    this.isInThunderbird17Plus = true;
+            }
             if (navigator.userAgent.search(/Firefox\/([0-9])\./gi) != -1)
             {
                 var vn = parseInt(navigator.userAgent.replace(/.*Firefox\/([0-9]+)\..*/gi,'$1'));
@@ -276,6 +282,28 @@ fnxweb.urllink.common =
         if (url.search(/^(\/\/|[A-Za-z]:|file:\/\/\/[A-Za-z]:)/) != 0)
             url = this.utf8Encode(url);
 
+        return url;
+    },
+
+
+    /* How to deal with newlines in the selection?
+     * Sometimes it's a space in a ref. that's been broken across lines, sometimes it's just a break.
+     * Let's go with presuming that there'll only be legitimate spaces causing breaks in file:: (and \\ & X:) URLs.
+     * Do it before the custom SnR so as to remove problematic CRs.
+     * We also need to cope with arbitrary text selection (for searches), so keep spaces if there's no protocol.
+     */
+    unmangleNewlines: function ( url )
+    {
+        /* backslashes have been converted by here */
+        var file_url  = (url.search(/^(file:|[A-Za-z]:|\/\/)/) == 0);   /* Looks like a file URL */
+        var has_proto = (url.search(/^([A-Za-z]\w+:\/\/)/) == 0);       /* Looks like a standard URL */
+        var url_like  = (url.search(/\/[A-Za-z0-9_.]+\//) >= 0);        /* Looks like a URL without a protocol */
+
+        /* If file URL or doesn't look like URL */
+        if (file_url || (!has_proto && !url_like))
+            url = url.replace(/(\n|\r| )+/g, ' ');  /* presume spaces as it looks like a file URL or arbitrary text */
+        else
+            url = url.replace(/(\n|\r| )+/g, '');   /* presume empty for normal URLs*/
         return url;
     },
 

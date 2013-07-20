@@ -83,7 +83,6 @@
                     accesskey="&popup-urllink-open-as-is.shortcut;"
                     key="urllink-mail-open-link-key"
                     oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-                <menuseparator/>
             </menupopup>
         </menu>
 
@@ -107,11 +106,10 @@
                     accesskey="&popup-urllink-open-as-is.shortcut;"
                     key="urllink-mail-open-link-key"
                     oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-                <menuseparator/>
             </menupopup>
         </menu>
 
-        <!-- <menuseparator id="urllink-mail-sep-1" insertbefore="messagePaneContext-replySender"/> -->
+        <!-- <menuseparator id="urllink-mail-sep-1-top" insertbefore="messagePaneContext-replySender"/> -->
     </popup>
 
 
@@ -137,7 +135,6 @@
                     accesskey="&popup-urllink-open-as-is.shortcut;"
                     key="urllink-mail-open-link-key"
                     oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-                <menuseparator/>
             </menupopup>
         </menu>
 
@@ -162,7 +159,6 @@
                     accesskey="&popup-urllink-open-as-is.shortcut;"
                     key="urllink-mail-open-link-key"
                     oncommand="fnxweb.urllink.MailOpenLink(event,'','')"/>
-                <menuseparator/>
             </menupopup>
         </menu>
 

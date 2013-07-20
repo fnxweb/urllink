@@ -4,3 +4,4 @@ pref("extensions.urllink.topmenu", true);
 pref("extensions.urllink.newwindow", false);
 pref("extensions.urllink.hidetab", false);
 pref("extensions.urllink.hideopen", false);
+pref("extensions.urllink.forcesubmenu", false);

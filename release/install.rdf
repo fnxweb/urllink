@@ -8,11 +8,12 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.04.1</em:version>
+        <em:version>2.04.99a</em:version>
         <em:type>2</em:type>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
         <em:contributor>[ contact: mozilla@fnxweb.com ]</em:contributor>
+        <em:contributor>sikander/babelzilla.org - Bulgarian</em:contributor>
         <em:contributor>Olivier Grange-Labat - French</em:contributor>
         <em:contributor>MatrixIsAllOver/babelzilla.org - Italian</em:contributor>
         <em:contributor>Martin Hoppen - German</em:contributor>

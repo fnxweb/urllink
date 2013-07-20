@@ -234,15 +234,8 @@ fnxweb.urllink.unmangleURL = function(url,wasLink)
     /* Remove OutLook delims. now */
     url = url.replace(/^[< ]+(.*)[ >]+$/, "$1");
 
-    /* How to deal with newlines in the selection?
-     * Sometimes it's a space in a ref. that's been broken across lines, sometimes it's just a break.
-     * Let's go with presuming that there'll only be legitimate spaces causing breaks in file:: (and \\ & X:) URLs.
-     * Do it before the custom SnR so as to remove problematic CRs.
-     */
-    if (url.search(/^(file:|[A-Za-z]:|\/\/)/) == 0) /* backslashes have been converted by here */
-        url = url.replace(/(\n|\r| )+/g, ' ');  /* presume spaces */
-    else
-        url = url.replace(/(\n|\r| )+/g, '');   /* presume empty */
+    /* How to deal with newlines in the selection? */
+    url = fnxweb.urllink.common.unmangleNewlines( url );
 
     /* Perform custom search and replaces */
     url = fnxweb.urllink.common.customSearchAndReplace(url);
@@ -268,6 +261,7 @@ fnxweb.urllink.MailContext = function()
     var me = fnxweb.urllink;
     var mc = me.common;
     var isTextOrUrlSelection = false, isURL = false;
+    var forcesubmenu = mc.prefs.getBoolPref('forcesubmenu');
 
     if (mc.isDefined('gContextMenu'))
     {
@@ -323,8 +317,8 @@ fnxweb.urllink.MailContext = function()
         }
     }
 
-    /* Visible if selection and doesn't look like URL */
-    if (! (!isTextOrUrlSelection || isURL))
+    /* Visible if selection and doesn't look like URL, or forced */
+    if (forcesubmenu  ||  ! (!isTextOrUrlSelection || isURL))
     {
         /* Alternate menus not hidden;  regenerate from current prefs. */
         for (var i=0; i<mc.AlternateMailMenus.length; i++)
@@ -337,7 +331,7 @@ fnxweb.urllink.MailContext = function()
         var menuitem = document.getElementById(mc.AlternateMailMenuItems[i] + mc.menuPos());
         if (menuitem)
         {
-            menuitem.hidden = !isTextOrUrlSelection || isURL;
+            menuitem.hidden = !forcesubmenu  &&  (!isTextOrUrlSelection || isURL);
         }
         menuitem = document.getElementById(mc.AlternateMailMenuItems[i] + mc.menuPosAlt());
         if (menuitem)
@@ -354,6 +348,7 @@ fnxweb.urllink.MailContext = function()
             if (menuitem)
             {
                 menuitem.hidden =
+                    !forcesubmenu  &&
                     (!(isTextOrUrlSelection && isURL))  &&
                     (!isTextOrUrlSelection || isURL);
             }
