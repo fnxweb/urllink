@@ -85,7 +85,11 @@ fnxweb.urllink.BrowserContext = function()
             /* See if selection looks like a URL */
             /* Always use selection if it exists */
             var sel = '';
-            if (gContextMenu.isTextSelected)
+            if (gContextMenu.onTextInput)
+            {
+                sel = me.GetTextBoxText( gContextMenu.target );
+            }
+            else if (gContextMenu.isTextSelected)
             {
                 sel = me.GetBestSelection(gContextMenu);
                 /* Firefox 4 now does a little of what we do for simple & obvious URLs like "google.com";  not sure what its
@@ -98,10 +102,6 @@ fnxweb.urllink.BrowserContext = function()
                  */
                 if (sel.search(/^[ \t\n]*([a-z]+:)?[a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
                     isSimpleUrl = true;
-            }
-            else if (gContextMenu.onTextInput)
-            {
-                sel = me.GetTextBoxText( gContextMenu.target );
             }
             else if (gContextMenu.onLink)
             {
@@ -378,13 +378,13 @@ fnxweb.urllink.BrowserOpenLink = function(event,astab,format)
         /* Come in here for shortcut keys */
         lnk = me.GetBestSelection(localContextMenu);
     }
-    else if (gContextMenu.isTextSelected)
-    {
-        lnk = me.GetBestSelection(gContextMenu);
-    }
     else if (gContextMenu.onTextInput)
     {
         lnk = me.GetTextBoxText(gContextMenu.target);
+    }
+    else if (gContextMenu.isTextSelected)
+    {
+        lnk = me.GetBestSelection(gContextMenu);
     }
     else if (gContextMenu.onLink)
     {
