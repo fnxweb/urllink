@@ -93,7 +93,7 @@ fnxweb.urllink.common =
                 if (vn >= 17)
                     this.isInThunderbird17Plus = true;
             }
-            if (navigator.userAgent.search(/Firefox\/([0-9])\./gi) != -1)
+            if (navigator.userAgent.search(/Firefox\/([0-9]+)\./gi) != -1)
             {
                 var vn = parseInt(navigator.userAgent.replace(/.*Firefox\/([0-9]+)\..*/gi,'$1'));
                 if (vn >= 4)
