@@ -100,7 +100,7 @@ fnxweb.urllink.BrowserContext = function()
                  * A really long URL regex is at http://flanders.co.nz/2009/11/08/a-good-url-regular-expression-repost/
                  * ... but this should suffice for our purposes!
                  */
-                if (sel.search(/^[ \t\n]*([a-z]+:)?[a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
+                if (sel.search(/^[ \t\n]*([a-z]+:)?[-a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
                     isSimpleUrl = true;
             }
             else if (gContextMenu.onLink)
