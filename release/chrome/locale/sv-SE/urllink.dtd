@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "Nytt &apos;sök och ersätt&apos;-objekt. Formatet är &apos;Reguljärt uttryck||Ersättning&apos;">
 <!ENTITY urllink.key.open-link "Öppna med URL Link">
 <!ENTITY urllink.key.open-link-tab "Öppna i flik med URL Link">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

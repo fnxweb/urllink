@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "بيبيب">
 <!ENTITY urllink.key.open-link "بازكردن آدرس لينك">
 <!ENTITY urllink.key.open-link-tab "باز كردن لينك در صفحه جديد">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

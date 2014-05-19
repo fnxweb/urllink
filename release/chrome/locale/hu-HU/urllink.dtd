@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "New search and replace item. Format is 'RegEx||Replacement'">
 <!ENTITY urllink.key.open-link "URL Link megnyitás">
 <!ENTITY urllink.key.open-link-tab "URL Link megnyitás fülön">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

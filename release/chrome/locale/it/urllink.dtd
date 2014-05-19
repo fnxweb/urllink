@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "Nuova stringa di ricerca e sostituzione degli elementi. Il formato è &apos;Espressione regolare||elemento&apos;">
 <!ENTITY urllink.key.open-link "Apri con URL Link">
 <!ENTITY urllink.key.open-link-tab "Apri con URL Link in nuova scheda">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

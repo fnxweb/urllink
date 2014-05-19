@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "新たに検索・置換する項目。「正規表現||置換」の形式です。">
 <!ENTITY urllink.key.open-link "URLのリンクを開く">
 <!ENTITY urllink.key.open-link-tab "URLのリンクを新しいタブで開く">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

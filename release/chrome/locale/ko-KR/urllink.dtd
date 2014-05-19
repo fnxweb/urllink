@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "새 검색 후 대체 항목. 형식은 '정규표현식||대체어'">
 <!ENTITY urllink.key.open-link "URL Link 열기">
 <!ENTITY urllink.key.open-link-tab "URL Link 탭으로 열기">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

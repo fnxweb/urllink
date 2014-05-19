@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "Element nou de cerca i reemplaçament. El format és &apos;ExpReg||Reemplaçament&apos;">
 <!ENTITY urllink.key.open-link "URL Link: Obre l'enllaç">
 <!ENTITY urllink.key.open-link-tab "URL Link: Obre l'enllaç en una pestanya">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

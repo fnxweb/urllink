@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "Nyt Søg- og erstat-element. Formatet er 'RegEx||Erstatning'">
 <!ENTITY urllink.key.open-link "URL Link åbn">
 <!ENTITY urllink.key.open-link-tab "URL Link åbn i faneblad">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">

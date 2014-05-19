@@ -39,3 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "新增 搜尋與取代 項目. 格式為 'RegEx||被取代的項目'">
 <!ENTITY urllink.key.open-link "開啟 URL Link">
 <!ENTITY urllink.key.open-link-tab "於新分頁開啟 URL Link">
+<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">
