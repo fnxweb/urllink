@@ -99,8 +99,9 @@ fnxweb.urllink.BrowserContext = function()
                  * opposed to "www.google.com").
                  * A really long URL regex is at http://flanders.co.nz/2009/11/08/a-good-url-regular-expression-repost/
                  * ... but this should suffice for our purposes!
+                 * FF seems to not do it for “file:” URLS, so we'll process those.
                  */
-                if (sel.search(/^[ \t\n]*([a-z]+:)?[-a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
+                if (sel.search(/^[ \t\n]*file:/) == -1  &&  sel.search(/^[ \t\n]*([a-z]+:)?[-a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
                     isSimpleUrl = true;
             }
             else if (gContextMenu.onLink)
