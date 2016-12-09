@@ -254,9 +254,14 @@ fnxweb.urllink.common =
     /* make sure URL has some sort of protocol, & change common 'errors' */
     fixURL: function (url)
     {
-        /* Check proto */
+        /* Stop here if target URL is Javascript;  don't want to break it */
+        if (url.search(/^javascript:/) != -1)
+            return url;
+
+        /* Check whether proto supplied */
         if (url.search(/^mailto:/) == -1  &&  url.search(/^[-_\w]+:\/\//) == -1)
         {
+            /* Add presumed proto if none given */
             if (url.search(/^ftp/) == 0)
             {
                 url = 'ftp://' + url;
