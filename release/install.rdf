@@ -8,7 +8,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.04.3a</em:version>
+        <em:version>2.04.4</em:version>
         <em:type>2</em:type>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
@@ -50,7 +50,7 @@
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>2.0</em:minVersion>
-                <em:maxVersion>29.*</em:maxVersion>
+                <em:maxVersion>50.*</em:maxVersion>
             </Description>
         </em:targetApplication>
 
@@ -59,7 +59,7 @@
             <Description>
                 <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
                 <em:minVersion>1.5</em:minVersion>
-                <em:maxVersion>24.*</em:maxVersion>
+                <em:maxVersion>45.*</em:maxVersion>
             </Description>
         </em:targetApplication>
 

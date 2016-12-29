@@ -39,5 +39,5 @@
 <!ENTITY urllink-prefs-sandr-entry-tip "Нов елемент за търсене и замяна. Форматът е 'RegEx||Replacement'">
 <!ENTITY urllink.key.open-link "URL Link отваряне">
 <!ENTITY urllink.key.open-link-tab "URL Link отваряне в подпрозорец">
-<!ENTITY urllink-prefs-forcesubmenu "Always show filter sub-menu">
-<!ENTITY urllink-prefs-forcesubmenu-tip "Shows the extra sub-menu even if the current selection already looks like a valid URL">
+<!ENTITY urllink-prefs-forcesubmenu "Винаги да се показва подменюто на филтъра">
+<!ENTITY urllink-prefs-forcesubmenu-tip "Показва допълнително подменю, дори ако настоящият избор вече прилича на валиден URL">
