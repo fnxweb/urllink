@@ -39,7 +39,7 @@ fnxweb.urllink.rawOpenNewWindowWith = function(url)
 {
     if (!fnxweb.urllink.common.isInThunderbird)
     {
-        /* Local browser - (from contentAreaUtils.js) to not sec. check file: URIs */
+        /* Local browser (e.g., SeaMonkey) - (from contentAreaUtils.js) to not sec. check file: URIs */
         if (url.search(/^file:/) == -1)
             urlSecurityCheck(url, document);
 
@@ -52,11 +52,16 @@ fnxweb.urllink.rawOpenNewWindowWith = function(url)
         if (wintype == 'navigator:browser')
             charsetArg = 'charset=' + window._content.document.characterSet;
 
+        /* Open window with full-fat version of the routine, not vanilla window.open, so as to pass all info.
+         * NB - URL has been constructed from our own prefs. & user's selection at user's behest and so is safe.
+         *      Ref. validator info/warning "`openDialog` called with non-literal parameter."
+         */
         var referrer = fnxweb.urllink.common.getReferrer();
         window.openDialog(getBrowserURL(), '_blank', 'chrome,all,dialog=no', url, charsetArg, referrer);
     }
     else
     {
+        /* In Thunderbird, so open externally */
         fnxweb.urllink.common.launchExternalURL(url);
     }
 }

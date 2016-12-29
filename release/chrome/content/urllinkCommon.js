@@ -157,12 +157,13 @@ fnxweb.urllink.common =
         var version = this.version.replace(/^([0-9]+\.[0-9]+).*/,'$1');
 
         /* Show changelog if there have been major changes */
-        if (lastversion != version)
-            setTimeout( function() {    /* allow delay for MacOS to size main window */
-                    openDialog(
-                        'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
-                        'dialog=no,modal=no,resizable=yes,width=640,height=512');
-                    }, 1 );
+        // TBD - use a new tab, not a popup
+        // if (lastversion != version)
+        //     setTimeout( function() {    /* allow delay for MacOS to size main window */
+        //             openDialog(
+        //                 'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
+        //                 'dialog=no,modal=no,resizable=yes,width=640,height=512');
+        //             }, 1 );
 
         this.prefs.setCharPref('lastversion',this.version);
     },
@@ -202,21 +203,7 @@ fnxweb.urllink.common =
         }
         else
         {
-            /* Async. req. for our version so we can check it & maybe produce a changelog.
-            /* http://siphon9.net/loune/2010/07/getting-your-firefox-extension-version-number/
-             */
-            var ascope = { };
-
-            if (typeof(Components.classes["@mozilla.org/extensions/manager;1"]) != 'undefined')
-            {
-                var extMan = Components.classes["@mozilla.org/extensions/manager;1"].
-                    getService(Components.interfaces.nsIExtensionManager);
-                var ext = extMan.getItemForID(this.addonID);
-                ext.QueryInterface(Components.interfaces.nsIUpdateItem);
-                this.checkVersion(ext.version);
-                return;
-            }
-
+            /* Get our version so we can check it & maybe produce a changelog. */
             if (typeof(Components.utils) != 'undefined' && typeof(Components.utils.import) != 'undefined')
             {
                 Components.utils.import("resource://gre/modules/AddonManager.jsm", ascope);
