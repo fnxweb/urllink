@@ -206,10 +206,12 @@ fnxweb.urllink.common =
             /* Get our version so we can check it & maybe produce a changelog. */
             if (typeof(Components.utils) != 'undefined' && typeof(Components.utils.import) != 'undefined')
             {
+                var ascope = {};
                 Components.utils.import("resource://gre/modules/AddonManager.jsm", ascope);
+                if (ascope.AddonManager)
+                    ascope.AddonManager.getAddonByID(
+                        this.addonID, function (addon) {fnxweb.urllink.common.checkVersion(addon.version);} );
             }
-
-            ascope.AddonManager.getAddonByID(this.addonID, function (addon) {fnxweb.urllink.common.checkVersion(addon.version);} );
         }
     },
 
