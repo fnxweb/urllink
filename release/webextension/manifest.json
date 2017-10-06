@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "URL Link",
+    "version": "2.05.0",
+    "description": "Allow navigation to broken/unlinked URLs",
+
+    "background": {
+        "scripts": [ "background.js" ]
+    },
+
+    "permissions": [
+        "storage"
+        ]
+}

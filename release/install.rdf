@@ -8,8 +8,9 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.04.5</em:version>
+        <em:version>2.05.1</em:version>
         <em:type>2</em:type>
+        <em:hasEmbeddedWebExtension>true</em:hasEmbeddedWebExtension>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
         <em:contributor>[ contact: mozilla@fnxweb.com ]</em:contributor>
@@ -49,19 +50,19 @@
         <em:targetApplication>
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-                <em:minVersion>3.0</em:minVersion>
-                <em:maxVersion>50.*</em:maxVersion>
+                <em:minVersion>52.0</em:minVersion>
+                <em:maxVersion>56.*</em:maxVersion>
             </Description>
         </em:targetApplication>
 
         <!-- Thunderbird -->
-        <em:targetApplication>
-            <Description>
-                <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
-                <em:minVersion>3.0</em:minVersion>
-                <em:maxVersion>45.*</em:maxVersion>
-            </Description>
-        </em:targetApplication>
+        <!-- <em:targetApplication> -->
+        <!--     <Description> -->
+        <!--         <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id> -->
+        <!--         <em:minVersion>3.0</em:minVersion> -->
+        <!--         <em:maxVersion>45.*</em:maxVersion> -->
+        <!--     </Description> -->
+        <!-- </em:targetApplication> -->
 
         <!-- Seamonkey -->
         <!-- <em:targetApplication> -->

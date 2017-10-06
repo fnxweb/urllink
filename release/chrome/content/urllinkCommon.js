@@ -1,4 +1,4 @@
-/* Copyright (C) 2006  Neil Bird
+/* © Neil Bird
  *   $Id$
  *
  * This library is free software; you can redistribute it and/or
@@ -158,14 +158,73 @@ fnxweb.urllink.common =
 
         /* Show changelog if there have been major changes */
         // TBD - use a new tab, not a popup
-        // if (lastversion != version)
-        //     setTimeout( function() {    /* allow delay for MacOS to size main window */
-        //             openDialog(
-        //                 'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
-        //                 'dialog=no,modal=no,resizable=yes,width=640,height=512');
-        //             }, 1 );
+        if (lastversion != version)
+            setTimeout( function() {    /* allow delay for MacOS to size main window */
+                    openDialog(
+                        'chrome://urllink/content/urllinkChangelog.xul', 'URL Link - Latest Changes',
+                        'dialog=no,modal=no,resizable=yes,width=640,height=512');
+                    }, 1 );
 
         this.prefs.setCharPref('lastversion',this.version);
+    },
+
+    CollatePrefs: function ()
+    {
+        let preferences = {};
+
+        // Simple ones
+        preferences["firsttime"]    = this.prefs.prefHasUserValue('firsttime');
+        preferences["forcesubmenu"] = this.prefs.prefHasUserValue('forcesubmenu') && this.prefs.getBoolPref("forcesubmenu");
+        preferences["hideopen"]     = this.prefs.prefHasUserValue('hideopen')     && this.prefs.getBoolPref("hideopen");
+        preferences["hidetab"]      = this.prefs.prefHasUserValue('hidetab')      && this.prefs.getBoolPref("hidetab");
+        preferences["lastversion"]  = this.prefs.prefHasUserValue('lastversion')  && this.prefs.getCharPref("lastversion");
+        preferences["newwindow"]    = this.prefs.prefHasUserValue('newwindow')    && this.prefs.getBoolPref("newwindow");
+        preferences["topmenu"]      = this.prefs.prefHasUserValue('topmenu')      && this.prefs.getBoolPref("topmenu");
+
+        // Sub-menus
+        let submenus = [];
+        if (this.prefs.getPrefType('submenu.0') != this.nsIPrefBranch.PREF_STRING)
+        {
+            // No customisation
+            for (var i = 0;  i < this.defaultMenuItems.length;  i++)
+                submenus.push( this.defaultMenuItems[i] );
+        }
+        else
+        {
+            // Access
+            let n = 0;
+            while (this.prefs.getPrefType('submenu.'+n) == this.nsIPrefBranch.PREF_STRING  &&
+                   this.prefs.prefHasUserValue('submenu.'+n))
+            {
+                submenus.push( this.prefs.getCharPref('submenu.'+n) );
+                ++n;
+            }
+        }
+        preferences["submenus"] = submenus;
+
+        // Search and replace
+        let sandr = [];
+        if (this.prefs.getPrefType('sandr.0') != this.nsIPrefBranch.PREF_STRING)
+        {
+            // No customisation
+            for (var i = 0;  i < this.defaultSandrItems.length;  i++)
+                sandr.push( this.defaultSandrItems[i] );
+        }
+        else
+        {
+            // Access
+            let n = 0;
+            while (this.prefs.getPrefType('sandr.'+n) == this.nsIPrefBranch.PREF_STRING  &&
+                   this.prefs.prefHasUserValue('sandr.'+n))
+            {
+                sandr.push( this.prefs.getCharPref('sandr.'+n) );
+                ++n;
+            }
+        }
+        preferences["sandr"] = sandr;
+
+        // Done
+        return preferences;
     },
 
     Init: function ()
@@ -188,6 +247,73 @@ fnxweb.urllink.common =
 
         this.checkApplication();
 
+
+        // Prefs. migration attach webextension to ask for our old prefs and put them in new storage
+        Components.utils.import("resource://gre/modules/AddonManager.jsm");  // access AddonManager
+        let LegacyExtensionsUtils;
+        try
+        {
+            LegacyExtensionsUtils = Components.utils.import("resource://gre/modules/LegacyExtensionsUtils.jsm").LegacyExtensionsUtils;
+        } catch (e)
+        {
+            // Firefox too old for this module, nothing we can do.
+        }
+        if (LegacyExtensionsUtils)
+        {
+            try
+            {
+                AddonManager.getAddonByID( this.addonID, addon => {
+                    const baseURI = addon.getResourceURI("/");
+
+                    const embeddedWebExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
+                        id: this.addonID, resourceURI: baseURI,
+                    });
+
+                    if (embeddedWebExtension)
+                    {
+                        embeddedWebExtension.startup().then( api => {
+                            // Started it - create a comms port
+                            const {browser} = api;
+                            browser.runtime.onConnect.addListener( port => {
+                                let webExtensionPort = port;
+
+                                // Wait for message(s) on that port
+                                webExtensionPort.onMessage.addListener( message => {
+                                    if (message == "urllink-preferences-request")
+                                    {
+                                        // Push updated prefs to embedded WebExtension for later
+                                        webExtensionPort.postMessage( {"urllink-preferences": this.CollatePrefs()} );
+                                    }
+                                });
+                            });
+                        }).catch( error => {
+                            // Don't seem able to tell is it's already been started:  we come in here once per window
+                            if (!error.message.includes("already been started"))
+                            {
+                                setTimeout( function() {
+                                    alert("URL Link Embedded WebExtension failed. Data loss may occur. Details: " +
+                                        error.message + " " + error.stack);
+                                }, 2 );
+                            }
+                        });
+                    }
+                    else
+                    {
+                        setTimeout( function() {
+                            alert("URL Link failed to find WebExtension object. Data loss may occur" );
+                        }, 2 );
+                    }
+                });
+            } catch (e)
+            {
+                setTimeout( function() {
+                    alert("URL Link Embedded WebExtension crashed. Data loss may occur. Details: " + e.message + " " + e.stack);
+                }, 2 );
+            }
+        }
+
+
+        // Messages
         if (!this.prefs.prefHasUserValue('firsttime'))
         {
             /* First-time use message */
@@ -200,18 +326,15 @@ fnxweb.urllink.common =
                         alert(intro);
                         }, 1 );
             }
+
+            /* Don't show changelog for first install */
+            this.prefs.setCharPref('lastversion',this.version);
         }
         else
         {
             /* Get our version so we can check it & maybe produce a changelog. */
-            if (typeof(Components.utils) != 'undefined' && typeof(Components.utils.import) != 'undefined')
-            {
-                var ascope = {};
-                Components.utils.import("resource://gre/modules/AddonManager.jsm", ascope);
-                if (ascope.AddonManager)
-                    ascope.AddonManager.getAddonByID(
-                        this.addonID, function (addon) {fnxweb.urllink.common.checkVersion(addon.version);} );
-            }
+            AddonManager.getAddonByID(
+                this.addonID, function (addon) {fnxweb.urllink.common.checkVersion(addon.version);} );
         }
     },
 
