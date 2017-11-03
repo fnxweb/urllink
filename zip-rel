@@ -1,4 +1,4 @@
 #!/bin/bash
 [ -d release ]  &&  cd release
 /bin/rm -f ../urllink.xpi
-zip -vrX9 ../urllink.xpi $(find . -type f | grep -v -e '\.svn' -e babelzilla)
+zip -vrX9 ../urllink.xpi $(find . -type f | grep -v -e '\.sw')
