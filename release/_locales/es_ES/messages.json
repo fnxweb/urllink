@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "es_ES" },
+
     "open-selected-url-in-new-tab": {
         "message": "Abrir la dirección seleccionada en una nueva &pestaña"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Añadir"
-    },
-
-    "prefs-help": {
-        "message": "Ayuda"
     },
 
     "prefs-cancel": {

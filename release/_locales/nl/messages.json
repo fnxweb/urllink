@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "nl" },
+
     "open-selected-url-in-new-tab": {
         "message": "Geselecteerde URL in nieuw &tabblad openen"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Toevoegen"
-    },
-
-    "prefs-help": {
-        "message": "Help"
     },
 
     "prefs-cancel": {

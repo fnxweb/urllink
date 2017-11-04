@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "pt_PT" },
+
     "open-selected-url-in-new-tab": {
         "message": "Abrir URL seleccionado num novo &separador"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Adicionar"
-    },
-
-    "prefs-help": {
-        "message": "Ajuda"
     },
 
     "prefs-cancel": {

@@ -184,6 +184,8 @@ function createContextMenus()
         currentUrlMenu = false;
         browser.menus.remove( "open-selected-url-in-new-tab" );
         browser.menus.remove( "open-selected-url" );
+        browser.menus.remove( "main-menu-separator" );
+        browser.menus.remove( "main-menu-help" );
     }
     if ((currentMenuTxt  &&  !wantTxtMenu)  ||  menuChanged)
     {
@@ -191,12 +193,16 @@ function createContextMenus()
         currentTxtMenu = false;
         removeContextMenuItems( "open-selection-in-new-tab" );
         removeContextMenuItems( "open-selection" );
+        browser.menus.remove( "main-menu-separator" );
+        browser.menus.remove( "main-menu-help" );
     }
 
 
     // Direct trigger menu items
+    let createdMenus = false;
     if (wantUrlMenu  &&  !currentMenuUrl)
     {
+        createdMenus = true;
         currentMenuUrl = true;
 
         browser.menus.create({
@@ -214,6 +220,7 @@ function createContextMenus()
     // Sub-menus for text
     if (wantTxtMenu  &&  (!currentMenuTxt  ||  menuChanged))
     {
+        createdMenus = true;
         currentMenuTxt = true;
         menuChanged = false;
 
@@ -227,6 +234,23 @@ function createContextMenus()
             title: removeAccess( browser.i18n.getMessage("open-selection") ),
             contexts: ["selection","link"]
         }, () => { onContextMenuCreated("open-selection",false); } );
+    }
+
+    // Created anything?
+    if (createdMenus)
+    {
+        // Separator
+        browser.menus.create({
+            id: "main-menu-separator",
+            type: "separator",
+            contexts: ["selection","link"]
+        });
+        // Help TBD will become Prefs with will have a Help link
+        browser.menus.create({
+            id: "main-menu-help",
+            title: browser.i18n.getMessage("help"),
+            contexts: ["selection","link"]
+        });
     }
 }
 
@@ -426,6 +450,21 @@ function openLink( menuItemId, tabId, withShift )
 }
 
 
+// Open correct help window
+function openHelpWindow()
+{
+    // Useful trick to determine which of our locales is actually in use ...
+    let currentLocale = browser.i18n.getMessage( "__locale" );
+    let lnk = browser.extension.getURL( `_locales/${currentLocale}/help.html` );
+
+    // Open help
+    browser.windows.create({
+        // TBD unsupported by Firefox @v56-57dev  "focused": true,
+        "url": lnk
+    });
+}
+
+
 
 //// Start
 
@@ -505,8 +544,17 @@ browser.menus.onClicked.addListener( (info, tab) => {
     // On tab?
     let tabId = tab.id;
 
-    // Handle menu option
-    openLink( info.menuItemId, tabId, withShift );
+    // Help?
+    if (info.menuItemId === "main-menu-help")
+    {
+        // Help window
+        openHelpWindow();
+    }
+    else
+    {
+        // Handle menu option
+        openLink( info.menuItemId, tabId, withShift );
+    }
 });
 
 

@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "sv_SE" },
+
     "open-selected-url-in-new-tab": {
         "message": "Öppna markerad URL i ny &flik"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Lägg till"
-    },
-
-    "prefs-help": {
-        "message": "Hjälp"
     },
 
     "prefs-cancel": {

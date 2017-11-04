@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "zh_TW" },
+
     "open-selected-url-in-new-tab": {
         "message": "用新視窗開啟已選取的網址 (&T)"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "增加"
-    },
-
-    "prefs-help": {
-        "message": "說明"
     },
 
     "prefs-cancel": {

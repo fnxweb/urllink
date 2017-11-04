@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "cs_CZ" },
+
     "open-selected-url-in-new-tab": {
         "message": "&Přejít na vybranou adresu v novém panelu"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Přidat"
-    },
-
-    "prefs-help": {
-        "message": "Nápověda"
     },
 
     "prefs-cancel": {

@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "ru_RU" },
+
     "open-selected-url-in-new-tab": {
         "message": "Открыть &выделенную ссылку в новой вкладке"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Добавить"
-    },
-
-    "prefs-help": {
-        "message": "Помощь"
     },
 
     "prefs-cancel": {

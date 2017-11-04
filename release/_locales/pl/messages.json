@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "pl" },
+
     "open-selected-url-in-new-tab": {
         "message": "Otwórz zaznaczony adres URL w nowej &karcie"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Dodaj"
-    },
-
-    "prefs-help": {
-        "message": "Pomoc"
     },
 
     "prefs-cancel": {

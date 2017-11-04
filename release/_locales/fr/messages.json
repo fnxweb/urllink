@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "fr" },
+
     "open-selected-url-in-new-tab": {
         "message": "Ouvrir l'adresse sélectionnée dans un nouvel on&glet"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Ajouter"
-    },
-
-    "prefs-help": {
-        "message": "Aide"
     },
 
     "prefs-cancel": {

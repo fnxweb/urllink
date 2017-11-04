@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "sk_SK" },
+
     "open-selected-url-in-new-tab": {
         "message": "Otvoriť vybranú adresu na novej &karte"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Pridať"
-    },
-
-    "prefs-help": {
-        "message": "Pomocník"
     },
 
     "prefs-cancel": {

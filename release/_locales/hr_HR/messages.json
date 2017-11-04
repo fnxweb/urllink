@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "hr_HR" },
+
     "open-selected-url-in-new-tab": {
         "message": "Otvori odabranu web adresu u novoj &kartici"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Dodaj"
-    },
-
-    "prefs-help": {
-        "message": "Pomoć"
     },
 
     "prefs-cancel": {

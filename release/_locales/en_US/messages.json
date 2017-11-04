@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "en_US" },
+
     "open-selected-url-in-new-tab": {
         "message": "Open Selected URL in New &Tab",
         "description": "Open new tab when a URL is selected"
@@ -45,9 +47,19 @@
         "description": "Use selection unchanged"
     },
 
+    "help": {
+        "message": "Help",
+        "description": "Open help page and also help page title"
+    },
+
+    "prefs": {
+        "message": "Preferences",
+        "description": "Open preferences page (menu)"
+    },
+
     "prefs-title": {
         "message": "URL Link Preferences",
-        "description": "Open preferences page"
+        "description": "Preferences page title"
     },
 
     "prefs-editmenu": {
@@ -83,11 +95,6 @@
     "prefs-add": {
         "message": "Add",
         "description": "Add a new entry"
-    },
-
-    "prefs-help": {
-        "message": "Help",
-        "description": "Open help page"
     },
 
     "prefs-cancel": {

@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "hu_HU" },
+
     "open-selected-url-in-new-tab": {
         "message": "Kiválasztott URL megnyitása új &lapon"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Hozzáadás"
-    },
-
-    "prefs-help": {
-        "message": "Súgó"
     },
 
     "prefs-cancel": {

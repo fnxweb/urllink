@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "fi" },
+
     "open-selected-url-in-new-tab": {
         "message": "Avaa Valittu URL uudessa &Välilehdessä."
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Lisää"
-    },
-
-    "prefs-help": {
-        "message": "Apua"
     },
 
     "prefs-cancel": {

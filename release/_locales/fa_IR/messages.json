@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "fa_IR" },
+
     "open-selected-url-in-new-tab": {
         "message": "يشسيشسي"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "بسيبسيب"
-    },
-
-    "prefs-help": {
-        "message": "سيبسي"
     },
 
     "prefs-cancel": {

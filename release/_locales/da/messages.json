@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "da" },
+
     "open-selected-url-in-new-tab": {
         "message": "Åbn den valgte URL i et nyt &faneblad"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Tilføj"
-    },
-
-    "prefs-help": {
-        "message": "Hjælp"
     },
 
     "prefs-cancel": {

@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "ja_JP" },
+
     "open-selected-url-in-new-tab": {
         "message": "選択したURLを新しいタブで開く"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "追加"
-    },
-
-    "prefs-help": {
-        "message": "ヘルプ"
     },
 
     "prefs-cancel": {

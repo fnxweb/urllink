@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "ca_AD" },
+
     "open-selected-url-in-new-tab": {
         "message": "Obre l'adreça URL en una pes&tanya nova"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Afegeix"
-    },
-
-    "prefs-help": {
-        "message": "Ajuda"
     },
 
     "prefs-cancel": {

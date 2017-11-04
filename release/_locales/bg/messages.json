@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "bg" },
+
     "open-selected-url-in-new-tab": {
         "message": "Отваряне на маркирания URL адрес в нов &подпрозорец"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Добавяне"
-    },
-
-    "prefs-help": {
-        "message": "Помощ"
     },
 
     "prefs-cancel": {

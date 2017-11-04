@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "zh_CN" },
+
     "open-selected-url-in-new-tab": {
         "message": "在新标签中打开选择的URL"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "添加"
-    },
-
-    "prefs-help": {
-        "message": "帮助"
     },
 
     "prefs-cancel": {

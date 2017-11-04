@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "uk_UA" },
+
     "open-selected-url-in-new-tab": {
         "message": "Відкрити виділене посилання в новій в&кладці"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "Додати"
-    },
-
-    "prefs-help": {
-        "message": "Допомога"
     },
 
     "prefs-cancel": {

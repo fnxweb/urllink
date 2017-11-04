@@ -20,6 +20,8 @@
         }
     },
 
+    "__locale": { "message": "ko_KR" },
+
     "open-selected-url-in-new-tab": {
         "message": "새 탭으로 선택된 URL 열기"
     },
@@ -78,10 +80,6 @@
 
     "prefs-add": {
         "message": "추가"
-    },
-
-    "prefs-help": {
-        "message": "도움말"
     },
 
     "prefs-cancel": {
