@@ -264,6 +264,7 @@ function defaultPrefs()
     return {
 
         // Simple ones
+        "debug"        : false,
         "firsttime"    : false,
         "forcesubmenu" : false,
         "hideopen"     : false,
@@ -534,6 +535,9 @@ browser.storage.local.get("preferences").then( results => {
     if (writePrefs)
         browser.storage.local.set({"preferences": prefs});
 
+    // Debug setting
+    debug = prefs["debug"];
+
     // Tell window our prefs. if comms are up
     if (typeof(comms) !== "undefined")
         comms.postMessage({"message":"urllink-prefs", "prefs": prefs});
@@ -588,7 +592,7 @@ browser.runtime.onInstalled.addListener( details => {
     if (details.reason === "update")
     {
         // Show changelog
-        browser.tabs.create({ "url": "history.html" });
+        browser.tabs.create({ "url": "changelog.html" });
 
         // Update known version
         if (prefs.hasOwnProperty("lastversion"))
