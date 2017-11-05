@@ -24,6 +24,9 @@ var prefs = {};
 // Comms to page code
 var comms;
 
+// Debug enabled?
+let debug = false;
+
 // Current menu control - not just one bool, to cater for start-up when notrhing needs deleting
 var currentMenuUrl = false; // current menu is for a URL
 var currentMenuTxt = false; // current menu is for text
@@ -304,7 +307,8 @@ function deleteOldPrefs()
 // Page message handler
 function onMessage(message)
 {
-    console.log("URL Link message from page: " + JSON.stringify(message));
+    if (debug)
+        console.log("URL Link message from page: " + JSON.stringify(message));
     if (message["message"] === "contextMenu")
         activeSelection = message["selection"];
 
@@ -405,7 +409,8 @@ function openLink( menuItemId, tabId, withShift )
         }
     }
 
-    console.log( `URL Link: ${menuItemId} using '${prefix}' + '${activeSelection}' + '${suffix}'` );
+    if (debug)
+        console.log( `URL Link: ${menuItemId} using '${prefix}' + '${activeSelection}' + '${suffix}'` );
 
     // Continue processing selection (it has been unmangled by the content script)
     let lnk = activeSelection;
@@ -413,13 +418,14 @@ function openLink( menuItemId, tabId, withShift )
         return;
     lnk = fixURL( prefix + lnk + suffix );
 
-    console.log( `URL Link: fixed '${lnk}'` );
+    if (debug)
+        console.log( `URL Link: fixed '${lnk}'` );
 
     if (inTab)
     {
         // Tab
         let props = {
-            "active": prefs["inbackground"],
+            "active": !prefs["inbackground"],
             "url": lnk
         };
         if (firefoxVersion >= 57)
@@ -484,11 +490,13 @@ browser.storage.local.get("preferences").then( results => {
     if (results.hasOwnProperty("preferences"))
     {
         prefs = results["preferences"];
-        console.log("URL Link found prefs.: " + JSON.stringify(prefs));
+        if (debug)
+            console.log("URL Link found prefs.: " + JSON.stringify(prefs));
     }
     else
     {
-        console.log("URL Link found no valid prefs.: " + JSON.stringify(results));
+        if (debug)
+            console.log("URL Link found no valid prefs.: " + JSON.stringify(results));
     }
 
     // Validate
@@ -496,9 +504,11 @@ browser.storage.local.get("preferences").then( results => {
     let writePrefs = false;
     if (!prefs.hasOwnProperty("lastversion"))
     {
-        console.log("URL Link not found prefs., setting defaults");
+        if (debug)
+            console.log("URL Link not found prefs., setting defaults");
         prefs = defaults;
-        console.log("URL Link defaults: " + JSON.stringify(prefs));
+        if (debug)
+            console.log("URL Link defaults: " + JSON.stringify(prefs));
         writePrefs = true;
     }
     else
