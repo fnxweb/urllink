@@ -96,9 +96,7 @@ function singleSearchAndReplace( str, sandr )
             {
                 var newstr = str.replace( regex, repl );
                 if (debug)
-                {
                     console.log( "URL Link debug\nConversion: '" + sandr + "'\nFrom: '" + str + "'\nTo: '" + newstr + "'" );
-                }
                 str = newstr;
             }
         }
@@ -141,136 +139,6 @@ function getTextBoxText( field )
         return tb.value;
     else
         return tb.value.substring( tb.selectionStart, tb.selectionEnd );
-}
-
-
-/* Callback upon context-menu trigger */
-function DELETE_ME__browserContext()
-{
-    // LOGIC for menu creation
-    var me = fnxweb.urllink;
-    var mc = me.common;
-    var isLinkOrUrlSelection = false, isURL = false, isSimpleURL = false;
-
-    if (gContextMenu)
-    {
-        isLinkOrUrlSelection = ( gContextMenu.isTextSelected || gContextMenu.onTextInput || gContextMenu.onLink );
-        if (isLinkOrUrlSelection)
-        {
-            var wasLink = false;
-            /* See if selection looks like a URL */
-            /* Always use selection if it exists */
-            var sel = '';
-            if (gContextMenu.onTextInput)
-            {
-                sel = me.getTextBoxText( gContextMenu.target );
-            }
-            else if (gContextMenu.isTextSelected)
-            {
-                sel = me.getBestSelection(gContextMenu);
-                // Firefox does a little of what we do for simple & obvious URLs like "google.com";  not sure what its
-                // logic is, but we at least want to try to not duplicate menu options where possible.  So for non-line-split text
-                // selections that start with http[s]/ftp (by protocol or hostname), neglect to proffer the "Open Selection"
-                // options.  We'll always proffer the amendment submenus though, to allow for fixing up (e.g., "google.com" as
-                // opposed to "www.google.com").
-                // A really long URL regex is at http://flanders.co.nz/2009/11/08/a-good-url-regular-expression-repost/
-                // ... but this should suffice for our purposes!
-                // FF seems to not do it for “file:” URLS, so we'll process those.
-                if (sel.search(/^[ \t\n]*file:/) == -1  &&  sel.search(/^[ \t\n]*([a-z]+:)?[-a-zA-Z0-9_.%\/?&=]+[ \t\n]*$/) == 0)
-                    isSimpleURL = true;
-            }
-            else if (gContextMenu.onLink)
-            {
-                wasLink = true;
-                sel = gContextMenu.link.href;
-                /* Only do 'mailto' links, and 'javascript' refs. which have string args,
-                 * and 'file' links which let Linux users map Windows file refs. to a local mount. */
-                if (sel.search(/^mailto[:]/) == 0  ||
-                    sel.search(/^javascript[:].*\(.*['"].*['"]/) == 0  ||
-                    sel.search(/^file[:]/) == 0)
-                    isUrl = true;
-                else
-                    isLinkOrUrlSelection = false;
-            }
-            sel = me.unmangleURL(sel,wasLink);
-            if (isLinkOrUrlSelection && sel.search(/^(mailto:|\w+:\/\/|www\.|ftp\.|.*@)/) == 0)
-                isURL = true;
-        }
-        else if (gContextMenu.onSaveableLink)
-        {
-            /* Right-click on a link */
-            isLinkOrUrlSelection = true;
-            isURL = true;
-        }
-    }
-
-// Menu creation - TBD move
-//     /* May be showing only main open or only tab open bits */
-//     var hidetab  = mc.prefs.getBoolPref("hidetab");
-//     var hideopen = mc.prefs.getBoolPref("hideopen");
-//     var forcesubmenu = mc.prefs.getBoolPref('forcesubmenu');
-//
-//     /* Main menu buttons visible if selection and looks like URL */
-//     var anyVisible = false;
-//     for (var i=0; i<mc.BrowserMenuItems.length; i++)
-//     {
-//         var menuitem = document.getElementById(mc.BrowserMenuItems[i] + mc.menuPos());
-//         if (menuitem)
-//         {
-//             if (mc.isInFirefox4Plus && isSimpleUrl)
-//                 menuitem.hidden = true;
-//             else if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0))
-//                 menuitem.hidden = true;
-//             else
-//                 menuitem.hidden = !(isLinkOrUrlSelection && isURL);
-//         }
-//         menuitem = document.getElementById(mc.BrowserMenuItems[i] + mc.menuPosAlt());
-//         if (menuitem)
-//             menuitem.hidden = true;
-//         if (!menuitem.hidden)
-//             anyVisible = true;
-//     }
-//
-//     /* Alternate submenus visible if selection and doesn't look like URL, or we force it */
-//     if (forcesubmenu  ||  ! (!isLinkOrUrlSelection || isURL))
-//     {
-//         /* Alternate menus not hidden;  regenerate from current prefs. */
-//         for (var i=0; i<mc.AlternateBrowserMenus.length; i++)
-//         {
-//             var menuitem_id = mc.AlternateBrowserMenus[i] + mc.menuPos();
-//             if ((!hidetab  &&  menuitem_id.search(/open-tab/) >= 0)  ||  (!hideopen  &&  menuitem_id.search(/open-link/) >= 0))
-//                 mc.regenerateMenu( menuitem_id, fnxweb.urllink.BrowserOpenLink, i );
-//         }
-//     }
-//     for (var i=0; i<mc.AlternateBrowserMenuItems.length; i++)
-//     {
-//         var menuitem = document.getElementById(mc.AlternateBrowserMenuItems[i] + mc.menuPos());
-//         if (menuitem)
-//         {
-//             if ((hidetab  &&  menuitem.id.search(/open-tab/) >= 0)  ||  (hideopen  &&  menuitem.id.search(/open-link/) >= 0) )
-//                 menuitem.hidden = true;
-//             else
-//                 menuitem.hidden = !forcesubmenu  &&  (!isLinkOrUrlSelection || isURL);
-//         }
-//         menuitem = document.getElementById(mc.AlternateBrowserMenuItems[i] + mc.menuPosAlt());
-//         if (menuitem)
-//             menuitem.hidden = true;
-//         if (!menuitem.hidden)
-//             anyVisible = true;
-//     }
-//
-//     /* Hide separators if both of the above hidden */
-//     {
-//         for (var i=0; i<2; i++)
-//         {
-//             var menuitem = document.getElementById(mc.BrowserMenuSep + i + mc.menuPos());
-//             if (menuitem)
-//                 menuitem.hidden = !anyVisible;
-//             menuitem = document.getElementById(mc.BrowserMenuSep + i + mc.menuPosAlt());
-//             if (menuitem)
-//                 menuitem.hidden = true;
-//         }
-//     }
 }
 
 
@@ -365,9 +233,7 @@ function getBestJavascriptArg(url)
     // Is out best actualy base64 (e.g,. kelkoo?)
     var decoded = fnxweb.urllink.decode64(best);
     if (decoded != '')
-    {
          best = decoded;
-    }
 
     return best;
 }
@@ -463,11 +329,25 @@ function processSelection( event )
     // Tell extension for the context menu handler
     comms.postMessage( {
         message:   "contextMenu",
-        isLink:    isLink, // TBD no longer needed?
         selection: lnk
     });
 }
 
+
+// Process right-click events for context menu
+function mousedownHandler( event )
+{
+    if (event.button === 2)
+        processSelection( event );
+}
+
+
+// Also catch context menu via keyboard
+function keydownHandler( event )
+{
+    if (event.shiftKey && event.key === "F10" || event.key === "ContextMenu")
+        processSelection( event );
+}
 
 
 //// Start up
@@ -476,25 +356,26 @@ function processSelection( event )
 // Connection to extension
 var comms = browser.runtime.connect({name:"urllink-comms"});
 
-
 // Get prefs. on load and change
 comms.onMessage.addListener( message => {
     if (message["message"] === "urllink-prefs")
         prefs = message["prefs"];
 });
 
-
-// Process right-click events for context menu
-window.addEventListener("mousedown", event => {
-    if (event.button === 2) {
-        processSelection( event );
-    }
-}, true);
+// Request prefs. now
+comms.postMessage({"message":"urllink-prefs-req"});
 
 
-// Also catch context menu via keyboard
-window.addEventListener("keydown", event => {
-    if (event.shiftKey && event.key === "F10" || event.key === "ContextMenu") {
-        processSelection( event );
-    }
-}, true);
+// Watch out for context mouse clicks
+window.addEventListener( "mousedown", mousedownHandler, true );
+
+// Watch out for keyboard context menus
+window.addEventListener( "keydown", keydownHandler, true );
+
+
+// Clear up on uninstall / update of main extension
+comms.onDisconnect.addListener( p => {
+    window.removeEventListener( "mousedown", mousedownHandler, true );
+    window.removeEventListener( "keydown", keydownHandler, true );
+    comms = null;
+});

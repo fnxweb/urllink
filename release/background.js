@@ -19,13 +19,10 @@
 
 
 // Prefs.
-var prefs = {};
+var prefs = { "debug": false };
 
 // Comms to page code
 var comms;
-
-// Debug enabled?
-let debug = false;
 
 // Current menu control - not just one bool, to cater for start-up when notrhing needs deleting
 var currentMenuUrl = false; // current menu is for a URL
@@ -75,16 +72,19 @@ function getMenuText( formatstr )
 // Return actual format part out of menu given format string
 function getMenuFormat( formatstr )
 {
-    // formatstr = 'displaystr|format'
+    // formatstr = 'format' or 'displaystr|format'
     let barpos = formatstr.indexOf("|");
     if (barpos === -1)
     {
-        // Normal
-        return formatstr;
+        // Normal - menu entry is the format
+        // NB: we strip menu-shortcut '&'s here;  if you have a URL that legitimately contains
+        // an ampersand, and this would be before a menu shortcut (‽), to stop it being stripped
+        // you just have to give a label.  Or double && I guess.
+        return removeAccess( formatstr );
     }
     else
     {
-        // Custom
+        // Custom - format comes after the vertical bar
         return formatstr.substr( barpos+1 );
     }
 }
@@ -308,10 +308,15 @@ function deleteOldPrefs()
 // Page message handler
 function onMessage(message)
 {
-    if (debug)
+    if (prefs["debug"])
         console.log("URL Link message from page: " + JSON.stringify(message));
+
     if (message["message"] === "contextMenu")
         activeSelection = message["selection"];
+    else if (message["message"] === "urllink-prefs-req")
+        comms.postMessage({"message":"urllink-prefs", "prefs": prefs});
+    else
+        console.log("URL Link unrecognised message: " + JSON.stringify(message));
 
     // Now we can create menus
     // TBD no point re-doing them until FF supports regen. of menus on the fly (see above bug link)
@@ -410,7 +415,7 @@ function openLink( menuItemId, tabId, withShift )
         }
     }
 
-    if (debug)
+    if (prefs["debug"])
         console.log( `URL Link: ${menuItemId} using '${prefix}' + '${activeSelection}' + '${suffix}'` );
 
     // Continue processing selection (it has been unmangled by the content script)
@@ -419,7 +424,7 @@ function openLink( menuItemId, tabId, withShift )
         return;
     lnk = fixURL( prefix + lnk + suffix );
 
-    if (debug)
+    if (prefs["debug"])
         console.log( `URL Link: fixed '${lnk}'` );
 
     if (inTab)
@@ -491,12 +496,12 @@ browser.storage.local.get("preferences").then( results => {
     if (results.hasOwnProperty("preferences"))
     {
         prefs = results["preferences"];
-        if (debug)
+        if (prefs["debug"])
             console.log("URL Link found prefs.: " + JSON.stringify(prefs));
     }
     else
     {
-        if (debug)
+        if (prefs["debug"])
             console.log("URL Link found no valid prefs.: " + JSON.stringify(results));
     }
 
@@ -505,10 +510,10 @@ browser.storage.local.get("preferences").then( results => {
     let writePrefs = false;
     if (!prefs.hasOwnProperty("lastversion"))
     {
-        if (debug)
+        if (prefs["debug"])
             console.log("URL Link not found prefs., setting defaults");
         prefs = defaults;
-        if (debug)
+        if (prefs["debug"])
             console.log("URL Link defaults: " + JSON.stringify(prefs));
         writePrefs = true;
     }
@@ -534,9 +539,6 @@ browser.storage.local.get("preferences").then( results => {
     // Re-write prefs?
     if (writePrefs)
         browser.storage.local.set({"preferences": prefs});
-
-    // Debug setting
-    debug = prefs["debug"];
 
     // Tell window our prefs. if comms are up
     if (typeof(comms) !== "undefined")
@@ -591,14 +593,37 @@ browser.runtime.onInstalled.addListener( details => {
     // Maybe not do this this on minor versions ...
     if (details.reason === "update")
     {
-        // Show changelog
-        browser.tabs.create({ "url": "changelog.html" });
+        let showChangelog = false;
 
-        // Update known version
+        // Check version
         if (prefs.hasOwnProperty("lastversion"))
         {
-            prefs["lastversion"] = browser.runtime.getManifest().version;
+            let newvn = browser.runtime.getManifest().version;
+            if (details.previousVersion !== newvn)
+                showChangelog = true;
+
+            // Update records
+            prefs["lastversion"] = newvn;
             browser.storage.local.set({"preferences": prefs});
         }
+
+        // Show changelog?
+        if (showChangelog)
+            browser.tabs.create({ "url": "changelog.html" });
     }
+});
+
+
+// Finally, add our required content script into all appropriate open tabs.
+// Originally https://discourse.mozilla.org/t/why-content-script-does-not-work-borderify-js/10009/3
+// Modifed to simply just for us.
+/// TBD doesn't work fpor updates;  we always get the injection happen *before* the existing install gets disabled, leaving it dead
+browser.tabs.query({}).then( tabs => {
+    browser.runtime.getManifest().content_scripts.forEach(({ js, css, matches, exclude_matches, }) => {
+        tabs.map(({ id, url, }) => {
+            if (!url  ||  url.match(/^(about|moz-extension):/)) { return; }
+            // No injected CSS yet  css && css.forEach(file => browser.tabs.insertCSS(id, { file, }));
+            try { js && js.forEach(file => chrome.tabs.executeScript(id, { file, }).catch( e => {} )); } catch (e) {}
+        });
+    });
 });
