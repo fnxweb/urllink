@@ -390,6 +390,14 @@ function fixURL(url)
 // Handle request to open a link from a menu selection
 function openLink( menuItemId, tabId, withShift )
 {
+    // Until we can sort out proper injection of our content script upon extension install / update,
+    // the only thing we can do it ask for the page to be refreshed, otherwise it just looks like we're not working.
+    if (activeSelection.length === 0)
+    {
+        browser.tabs.create({ "url": "refresh.html" });
+        return;
+    }
+
     // In new tab?
     let inTab = (menuItemId.indexOf("-in-new-tab") > 0);
 
