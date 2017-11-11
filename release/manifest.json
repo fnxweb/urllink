@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "3.0.0beta4",
+    "version": "3.0.0",
     "description": "__MSG_extensionDescription__",
     "author": "Neil Bird",
     "homepage_url": "https://addons.mozilla.org/en-GB/firefox/addon/url-link/",
