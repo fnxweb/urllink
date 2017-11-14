@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/REC-html401/loose.dtd">
-<!-- $Id: help.html 754 2007-12-02 17:10:55Z neil $ -->
+<!-- ca_AD help.html -->
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -86,20 +86,20 @@
     es realitza després d'eliminar el caràcter &amp; del davant, i després de convertir totes les
     barres inverses (\) en barres inclinades (/).
     <p>
-    El format de les entrades de la pestanya de preferències és 
+    El format de les entrades de la pestanya de preferències és
     “cercaExpReg||Reemplaçamet||indicadorsExpReg”. Els caràcters “||” del final i els indicadors
     són opcionals; segurament, l'indicador (JavaScript) més habitual que utilitzareu és 'g' (que vol dir
     “global” o “reemplaça-ho tot”). El reemplaçament pot contenir les referències de patró de cerca “$n”
     habituals.
     <p>
-    <i>Per exemple</i>, suposeu que rebeu un correu electrònic que conté enllaços a un fitxer del Windows com ara 
+    <i>Per exemple</i>, suposeu que rebeu un correu electrònic que conté enllaços a un fitxer del Windows com ara
     “\\servidor\recurs_compartit\fitxer”. Però esteu en un sistema Linux i el recurs compartit del Windows
     està mapat com a “/mnt/smb/nom_usuari/recurs_compartit”. Per tant, caldria que afegíssiu una entrada
     al final de la llista (tingueu en compte que les barres inverses ja s'han convertit i que les entrades
     per defecte converteixen “//servidor/recurs_compartit” en “file:///servidor/recurs_conpartit”) amb aquest format:
     “file:///servidor/recurs_compartit||file:///mnt/smb/nom_usuari/recurs_compartit”.
     <p>
-    Si us cal depurar les expressions, afegiu l'indicador d'expressió regular especial (per a l'URL Link) 
+    Si us cal depurar les expressions, afegiu l'indicador d'expressió regular especial (per a l'URL Link)
     “D”, per exemple: ‘from||to||D’. Així, l'URL Link obrirà una finestra d'alerta
     que us indicarà quina és la vostra expressió (“Conversió:”), quina és la selecció en aquest
     moment (“From:”) i què ha fet l'expressió a la selecció (“To:”).
@@ -107,7 +107,7 @@
     <h3>Canvis previstos</h3>
     <ul>
       <li>
-      Ampliar la cerca i reemplaçament personalitzats quan sigui estable per permetre també executar codi 
+      Ampliar la cerca i reemplaçament personalitzats quan sigui estable per permetre també executar codi
       JavaScript arbitrari a la selecció.
       </li>
       <li>
