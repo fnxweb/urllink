@@ -1,13 +1,181 @@
+<!--
+// URL Link preference editing
+//   preferences.html
+//
+// Copyright (C) Neil Bird
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+
+
 <!DOCTYPE html>
 <!-- preferences.html -->
 <html>
-  <head> <meta charset="utf-8"> </head>
+  <head>
+  <meta charset="utf-8">
+  <script src="preferences.js"></script>
+  <style type="text/css">
+
+ul.urllink-list
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  transition: 0.25s;
+}
+.urllink-list li.li-data
+{
+  display: block;
+  width: 95%;
+  background-color: #fbfbfb;
+  border: 1px solid #b1b1b1;
+  color: #0c0c0d;
+  border-radius: 4px;
+  padding-top: 0.5ex;
+  padding-bottom: 0.5ex;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.urllink-list li:hover.li-data
+{
+  background-color: #ebebeb;
+  cursor: grab;
+  transition: 0.3s;
+}
+.urllink-list li.li-data.dragging
+{
+  background-color: #d7d7db;
+}
+.urllink-list li.li-sep
+{
+  display: block;
+  height: 1.5ex;
+  width: 90%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+.urllink-list li.li-sep div
+{
+  display: block;
+  width: 100%;
+  padding-top: 0.5ex;
+  padding-bottom: 0.5ex;
+}
+.urllink-list li.li-sep span
+{
+  display: block;
+  height: 0.5ex;
+  width: 100%;
+  border-radius: 4px;
+}
+.urllink-list li.li-sep.dragging span,
+.urllink-list li.li-sep div.dragging span,
+.urllink-list li.li-sep span.dragging
+{
+  background-color: #b1b1b3;
+}
+
+div.tab
+{
+  float: left;
+  width: 10em;
+  height: 4ex;
+}
+div.tab button
+{
+  display: block;
+  background-color: #b1b1b3;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.5em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: left;
+  margin-top: 2ex;
+}
+div.tab button:hover
+{
+  background-color: #737373;
+  color: white;
+}
+div.tab button.active
+{
+  background-color: #4a4a4f; // #d7d7db;
+  color: white;
+  cursor: inherit;
+}
+
+.tab-content
+{
+  float: left;
+  border: 8px solid #4a4a4f;
+  border-radius: 4px;
+  padding: 1em;
+  width: 75%;
+  margin-left: -4px;
+  background: white;
+}
+
+  </style>
+  </head>
   <body>
+
     <h1>Preferences</h1>
 
-    <p>Preference editing coming soon ...
+    <div class="tabs">
 
-    <p>But if you're feeling brave in the meantime, you can edit the preferences in their JSON file:  click the “hamburger” menu button, help “(?)”, “Troubleshooting Information”, and then under “Application Basics” select “Show Folder” or “Open Directory”.  This is your Firefox profile.  Go into the <b>browser-extension-data/{139a120b-c2ea-41d2-bf70-542d9f063dfd}</b> directory and the preferences are there.  <b>Make a backup before editing</b>!
+      <div class="tab">
+        <button id="menu-tab-button"  class="tab-link">Custom menu</button>
+        <button id="sandr-tab-button" class="tab-link">Search and Replace</button>
+      </div>
+
+      <div id="menu-tab" class="tab-content">
+        <ul class="urllink-list">
+          <li id="menu1" class="li-data" draggable="true">Menu 1</li>
+          <li id="menu1sep" class="li-sep"><div><span></span></div></li>
+          <li id="menu2" class="li-data" draggable="true">Menu 22</li>
+          <li id="menu2sep" class="li-sep"><div><span></span></div></li>
+          <li id="menu3" class="li-data" draggable="true">Menu 333</li>
+          <li id="menu3sep" class="li-sep"><div><span></span></div></li>
+          <li id="menu4" class="li-data" draggable="true">Menu 4444</li>
+        </ul>
+      </div>
+
+      <div id="sandr-tab" class="tab-content">
+        <ul class="urllink-list">
+          <li id="sandr1" class="li-data" draggable="true">S&amp;R 1</li>
+          <li id="sandr1sep" class="li-sep"               ><div><span></span></div></li>
+          <li id="sandr2" class="li-data" draggable="true">S&amp;R 22</li>
+          <li id="sandr2sep" class="li-sep"               ><div><span></span></div></li>
+          <li id="sandr3" class="li-data" draggable="true">S&amp;R 333</li>
+          <li id="sandr3sep" class="li-sep"               ><div><span></span></div></li>
+          <li id="sandr4" class="li-data" draggable="true">S&amp;R 4444</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="clear:both"></div>
+    <br>
+    <hr>
 
     <p> <b><a target="_blank" href="changelog.html">Changelog</a></b>
 

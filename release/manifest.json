@@ -33,6 +33,7 @@
     ],
 
     "options_ui": {
+        "browser_style": true,
         "page": "preferences.html"
     },
 

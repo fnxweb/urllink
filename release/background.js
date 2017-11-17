@@ -1,7 +1,7 @@
 // Main URL Link extension code
 //   background.js
 //
-// Copyright (C) 2006  Neil Bird
+// Copyright (C) Neil Bird
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
