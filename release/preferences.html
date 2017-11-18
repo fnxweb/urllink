@@ -38,6 +38,7 @@ ul.urllink-list
 .urllink-list li.li-data
 {
   display: block;
+  word-break: break-all;
   width: 95%;
   background-color: #fbfbfb;
   border: 1px solid #b1b1b1;
@@ -130,10 +131,22 @@ div.tab button.active
   border-radius: 4px;
   padding: 1em;
   width: 75%;
+  min-height: 15ex;
   margin-left: -4px;
   background: inherit;
 }
 
+dt
+{
+  margin-left: 10em;
+  clear: both;
+  float: left;
+  width: 20em;
+}
+dd
+{
+  float: left;
+}
   </style>
   </head>
   <body>
@@ -147,37 +160,41 @@ div.tab button.active
         <button id="sandr-tab-button" class="tab-link">Search and Replace</button>
       </div>
 
-      <div id="menu-tab" class="tab-content">
-        <ul class="urllink-list">
-          <li id="menu1" class="li-data" draggable="true">Menu 1</li>
-          <li id="menu1sep" class="li-sep"><div><span></span></div></li>
-          <li id="menu2" class="li-data" draggable="true">Menu 22</li>
-          <li id="menu2sep" class="li-sep"><div><span></span></div></li>
-          <li id="menu3" class="li-data" draggable="true">Menu 333</li>
-          <li id="menu3sep" class="li-sep"><div><span></span></div></li>
-          <li id="menu4" class="li-data" draggable="true">Menu 4444</li>
-        </ul>
+      <div id="menu-tab" class="tab-content"
+        title="List of menu items. '*' is replaced by the selection.'--' is a separator. '|'separates menu label from URL to use">
+        <ul class="urllink-list"></ul>
       </div>
 
-      <div id="sandr-tab" class="tab-content">
-        <ul class="urllink-list">
-          <li id="sandr1" class="li-data" draggable="true">S&amp;R 1</li>
-          <li id="sandr1sep" class="li-sep"               ><div><span></span></div></li>
-          <li id="sandr2" class="li-data" draggable="true">S&amp;R 22</li>
-          <li id="sandr2sep" class="li-sep"               ><div><span></span></div></li>
-          <li id="sandr3" class="li-data" draggable="true">S&amp;R 333</li>
-          <li id="sandr3sep" class="li-sep"               ><div><span></span></div></li>
-          <li id="sandr4" class="li-data" draggable="true">S&amp;R 4444</li>
-        </ul>
+      <div id="sandr-tab" class="tab-content"
+        title="List of search and replace items. Format is 'RegEx||Replacement'">
+        <ul class="urllink-list"></ul>
       </div>
 
     </div>
 
-    <div style="clear:both"></div>
-    <br>
-    <hr>
+    <div style="clear:both"></div><br>
 
-    <p> <b><a target="_blank" href="changelog.html">Changelog</a></b>
+    <dl>
+      <div title="Open new window by default (as &lt;Shift&gt; normally does)">
+        <dt>Prefer new window:</dt><dd><input id="option-new-window" type="checkbox"></dd>
+      </div>
+      <div title="Shows the extra sub-menu even if the current selection already looks like a valid URL">
+        <dt>Always show filter sub-menu:</dt><dd><input id="option-force-sub-menu" type="checkbox"></dd>
+      </div>
+      <div title="Open new tabs in the background instead of switching to them">
+        <dt>Open tabs in background:</dt><dd><input id="option-background-tabs" type="checkbox"></dd>
+      </div>
+      <dt>&nbsp;</dt><dd>&nbsp;</dd>
+      <dt>Menu control:</dt><dd>
+        <input id="option-both-options" type="radio">Show both menu options<br>
+        <input id="option-hide-tab" type="radio">Hide the 'open in tab' options<br>
+        <input id="option-hide-open" type="radio">Hide the normal 'open' options
+      </dd>
+    </dl>
+
+    <div style="clear:both"></div><br>
+
+    <h1><a target="_blank" href="changelog.html">Changelog</a></h1>
 
   </body>
 </html>

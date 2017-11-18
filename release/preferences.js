@@ -18,15 +18,24 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
+// Current prefs
+var prefs = {};
+
+
+// Dragging starts
 function onDragStart(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
 }
 
+
+// Dragging over possible target
 function onDragOver(ev)
 {
   ev.preventDefault();
 }
 
+
+// Finished dragging
 function onDrop(ev)
 {
   // Handle event, ID origin
@@ -89,48 +98,146 @@ function onDrop(ev)
   }
 }
 
+
+// Entered item while dragging
 function onDragEnter(ev)
 {
+  // If a valid item, highlight it as a target
   if (ev.target.tagName.search(/^(li|div|span)$/i) === 0)
     ev.target.className = ev.target.className.replace(/ dragging\b/,'') + " dragging";
 }
 
+
+// Left item while dragging
 function onDragLeave(ev)
 {
+  // If a valid item, stop highlighting it as a target
   if (ev.target.tagName.search(/^(li|div|span)$/i) === 0)
     ev.target.className = ev.target.className.replace(/ dragging\b/,'');
 }
 
+
+
+// Click on a tab selection button
 function selectTab(ev, tabName)
 {
+    // Set all buttons as non-current
     let tabContent = document.getElementsByClassName("tab-content");
     for (let tab = 0; tab < tabContent.length; tab++)
         tabContent[tab].style.display = "none";
+
+    // Hide all tabs
     let tabLinks = document.getElementsByClassName("tab-link");
     for (let tab = 0; tab < tabLinks.length; tab++) {
         tabLinks[tab].className = tabLinks[tab].className.replace(" active", "");
     }
+
+    // Show selected tab
     document.getElementById(tabName + "-tab").style.display = "block";
+
+    // Flag active button
     ev.currentTarget.className += " active";
 }
 
 
+// Encode HTML
+function htmlEncode(str)
+{
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');}
+
+// Decode HTML
+function htmlDecode(str)
+{
+    return str
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');}
+
+
+// Create a menu list item
+function createLi( n, list, listtype, cls, text )
+{
+    let li = document.createElement("li");
+
+    // List entry or separator?
+    if (!listtype.length)
+    {
+        // Entry
+        li.appendChild( document.createTextNode(text) );
+        li.draggable = "true";
+    }
+    else
+    {
+        // Separator: span in a div in a li
+        let div = document.createElement("div");
+        div.appendChild( document.createElement("span") );
+        li.appendChild( div );
+    }
+
+    // And the rest of the attributes
+    li.setAttribute( "class", cls );
+    li.id          = list + n + listtype;
+    li.ondragstart = onDragStart;
+    li.ondrop      = onDrop;
+    li.ondragover  = onDragOver;
+    li.ondragenter = onDragEnter;
+    li.ondragleave = onDragLeave;
+
+    return li;
+}
+
+
+// On page load
 function preparePage(ev)
 {
+    // Set the first button/tab as active, and monitor it
     let menu_button = document.getElementById("menu-tab-button");
     menu_button.addEventListener( "click",  event => { selectTab(event,"menu") } );
     menu_button.click();
+
+    // Monitor second button
     document.getElementById("sandr-tab-button").addEventListener( "click", event => { selectTab(event,"sandr") } );
 
-    let lis = document.querySelectorAll("li.li-data,li.li-sep");
-    for (let li = 0;  li < lis.length;  ++li)
-    {
-        lis[li].ondragstart = onDragStart;
-        lis[li].ondrop      = onDrop;
-        lis[li].ondragover  = onDragOver;
-        lis[li].ondragenter = onDragEnter;
-        lis[li].ondragleave = onDragLeave;
-    }
+    // Load prefs.
+    browser.storage.local.get("preferences").then( results => {
+        // Have something
+        if (results.hasOwnProperty("preferences"))
+            prefs = results["preferences"];
+
+        // Working OK?
+        if (prefs.hasOwnProperty("lastversion"))
+        {
+            // Delete existing items
+            let items = document.querySelectorAll("div.tab-content li");
+            for (let n = items.length-1;  n >= 0;  --n)
+                items[n].parentNode.removeChild( items[n] );
+
+            // Find & populate menu list
+            let list = document.querySelector("#menu-tab ul");
+            for (let n in prefs.submenus)
+            {
+                if (n)
+                    list.appendChild( createLi( n, "menu", "sep", "li-sep", prefs.submenus[n] ) );
+                list.appendChild( createLi( parseInt(n)+1, "menu", "", "li-data", prefs.submenus[n] ) );
+            }
+
+            // Find & populate search & replace list
+            list = document.querySelector("#sandr-tab ul");
+            for (let n in prefs.sandr)
+            {
+                if (n)
+                    list.appendChild( createLi( n, "sandr", "sep", "li-sep", prefs.sandr[n] ) );
+                list.appendChild( createLi( parseInt(n)+1, "sandr", "", "li-data", prefs.sandr[n] ) );
+            }
+        }
+    });
 }
 
 
