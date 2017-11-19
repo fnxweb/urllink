@@ -220,11 +220,11 @@ function makeEditable( li )
         text.className += " editing";
     } );
 
-    // Add add-item one needs to bin its +
+    // Add add-item one needs to bin its + when editing it
     text.addEventListener( "click", event => {
-        if (text.textContent == "+")
+        if (text.className.match(/\bediting\b/)  &&  text.textContent == "+")
             text.textContent = "";
-    } );
+    });
 
     // Handler for finishing up
     function finishEditing( event )
