@@ -44,6 +44,7 @@ function onDrop(ev)
     ev.preventDefault();
     let originId = ev.dataTransfer.getData("text");
     let origin = document.getElementById(originId);
+    let originText = origin.querySelector("span.entry");
 
     // Fix up CSS
     onDragLeave(ev);
@@ -54,6 +55,7 @@ function onDrop(ev)
         target = target.parentNode;
     if (target.tagName.search(/^div$/i) === 0)
         target = target.parentNode;
+    let targetText = target.querySelector("span.entry");
 
     // ID start and stop as ints
     let bits = originId.match(/^([^0-9]+)(.*)/);
@@ -78,28 +80,34 @@ function onDrop(ev)
     else if (originIndex < targetIndex)
     {
         // Moving from top down, so shuffle up
-        let moveText = origin.innerText;
+        let moveText = originText.innerText;
         let item = document.getElementById( set + originIndex );
+        let itemText = item.querySelector("span.entry");
         for (let index = originIndex+1;  index <= targetIndex;  ++index)
         {
             let nextItem = document.getElementById( set + index );
-            item.innerText = nextItem.innerText;
+            let nextText = nextItem.querySelector("span.entry");
+            itemText.innerText = nextText.innerText;
             item = nextItem;
+            itemText = nextText;
         }
-        item.innerText = moveText;
+        itemText.innerText = moveText;
     }
     else
     {
         // Moving from bottom up, so shuffle down
-        let moveText = origin.innerText;
+        let moveText = originText.innerText;
         let item = document.getElementById( set + originIndex );
+        let itemText = item.querySelector("span.entry");
         for (let index = originIndex-1;  index >= targetIndex;  --index)
         {
             let nextItem = document.getElementById( set + index );
-            item.innerText = nextItem.innerText;
+            let nextText = nextItem.querySelector("span.entry");
+            itemText.innerText = nextText.innerText;
             item = nextItem;
+            itemText = nextText;
         }
-        item.innerText = moveText;
+        itemText.innerText = moveText;
     }
 }
 
@@ -178,8 +186,18 @@ function createLi( n, list, listtype, cls, text )
     if (!listtype.length)
     {
         // Entry
-        li.appendChild( document.createTextNode(text) );
-        li.draggable = "true";
+        // .. edit button
+        let span = document.createElement("span");
+        span.className = "edit-button";
+        span.appendChild( document.createTextNode("✍") );
+        li.appendChild( span );
+
+        // Entry itself
+        span = document.createElement("span");
+        span.className = "entry";
+        span.appendChild( document.createTextNode(text) );
+        li.appendChild( span );
+        li.draggable = true;
     }
     else
     {
@@ -190,7 +208,7 @@ function createLi( n, list, listtype, cls, text )
     }
 
     // And the rest of the attributes
-    li.setAttribute( "class", cls );
+    li.className   = cls;
     li.id          = list + n + listtype;
     li.ondragstart = onDragStart;
     li.ondrop      = onDrop;
@@ -199,6 +217,45 @@ function createLi( n, list, listtype, cls, text )
     li.ondragleave = onDragLeave;
 
     return li;
+}
+
+
+// Editable entries
+function makeEditable( li, normal )
+{
+    // Make editable on button click
+    let edit = li.querySelector("span.edit-button");
+    let text = li.querySelector("span.entry");
+    edit.addEventListener( "click", event => {
+        li.className = li.className.replace(/ draggable\b/,'');
+        li.draggable = false;
+        text.contentEditable = true;
+        text.className += " editing";
+    } );
+
+    // Handler for finishing up
+    function finishEditing( event )
+    {
+        event.target.contentEditable = false;
+        event.target.textContent = event.target.textContent.replace(/[\r\n]/g,"");
+        event.target.className = event.target.className.replace(/ editing\b/,'');
+        li.draggable = true;
+        li.className += " draggable";
+    }
+
+    // Enter will stop editing
+    text.addEventListener( "keypress", event => {
+        if (event.keyCode == 10 || event.keyCode == 13)
+        {
+            event.preventDefault();
+            finishEditing( event );
+        }
+    });
+
+    // Catch end of edit due to loss of focus too
+    text.addEventListener( "blur", event => {
+        finishEditing( event );
+    }, false );
 }
 
 
@@ -225,7 +282,9 @@ function displayPrefs()
         {
             if (n)
                 list.appendChild( createLi( n, "menu", "sep", "li-sep", prefs.submenus[n] ) );
-            list.appendChild( createLi( parseInt(n)+1, "menu", "", "li-data", prefs.submenus[n] ) );
+            let li = createLi( parseInt(n)+1, "menu", "", "li-data draggable", prefs.submenus[n] );
+            makeEditable( li, true );
+            list.appendChild( li );
         }
 
         // Find & populate search & replace list
@@ -234,7 +293,9 @@ function displayPrefs()
         {
             if (n)
                 list.appendChild( createLi( n, "sandr", "sep", "li-sep", prefs.sandr[n] ) );
-            list.appendChild( createLi( parseInt(n)+1, "sandr", "", "li-data", prefs.sandr[n] ) );
+            let li = createLi( parseInt(n)+1, "sandr", "", "li-data", prefs.sandr[n] );
+            makeEditable( li, true );
+            list.appendChild( li );
         }
 
         // Populate basic flags
@@ -272,15 +333,21 @@ function savePrefs()
         prefs["submenus"] = [];
         let items = document.querySelectorAll("#menu-tab li");
         for (let n = 0;  n < items.length;  ++n)
-            if (!items[n].getAttribute("class").match(/sep$/))
-                prefs["submenus"].push( items[n].textContent );
+            if (!items[n].className.match(/sep$/))
+            {
+                let text = items[n].querySelector("span.entry");
+                prefs["submenus"].push( text.textContent );
+            }
 
         // Process search and replace items
         prefs["sandr"] = [];
         items = document.querySelectorAll("#sandr-tab li");
         for (let n = 0;  n < items.length;  ++n)
-            if (!items[n].getAttribute("class").match(/sep$/))
-                prefs["sandr"].push( items[n].textContent );
+            if (!items[n].className.match(/sep$/))
+            {
+                let text = items[n].querySelector("span.entry");
+                prefs["sandr"].push( text.textContent );
+            }
 
         // Process basic flags
         prefs["newwindow"]    = document.getElementById("option-new-window").checked;
@@ -334,7 +401,7 @@ function preparePage(ev)
     });
     document.getElementById("prefs-cancel").addEventListener( "click", event => {
         event.preventDefault();
-        displayePrefs();
+        displayPrefs();
     });
 
     // Load prefs.

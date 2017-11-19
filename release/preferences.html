@@ -55,13 +55,47 @@ ul.urllink-list
 .urllink-list li:hover.li-data
 {
   background-color: #ebebeb;
-  cursor: grab;
   transition: 0.3s;
 }
-.urllink-list li.li-data.dragging
+.urllink-list li:hover.li-data.draggable
+{
+  cursor: grab;
+}
+.urllink-list li.li-data span.editing
+{
+  background-color: white;
+}
+.urllink-list li.li-data span.editing:hover
+{
+  cursor: text;
+}
+.urllink-list li.li-data.dragging,
+.urllink-list li.li-data.dragging span.edit-button
 {
   background-color: #d7d7db;
 }
+
+span.edit-button
+{
+  background-color: #fbfbfb;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-right: 0.5em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.urllink-list li.li-data:hover span.edit-button
+{
+  background-color: #ebebeb;
+  transition: 0.3s;
+}
+.urllink-list li.li-data:hover span.edit-button:hover
+{
+  background-color: #737373;
+  color: white;
+  transition: 0.3s;
+}
+
 .urllink-list li.li-sep
 {
   display: block;
@@ -211,8 +245,8 @@ form.buttons button
     <div style="clear:both"></div><br>
 
     <form class="buttons">
-      <button type="submit" id="prefs-save">Save</button>
-      <button type="submit" id="prefs-cancel">Cancel</button>
+      <button type="submit" class="browser-style" id="prefs-save">Save</button>
+      <button type="submit" class="browser-style" id="prefs-cancel">Cancel</button>
     </form>
 
     <div style="clear:both"></div><br>
