@@ -25,7 +25,7 @@ var prefs = {};
 // Dragging starts
 function onDragStart(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link dragging '" + ev.target.id + "'");
 }
 
@@ -64,7 +64,7 @@ function onDrop(ev)
     bits = target.id.match(/^([^0-9]+)([0-9]+)(.*)/);
     let targetIndex = parseInt( bits[2] );
 
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link dragged index " + originIndex + " to " + targetIndex);
 
     // Dropped into a separator, and dragging up?
@@ -134,7 +134,7 @@ function onDragLeave(ev)
 // Click on a tab selection button
 function selectTab(ev, tabName)
 {
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link " + tabName + " selected");
 
     // Set all buttons as non-current
@@ -156,25 +156,15 @@ function selectTab(ev, tabName)
 }
 
 
-// Encode HTML
-function htmlEncode(str)
+// Set a li draggable
+function setDraggable(el)
 {
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');}
-
-// Decode HTML
-function htmlDecode(str)
-{
-    return str
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&amp;/g, '&');}
+    el.ondragstart = onDragStart;
+    el.ondrop      = onDrop;
+    el.ondragover  = onDragOver;
+    el.ondragenter = onDragEnter;
+    el.ondragleave = onDragLeave;
+}
 
 
 // Create a menu list item
@@ -183,7 +173,7 @@ function createLi( n, list, listtype, cls, text )
     let li = document.createElement("li");
 
     // List entry or separator?
-    if (!listtype.length)
+    if (listtype != "sep")
     {
         // Entry
         // .. edit button
@@ -207,21 +197,18 @@ function createLi( n, list, listtype, cls, text )
         li.appendChild( div );
     }
 
-    // And the rest of the attributes
-    li.className   = cls;
-    li.id          = list + n + listtype;
-    li.ondragstart = onDragStart;
-    li.ondrop      = onDrop;
-    li.ondragover  = onDragOver;
-    li.ondragenter = onDragEnter;
-    li.ondragleave = onDragLeave;
+    // And the rest of the attributes; drag stuff if it's not the "add" line
+    li.className = cls;
+    li.id        = list + n + listtype;
+    if (listtype != "add")
+        setDraggable( li );
 
     return li;
 }
 
 
 // Editable entries
-function makeEditable( li, normal )
+function makeEditable( li )
 {
     // Make editable on button click
     let edit = li.querySelector("span.edit-button");
@@ -233,14 +220,55 @@ function makeEditable( li, normal )
         text.className += " editing";
     } );
 
+    // Add add-item one needs to bin its +
+    text.addEventListener( "click", event => {
+        if (text.textContent == "+")
+            text.textContent = "";
+    } );
+
     // Handler for finishing up
     function finishEditing( event )
     {
-        event.target.contentEditable = false;
-        event.target.textContent = event.target.textContent.replace(/[\r\n]/g,"");
-        event.target.className = event.target.className.replace(/ editing\b/,'');
+        if (prefs.debug)
+            console.log("URL Link finished editing " + li.id);
+
+        // Tidy up
+        let text = event.target;
+        text.contentEditable = false;
+        text.textContent = event.target.textContent.replace(/[\r\n]/g,"");
+        text.className = event.target.className.replace(/ editing\b/,"");
         li.draggable = true;
         li.className += " draggable";
+
+        // Was it an additional one?
+        if (li.id.match(/add\b/))
+        {
+            // Yes;  if empty, just put back
+            if (text.textContent == "" || text.textContent == "+")
+            {
+                if (prefs.debug)
+                    console.log("URL Link edited new but left it blank");
+                text.textContent = "+";
+            }
+            else
+            {
+                if (prefs.debug)
+                    console.log("URL Link added new entry");
+
+                // Make it a normal one
+                li.id = li.id.replace(/add\b/,"");
+                setDraggable( li );
+
+                // Add a new +;  need to ID whether menu or sandr
+                let list = text.closest("ul");
+                let size = list.querySelectorAll("li.li-data").length;
+                let tab = list.parentNode;
+                if (tab.id.search("menu") >= 0)
+                    addPlusEntry( list, size, "menu" );
+                else
+                    addPlusEntry( list, size, "sandr" );
+            }
+        }
     }
 
     // Enter will stop editing
@@ -248,7 +276,7 @@ function makeEditable( li, normal )
         if (event.keyCode == 10 || event.keyCode == 13)
         {
             event.preventDefault();
-            finishEditing( event );
+            event.target.blur();
         }
     });
 
@@ -259,16 +287,26 @@ function makeEditable( li, normal )
 }
 
 
+// Add a new + entry
+function addPlusEntry( list, n, type )
+{
+    list.appendChild( createLi( n, type, "sep", "li-sep", "" ) );
+    let li = createLi( parseInt(n)+1, type, "add", "li-data", "+" );
+    makeEditable( li );
+    list.appendChild( li );
+}
+
+
 // Apply prefs. to page
 function displayPrefs()
 {
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link loading preferences to preferences page");
 
     // Working OK?
     if (prefs.hasOwnProperty("lastversion"))
     {
-        if (prefs["debug"])
+        if (prefs.debug)
             console.log("URL Link preferences found");
 
         // Delete existing items
@@ -281,22 +319,28 @@ function displayPrefs()
         for (let n in prefs.submenus)
         {
             if (n)
-                list.appendChild( createLi( n, "menu", "sep", "li-sep", prefs.submenus[n] ) );
+                list.appendChild( createLi( n, "menu", "sep", "li-sep", "" ) );
             let li = createLi( parseInt(n)+1, "menu", "", "li-data draggable", prefs.submenus[n] );
-            makeEditable( li, true );
+            makeEditable( li );
             list.appendChild( li );
         }
+
+        // Allow for adding a new one
+        addPlusEntry( list, prefs.submenus.length, "menu" );
 
         // Find & populate search & replace list
         list = document.querySelector("#sandr-tab ul");
         for (let n in prefs.sandr)
         {
             if (n)
-                list.appendChild( createLi( n, "sandr", "sep", "li-sep", prefs.sandr[n] ) );
+                list.appendChild( createLi( n, "sandr", "sep", "li-sep", "" ) );
             let li = createLi( parseInt(n)+1, "sandr", "", "li-data", prefs.sandr[n] );
-            makeEditable( li, true );
+            makeEditable( li );
             list.appendChild( li );
         }
+
+        // Allow for adding a new one
+        addPlusEntry( list, prefs.sandr.length, "sandr" );
 
         // Populate basic flags
         document.getElementById("option-new-window").checked      = prefs["newwindow"];
@@ -323,7 +367,7 @@ function displayPrefs()
 // Load prefs. to page
 function savePrefs()
 {
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link saving preferences");
 
     // Working OK?
@@ -373,7 +417,7 @@ function savePrefs()
         }
 
         // OK, now save them
-        if (prefs["debug"])
+        if (prefs.debug)
             console.log( "URL Link new preferences: " + JSON.stringify( prefs ) );
         //browser.storage.local.set({"preferences": prefs});
     }
@@ -383,7 +427,7 @@ function savePrefs()
 // On page load
 function preparePage(ev)
 {
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link preparing preferences page");
 
     // Set the first button/tab as active, and monitor it

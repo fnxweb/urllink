@@ -308,7 +308,7 @@ function deleteOldPrefs()
 // Page message handler
 function onMessage(message)
 {
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log("URL Link message from page: " + JSON.stringify(message));
 
     if (message["message"] === "contextMenu")
@@ -423,7 +423,7 @@ function openLink( menuItemId, tabId, withShift )
         }
     }
 
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log( `URL Link: ${menuItemId} using '${prefix}' + '${activeSelection}' + '${suffix}'` );
 
     // Continue processing selection (it has been unmangled by the content script)
@@ -432,7 +432,7 @@ function openLink( menuItemId, tabId, withShift )
         return;
     lnk = fixURL( prefix + lnk + suffix );
 
-    if (prefs["debug"])
+    if (prefs.debug)
         console.log( `URL Link: fixed '${lnk}'` );
 
     if (inTab)
@@ -504,12 +504,12 @@ browser.storage.local.get("preferences").then( results => {
     if (results.hasOwnProperty("preferences"))
     {
         prefs = results["preferences"];
-        if (prefs["debug"])
+        if (prefs.debug)
             console.log("URL Link found prefs.: " + JSON.stringify(prefs));
     }
     else
     {
-        if (prefs["debug"])
+        if (prefs.debug)
             console.log("URL Link found no valid prefs.: " + JSON.stringify(results));
     }
 
@@ -518,10 +518,10 @@ browser.storage.local.get("preferences").then( results => {
     let writePrefs = false;
     if (!prefs.hasOwnProperty("lastversion"))
     {
-        if (prefs["debug"])
+        if (prefs.debug)
             console.log("URL Link not found prefs., setting defaults");
         prefs = defaults;
-        if (prefs["debug"])
+        if (prefs.debug)
             console.log("URL Link defaults: " + JSON.stringify(prefs));
         writePrefs = true;
     }
