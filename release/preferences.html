@@ -24,6 +24,7 @@
 <!-- preferences.html -->
 <html>
   <head>
+  <title>URL LInk Preferences</title>
   <meta charset="utf-8">
   <script src="preferences.js"></script>
   <style type="text/css">
@@ -95,7 +96,7 @@ ul.urllink-list
 div.tab
 {
   float: left;
-  width: 10em;
+  width: 15em;
   height: 4ex;
 }
 div.tab button
@@ -130,7 +131,7 @@ div.tab button.active
   border: 8px solid #4a4a4f;
   border-radius: 4px;
   padding: 1em;
-  width: 75%;
+  width: 70%;
   min-height: 15ex;
   margin-left: -4px;
   background: inherit;
@@ -138,14 +139,26 @@ div.tab button.active
 
 dt
 {
-  margin-left: 10em;
+  margin-left: 15em;
   clear: both;
   float: left;
-  width: 20em;
+  min-width: 15em;
 }
 dd
 {
   float: left;
+}
+
+form.buttons
+{
+  margin-left: 15em;
+}
+form.buttons button
+{
+  float: left;
+  min-width: 10em;
+  text-align: center;
+  margin-right: 2em;
 }
   </style>
   </head>
@@ -184,13 +197,23 @@ dd
       <div title="Open new tabs in the background instead of switching to them">
         <dt>Open tabs in background:</dt><dd><input id="option-background-tabs" type="checkbox"></dd>
       </div>
+      <div>
+        <dt>Debug logging:</dt><dd><input id="option-debug" type="checkbox"></dd>
+      </div>
       <dt>&nbsp;</dt><dd>&nbsp;</dd>
       <dt>Menu control:</dt><dd>
-        <input id="option-both-options" type="radio">Show both menu options<br>
-        <input id="option-hide-tab" type="radio">Hide the 'open in tab' options<br>
-        <input id="option-hide-open" type="radio">Hide the normal 'open' options
+        <input id="option-both-options" class="menu-options" name="menu-control" type="radio">Show both menu options<br>
+        <input id="option-hide-tab"     class="menu-options" name="menu-control" type="radio">Hide the 'open in tab' options<br>
+        <input id="option-hide-open"    class="menu-options" name="menu-control" type="radio">Hide the normal 'open' options
       </dd>
     </dl>
+
+    <div style="clear:both"></div><br>
+
+    <form class="buttons">
+      <button type="submit" id="prefs-save">Save</button>
+      <button type="submit" id="prefs-cancel">Cancel</button>
+    </form>
 
     <div style="clear:both"></div><br>
 
