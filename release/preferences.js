@@ -427,9 +427,6 @@ function savePrefs()
 // On page load
 function preparePage(ev)
 {
-    if (prefs.debug)
-        console.log("URL Link preparing preferences page");
-
     // Set the first button/tab as active, and monitor it
     let menu_button = document.getElementById("menu-tab-button");
     menu_button.addEventListener( "click",  event => { selectTab(event,"menu") } );
@@ -449,14 +446,27 @@ function preparePage(ev)
     });
 
     // Load prefs.
-    browser.storage.local.get("preferences").then( results => {
-        // Have something
-        if (results.hasOwnProperty("preferences"))
-            prefs = results["preferences"];
+    if (typeof(browser) !== "undefined")
+    {
+        // Extension
+        browser.storage.local.get("preferences").then( results => {
+            // Have something
+            if (results.hasOwnProperty("preferences"))
+                prefs = results["preferences"];
 
-        // Apply prefs.
+            // Apply prefs.
+            displayPrefs();
+        });
+    }
+    else
+    {
+        // Local debug
+        console.log("URL Link preferences page - diagnostic mode");
+        let storage =
+            {"preferences":{"debug":true,"firsttime":false,"forcesubmenu":false,"hideopen":false,"hidetab":false,"inbackground":false,"lastversion":"3.0.0","newwindow":false,"topmenu":true,"submenus":["--DIAGNOSTIC MODE--","&www.*","www.*.&com","www.*.&org","www.*.&net","&ftp.*","--","In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0","In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search"],"sandr":["^//||file:///","^([A-Za-z]:)||file:///$1"]}}
+        prefs = storage["preferences"];
         displayPrefs();
-    });
+    }
 }
 
 

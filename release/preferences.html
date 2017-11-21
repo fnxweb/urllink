@@ -40,7 +40,7 @@ ul.urllink-list
 {
   display: block;
   word-break: break-all;
-  width: 95%;
+  width: calc(100% - 2em);
   background-color: #fbfbfb;
   border: 1px solid #b1b1b1;
   color: #0c0c0d;
@@ -49,8 +49,8 @@ ul.urllink-list
   padding-bottom: 0.5ex;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 .urllink-list li:hover.li-data
 {
@@ -100,7 +100,7 @@ span.edit-button
 {
   display: block;
   height: 1.5ex;
-  width: 90%;
+  width: calc(100% - 5em);
   padding-left: 0.5em;
   padding-right: 0.5em;
   margin-left: 2em;
@@ -135,6 +135,7 @@ div.tab
 }
 div.tab button
 {
+  z-index: 1;
   display: block;
   background-color: #b1b1b3;
   border-radius: 4px;
@@ -161,13 +162,14 @@ div.tab button.active
 
 .tab-content
 {
-  float: left;
+  position: relative;
+  z-index: 2;
   border: 8px solid #4a4a4f;
   border-radius: 4px;
   padding: 1em;
-  width: 70%;
+  width: calc(100% - 18em);
   min-height: 15ex;
-  margin-left: -4px;
+  margin-left: calc(15em - 4px);
   background: inherit;
 }
 
