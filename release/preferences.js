@@ -117,7 +117,7 @@ function onDragEnter(ev)
 {
     // If a valid item, highlight it as a target
     if (ev.target.tagName && ev.target.tagName.search(/^(li|div|span)$/i) === 0)
-        ev.target.className = ev.target.className.replace(/ dragging\b/,'') + " dragging";
+        ev.target.className = ev.target.className.replace(/ dragging\b/g,'') + " dragging";
 }
 
 
@@ -126,7 +126,7 @@ function onDragLeave(ev)
 {
     // If a valid item, stop highlighting it as a target
     if (ev.target.tagName && ev.target.tagName.search(/^(li|div|span)$/i) === 0)
-        ev.target.className = ev.target.className.replace(/ dragging\b/,'');
+        ev.target.className = ev.target.className.replace(/ dragging\b/g,'');
 }
 
 
@@ -145,7 +145,7 @@ function selectTab(ev, tabName)
     // Hide all tabs
     let tabLinks = document.getElementsByClassName("tab-link");
     for (let tab = 0; tab < tabLinks.length; tab++) {
-        tabLinks[tab].className = tabLinks[tab].className.replace(" active", "");
+        tabLinks[tab].className = tabLinks[tab].className.replace(/ active\b/g, "");
     }
 
     // Show selected tab
@@ -214,7 +214,7 @@ function makeEditable( li )
     let edit = li.querySelector("span.edit-button");
     let text = li.querySelector("span.entry");
     edit.addEventListener( "click", event => {
-        li.className = li.className.replace(/ draggable\b/,'');
+        li.className = li.className.replace(/ draggable\b/g,'');
         li.draggable = false;
         text.contentEditable = true;
         text.className += " editing";
@@ -236,7 +236,7 @@ function makeEditable( li )
         let text = event.target;
         text.contentEditable = false;
         text.textContent = event.target.textContent.replace(/[\r\n]/g,"");
-        text.className = event.target.className.replace(/ editing\b/,"");
+        text.className = event.target.className.replace(/ editing\b/g,"");
         li.draggable = true;
         li.className += " draggable";
 
@@ -256,7 +256,7 @@ function makeEditable( li )
                     console.log("URL Link added new entry");
 
                 // Make it a normal one
-                li.id = li.id.replace(/add\b/,"");
+                li.id = li.id.replace(/add\b/g,"");
                 setDraggable( li );
 
                 // Add a new +;  need to ID whether menu or sandr
