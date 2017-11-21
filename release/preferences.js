@@ -21,6 +21,8 @@
 // Current prefs
 var prefs = {};
 
+// Plus
+var plusChar = "➕";
 
 // Dragging starts
 function onDragStart(ev) {
@@ -157,13 +159,28 @@ function selectTab(ev, tabName)
 
 
 // Set a li draggable
-function setDraggable(el)
+function setDraggable( li )
 {
-    el.ondragstart = onDragStart;
-    el.ondrop      = onDrop;
-    el.ondragover  = onDragOver;
-    el.ondragenter = onDragEnter;
-    el.ondragleave = onDragLeave;
+    li.ondragstart = onDragStart;
+    li.ondrop      = onDrop;
+    li.ondragover  = onDragOver;
+    li.ondragenter = onDragEnter;
+    li.ondragleave = onDragLeave;
+}
+
+
+// Make delete button stub in a LI work
+function setDeletable( li )
+{
+    let button = li.querySelector("span.for-delete-button");
+    if (button)
+    {
+        button.className = "delete-button";
+        button.title = "Delete entry";
+        button.addEventListener( "click", event => {
+            console.log("++ TBD delete " + li.id);
+        } );
+    }
 }
 
 
@@ -172,22 +189,23 @@ function createLi( n, list, listtype, cls, text )
 {
     let li = document.createElement("li");
 
-    // List entry or separator?
-    if (listtype != "sep")
+    // List entry?
+    if (listtype !== "sep")
     {
-        // Entry
-        // .. edit button
+        // Delete button (or space for it for the add entry)
         let span = document.createElement("span");
-        span.className = "edit-button";
-        span.appendChild( document.createTextNode("✍") );
+        span.className = "for-delete-button";
+        span.appendChild( document.createTextNode("✖") );
         li.appendChild( span );
+        if (listtype !== "add")
+            setDeletable( li );
 
         // Entry itself
         span = document.createElement("span");
         span.className = "entry";
         span.appendChild( document.createTextNode(text) );
         li.appendChild( span );
-        li.draggable = true;
+        ///li.draggable = true;
     }
     else
     {
@@ -210,19 +228,17 @@ function createLi( n, list, listtype, cls, text )
 // Editable entries
 function makeEditable( li )
 {
-    // Make editable on button click
-    let edit = li.querySelector("span.edit-button");
+    // Editable
     let text = li.querySelector("span.entry");
-    edit.addEventListener( "click", event => {
-        li.className = li.className.replace(/ draggable\b/g,'');
-        li.draggable = false;
-        text.contentEditable = true;
-        text.className += " editing";
-    } );
+    text.contentEditable = true;
 
-    // Add add-item one needs to bin its + when editing it
+    // Flag via colour when editing.
+    // Add-item one needs to bin its + when editing it.
     text.addEventListener( "click", event => {
-        if (text.className.match(/\bediting\b/)  &&  text.textContent == "+")
+        if (prefs.debug)
+            console.log("URL Link editing " + text.closest("li").id);
+        text.className += " editing";
+        if (text.className.match(/\bediting\b/)  &&  text.textContent == plusChar)
             text.textContent = "";
     });
 
@@ -234,7 +250,7 @@ function makeEditable( li )
 
         // Tidy up
         let text = event.target;
-        text.contentEditable = false;
+        ///text.contentEditable = false;
         text.textContent = event.target.textContent.replace(/[\r\n]/g,"");
         text.className = event.target.className.replace(/ editing\b/g,"");
         li.draggable = true;
@@ -244,11 +260,11 @@ function makeEditable( li )
         if (li.id.match(/add\b/))
         {
             // Yes;  if empty, just put back
-            if (text.textContent == "" || text.textContent == "+")
+            if (text.textContent == "" || text.textContent == plusChar)
             {
                 if (prefs.debug)
                     console.log("URL Link edited new but left it blank");
-                text.textContent = "+";
+                text.textContent = plusChar;
             }
             else
             {
@@ -258,6 +274,7 @@ function makeEditable( li )
                 // Make it a normal one
                 li.id = li.id.replace(/add\b/g,"");
                 setDraggable( li );
+                setDeletable( li );
 
                 // Add a new +;  need to ID whether menu or sandr
                 let list = text.closest("ul");
@@ -271,9 +288,9 @@ function makeEditable( li )
         }
     }
 
-    // Enter will stop editing
+    // Enter/escape will stop editing
     text.addEventListener( "keypress", event => {
-        if (event.keyCode == 10 || event.keyCode == 13)
+        if (event.keyCode == 10 || event.keyCode == 13 || event.keyCode == 27)
         {
             event.preventDefault();
             event.target.blur();
@@ -291,7 +308,7 @@ function makeEditable( li )
 function addPlusEntry( list, n, type )
 {
     list.appendChild( createLi( n, type, "sep", "li-sep", "" ) );
-    let li = createLi( parseInt(n)+1, type, "add", "li-data", "+" );
+    let li = createLi( parseInt(n)+1, type, "add", "li-data", plusChar );
     makeEditable( li );
     list.appendChild( li );
 }

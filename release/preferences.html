@@ -57,43 +57,65 @@ ul.urllink-list
   background-color: #ebebeb;
   transition: 0.3s;
 }
-.urllink-list li:hover.li-data.draggable
-{
-  cursor: grab;
-}
+///.urllink-list li:hover.li-data.draggable
+///{
+///  cursor: grab;
+///}
 .urllink-list li.li-data span.editing
 {
   background-color: white;
 }
-.urllink-list li.li-data span.editing:hover
-{
-  cursor: text;
-}
+///.urllink-list li.li-data span.editing:hover
+///{
+///  cursor: text;
+///}
 .urllink-list li.li-data.dragging,
-.urllink-list li.li-data.dragging span.edit-button
+.urllink-list li.li-data.dragging span.delete-button
 {
   background-color: #d7d7db;
 }
 
-span.edit-button
+span.entry
+{
+  padding-left: 0.25em;
+  padding-right: 0.5em;
+}
+span.entry:before
+{
+  content: " ";  // Fudge due to caret moving off to left when text empty!
+}
+span.delete-button
+{
+  cursor: pointer;
+}
+span.delete-button,
+span.for-delete-button
 {
   background-color: #fbfbfb;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  margin-right: 0.5em;
   border-radius: 4px;
-  cursor: pointer;
 }
-.urllink-list li.li-data:hover span.edit-button
+span.for-delete-button
+{
+  color: #fbfbfb;
+  cursor: default;
+}
+.urllink-list li.li-data:hover span.delete-button,
+.urllink-list li.li-data:hover span.for-delete-button
 {
   background-color: #ebebeb;
   transition: 0.3s;
 }
-.urllink-list li.li-data:hover span.edit-button:hover
+.urllink-list li.li-data:hover span.delete-button:hover
 {
   background-color: #737373;
   color: white;
   transition: 0.3s;
+}
+.urllink-list li.li-data:hover span.for-delete-button
+{
+  color: #ebebeb;
 }
 
 .urllink-list li.li-sep
@@ -126,6 +148,37 @@ span.edit-button
 {
   background-color: #b1b1b3;
 }
+
+span.thumb
+{
+  display: inline-block;
+  border-top: 2px solid #4a4a4f;
+  width: 3em;
+  padding-top: 2px;
+  cursor: grab;
+}
+span.thumb:before,
+span.thumb:after
+{
+  display: block;
+  content: "";
+  border-top: 2px solid #4a4a4f;
+  padding-top: 2px;
+}
+span.thumb:hover,
+span.thumb:hover:before,
+span.thumb:hover:after
+{
+  background-color: #d7d7db;
+}
+
+///span.thumb:active,
+///span.thumb:active:before,
+///span.thumb:active:after
+///{
+  ///cursor: -webkit-grabbing;
+  ///cursor: -moz-grabbing;
+///}
 
 div.tab
 {
