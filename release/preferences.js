@@ -24,6 +24,7 @@ var prefs = {};
 // Plus
 var plusChar = "➕";
 
+
 // Dragging starts
 function onDragStart(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
@@ -46,7 +47,7 @@ function onDrop(ev)
     ev.preventDefault();
     let originId = ev.dataTransfer.getData("text");
     let origin = document.getElementById(originId);
-    let originText = origin.querySelector("span.entry");
+    let originText = origin.querySelector(".entry");
 
     // Fix up CSS
     onDragLeave(ev);
@@ -57,7 +58,7 @@ function onDrop(ev)
         target = target.parentNode;
     if (target.tagName.search(/^div$/i) === 0)
         target = target.parentNode;
-    let targetText = target.querySelector("span.entry");
+    let targetText = target.querySelector(".entry");
 
     // ID start and stop as ints
     let bits = originId.match(/^([^0-9]+)(.*)/);
@@ -84,11 +85,11 @@ function onDrop(ev)
         // Moving from top down, so shuffle up
         let moveText = originText.innerText;
         let item = document.getElementById( set + originIndex );
-        let itemText = item.querySelector("span.entry");
+        let itemText = item.querySelector(".entry");
         for (let index = originIndex+1;  index <= targetIndex;  ++index)
         {
             let nextItem = document.getElementById( set + index );
-            let nextText = nextItem.querySelector("span.entry");
+            let nextText = nextItem.querySelector(".entry");
             itemText.innerText = nextText.innerText;
             item = nextItem;
             itemText = nextText;
@@ -100,11 +101,11 @@ function onDrop(ev)
         // Moving from bottom up, so shuffle down
         let moveText = originText.innerText;
         let item = document.getElementById( set + originIndex );
-        let itemText = item.querySelector("span.entry");
+        let itemText = item.querySelector(".entry");
         for (let index = originIndex-1;  index >= targetIndex;  --index)
         {
             let nextItem = document.getElementById( set + index );
-            let nextText = nextItem.querySelector("span.entry");
+            let nextText = nextItem.querySelector(".entry");
             itemText.innerText = nextText.innerText;
             item = nextItem;
             itemText = nextText;
@@ -184,6 +185,16 @@ function setDeletable( li )
 }
 
 
+// Add drag thumb button to li
+function addThumb( li )
+{
+    let span = document.createElement("span");
+    span.className = "thumb";
+    span.title = "";
+    li.appendChild( span );
+}
+
+
 // Create a menu list item
 function createLi( n, list, listtype, cls, text )
 {
@@ -198,14 +209,20 @@ function createLi( n, list, listtype, cls, text )
         span.appendChild( document.createTextNode("✖") );
         li.appendChild( span );
         if (listtype !== "add")
+        {
+            li.draggable = true;
             setDeletable( li );
+        }
 
         // Entry itself
-        span = document.createElement("span");
-        span.className = "entry";
-        span.appendChild( document.createTextNode(text) );
-        li.appendChild( span );
-        ///li.draggable = true;
+        let entry = document.createElement("span");
+        entry.className = "entry";
+        entry.appendChild( document.createTextNode(text) );
+        li.appendChild( entry );
+
+        // Drag button
+        if (listtype !== "add")
+            addThumb( li );
     }
     else
     {
@@ -229,8 +246,21 @@ function createLi( n, list, listtype, cls, text )
 function makeEditable( li )
 {
     // Editable
-    let text = li.querySelector("span.entry");
-    text.contentEditable = true;
+    let text = li.querySelector(".entry");
+
+    // Only make editable on mouse enter;  then also disable drag
+    text.addEventListener( "mouseenter", event => {
+        if (prefs.debug)
+            console.log("URL Link enabling edit on enter for " + li.id);
+        text.contentEditable = true;
+        li.draggable = false;
+    }, true);
+    text.addEventListener( "mouseleave", event => {
+        if (prefs.debug)
+            console.log("URL Link disabling edit on enter for " + li.id);
+        text.contentEditable = false;
+        li.draggable = true;
+    }, true);
 
     // Flag via colour when editing.
     // Add-item one needs to bin its + when editing it.
@@ -250,11 +280,8 @@ function makeEditable( li )
 
         // Tidy up
         let text = event.target;
-        ///text.contentEditable = false;
         text.textContent = event.target.textContent.replace(/[\r\n]/g,"");
         text.className = event.target.className.replace(/ editing\b/g,"");
-        li.draggable = true;
-        li.className += " draggable";
 
         // Was it an additional one?
         if (li.id.match(/add\b/))
@@ -275,6 +302,7 @@ function makeEditable( li )
                 li.id = li.id.replace(/add\b/g,"");
                 setDraggable( li );
                 setDeletable( li );
+                addThumb( li );
 
                 // Add a new +;  need to ID whether menu or sandr
                 let list = text.closest("ul");
@@ -337,7 +365,7 @@ function displayPrefs()
         {
             if (n)
                 list.appendChild( createLi( n, "menu", "sep", "li-sep", "" ) );
-            let li = createLi( parseInt(n)+1, "menu", "", "li-data draggable", prefs.submenus[n] );
+            let li = createLi( parseInt(n)+1, "menu", "", "li-data", prefs.submenus[n] );
             makeEditable( li );
             list.appendChild( li );
         }
@@ -396,7 +424,7 @@ function savePrefs()
         for (let n = 0;  n < items.length;  ++n)
             if (!items[n].className.match(/sep$/))
             {
-                let text = items[n].querySelector("span.entry");
+                let text = items[n].querySelector(".entry");
                 prefs["submenus"].push( text.textContent );
             }
 
@@ -406,7 +434,7 @@ function savePrefs()
         for (let n = 0;  n < items.length;  ++n)
             if (!items[n].className.match(/sep$/))
             {
-                let text = items[n].querySelector("span.entry");
+                let text = items[n].querySelector(".entry");
                 prefs["sandr"].push( text.textContent );
             }
 

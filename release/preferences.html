@@ -57,18 +57,10 @@ ul.urllink-list
   background-color: #ebebeb;
   transition: 0.3s;
 }
-///.urllink-list li:hover.li-data.draggable
-///{
-///  cursor: grab;
-///}
 .urllink-list li.li-data span.editing
 {
   background-color: white;
 }
-///.urllink-list li.li-data span.editing:hover
-///{
-///  cursor: text;
-///}
 .urllink-list li.li-data.dragging,
 .urllink-list li.li-data.dragging span.delete-button
 {
@@ -77,24 +69,31 @@ ul.urllink-list
 
 span.entry
 {
+  display: inline-block;
+  position: relative;
   padding-left: 0.25em;
   padding-right: 0.5em;
+  left: 0;
+  width: calc(100% - 4em);
+  min-height: 1.8ex;
 }
 span.entry:before
 {
   content: " ";  // Fudge due to caret moving off to left when text empty!
 }
-span.delete-button
-{
-  cursor: pointer;
-}
 span.delete-button,
 span.for-delete-button
 {
+  display: inline-block;
+  float: left;
   background-color: #fbfbfb;
   padding-left: 0.5em;
   padding-right: 0.5em;
   border-radius: 4px;
+}
+span.delete-button
+{
+  cursor: pointer;
 }
 span.for-delete-button
 {
@@ -152,9 +151,11 @@ span.for-delete-button
 span.thumb
 {
   display: inline-block;
+  float: right;
   border-top: 2px solid #4a4a4f;
-  width: 3em;
+  width: 1em;
   padding-top: 2px;
+  margin-top: 0.5ex;
   cursor: grab;
 }
 span.thumb:before,
@@ -169,16 +170,14 @@ span.thumb:hover,
 span.thumb:hover:before,
 span.thumb:hover:after
 {
-  background-color: #d7d7db;
+  border-color: #45a1ff;
+  transition: 0.3s;
 }
 
-///span.thumb:active,
-///span.thumb:active:before,
-///span.thumb:active:after
-///{
-  ///cursor: -webkit-grabbing;
-  ///cursor: -moz-grabbing;
-///}
+span.thumb:active:after
+{
+  cursor: grabbing;
+}
 
 div.tab
 {
