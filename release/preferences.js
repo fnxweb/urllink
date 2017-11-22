@@ -247,20 +247,15 @@ function makeEditable( li )
 {
     // Editable
     let text = li.querySelector(".entry");
+    text.contentEditable = true;
 
-    // Only make editable on mouse enter;  then also disable drag
+    // Disable drag pre-edit, as it prevents correct caret location on click
     text.addEventListener( "mouseenter", event => {
-        if (prefs.debug)
-            console.log("URL Link enabling edit on enter for " + li.id);
-        text.contentEditable = true;
         li.draggable = false;
-    }, true);
+    });
     text.addEventListener( "mouseleave", event => {
-        if (prefs.debug)
-            console.log("URL Link disabling edit on enter for " + li.id);
-        text.contentEditable = false;
         li.draggable = true;
-    }, true);
+    });
 
     // Flag via colour when editing.
     // Add-item one needs to bin its + when editing it.
@@ -268,6 +263,7 @@ function makeEditable( li )
         if (prefs.debug)
             console.log("URL Link editing " + text.closest("li").id);
         text.className += " editing";
+        text.setAttribute( "data-originaltext", text.textContent );
         if (text.className.match(/\bediting\b/)  &&  text.textContent == plusChar)
             text.textContent = "";
     });
@@ -320,6 +316,18 @@ function makeEditable( li )
     text.addEventListener( "keypress", event => {
         if (event.keyCode == 10 || event.keyCode == 13 || event.keyCode == 27)
         {
+            // Reset if using Escape
+            if (event.keyCode == 27)
+            {
+                let original = event.target.getAttribute( "data-originaltext" );
+                if (original)
+                {
+                    event.target.textContent = original;
+                    event.target.removeAttribute( "data-originaltext" );
+                }
+            }
+
+            // Finish
             event.preventDefault();
             event.target.blur();
         }
@@ -328,7 +336,7 @@ function makeEditable( li )
     // Catch end of edit due to loss of focus too
     text.addEventListener( "blur", event => {
         finishEditing( event );
-    }, false );
+    });
 }
 
 
