@@ -54,11 +54,12 @@ function onDrop(ev)
 
     // Correctly ID target
     let target = ev.target;
-    if (target.tagName.search(/^span$/i) === 0)
-        target = target.parentNode;
-    if (target.tagName.search(/^div$/i) === 0)
-        target = target.parentNode;
+    if (target.tagName.search(/^li$/i) !== 0)
+        target = target.closest("li");
     let targetText = target.querySelector(".entry");
+
+    if (prefs.debug)
+        console.log("URL Link dragged to '" + target.id + "' (" + target.tagName + ")");
 
     // ID start and stop as ints
     let bits = originId.match(/^([^0-9]+)(.*)/);
@@ -191,6 +192,15 @@ function addThumb( li )
     let span = document.createElement("span");
     span.className = "thumb";
     span.title = "";
+
+    let thumb = document.createElementNS( "http://www.w3.org/2000/svg", "svg" );
+    thumb.viewBox = "0 0 24 24";
+    let path = document.createElementNS( "http://www.w3.org/2000/svg", "path" );
+    path.setAttributeNS( null, "d",
+        "M7,19V17H9V19H7M11,19V17H13V19H11M15,19V17H17V19H15M7,15V13H9V15H7M11,15V13H13V15H11M15,15V13H17V15H15M7,11V9H9V11H7M11,11V9H13V11H11M15,11V9H17V11H15M7,7V5H9V7H7M11,7V5H13V7H11M15,7V5H17V7H15Z" );
+    thumb.appendChild( path );
+    span.appendChild( thumb );
+
     li.appendChild( span );
 }
 

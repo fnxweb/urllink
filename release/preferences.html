@@ -72,7 +72,7 @@ span.entry
   display: inline-block;
   position: relative;
   padding-left: 0.25em;
-  padding-right: 0.5em;
+  padding-right: 0.25em;
   left: 0;
   width: calc(100% - 4em);
   min-height: 1.8ex;
@@ -152,28 +152,27 @@ span.thumb
 {
   display: inline-block;
   float: right;
-  border-top: 2px solid #4a4a4f;
-  width: 1em;
-  padding-top: 2px;
-  margin-top: 0.5ex;
+  height: 1ex;
   cursor: grab;
 }
-span.thumb:before,
-span.thumb:after
+span.thumb svg
 {
-  display: block;
-  content: "";
-  border-top: 2px solid #4a4a4f;
-  padding-top: 2px;
+  margin-top: -0.2ex;
+  width: 3ex;
+  height: 3ex;
 }
-span.thumb:hover,
-span.thumb:hover:before,
-span.thumb:hover:after
+span.thumb path
 {
-  border-color: #45a1ff;
+  fill: #4a4a4f;
+}
+span.thumb:hover path
+{
+  fill: #45a1ff;
+}
+span.thumb:hover
+{
   transition: 0.3s;
 }
-
 span.thumb:active:after
 {
   cursor: grabbing;
