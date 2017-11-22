@@ -171,6 +171,35 @@ function setDraggable( li )
 }
 
 
+// Delete a li
+function deleteEntry( li )
+{
+    if (prefs.debug)
+        console.log("URL Link deleting " + li.id);
+
+    // Delete the li and its following separator
+    let parent = li.parentNode;
+    let sep = li.nextSibling;
+    parent.removeChild( li );
+    parent.removeChild( sep );
+
+    // Renumber the lis
+    let item = 0;
+    let lis = parent.querySelectorAll( "li" );
+    for (let idx = 0;  idx < lis.length;  ++idx)
+    {
+        // Split current id into <name><num><suffix>
+        // We have, e.g., manu1, menu1sep, menu2, menu2sep, ... menuN, menuNsep, menuN+1add
+        let bits = lis[idx].id.match(/^([^0-9]+)([0-9]+)(.*)/);
+        if (!bits[3])
+            bits[3] = "";
+        if (bits[3] === ""  ||  bits[3] === "add")
+            ++item;
+        lis[idx].id = bits[1] + item + bits[3];
+    }
+}
+
+
 // Make delete button stub in a LI work
 function setDeletable( li )
 {
@@ -180,7 +209,7 @@ function setDeletable( li )
         button.className = "delete-button";
         button.title = "Delete entry";
         button.addEventListener( "click", event => {
-            console.log("++ TBD delete " + li.id);
+            deleteEntry( li );
         } );
     }
 }
@@ -381,7 +410,7 @@ function displayPrefs()
         let list = document.querySelector("#menu-tab ul");
         for (let n in prefs.submenus)
         {
-            if (n)
+            if (n > 0)
                 list.appendChild( createLi( n, "menu", "sep", "li-sep", "" ) );
             let li = createLi( parseInt(n)+1, "menu", "", "li-data", prefs.submenus[n] );
             makeEditable( li );
@@ -395,7 +424,7 @@ function displayPrefs()
         list = document.querySelector("#sandr-tab ul");
         for (let n in prefs.sandr)
         {
-            if (n)
+            if (n > 0)
                 list.appendChild( createLi( n, "sandr", "sep", "li-sep", "" ) );
             let li = createLi( parseInt(n)+1, "sandr", "", "li-data", prefs.sandr[n] );
             makeEditable( li );
@@ -443,7 +472,9 @@ function savePrefs()
             if (!items[n].className.match(/sep$/))
             {
                 let text = items[n].querySelector(".entry");
-                prefs["submenus"].push( text.textContent );
+                let str = text.textContent;
+                if (str !== plusChar)
+                    prefs["submenus"].push( str );
             }
 
         // Process search and replace items
@@ -453,7 +484,9 @@ function savePrefs()
             if (!items[n].className.match(/sep$/))
             {
                 let text = items[n].querySelector(".entry");
-                prefs["sandr"].push( text.textContent );
+                let str = text.textContent;
+                if (str !== plusChar)
+                    prefs["sandr"].push( str );
             }
 
         // Process basic flags
