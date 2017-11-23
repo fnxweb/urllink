@@ -327,10 +327,11 @@ function processSelection( event )
     lnk = unmangleURL( lnk, isLink );
 
     // Tell extension for the context menu handler
-    comms.postMessage( {
-        message:   "contextMenu",
-        selection: lnk
-    });
+    if (comms)
+        comms.postMessage( {
+            message:   "contextMenu",
+            selection: lnk
+        });
 }
 
 
@@ -354,12 +355,12 @@ function keydownHandler( event )
 
 
 // Connection to extension
-///console.log("URL Link page init.");
 var comms = browser.runtime.connect({name:"urllink-comms"});
 
 // Get prefs. on load and change
 comms.onMessage.addListener( message => {
-    ///console.log("URL Link page received message " + message["message"]);
+    if (prefs.debug)
+        console.log("URL Link page received message " + message["message"]);
 
     if (message["message"] === "urllink-prefs")
         prefs = message["prefs"];
@@ -378,12 +379,10 @@ window.addEventListener( "keydown", keydownHandler, true );
 
 // Clear up on uninstall / update of main extension
 comms.onDisconnect.addListener( p => {
-    ///console.log( "URL Link page lost comms to extension" );
-
-    // Bin old comms.
-    window.removeEventListener( "mousedown", mousedownHandler, true );
-    window.removeEventListener( "keydown", keydownHandler, true );
+    if (prefs.debug)
+        console.log( "URL Link page lost comms to extension" );
 
     // Try again
-    comms = browser.runtime.connect({name:"urllink-comms"});
+    comms = null;
+    setTimeout( function() { comms = browser.runtime.connect({name:"urllink-comms"}) }, 1000 );
 });

@@ -442,11 +442,10 @@ function fixURL(url)
 // Handle request to open a link from a menu selection
 function openLink( menuItemId, tabId, withShift )
 {
-    // Until we can sort out proper injection of our content script upon extension install / update,
-    // the only thing we can do it ask for the page to be refreshed, otherwise it just looks like we're not working.
+    // Shouldn't come in here with no selection now.
     if (activeSelection.length === 0)
     {
-        browser.tabs.create({ "url": "refresh.html" });
+        console.log("URL Link triggered with no selection");
         return;
     }
 
@@ -519,6 +518,9 @@ function openLink( menuItemId, tabId, withShift )
             );
         }
     }
+
+    // Done with that selection (get it again next context-click)
+    activeSelection = "";
 }
 
 
@@ -653,7 +655,8 @@ browser.runtime.onConnect.addListener( port => {
     port.onMessage.addListener( message => onMessage( message, port ) );
 
     // Handle loss
-    port.onDisconnect.addListener( port => {
+    port.onDisconnect.addListener( p => {
+        port = null;
         comms.splice( idx, 1 );
     });
 
@@ -691,7 +694,6 @@ browser.runtime.onInstalled.addListener( details => {
 // Finally, add our required content script into all appropriate open tabs.
 // Originally https://discourse.mozilla.org/t/why-content-script-does-not-work-borderify-js/10009/3
 // Modifed to simply just for us.
-/// TBD doesn't work fpor updates;  we always get the injection happen *before* the existing install gets disabled, leaving it dead
 browser.tabs.query({}).then( tabs => {
     browser.runtime.getManifest().content_scripts.forEach(({ js, css, matches, exclude_matches, }) => {
         tabs.map(({ id, url, }) => {
