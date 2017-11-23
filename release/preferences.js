@@ -20,9 +20,14 @@
 
 // Current prefs
 var prefs = {};
+let defaultPrefs =
+    {"debug":false,"firsttime":false,"forcesubmenu":false,"hideopen":false,"hidetab":false,"inbackground":false,"lastversion":"3.0.0","newwindow":false,"topmenu":true,"submenus":["--DIAGNOSTIC MODE--","&www.*","www.*.&com","www.*.&org","www.*.&net","&ftp.*","--","In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0","In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search"],"sandr":["^//||file:///","^([A-Za-z]:)||file:///$1"]};
 
 // Plus
 var plusChar = "➕";
+
+// Comms to extension
+var comms = null;
 
 
 // Dragging starts
@@ -516,6 +521,9 @@ function savePrefs()
         if (prefs.debug)
             console.log( "URL Link new preferences: " + JSON.stringify( prefs ) );
         //browser.storage.local.set({"preferences": prefs});
+
+        // Tell application they've changed
+        comms.postMessage({"message":"urllink-prefs-changed", "prefs": prefs});
     }
 }
 
@@ -531,10 +539,15 @@ function preparePage(ev)
     // Monitor second button
     document.getElementById("sandr-tab-button").addEventListener( "click", event => { selectTab(event,"sandr") } );
 
-    // Monitor save and cancel
+    // Monitor main buttons
     document.getElementById("prefs-save").addEventListener( "click", event => {
         event.preventDefault();
         savePrefs();
+    });
+    document.getElementById("prefs-defaults").addEventListener( "click", event => {
+        event.preventDefault();
+        prefs = defaultPrefs;
+        displayPrefs();
     });
     document.getElementById("prefs-cancel").addEventListener( "click", event => {
         event.preventDefault();
@@ -553,14 +566,25 @@ function preparePage(ev)
             // Apply prefs.
             displayPrefs();
         });
+
+        // Connection to extension
+        comms = browser.runtime.connect({name:"urllink-comms"});
+
+        // Get prefs. on load and change
+        ///comms.onMessage.addListener( message => {
+            ///if (message["message"] === "urllink-prefs")
+                ///prefs = message["prefs"];
+        ///});
+
+        // Request prefs. now
+        /// comms.postMessage({"message":"urllink-prefs-req"});
     }
     else
     {
         // Local debug
         console.log("URL Link preferences page - diagnostic mode");
-        let storage =
-            {"preferences":{"debug":true,"firsttime":false,"forcesubmenu":false,"hideopen":false,"hidetab":false,"inbackground":false,"lastversion":"3.0.0","newwindow":false,"topmenu":true,"submenus":["--DIAGNOSTIC MODE--","&www.*","www.*.&com","www.*.&org","www.*.&net","&ftp.*","--","In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0","In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search"],"sandr":["^//||file:///","^([A-Za-z]:)||file:///$1"]}}
-        prefs = storage["preferences"];
+        prefs = defaultPrefs;
+        prefs.debug = true;
         displayPrefs();
     }
 }

@@ -22,7 +22,7 @@
 
 
 // Our prefs
-var prefs = {};
+var prefs = { debug: false };
 
 
 
@@ -354,10 +354,13 @@ function keydownHandler( event )
 
 
 // Connection to extension
+///console.log("URL Link page init.");
 var comms = browser.runtime.connect({name:"urllink-comms"});
 
 // Get prefs. on load and change
 comms.onMessage.addListener( message => {
+    ///console.log("URL Link page received message " + message["message"]);
+
     if (message["message"] === "urllink-prefs")
         prefs = message["prefs"];
 });
@@ -375,7 +378,12 @@ window.addEventListener( "keydown", keydownHandler, true );
 
 // Clear up on uninstall / update of main extension
 comms.onDisconnect.addListener( p => {
+    ///console.log( "URL Link page lost comms to extension" );
+
+    // Bin old comms.
     window.removeEventListener( "mousedown", mousedownHandler, true );
     window.removeEventListener( "keydown", keydownHandler, true );
-    comms = null;
+
+    // Try again
+    comms = browser.runtime.connect({name:"urllink-comms"});
 });

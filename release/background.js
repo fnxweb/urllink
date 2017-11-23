@@ -21,8 +21,8 @@
 // Prefs.
 var prefs = { "debug": false };
 
-// Comms to page code
-var comms;
+// Comms to page codes
+var comms = [];
 
 // Current menu control - not just one bool, to cater for start-up when notrhing needs deleting
 var currentMenuUrl = false; // current menu is for a URL
@@ -248,10 +248,16 @@ function createContextMenus()
             type: "separator",
             contexts: ["selection","link"]
         });
-        // Help TBD will become Prefs with will have a Help link
+        // Help
         browser.menus.create({
             id: "main-menu-help",
             title: browser.i18n.getMessage("help"),
+            contexts: ["selection","link"]
+        });
+        // Prefs
+        browser.menus.create({
+            id: "main-menu-prefs",
+            title: browser.i18n.getMessage("prefs"),
             contexts: ["selection","link"]
         });
     }
@@ -306,15 +312,28 @@ function deleteOldPrefs()
 
 
 // Page message handler
-function onMessage(message)
+function onMessage( message, senderPort )
 {
     if (prefs.debug)
         console.log("URL Link message from page: " + JSON.stringify(message));
 
     if (message["message"] === "contextMenu")
+        // Menu started
         activeSelection = message["selection"];
     else if (message["message"] === "urllink-prefs-req")
-        comms.postMessage({"message":"urllink-prefs", "prefs": prefs});
+        // New page has asked for prefs, broadcast it
+        senderPort.postMessage({"message":"urllink-prefs", "prefs": prefs});
+    else if (message["message"] === "urllink-prefs-changed")
+    {
+        // New prefs. have been saved;  pass to all pages
+        prefs = message["prefs"];
+        menuChanged = true;
+        for (let port in comms)
+            comms[port].postMessage({"message":"urllink-prefs", "prefs": prefs});
+
+        // TBD rebuild menus now while we're not doing it on the fly
+        createContextMenus();
+    }
     else
         console.log("URL Link unrecognised message: " + JSON.stringify(message));
 
@@ -549,8 +568,8 @@ browser.storage.local.get("preferences").then( results => {
         browser.storage.local.set({"preferences": prefs});
 
     // Tell window our prefs. if comms are up
-    if (typeof(comms) !== "undefined")
-        comms.postMessage({"message":"urllink-prefs", "prefs": prefs});
+    for (let port in comms)
+        comms[port].postMessage({"message":"urllink-prefs", "prefs": prefs});
 
     // TBD until we can create the context menu dynamically/*IN TIME*, must pre-create it now.
     createContextMenus();
@@ -574,6 +593,11 @@ browser.menus.onClicked.addListener( (info, tab) => {
         // Help window
         openHelpWindow();
     }
+    else if (info.menuItemId === "main-menu-prefs")
+    {
+        // Prefs window
+        browser.runtime.openOptionsPage();
+    }
     else
     {
         // Handle menu option
@@ -583,16 +607,25 @@ browser.menus.onClicked.addListener( (info, tab) => {
 
 
 // Create comms with page code
+// NB - we get a new callback and port for each page, so need to capture them all
 browser.runtime.onConnect.addListener( port => {
-    // Connected
-    comms = port;
-
     // If we have our prefs yet, send them
     if (prefs.hasOwnProperty("lastversion"))
-        comms.postMessage({"message":"urllink-prefs", "prefs": prefs});
+        port.postMessage({"message":"urllink-prefs", "prefs": prefs});
+
+    // Connected - create port mamager object
+    let idx = comms.length;
 
     // Messages from page
-    comms.onMessage.addListener( onMessage );
+    port.onMessage.addListener( message => onMessage( message, port ) );
+
+    // Handle loss
+    port.onDisconnect.addListener( port => {
+        comms.splice( idx, 1 );
+    });
+
+    // Remember the comms channel
+    comms.push( port );
 });
 
 
