@@ -25,16 +25,23 @@ var prefs = { "debug": false };
 var comms = [];
 
 // Current menu control - not just one bool, to cater for start-up when notrhing needs deleting
-var currentMenuUrl = false; // current menu is for a URL
-var currentMenuTxt = false; // current menu is for text
+var currentUrlMenu = false; // URL menu is set up
+var currentTxtMenu = false; // text menu is set up
 var menuChanged    = false; // need to rebuild text menu anyway due to prefs change
-var submenuCount   = 0;     // number of submenus created from prefs (for later deletion)
+var submenuCount   = 0;     // number of text submenus created from prefs (for later deletion)
 
 // Current active selection
 var activeSelection = "";
 
 // Functionality checks
 var firefoxVersion = 56;  // min release
+
+// Menus being deleted (need to waiut for them all to go before recreating so as to not dup. IDs)
+var menusDeleting = 0;
+
+// Menus required
+let wantUrlMenu = false; /// isUrl;
+let wantTxtMenu = true;  /// (!isUrl  ||  prefs["forcesubmenu"]);
 
 
 // Extract accelkey from label
@@ -141,28 +148,46 @@ function onContextMenuCreated( menuId )
 }
 
 
+// Remove a menu, keeping count
+function browserMenusRemove( id )
+{
+    ++menusDeleting;
+    browser.menus.remove( id ).then( result => {
+        // Upon last deleteion performed, can recreate menu tree
+        --menusDeleting;
+        if (menusDeleting == 0)
+            createContextMenus()
+    }).catch( result => {
+        console.log("URL Link menu deletion failed");
+    });
+}
+
+
 // Remove selection submenu items for the given ID
 function removeContextMenuItems( menuId )
 {
     // Remove always-there menu
-    browser.menus.remove( menuId + "-unaltered" );
+    browserMenusRemove( menuId + "-unaltered" );
 
     // Now prefs menus
     if (submenuCount)
     {
-        browser.menus.remove( menuId + "-separator" );
+        browserMenusRemove( menuId + "-separator" );
         for (let n = 0;  n < submenuCount;  ++n)
-            browser.menus.remove( menuId + "-pref-" + n );
+            browserMenusRemove( menuId + "-pref-" + n );
     }
 
     // And the top-level one
-    browser.menus.remove( menuId );
+    browserMenusRemove( menuId );
 }
 
 
-// Create primary context menus/items
-function createContextMenus()
+// Refresh primary context menus/items
+function updateContextMenus()
 {
+    if (prefs.debug)
+        console.log("URL Link updating context menus");
+
     // Selection analysis
     // TBD selection analysis here;  currently, there is no point since we can't update the context menu once it's
     //     been displayed, inc. deleting items.
@@ -176,37 +201,50 @@ function createContextMenus()
     /// let isUrl = (activeSelection.search(/^(http|ftp)/) >= 0);
 
     // Menus required
-    let wantUrlMenu = false; /// isUrl;
-    let wantTxtMenu = true;  /// (!isUrl  ||  prefs["forcesubmenu"]);
+    wantUrlMenu = false; /// isUrl;
+    wantTxtMenu = true;  /// (!isUrl  ||  prefs["forcesubmenu"]);
 
+    // Any change at all?
+    if (wantUrlMenu === currentUrlMenu  &&  wantTxtMenu === currentTxtMenu  &&  !menuChanged)
+        return;
 
-    // Delete old?
-    if (currentMenuUrl  &&  !wantUrlMenu)
+    // In order to keep menu ordering the same, we have to always delete and re-create our menus (if they've changed).
+    menusDeleting = 0;
+    if (currentUrlMenu)
     {
         // Delete old URL menus
         currentUrlMenu = false;
-        browser.menus.remove( "open-selected-url-in-new-tab" );
-        browser.menus.remove( "open-selected-url" );
-        browser.menus.remove( "main-menu-separator" );
-        browser.menus.remove( "main-menu-help" );
+        browserMenusRemove( "open-selected-url-in-new-tab" );
+        browserMenusRemove( "open-selected-url" );
+        browserMenusRemove( "main-menu-separator" );
+        browserMenusRemove( "main-menu-help" );
     }
-    if ((currentMenuTxt  &&  !wantTxtMenu)  ||  menuChanged)
+    if (currentTxtMenu)
     {
         // Delete old text menus
         currentTxtMenu = false;
         removeContextMenuItems( "open-selection-in-new-tab" );
         removeContextMenuItems( "open-selection" );
-        browser.menus.remove( "main-menu-separator" );
-        browser.menus.remove( "main-menu-help" );
+        browserMenusRemove( "main-menu-separator" );
+        browserMenusRemove( "main-menu-help" );
+        browserMenusRemove( "main-menu-prefs" );
     }
 
+    // Await all deletions before recreating
+    if (menusDeleting === 0)
+        createContextMenus();
+}
+
+
+function createContextMenus()
+{
+    if (prefs.debug)
+        console.log("URL Link creating context menus");
 
     // Direct trigger menu items
-    let createdMenus = false;
-    if (wantUrlMenu  &&  !currentMenuUrl)
+    if (wantUrlMenu)
     {
-        createdMenus = true;
-        currentMenuUrl = true;
+        currentUrlMenu = true;
 
         browser.menus.create({
             id: "open-selected-url-in-new-tab",
@@ -221,10 +259,9 @@ function createContextMenus()
     }
 
     // Sub-menus for text
-    if (wantTxtMenu  &&  (!currentMenuTxt  ||  menuChanged))
+    if (wantTxtMenu  ||  menuChanged)
     {
-        createdMenus = true;
-        currentMenuTxt = true;
+        currentTxtMenu = true;
         menuChanged = false;
 
         browser.menus.create({
@@ -239,28 +276,24 @@ function createContextMenus()
         }, () => { onContextMenuCreated("open-selection",false); } );
     }
 
-    // Created anything?
-    if (createdMenus)
-    {
-        // Separator
-        browser.menus.create({
-            id: "main-menu-separator",
-            type: "separator",
-            contexts: ["selection","link"]
-        });
-        // Help
-        browser.menus.create({
-            id: "main-menu-help",
-            title: browser.i18n.getMessage("help"),
-            contexts: ["selection","link"]
-        });
-        // Prefs
-        browser.menus.create({
-            id: "main-menu-prefs",
-            title: browser.i18n.getMessage("prefs"),
-            contexts: ["selection","link"]
-        });
-    }
+    // Separator
+    browser.menus.create({
+        id: "main-menu-separator",
+        type: "separator",
+        contexts: ["selection","link"]
+    });
+    // Help
+    browser.menus.create({
+        id: "main-menu-help",
+        title: browser.i18n.getMessage("help"),
+        contexts: ["selection","link"]
+    });
+    // Prefs
+    browser.menus.create({
+        id: "main-menu-prefs",
+        title: browser.i18n.getMessage("prefs"),
+        contexts: ["selection","link"]
+    });
 }
 
 
@@ -332,14 +365,14 @@ function onMessage( message, senderPort )
             comms[port].postMessage({"message":"urllink-prefs", "prefs": prefs});
 
         // TBD rebuild menus now while we're not doing it on the fly
-        createContextMenus();
+        updateContextMenus();
     }
     else
         console.log("URL Link unrecognised message: " + JSON.stringify(message));
 
     // Now we can create menus
     // TBD no point re-doing them until FF supports regen. of menus on the fly (see above bug link)
-    ///createContextMenus();
+    ///updateContextMenus();
 }
 
 
@@ -572,7 +605,7 @@ browser.storage.local.get("preferences").then( results => {
         comms[port].postMessage({"message":"urllink-prefs", "prefs": prefs});
 
     // TBD until we can create the context menu dynamically/*IN TIME*, must pre-create it now.
-    createContextMenus();
+    updateContextMenus();
 },
 error => {
     console.log(`URL Link prefs. fetch error '${error}'`);

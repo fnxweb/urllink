@@ -570,14 +570,11 @@ function preparePage(ev)
         // Connection to extension
         comms = browser.runtime.connect({name:"urllink-comms"});
 
-        // Get prefs. on load and change
-        ///comms.onMessage.addListener( message => {
-            ///if (message["message"] === "urllink-prefs")
-                ///prefs = message["prefs"];
-        ///});
-
-        // Request prefs. now
-        /// comms.postMessage({"message":"urllink-prefs-req"});
+        // Attempt reconnection on failure
+        comms.onDisconnect.addListener( p => {
+            console.log("URL Link preferences window re-establishing connection");
+            comms = browser.runtime.connect({name:"urllink-comms"});
+        });
     }
     else
     {
