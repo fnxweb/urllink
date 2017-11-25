@@ -335,15 +335,6 @@ function defaultPrefs()
 }
 
 
-// For deleted prefs.
-// TBD when certain
-function deleteOldPrefs()
-{
-    delete prefs["topmenu"];
-}
-
-
-
 // Page message handler
 function onMessage( message, senderPort )
 {
@@ -356,6 +347,9 @@ function onMessage( message, senderPort )
     else if (message["message"] === "urllink-prefs-req")
         // New page has asked for prefs, broadcast it
         senderPort.postMessage({"message":"urllink-prefs", "prefs": prefs});
+    else if (message["message"] === "urllink-prefs-defaults-req")
+        // Default prefs. requested (prbably prefs. page' Defaults button), send them back
+        senderPort.postMessage({"message":"urllink-prefs-defaults", "prefs": defaultPrefs()});
     else if (message["message"] === "urllink-prefs-changed")
     {
         // New prefs. have been saved;  pass to all pages
@@ -567,11 +561,12 @@ browser.storage.local.get("preferences").then( results => {
             console.log("URL Link found no valid prefs.: " + JSON.stringify(results));
     }
 
-    // Validate
+    // Validate - ensure stored prefs have any nbew prefs and old ones are binned
     let defaults = defaultPrefs();
     let writePrefs = false;
     if (!prefs.hasOwnProperty("lastversion"))
     {
+        // Stored prefs empty
         if (prefs.debug)
             console.log("URL Link not found prefs., setting defaults");
         prefs = defaults;
@@ -586,6 +581,14 @@ browser.storage.local.get("preferences").then( results => {
             if (defaults.hasOwnProperty(def)  &&  !prefs.hasOwnProperty(def))
             {
                 prefs[def] = defaults[def];
+                writePrefs = true;
+            }
+
+        // And remove from current prefs any not in defaults any more
+        for (let pref in prefs)
+            if (prefs.hasOwnProperty(pref)  &&  !defaults.hasOwnProperty(pref))
+            {
+                delete prefs[pref];
                 writePrefs = true;
             }
     }
