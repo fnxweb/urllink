@@ -126,7 +126,7 @@
         "message": "選択部分がURLのように見えるときだけ作動"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "メニューをコントロール（Firefoxのみ）"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "現在の選択領域が有効なURLに見える場合にもサブメニューを表示"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

@@ -126,7 +126,7 @@
         "message": "Работи само когато маркираното прилича на URL адрес"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "Контрол на менюто (само за Firefox)"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "Показва допълнително подменю, дори ако настоящият избор вече прилича на валиден URL"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

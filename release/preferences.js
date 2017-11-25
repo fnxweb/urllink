@@ -618,6 +618,44 @@ function preparePage(ev)
             console.log("URL Link preferences window re-establishing connection");
             comms = browser.runtime.connect({name:"urllink-comms"});
         });
+
+        // i18n
+        // Look for data-i18n attributes, and look those up (or use the token if lookup fails due to no translation)
+        for (let elem of document.querySelectorAll( "[data-i18n]" ))
+        {
+            // Look up translation for main text
+            let key = elem.getAttribute('data-i18n');
+            let i18n = "[i18n:" + key + "]";
+            if (key  &&  key.length)
+            {
+                let text = browser.i18n.getMessage(key);
+                if (text  &&  text.length)
+                    i18n = text;
+            }
+
+            // Apply it
+            // Things like inputs can trigger translation with value equal "i18n"
+            if (typeof elem.value !== 'undefined' && elem.value === 'i18n')
+                elem.value = i18n;
+            else
+                elem.innerText = i18n;
+        }
+
+        // Again for tooltips
+        for (let elem of document.querySelectorAll( "[data-title-i18n]" ))
+        {
+            let key = elem.getAttribute('data-title-i18n');
+            let i18n = "[i18n:" + key + "]";
+            if (key  &&  key.length)
+            {
+                let text = browser.i18n.getMessage(key);
+                if (text  &&  text.length)
+                    i18n = text;
+            }
+
+            // Apply it
+            elem.title = i18n;
+        }
     }
     else
     {

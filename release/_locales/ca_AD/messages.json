@@ -126,7 +126,7 @@
         "message": "Obre només quan la selecció sigui semblant a un URL"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "Control del menú (només al Firefox)"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "Shows the extra sub-menu even if the current selection already looks like a valid URL"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

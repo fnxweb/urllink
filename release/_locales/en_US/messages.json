@@ -157,7 +157,7 @@
         "message": "Only work when selection looks like a URL"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "Menu control",
         "description": "Options for controlling the menu"
     },
@@ -167,7 +167,7 @@
     },
 
     "prefs-editsandr": {
-        "message": "Edit Search and Replace strings",
+        "message": "Edit Search and Replace",
         "description": "Select to edit the search and replace options"
     },
 
@@ -185,5 +185,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "Shows the extra sub-menu even if the current selection already looks like a valid URL"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

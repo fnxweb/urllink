@@ -24,7 +24,7 @@
 <!-- preferences.html -->
 <html>
   <head>
-  <title>URL Link Preferences</title>
+  <title data-i18n="prefs-title"></title>
   <meta charset="utf-8">
   <script src="preferences.js"></script>
   <style type="text/css">
@@ -251,22 +251,20 @@ form.buttons button
   </head>
   <body>
 
-    <h1>Preferences</h1>
+    <h1 data-i18n="prefs"></h1>
 
     <div class="tabs">
 
       <div class="tab">
-        <button id="menu-tab-button"  class="tab-link">Custom menu</button>
-        <button id="sandr-tab-button" class="tab-link">Search and Replace</button>
+        <button id="menu-tab-button"  class="tab-link" data-i18n="prefs-editmenu"></button>
+        <button id="sandr-tab-button" class="tab-link" data-i18n="prefs-editsandr"></button>
       </div>
 
-      <div id="menu-tab" class="tab-content"
-        title="List of menu items. '*' is replaced by the selection.'--' is a separator. '|'separates menu label from URL to use">
+      <div id="menu-tab" class="tab-content" data-title-i18n="prefs-list-tip" title="">
         <ul class="urllink-list"></ul>
       </div>
 
-      <div id="sandr-tab" class="tab-content"
-        title="List of search and replace items. Format is 'RegEx||Replacement'">
+      <div id="sandr-tab" class="tab-content" data-title-i18n="prefs-sandr-list-tip" title="">
         <ul class="urllink-list"></ul>
       </div>
 
@@ -275,32 +273,32 @@ form.buttons button
     <div style="clear:both"></div><br>
 
     <dl>
-      <div title="Open new window by default (as &lt;Shift&gt; normally does)">
-        <dt>Prefer new window:</dt><dd><input id="option-new-window" type="checkbox"></dd>
+      <div data-title-i18n="prefs-newwindow-tip" title="">
+        <dt><span data-i18n="prefs-newwindow"></span>:</dt><dd><input id="option-new-window" type="checkbox"></dd>
       </div>
-      <div title="Shows the extra sub-menu even if the current selection already looks like a valid URL">
-        <dt>Always show filter sub-menu:</dt><dd><input id="option-force-sub-menu" type="checkbox"></dd>
+      <div data-title-i18n="prefs-forcesubmenu-tip" title="">
+        <dt><span data-i18n="prefs-forcesubmenu"></span>:</dt><dd><input id="option-force-sub-menu" type="checkbox"></dd>
       </div>
-      <div title="Open new tabs in the background instead of switching to them">
-        <dt>Open tabs in background:</dt><dd><input id="option-background-tabs" type="checkbox"></dd>
+      <div data-title-i18n="prefs-background-tabs-tip" title="">
+        <dt><span data-i18n="prefs-background-tabs"></span>:</dt><dd><input id="option-background-tabs" type="checkbox"></dd>
       </div>
       <div>
-        <dt>Debug logging:</dt><dd><input id="option-debug" type="checkbox"></dd>
+        <dt><span data-i18n="debug-logging"></span>:</dt><dd><input id="option-debug" type="checkbox"></dd>
       </div>
       <dt>&nbsp;</dt><dd>&nbsp;</dd>
-      <dt>Menu control:</dt><dd>
-        <input id="option-both-options" class="menu-options" name="menu-control" type="radio">Show both menu options<br>
-        <input id="option-hide-tab"     class="menu-options" name="menu-control" type="radio">Hide the 'open in tab' options<br>
-        <input id="option-hide-open"    class="menu-options" name="menu-control" type="radio">Hide the normal 'open' options
+      <dt><span data-i18n="prefs-menu-control"></span>:</dt><dd>
+        <input id="option-both-options" class="menu-options" name="menu-control" type="radio">&nbsp;<span data-i18n="prefs-bothoptions"></span><br>
+        <input id="option-hide-tab"     class="menu-options" name="menu-control" type="radio">&nbsp;<span data-i18n="prefs-hidetab"></span><br>
+        <input id="option-hide-open"    class="menu-options" name="menu-control" type="radio">&nbsp;<span data-i18n="prefs-hideopen"></span>
       </dd>
     </dl>
 
     <div style="clear:both"></div><br>
 
     <form class="buttons">
-      <button type="submit" class="browser-style" id="prefs-save">Save</button>
-      <button type="submit" class="browser-style" id="prefs-defaults" title="Apply default settings">Defaults</button>
-      <button type="submit" class="browser-style" id="prefs-cancel">Cancel</button>
+      <button type="submit" class="browser-style" id="prefs-save" data-i18n="prefs-apply"></button>
+      <button type="submit" class="browser-style" id="prefs-defaults" data-i18n="prefs-defaults"></button>
+      <button type="submit" class="browser-style" id="prefs-cancel" data-i18n="prefs-cancel"></button>
     </form>
 
     <div style="clear:both"></div><br>

@@ -126,7 +126,7 @@
         "message": "Använd bara när markeringen liknar en URL"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "Menystyrning (endast Firefox)"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "Visar filtreringsundermenyn även om den aktuella markeringen ser ut som en giltig URL"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

@@ -126,7 +126,7 @@
         "message": "Attiva solo quando il testo selezionato è simile ad un URL"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "Visualizzazione dei menu"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "Mostra il sottomenu extra anche se il testo selezionato già sembra un URL valido"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

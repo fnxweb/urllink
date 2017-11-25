@@ -126,7 +126,7 @@
         "message": "Virker kun når det markerede ligner en URL"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "Menukontrol (kun Firefox)"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "Viser den ekstra undermenu selvom den pågældende markering allerede ser ud som en gyldig URL"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }

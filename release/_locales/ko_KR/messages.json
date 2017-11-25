@@ -126,7 +126,7 @@
         "message": "선택한 것이 URL로 보이는 경우에만 동작"
     },
 
-    "prefs-firefoxonly": {
+    "prefs-menu-control": {
         "message": "메뉴 제어 (Firefox 전용)"
     },
 
@@ -152,5 +152,17 @@
 
     "prefs-forcesubmenu-tip": {
         "message": "현재 선택한 것이 올바른 URL로 보이는 경우에도 별도의 하부 메뉴를 표시합니다"
+    },
+
+    "prefs-background-tabs": {
+        "message": "Open tabs in background"
+    },
+
+    "prefs-background-tabs-tip": {
+        "message": "Open new tabs in the background instead of switching to them"
+    },
+
+    "debug-logging": {
+        "message": "Debug logging"
     }
 }
