@@ -30,11 +30,28 @@ var plusChar = "➕";
 var comms = null;
 
 
+
 // Dragging starts
 function onDragStart(ev) {
+    // Flag origin
     ev.dataTransfer.setData("text", ev.target.id);
     if (prefs.debug)
         console.log("URL Link dragging '" + ev.target.id + "'");
+
+    // Stop entries being editable;  it causes a distracting drop-caret in them,
+    // and *can* mean the dragged LI's ID gets added to the text (‽)
+    let entries = document.querySelectorAll("li.li-data .entry");
+    for (let entry = 0;  entry < entries.length;  ++entry)
+        entries[entry].contentEditable = false;
+}
+
+
+// Make entries editable again
+function onDragEnd(v)
+{
+    let entries = document.querySelectorAll("li.li-data .entry");
+    for (let entry = 0;  entry < entries.length;  ++entry)
+        entries[entry].contentEditable = true;
 }
 
 
@@ -56,6 +73,7 @@ function onDrop(ev)
 
     // Fix up CSS
     onDragLeave(ev);
+    onDragEnd(ev);
 
     // Correctly ID target
     let target = ev.target;
@@ -133,7 +151,7 @@ function onDragEnter(ev)
 // Left item while dragging
 function onDragLeave(ev)
 {
-    // If a valid item, stop highlighting it as a target
+    // If current is a valid item, stop highlighting it as a target
     if (ev.target.tagName && ev.target.tagName.search(/^(li|div|span)$/i) === 0)
         ev.target.className = ev.target.className.replace(/ dragging\b/g,'');
 }
@@ -457,6 +475,9 @@ function displayPrefs()
             document.getElementById("option-hide-open").checked = true;  // hide open
         else
             document.getElementById("option-both-options").checked = true;  // have both
+
+        // Tidy up and end of any drag
+        document.addEventListener( "dragend", onDragEnd );
     }
 }
 
