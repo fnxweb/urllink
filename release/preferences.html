@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<!-- preferences.html -->
+
 <!--
 // URL Link preference editing
 //   preferences.html
@@ -19,9 +22,6 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
-
-<!DOCTYPE html>
-<!-- preferences.html -->
 <html>
   <head>
   <title data-i18n="prefs-title">[prefs-title]</title>
@@ -273,18 +273,10 @@ form.buttons button
     <div style="clear:both"></div><br>
 
     <dl>
-      <div data-title-i18n="prefs-newwindow-tip" title="">
-        <dt><span data-i18n="prefs-newwindow">[prefs-newwindow]</span>:</dt><dd><input id="option-new-window" type="checkbox"></dd>
-      </div>
-      <div data-title-i18n="prefs-forcesubmenu-tip" title="">
-        <dt><span data-i18n="prefs-forcesubmenu">[prefs-forcesubmenu]</span>:</dt><dd><input id="option-force-sub-menu" type="checkbox"></dd>
-      </div>
-      <div data-title-i18n="prefs-background-tabs-tip" title="">
-        <dt><span data-i18n="prefs-background-tabs">[prefs-background-tabs]</span>:</dt><dd><input id="option-background-tabs" type="checkbox"></dd>
-      </div>
-      <div>
-        <dt><span data-i18n="debug-logging">[debug-logging]</span>:</dt><dd><input id="option-debug" type="checkbox"></dd>
-      </div>
+      <dt data-title-i18n="prefs-newwindow-tip" title=""><span data-i18n="prefs-newwindow">[prefs-newwindow]</span>:</dt><dd data-title-i18n="prefs-newwindow-tip" title=""><input id="option-new-window" type="checkbox"></dd>
+      <dt data-title-i18n="prefs-forcesubmenu-tip" title=""><span data-i18n="prefs-forcesubmenu">[prefs-forcesubmenu]</span>:</dt><dd data-title-i18n="prefs-forcesubmenu-tip" title=""><input id="option-force-sub-menu" type="checkbox"></dd>
+      <dt data-title-i18n="prefs-background-tabs-tip" title=""><span data-i18n="prefs-background-tabs">[prefs-background-tabs]</span>:</dt><dd data-title-i18n="prefs-background-tabs-tip" title=""><input id="option-background-tabs" type="checkbox"></dd>
+      <dt><span data-i18n="debug-logging">[debug-logging]</span>:</dt><dd><input id="option-debug" type="checkbox"></dd>
       <dt>&nbsp;</dt><dd>&nbsp;</dd>
       <dt><span data-i18n="prefs-menu-control">[prefs-menu-control]</span>:</dt><dd>
         <input id="option-both-options" class="menu-options" name="menu-control" type="radio">&nbsp;<span data-i18n="prefs-bothoptions">[prefs-bothoptions]</span><br>

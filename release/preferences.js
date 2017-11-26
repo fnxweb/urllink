@@ -290,7 +290,9 @@ function createLi( n, list, listtype, cls, text )
     {
         // Separator: span in a div in a li
         let div = document.createElement("div");
-        div.appendChild( document.createElement("span") );
+        let span = document.createElement("span");
+        span.appendChild( document.createTextNode(" ") );
+        div.appendChild( span );
         li.appendChild( div );
     }
 
