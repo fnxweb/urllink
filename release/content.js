@@ -335,6 +335,39 @@ function processSelection( event )
 }
 
 
+// Write text to the clipboard
+function setClipboardText( text )
+{
+    // Is there no easier way than this?
+    let textarea = document.createElement("textarea");
+
+    textarea.style.position = 'fixed';
+    textarea.style.top = 0;
+    textarea.style.left = 0;
+    textarea.style.width = '1px';
+    textarea.style.height = '1px';
+    textarea.style.padding = 0;
+    textarea.style.border = 'none';
+    textarea.style.outline = 'none';
+    textarea.style.boxShadow = 'none';
+    textarea.style.background = 'transparent';
+
+    textarea.value = text;
+
+    document.body.appendChild(textarea);
+
+    textarea.select();
+
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+        console.error("URL Link was unable to copy '" + text + "' to the clipboard");
+    }
+
+  document.body.removeChild(textarea);
+}
+
+
 // Process right-click events for context menu
 function mousedownHandler( event )
 {
@@ -364,6 +397,8 @@ comms.onMessage.addListener( message => {
 
     if (message["message"] === "urllink-prefs")
         prefs = message["prefs"];
+    else if (message["message"] === "urllink-set-clipboard")
+        setClipboardText( message["text"] );
 });
 
 // Request prefs. now

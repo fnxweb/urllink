@@ -33,6 +33,9 @@ var submenuCount   = 0;     // number of text submenus created from prefs (for l
 // Current active selection
 var activeSelection = "";
 
+// Index into comms of last context menu trigger
+var lastComms = -1;
+
 // Functionality checks
 var firefoxVersion = 56;  // min release
 
@@ -341,6 +344,16 @@ function onMessage( message, senderPort )
     if (prefs.debug)
         console.log("URL Link message from page: " + JSON.stringify(message));
 
+    // Remember where message came from
+    lastComms = -1;
+    for (let port = 0;  port < comms.length;  ++port)
+        if (comms[port] === senderPort)
+        {
+            lastComms = port;
+            break;
+        }
+
+    // Which message?
     if (message["message"] === "contextMenu")
         // Menu started
         activeSelection = message["selection"];
@@ -480,11 +493,32 @@ function openLink( menuItemId, tabId, withShift )
     if (prefs.debug)
         console.log( `URL Link: fixed '${lnk}'` );
 
+    // file?
+    let force_active = false;
+    if (lnk.search("file:") == 0)
+    {
+        // TBD we can't open file links at the moment.  Put in into the clipboard and get the user to use it.
+        // Also, we can't write to the clipboard from here, so send it back to the page ...
+        // Nothing we can do if the comms/port detection has failed :-(
+        if (lastComms >= 0  &&  lastComms < comms.length)
+        {
+            comms[lastComms].postMessage({"message":"urllink-set-clipboard", "text":lnk});
+        }
+        else
+        {
+            console.error("URL Link failed to determine origin tab for '" + lnk + "' request, can't set clipboard!")
+            return;
+        }
+        lnk = browser.extension.getURL( "manual.html ");
+        force_active = true;
+    }
+
+    // How to open?
     if (inTab)
     {
         // Tab
         let props = {
-            "active": !prefs["inbackground"],
+            "active": !prefs["inbackground"] || force_active,
             "url": lnk
         };
         if (firefoxVersion >= 57)
