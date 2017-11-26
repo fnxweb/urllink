@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Подразумевај нови прозор (само Firefox)"
+        "message": "Подразумевај нови прозор"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Контрола менија (само Firefox)"
+        "message": "Контрола менија"
     },
 
     "prefs-bothoptions": {

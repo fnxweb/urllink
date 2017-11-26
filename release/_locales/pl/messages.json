@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Prefer new window (Firefox only)"
+        "message": "Prefer new window"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menu control (Firefox only)"
+        "message": "Menu control"
     },
 
     "prefs-bothoptions": {

@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Foretræk nyt vindue (kun Firefox)"
+        "message": "Foretræk nyt vindue"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menukontrol (kun Firefox)"
+        "message": "Menukontrol"
     },
 
     "prefs-bothoptions": {

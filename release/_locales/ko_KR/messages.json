@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "새 창을 선호 (Firefox)"
+        "message": "새 창을 선호"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "메뉴 제어 (Firefox 전용)"
+        "message": "메뉴 제어"
     },
 
     "prefs-bothoptions": {

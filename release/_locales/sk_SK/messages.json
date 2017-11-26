@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Otvárať výber v novom okne (Firefox)"
+        "message": "Otvárať výber v novom okne"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Ovládanie ponuky (Firefox)"
+        "message": "Ovládanie ponuky"
     },
 
     "prefs-bothoptions": {

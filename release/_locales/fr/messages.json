@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Préférer une nouvelle fenêtre (pour Firefox seulement)"
+        "message": "Préférer une nouvelle fenêtre"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Contrôle du menu (seulement pour Firefox)"
+        "message": "Contrôle du menu"
     },
 
     "prefs-bothoptions": {

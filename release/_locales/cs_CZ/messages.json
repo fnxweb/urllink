@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Upřednostnit nové okno (pouze Firefox)"
+        "message": "Upřednostnit nové okno"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Nastavení menu (pouze Firefox)"
+        "message": "Nastavení menu"
     },
 
     "prefs-bothoptions": {

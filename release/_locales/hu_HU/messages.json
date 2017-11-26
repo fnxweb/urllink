@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Új ablak ajánlása (csak Firefox-ban)"
+        "message": "Új ablak ajánlása"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menü beállítás (csak Firefox-ban)"
+        "message": "Menü beállítás"
     },
 
     "prefs-bothoptions": {

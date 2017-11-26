@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Voorkeur geven aan nieuw venster (alleen Firefox)"
+        "message": "Voorkeur geven aan nieuw venster"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menu-instellingen (alleen Firefox)"
+        "message": "Menu-instellingen"
     },
 
     "prefs-bothoptions": {

@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Föredrar nytt fönster (endast Firefox)"
+        "message": "Föredrar nytt fönster"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menystyrning (endast Firefox)"
+        "message": "Menystyrning"
     },
 
     "prefs-bothoptions": {

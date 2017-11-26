@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Neues Fenster als Voreinstellung (nur Firefox)"
+        "message": "Neues Fenster als Voreinstellung"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menü Einstellungen (nur Firefox)"
+        "message": "Menü Einstellungen"
     },
 
     "prefs-bothoptions": {

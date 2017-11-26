@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Yeni pencereyi tercih et (yalnızca Firefox)"
+        "message": "Yeni pencereyi tercih et"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Menü denetimi (yalnızca Firefox)"
+        "message": "Menü denetimi"
     },
 
     "prefs-bothoptions": {

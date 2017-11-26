@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "新視窗類型 (Firefox)"
+        "message": "新視窗類型"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "選單控制 (Firefox only)"
+        "message": "選單控制"
     },
 
     "prefs-bothoptions": {

@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "新しいウィンドウで開くようにする（Firefoxのみ）"
+        "message": "新しいウィンドウで開くようにする"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "メニューをコントロール（Firefoxのみ）"
+        "message": "メニューをコントロール"
     },
 
     "prefs-bothoptions": {

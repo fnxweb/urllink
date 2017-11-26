@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "За предпочитане в нов прозорец (само за Firefox)"
+        "message": "За предпочитане в нов прозорец"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Контрол на менюто (само за Firefox)"
+        "message": "Контрол на менюто"
     },
 
     "prefs-bothoptions": {

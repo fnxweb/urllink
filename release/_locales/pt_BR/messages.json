@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Preferir nova janela (Firefox only)"
+        "message": "Preferir nova janela"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Controle do Menu (somente Firefox)"
+        "message": "Controle do Menu"
     },
 
     "prefs-bothoptions": {

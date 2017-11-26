@@ -107,7 +107,7 @@
     },
 
     "prefs-newwindow": {
-        "message": "Obre en una finestra nova (només al Firefox)"
+        "message": "Obre en una finestra nova"
     },
 
     "prefs-newwindow-tip": {
@@ -127,7 +127,7 @@
     },
 
     "prefs-menu-control": {
-        "message": "Control del menú (només al Firefox)"
+        "message": "Control del menú"
     },
 
     "prefs-bothoptions": {
