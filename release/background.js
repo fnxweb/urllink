@@ -161,7 +161,7 @@ function browserMenusRemove( id )
         if (menusDeleting == 0)
             createContextMenus()
     }).catch( result => {
-        console.log("URL Link menu deletion failed");
+        console.error("URL Link menu deletion failed");
     });
 }
 
@@ -375,7 +375,7 @@ function onMessage( message, senderPort )
         updateContextMenus();
     }
     else
-        console.log("URL Link unrecognised message: " + JSON.stringify(message));
+        console.error("URL Link unrecognised message: " + JSON.stringify(message));
 
     // Now we can create menus
     // TBD no point re-doing them until FF supports regen. of menus on the fly (see above bug link)
@@ -452,7 +452,7 @@ function openLink( menuItemId, tabId, withShift )
     // Shouldn't come in here with no selection now.
     if (activeSelection.length === 0)
     {
-        console.log("URL Link triggered with no selection");
+        console.error("URL Link triggered with no selection");
         return;
     }
 
@@ -647,7 +647,7 @@ browser.storage.local.get("preferences").then( results => {
     updateContextMenus();
 },
 error => {
-    console.log(`URL Link prefs. fetch error '${error}'`);
+    console.error(`URL Link prefs. fetch error '${error}'`);
 });
 
 

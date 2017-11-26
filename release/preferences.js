@@ -617,7 +617,7 @@ function preparePage(ev)
 
         // Attempt reconnection on failure
         comms.onDisconnect.addListener( p => {
-            console.log("URL Link preferences window re-establishing connection");
+            console.warn("URL Link preferences window re-establishing connection");
             comms = browser.runtime.connect({name:"urllink-comms"});
         });
 
@@ -662,7 +662,7 @@ function preparePage(ev)
     else
     {
         // Local debug
-        console.log("URL Link preferences page - diagnostic mode");
+        console.warn("URL Link preferences page - diagnostic mode");
         prefs = debugPrefs;
         displayPrefs();
     }
