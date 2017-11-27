@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "3.1.0beta4",
+    "version": "3.1.0beta5",
     "description": "__MSG_extensionDescription__",
     "author": "Neil Bird",
     "homepage_url": "https://addons.mozilla.org/en-GB/firefox/addon/url-link/",
@@ -34,7 +34,8 @@
 
     "options_ui": {
         "browser_style": true,
-        "page": "preferences.html"
+        "page": "preferences.html",
+        "open_in_tab": true
     },
 
     "permissions": [

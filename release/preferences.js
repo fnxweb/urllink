@@ -49,6 +49,9 @@ function onDragStart(ev) {
 // Make entries editable again
 function onDragEnd(v)
 {
+    if (prefs.debug)
+        console.log("URL Link drag ending");
+
     let entries = document.querySelectorAll("li.li-data .entry");
     for (let entry = 0;  entry < entries.length;  ++entry)
         entries[entry].contentEditable = true;
@@ -183,17 +186,6 @@ function selectTab(ev, tabName)
 }
 
 
-// Set a li draggable
-function setDraggable( li )
-{
-    li.ondragstart = onDragStart;
-    li.ondrop      = onDrop;
-    li.ondragover  = onDragOver;
-    li.ondragenter = onDragEnter;
-    li.ondragleave = onDragLeave;
-}
-
-
 // Delete a li
 function deleteEntry( li )
 {
@@ -299,8 +291,6 @@ function createLi( n, list, listtype, cls, text )
     // And the rest of the attributes; drag stuff if it's not the "add" line
     li.className = cls;
     li.id        = list + n + listtype;
-    if (listtype != "add")
-        setDraggable( li );
 
     return li;
 }
@@ -360,7 +350,7 @@ function makeEditable( li )
 
                 // Make it a normal one
                 li.id = li.id.replace(/add\b/g,"");
-                setDraggable( li );
+                li.draggable = true;
                 setDeletable( li );
                 addThumb( li );
 
@@ -477,9 +467,6 @@ function displayPrefs()
             document.getElementById("option-hide-open").checked = true;  // hide open
         else
             document.getElementById("option-both-options").checked = true;  // have both
-
-        // Tidy up and end of any drag
-        document.addEventListener( "dragend", onDragEnd );
     }
 }
 
@@ -666,6 +653,14 @@ function preparePage(ev)
         prefs = debugPrefs;
         displayPrefs();
     }
+
+    // Drag handling
+    document.addEventListener( "dragstart", onDragStart );
+    document.addEventListener( "drop",      onDrop );
+    document.addEventListener( "dragover",  onDragOver );
+    document.addEventListener( "dragenter", onDragEnter );
+    document.addEventListener( "dragleave", onDragLeave );
+    document.addEventListener( "dragend",   onDragEnd );
 }
 
 
