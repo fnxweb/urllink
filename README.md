@@ -4,6 +4,12 @@ URL Link has been wholly re-written to be a WebExtension. **This new version wil
 
 *Preference editing is back in and has been completely re-written — please report any issues to me or via a bug on GitHub*
 
+**Explanation of required permissions**
+* _Access your data for all websites_ — installs a “content script” into visited pages in order to better analyse the current selection.
+* _Input data to the clipboard_ — copies file:/// URLs to the clipboard for pasting (in lieu of automatic access).
+* _Access browser tabs_ — open new windows and tabs.
+
+
 For emails, it reconnects links in emails which have been broken across several lines, and also replaces spaces with the URL character code %20 so that you may follow emailed network 'file:' links (which it auto-detects from Windows "X:" or \\servdir references).
 
 For web pages, it also allows you to select textual links/URLs in web pages or edit boxes, and follow them as if they were real links. It will also let you use actual links, and analyses mailto: links as well.
