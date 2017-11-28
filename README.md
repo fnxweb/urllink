@@ -2,7 +2,7 @@
 ___
 URL Link has been wholly re-written to be a WebExtension. **This new version will not work on Thunderbird as it does not support WebExtensions.** I may have to release a separate forked copy of URL Link just for Thunderbird; if I do, I shall try to use the name *URL Link Legacy* so you can watch out for that.
 
-*Preference editing is back in and has been completely re-written — please report any issues to me or via a bug on GitHub*
+*Preference editing is back in and has been completely re-written — please report any issues to me or via a bug on GitHub.  The menu control options do not yet do anything as menus cannot currently be recreated on-the-fly (Firefox issue).*
 
 **Explanation of required permissions**
 * _Access your data for all websites_ — installs a “content script” into visited pages in order to better analyse the current selection.
