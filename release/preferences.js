@@ -450,10 +450,10 @@ function displayPrefs()
         addPlusEntry( list, prefs.sandr.length, "sandr" );
 
         // Populate basic flags
-        document.getElementById("option-new-window").checked      = prefs["newwindow"];
-        document.getElementById("option-force-sub-menu").checked  = prefs["forcesubmenu"];
-        document.getElementById("option-background-tabs").checked = prefs["inbackground"];
-        document.getElementById("option-debug").checked           = prefs["debug"];
+        document.getElementById("option-new-window").checked      = prefs.newwindow;
+        document.getElementById("option-force-sub-menu").checked  = prefs.forcesubmenu;
+        document.getElementById("option-background-tabs").checked = prefs.inbackground;
+        document.getElementById("option-debug").checked           = prefs.debug;
 
         // Clear menu control
         items = document.querySelectorAll("input.menu-options");
@@ -461,9 +461,9 @@ function displayPrefs()
             items[n].checked = false;
 
         // Repopulate menu control
-        if (prefs["hidetab"])
+        if (prefs.hidetab)
             document.getElementById("option-hide-tab").checked = true;  // hide tab
-        else if (prefs["hideopen"])
+        else if (prefs.hideopen)
             document.getElementById("option-hide-open").checked = true;  // hide open
         else
             document.getElementById("option-both-options").checked = true;  // have both
@@ -481,7 +481,7 @@ function savePrefs()
     if (prefs.hasOwnProperty("lastversion"))
     {
         // Process menu items
-        prefs["submenus"] = [];
+        prefs.submenus = [];
         let items = document.querySelectorAll("#menu-tab li");
         for (let n = 0;  n < items.length;  ++n)
             if (!items[n].className.match(/sep$/))
@@ -489,11 +489,11 @@ function savePrefs()
                 let text = items[n].querySelector(".entry");
                 let str = text.textContent;
                 if (str !== plusChar)
-                    prefs["submenus"].push( str );
+                    prefs.submenus.push( str );
             }
 
         // Process search and replace items
-        prefs["sandr"] = [];
+        prefs.sandr = [];
         items = document.querySelectorAll("#sandr-tab li");
         for (let n = 0;  n < items.length;  ++n)
             if (!items[n].className.match(/sep$/))
@@ -501,30 +501,30 @@ function savePrefs()
                 let text = items[n].querySelector(".entry");
                 let str = text.textContent;
                 if (str !== plusChar)
-                    prefs["sandr"].push( str );
+                    prefs.sandr.push( str );
             }
 
         // Process basic flags
-        prefs["newwindow"]    = document.getElementById("option-new-window").checked;
-        prefs["forcesubmenu"] = document.getElementById("option-force-sub-menu").checked;
-        prefs["inbackground"] = document.getElementById("option-background-tabs").checked;
-        prefs["debug"]        = document.getElementById("option-debug").checked;
+        prefs.newwindow    = document.getElementById("option-new-window").checked;
+        prefs.forcesubmenu = document.getElementById("option-force-sub-menu").checked;
+        prefs.inbackground = document.getElementById("option-background-tabs").checked;
+        prefs.debug        = document.getElementById("option-debug").checked;
 
         // Process menu control
         if (document.getElementById("option-hide-tab").checked)  // hide tab
         {
-            prefs["hidetab"] = true;
-            prefs["hideopen"] = false;
+            prefs.hidetab = true;
+            prefs.hideopen = false;
         }
         else if (document.getElementById("option-hide-open").checked)  // hide open
         {
-            prefs["hidetab"] = false;
-            prefs["hideopen"] = true;
+            prefs.hidetab = false;
+            prefs.hideopen = true;
         }
         else if (document.getElementById("option-both-options").checked)  // have both
         {
-            prefs["hidetab"] = false;
-            prefs["hideopen"] = false;
+            prefs.hidetab = false;
+            prefs.hideopen = false;
         }
 
         // OK, now save them

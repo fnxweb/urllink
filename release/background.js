@@ -44,7 +44,7 @@ var menusDeleting = 0;
 
 // Menus required
 let wantUrlMenu = false; /// isUrl;
-let wantTxtMenu = true;  /// (!isUrl  ||  prefs["forcesubmenu"]);
+let wantTxtMenu = true;  /// (!isUrl  ||  prefs.forcesubmenu);
 
 
 // Extract accelkey from label
@@ -205,7 +205,7 @@ function updateContextMenus()
 
     // Menus required
     wantUrlMenu = false; /// isUrl;
-    wantTxtMenu = true;  /// (!isUrl  ||  prefs["forcesubmenu"]);
+    wantTxtMenu = true;  /// (!isUrl  ||  prefs.forcesubmenu);
 
     // Any change at all?
     if (wantUrlMenu === currentUrlMenu  &&  wantTxtMenu === currentTxtMenu  &&  !menuChanged)
@@ -249,16 +249,18 @@ function createContextMenus()
     {
         currentUrlMenu = true;
 
-        browser.menus.create({
-            id: "open-selected-url-in-new-tab",
-            title: removeAccess( browser.i18n.getMessage("open-selected-url-in-new-tab") ),
-            contexts: ["selection","link"]
-        });
-        browser.menus.create({
-            id: "open-selected-url",
-            title: removeAccess( browser.i18n.getMessage("open-selected-url") ),
-            contexts: ["selection","link"]
-        });
+        if (!prefs.hidetab)
+            browser.menus.create({
+                id: "open-selected-url-in-new-tab",
+                title: removeAccess( browser.i18n.getMessage("open-selected-url-in-new-tab") ),
+                contexts: ["selection","link"]
+            });
+        if (!prefs.hideopen)
+            browser.menus.create({
+                id: "open-selected-url",
+                title: removeAccess( browser.i18n.getMessage("open-selected-url") ),
+                contexts: ["selection","link"]
+            });
     }
 
     // Sub-menus for text
@@ -267,16 +269,18 @@ function createContextMenus()
         currentTxtMenu = true;
         menuChanged = false;
 
-        browser.menus.create({
-            id: "open-selection-in-new-tab",
-            title: removeAccess( browser.i18n.getMessage("open-selection-in-new-tab") ),
-            contexts: ["selection","link"]
-        }, () => { onContextMenuCreated("open-selection-in-new-tab",true); } );
-        browser.menus.create({
-            id: "open-selection",
-            title: removeAccess( browser.i18n.getMessage("open-selection") ),
-            contexts: ["selection","link"]
-        }, () => { onContextMenuCreated("open-selection",false); } );
+        if (!prefs.hidetab)
+            browser.menus.create({
+                id: "open-selection-in-new-tab",
+                title: removeAccess( browser.i18n.getMessage("open-selection-in-new-tab") ),
+                contexts: ["selection","link"]
+            }, () => onContextMenuCreated("open-selection-in-new-tab",true) );
+        if (!prefs.hideopen)
+            browser.menus.create({
+                id: "open-selection",
+                title: removeAccess( browser.i18n.getMessage("open-selection") ),
+                contexts: ["selection","link"]
+            }, () => onContextMenuCreated("open-selection",false) );
     }
 
     // Separator
@@ -518,7 +522,7 @@ function openLink( menuItemId, tabId, withShift )
     {
         // Tab
         let props = {
-            "active": !prefs["inbackground"] || force_active,
+            "active": !prefs.inbackground || force_active,
             "url": lnk
         };
         if (firefoxVersion >= 57)
@@ -629,9 +633,9 @@ browser.storage.local.get("preferences").then( results => {
 
     // Check version
     let thisVn = browser.runtime.getManifest().version;
-    if (prefs["lastversion"] !== thisVn)
+    if (prefs.lastversion !== thisVn)
     {
-        prefs["lastversion"] = thisVn;
+        prefs.lastversion = thisVn;
         writePrefs = true;
     }
 
@@ -717,7 +721,7 @@ browser.runtime.onInstalled.addListener( details => {
                 showChangelog = true;
 
             // Update records
-            prefs["lastversion"] = newvn;
+            prefs.lastversion = newvn;
             browser.storage.local.set({"preferences": prefs});
         }
 
