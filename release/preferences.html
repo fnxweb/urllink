@@ -31,6 +31,7 @@
 
 /* While showing as separeate page */
 h1,
+h2,
 div.tabs
 {
   margin-left: 1em;
@@ -69,9 +70,16 @@ ul.urllink-list
   background-color: white;
 }
 .urllink-list li.li-data.dragging,
-.urllink-list li.li-data.dragging span.delete-button
+.urllink-list li.li-data.dragging span.delete-button,
+.urllink-list li.li-data.dragging:hover span.delete-button,
+.urllink-list li.li-data.dragging span.for-delete-button,
+.urllink-list li.li-data.dragging span.thumb
 {
   background-color: #d7d7db;
+}
+.urllink-list li.li-data.dragging span.for-delete-button
+{
+  color: #d7d7db;
 }
 
 span.entry
@@ -86,7 +94,7 @@ span.entry
 }
 span.entry:before
 {
-  content: " ";  // Fudge due to caret moving off to left when text empty!
+  content: " ";  /* Fudge due to caret moving off to left when text empty! */
 }
 span.delete-button,
 span.for-delete-button
@@ -302,7 +310,7 @@ form.buttons button
 
     <div style="clear:both"></div><br>
 
-    <h1><a target="_blank" href="changelog.html">Changelog</a></h1>
+    <h2><a target="_blank" href="changelog.html">Changelog</a></h2>
 
   </body>
 </html>

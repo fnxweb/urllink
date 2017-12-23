@@ -82,6 +82,8 @@ function onDrop(ev)
     let target = ev.target;
     if (target.tagName.search(/^li$/i) !== 0)
         target = target.closest("li");
+    if (target === null  ||  target.id.match(/add$/))
+        return;
     let targetText = target.querySelector(".entry");
 
     if (prefs.debug)
@@ -146,8 +148,17 @@ function onDrop(ev)
 function onDragEnter(ev)
 {
     // If a valid item, highlight it as a target
-    if (ev.target.tagName && ev.target.tagName.search(/^(li|div|span)$/i) === 0)
-        ev.target.className = ev.target.className.replace(/ dragging\b/g,'') + " dragging";
+    let target = ev.target;
+    if ((target.tagName && target.tagName.search(/^(li|div|span|svg|path)$/i) === 0 )  ||
+        target.nodeName.search(/^(#text)$/i) === 0)
+    {
+        if (!target.tagName)
+            target = target.parentNode;
+        if (target.tagName.search(/^li$/i) !== 0)
+            target = target.closest("li");
+        if (target !== null)
+            target.className += " dragging";
+    }
 }
 
 
@@ -155,8 +166,17 @@ function onDragEnter(ev)
 function onDragLeave(ev)
 {
     // If current is a valid item, stop highlighting it as a target
-    if (ev.target.tagName && ev.target.tagName.search(/^(li|div|span)$/i) === 0)
-        ev.target.className = ev.target.className.replace(/ dragging\b/g,'');
+    let target = ev.target;
+    if ((target.tagName && target.tagName.search(/^(li|div|span|svg|path)$/i) === 0 )  ||
+        target.nodeName.search(/^(#text)$/i) === 0)
+    {
+        if (!target.tagName)
+            target = target.parentNode;
+        if (target.tagName.search(/^li$/i) !== 0)
+            target = target.closest("li");
+        if (target !== null)
+            target.className = target.className.replace(/ dragging\b/,'');
+    }
 }
 
 
@@ -222,7 +242,7 @@ function setDeletable( li )
     if (button)
     {
         button.className = "delete-button";
-        button.title = "Delete entry";
+        button.title = browser.i18n.getMessage("prefs-delete");
         button.addEventListener( "click", event => {
             deleteEntry( li );
         } );

@@ -513,7 +513,7 @@ function openLink( menuItemId, tabId, withShift )
             console.error("URL Link failed to determine origin tab for '" + lnk + "' request, can't set clipboard!")
             return;
         }
-        lnk = browser.extension.getURL( "manual.html ");
+        lnk = browser.extension.getURL( "manual.html");
         force_active = true;
     }
 
