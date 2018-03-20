@@ -100,24 +100,37 @@ function getMenuFormat( formatstr )
 }
 
 
-// Create selection submenu items for each of the two non-URL selection menus
-function onContextMenuCreated( menuId )
+// Wrap browser.menus.create for optional parentId
+function browserMenusCreate( parentId, options )
 {
+    // Only add parent if it's set
+    if (parentId !== "")
+        options.parentId = parentId;
+
+    // Do it
+    browser.menus.create( options );
+}
+
+
+// Create selection submenu items for each of the two non-URL selection menus
+function onContextMenuCreated( menuId, useAsParent )
+{
+    // Parent ID to use - to cater for the text submenu being promoted to the main menu
+    let parentId = ( useAsParent  ?  menuId  :  "" );
+
     // Create always-there menus
     let text = removeAccess( browser.i18n.getMessage("unaltered") );
-    browser.menus.create({
+    browserMenusCreate( parentId, {
         id: menuId + "-unaltered",
-        title: text,
-        parentId: menuId
+        title: text
     });
 
     // Now create prefs menus
     if (prefs.hasOwnProperty("submenus"))
     {
         // Separator
-        browser.menus.create({
+        browserMenusCreate( parentId, {
             id: menuId + "-separator",
-            parentId: menuId,
             type: "separator"
         });
 
@@ -130,19 +143,17 @@ function onContextMenuCreated( menuId )
             if (formatstr.search(/^-+$/) === 0)
             {
                 // Sep.
-                browser.menus.create({
+                browserMenusCreate( parentId, {
                     id: menuId + "-pref-" + n,
-                    parentId: menuId,
                     type: "separator"
                 });
             }
             else
             {
                 // Menu item
-                browser.menus.create({
+                browserMenusCreate( parentId, {
                     id: menuId + "-pref-" + n,
-                    title: getMenuText( formatstr ),
-                    parentId: menuId
+                    title: getMenuText( formatstr )
                 });
             }
         }
@@ -156,7 +167,7 @@ function browserMenusRemove( id )
 {
     ++menusDeleting;
     browser.menus.remove( id ).then( result => {
-        // Upon last deleteion performed, can recreate menu tree
+        // Upon last deletion performed, can recreate menu tree
         --menusDeleting;
         if (menusDeleting == 0)
             createContextMenus()
@@ -264,23 +275,40 @@ function createContextMenus()
     }
 
     // Sub-menus for text
+    // However, if only one of the sub-menus is enabled (open here or open tab) then we don't need another submenu,
+    // so add the items to the parent.  The always-show-submenu option overrides this.
     if (wantTxtMenu  ||  menuChanged)
     {
         currentTxtMenu = true;
         menuChanged = false;
 
-        if (!prefs.hidetab)
-            browser.menus.create({
-                id: "open-selection-in-new-tab",
-                title: removeAccess( browser.i18n.getMessage("open-selection-in-new-tab") ),
-                contexts: ["selection","link"]
-            }, () => onContextMenuCreated("open-selection-in-new-tab",true) );
-        if (!prefs.hideopen)
-            browser.menus.create({
-                id: "open-selection",
-                title: removeAccess( browser.i18n.getMessage("open-selection") ),
-                contexts: ["selection","link"]
-            }, () => onContextMenuCreated("open-selection",false) );
+        // Just one or both?
+        if (!prefs.forcesubmenu  &&  !prefs.hidetab  &&  prefs.hideopen)
+        {
+            // Doing new-tab open only, include on main menu
+            onContextMenuCreated( "open-selection-in-new-tab", false );
+        }
+        else if (!prefs.forcesubmenu  &&  prefs.hidetab  &&  !prefs.hideopen)
+        {
+            // Doing straight open only, include on main menu
+            onContextMenuCreated( "open-selection", false );
+        }
+        else
+        {
+            // Want both (or forcing submenu), need submenus to distinguish which
+            if (!prefs.hidetab)
+                browser.menus.create({
+                    id: "open-selection-in-new-tab",
+                    title: removeAccess( browser.i18n.getMessage("open-selection-in-new-tab") ),
+                    contexts: ["selection","link"]
+                }, () => onContextMenuCreated( "open-selection-in-new-tab", true ) );
+            if (!prefs.hideopen)
+                browser.menus.create({
+                    id: "open-selection",
+                    title: removeAccess( browser.i18n.getMessage("open-selection") ),
+                    contexts: ["selection","link"]
+                }, () => onContextMenuCreated( "open-selection", true ) );
+        }
     }
 
     // Separator
