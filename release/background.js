@@ -479,7 +479,7 @@ function fixURL(url)
 
 
 // Handle request to open a link from a menu selection
-function openLink( menuItemId, tabId, withShift )
+function openLink( menuItemId, tabId, mods )
 {
     // Shouldn't come in here with no selection now.
     if (activeSelection.length === 0)
@@ -520,8 +520,26 @@ function openLink( menuItemId, tabId, withShift )
     let lnk = activeSelection;
     if (lnk == '')
         return;
-    lnk = fixURL( prefix + lnk + suffix );
+    lnk = prefix + lnk + suffix;
 
+    // |p on the end of a URL denotes always-open-in-private-window
+    let optidx = lnk.search(/\|p/i);
+    if (optidx != -1)
+    {
+        // Have options
+        let opts = lnk.substr(optidx);
+        lnk = lnk.substr( 0, optidx );
+
+        // Which?
+        if (opts.search(/p/i) != -1)
+            mods.ctrl = true;
+
+        if (prefs.debug)
+            console.log( `URL Link: options '${opts}'` );
+    }
+
+    // Fix up the link
+    lnk = fixURL( lnk );
     if (prefs.debug)
         console.log( `URL Link: fixed '${lnk}'` );
 
@@ -546,36 +564,50 @@ function openLink( menuItemId, tabId, withShift )
     }
 
     // How to open?
-    if (inTab)
+    // Ctrl overrides all, sends to private window
+    if (mods.ctrl)
     {
-        // Tab
-        let props = {
-            "active": !prefs.inbackground || force_active,
-            "url": lnk
-        };
-        if (firefoxVersion >= 57)
-            props["openerTabId"] = tabId;
-        browser.tabs.create( props );
+        // Private window
+        browser.windows.create({
+            // TBD unsupported by Firefox @v56-57dev  "focused": true,
+            "url": lnk,
+            "incognito": true
+        });
     }
     else
     {
-        // New window?  And <Shift> selects oppopsite of current pref.
-        var newWindow = ( (!prefs.newwindow  &&  withShift)  ||  (prefs.newwindow  &&  !withShift) );
-        if (newWindow)
+        // Normal, honour relevant menu
+        if (inTab)
         {
-            // New window
-            browser.windows.create({
-                // TBD unsupported by Firefox @v56-57dev  "focused": true,
+            // Tab
+            let props = {
+                "active": !prefs.inbackground || force_active,
                 "url": lnk
-            });
+            };
+            if (firefoxVersion >= 57)
+                props["openerTabId"] = tabId;
+            browser.tabs.create( props );
         }
         else
         {
-            // Follow link
-            browser.tabs.update(
-                tabId,
-                { "url": lnk }
-            );
+            // New window?  And <Shift> selects oppopsite of current pref.
+            var newWindow = ( (!prefs.newwindow  &&  mods.shift)  ||  (prefs.newwindow  &&  !mods.shift) );
+            if (newWindow)
+            {
+                // New window
+                browser.windows.create({
+                    // TBD unsupported by Firefox @v56-57dev  "focused": true,
+                    "url": lnk
+                });
+            }
+            else
+            {
+                // Follow link
+                browser.tabs.update(
+                    tabId,
+                    { "url": lnk }
+                );
+            }
         }
     }
 
@@ -687,6 +719,7 @@ error => {
 browser.menus.onClicked.addListener( (info, tab) => {
     // Selection stats
     let withShift = (info.modifiers.includes("Shift"));
+    let withCtrl  = (info.modifiers.includes("Ctrl"));
 
     // On tab?
     let tabId = tab.id;
@@ -705,7 +738,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
     else
     {
         // Handle menu option
-        openLink( info.menuItemId, tabId, withShift );
+        openLink( info.menuItemId, tabId, { shift:withShift, ctrl:withCtrl } );
     }
 });
 
