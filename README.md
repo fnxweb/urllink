@@ -21,11 +21,17 @@ There are currently more translations than I care to keep listing here (thanks t
 
 URL Link has a preferences dialogue allowing customisation of the 'not a proper URL' sub-menu which converts, e.g., "sometext" to "www.sometext.com", so that locale-specific conversions can be added (like 'www.*.co.uk').
 
-Nicknames can be applied to the entries (such that the nickname appears in the menu, not the conversion string) by using a bar '|', e.g.:
+Nicknames can be applied to the entries (such that the nickname appears in the menu, not the conversion string) by using a bar '|', *e.g.*:
 
 "In Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0"
 
 It also allows separators to be added to the custom menu by using entries made up of hyphens, e.g. "--".
+
+Hold down **Shift** when opening a link in the current window to instead open in a new window.
+
+Either hold down **Control** when opening a link, or add **|p** to the end of a custom menu entry to make that entry always open in  a private window.  *E.g.*:
+
+"In Google|http://www.google.com/search?q=*&source-id=Mozilla%20Firefox&start=0|p"
 
 You can also set up custom search and replace strings (e.g., convert Windows driver letter to some file:///mnt/smb/ path for Linux users).
 
