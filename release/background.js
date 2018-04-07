@@ -415,8 +415,8 @@ function onMessage( message, senderPort )
 }
 
 
-// utf8Encode funny characters
-function utf8Encode(url)
+// Hex encode funny characters ("%xx")
+function hexEncode(url)
 {
     let retval = '';
     let len = url.length;
@@ -467,12 +467,12 @@ function fixURL(url)
     // Change common faults
     url = url.replace(/&amp;/ig,'&');
 
-    // UTF-8 encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
+    // Hex encode the URL to get rid of illegal characters. 'escape' would give us '%uXXXX's here,
     // but that seems to be illegal.
     // Addendum:  let's not do this for Windows file: links, as an attempt to correctly handle non-Latin1
-    // filenames
-    if (url.search(/^(\/\/|[A-Za-z]:|file:\/\/\/[A-Za-z]:)/) != 0)
-        url = utf8Encode(url);
+    // filenames (file:///X:/ or file://///server/share/)
+    if (url.search(/^(\/\/|[A-Za-z]:|file:\/\/\/[A-Za-z]:)|file:\/\/\/\/\//) != 0)
+        url = hexEncode(url);
 
     return url;
 }
