@@ -362,8 +362,8 @@ function defaultPrefs()
 
         // Search and replace
         "sandr" : [
-            '^//||file:///',            // convert Windows UNC into file: URL
-            '^([A-Za-z]:)||file:///$1'  // convert Windows drive letter into file: URL
+            '^//([^/])||file://///$1',  // convert Windows UNC into file:///// URL - was erroneously '^//||file:///'
+            '^([A-Za-z]:)||file:///$1'  // convert Windows drive letter into file:/// URL
             ]
 
     };
@@ -689,6 +689,13 @@ browser.storage.local.get("preferences").then( results => {
                 delete prefs[pref];
                 writePrefs = true;
             }
+    }
+
+    // Patch up old defaults - whoopsie
+    if (prefs.sandr.length  &&  prefs.sandr[0] === '^//||file:///')
+    {
+        prefs.sandr[0] = defaults.sandr[0];
+        writePrefs = true;
     }
 
     // Check version

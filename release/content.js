@@ -306,13 +306,12 @@ function processSelection( event )
     let isLink = (event.target.tagName.search(/^a$/i) >= 0  ?  true  :  false);
     let isInput = (typeof(field.selectionStart) === "number");
 
-    // Handle context
+    // Handle selection within textbox
     if (isInput)
-    {
-        // Ask input for selection
         lnk = getTextBoxText( field );
-    }
-    else if (lnk.length)
+
+    // Process text or hyperlink
+    if (lnk.length)
     {
         // Use selected text
         lnk = tidySelection( lnk );
