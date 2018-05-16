@@ -1,5 +1,7 @@
 **URL Link** is a small Firefox and Thunderbird extension that allows you to select a non-URL in a mail/news message or web-page, and open it in a browser window.
 ___
+[![Build Status](https://travis-ci.org/fnxweb/urllink.svg?branch=master)](https://travis-ci.org/fnxweb/urllink)
+
 URL Link has been wholly re-written to be a WebExtension. **This new version will not work on Thunderbird as it does not support WebExtensions.** I may have to release a separate forked copy of URL Link just for Thunderbird; if I do, I shall try to use the name *URL Link Legacy* so you can watch out for that.
 
 *Preference editing is back in and has been completely re-written — please report any issues to me or via a bug on GitHub.  The force-submenu option does not yet do anything as menus cannot currently be recreated on-the-fly (Firefox issue).*
