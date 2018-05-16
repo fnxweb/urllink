@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "lint": "web-ext lint --source-dir ./release/"
+    },
+    "dependencies": {
+        "web-ext": "2.6"
+    }
+}
