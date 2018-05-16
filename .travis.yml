@@ -1,0 +1,3 @@
+language: bash
+script: web-ext --version
+install: sudo npm install web-ext
