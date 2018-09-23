@@ -8,7 +8,7 @@
 
         <em:id>{139a120b-c2ea-41d2-bf70-542d9f063dfd}</em:id>
         <em:name>URL Link</em:name>
-        <em:version>2.04.5</em:version>
+        <em:version>2.05</em:version>
         <em:type>2</em:type>
         <em:description>Allow navigation to broken/unlinked URLs</em:description>
         <em:creator>Neil Bird</em:creator>
@@ -39,27 +39,27 @@
         <em:contributor>Lakrits/babelzilla.org - Swedish</em:contributor>
         <em:contributor>mostafa1990/babelzilla.org - Persian</em:contributor>
         <em:contributor>lloco/babelzilla.org - Portuguese (Portugal)</em:contributor>
-        <em:homepageURL>http://www.fnxweb.com/software-mozilla</em:homepageURL>
+        <em:homepageURL>https://addons.mozilla.org/en-GB/firefox/addon/url-link/</em:homepageURL>
         <em:iconURL>chrome://urllink/content/urllink.png</em:iconURL>
         <em:optionsURL>chrome://urllink/content/urllinkPrefs.xul</em:optionsURL>
         <!-- em:aboutURL>chrome://urllink/content/about.xul</em:aboutURL -->
         <!-- <em:updateURL>http://www.fnxweb.com/software/mozilla-update.rdf</em:updateURL> -->
 
         <!-- Firefox -->
-        <em:targetApplication>
-            <Description>
-                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-                <em:minVersion>3.0</em:minVersion>
-                <em:maxVersion>50.*</em:maxVersion>
-            </Description>
-        </em:targetApplication>
+        <!-- <em:targetApplication> -->
+        <!--     <Description> -->
+        <!--         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> -->
+        <!--         <em:minVersion>3.0</em:minVersion> -->
+        <!--         <em:maxVersion>50.*</em:maxVersion> -->
+        <!--     </Description> -->
+        <!-- </em:targetApplication> -->
 
         <!-- Thunderbird -->
         <em:targetApplication>
             <Description>
                 <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
-                <em:minVersion>3.0</em:minVersion>
-                <em:maxVersion>45.*</em:maxVersion>
+                <em:minVersion>60.0</em:minVersion>
+                <em:maxVersion>60.*</em:maxVersion>
             </Description>
         </em:targetApplication>
 
