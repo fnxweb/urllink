@@ -356,8 +356,8 @@ function defaultPrefs()
             'www.*.&net',
             '&ftp.*',
             '--',
-            'In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0',
-            'In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search'
+            'In &Google|https://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0',
+            'In Wi&kipedia|https://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search'
                 ],
 
         // Search and replace
