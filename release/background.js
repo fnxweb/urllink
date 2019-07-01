@@ -212,7 +212,7 @@ function updateContextMenus()
     //     WE NEED TO CALL THIS UPON PREFS CHANGES FOR THE TIME BEING TO ENSURE IT'S CREATED BEFORE IT'S NEEDED.
     //     Rejig whenever the above bug is included (allows dynamic menu updating) - not in FF dev as of end Oct '17!!
 
-    /// let isUrl = (activeSelection.search(/^(http|ftp)/) >= 0);
+    /// let isUrl = (activeSelection.search(/^(https?|ftp)/) >= 0);
 
     // Menus required
     wantUrlMenu = false; /// isUrl;
@@ -356,8 +356,8 @@ function defaultPrefs()
             'www.*.&net',
             '&ftp.*',
             '--',
-            'In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0',
-            'In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search'
+            'In &Google|https://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0',
+            'In Wi&kipedia|https://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search'
                 ],
 
         // Search and replace
@@ -696,6 +696,20 @@ browser.storage.local.get("preferences").then( results => {
     {
         prefs.sandr[0] = defaults.sandr[0];
         writePrefs = true;
+    }
+
+    // https migration of default prefs. - can delete later
+    for (sm in prefs['submenus'])
+    {
+        [ 'In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0',
+          'In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search' ].forEach(
+            function(oldpref) {
+                if (prefs['submenus'][sm] == oldpref)
+                {
+                    prefs['submenus'][sm] = oldpref.replace( /http:/, 'https:' );
+                    writePrefs = true;
+                }
+            });
     }
 
     // Check version
