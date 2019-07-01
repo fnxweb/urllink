@@ -698,6 +698,20 @@ browser.storage.local.get("preferences").then( results => {
         writePrefs = true;
     }
 
+    // https migration of default prefs. - can delete later
+    for (sm in prefs['submenus'])
+    {
+        [ 'In &Google|http://www.google.com/search?q=*&source-id=mozilla%20firefox&start=0',
+          'In Wi&kipedia|http://en.wikipedia.org/wiki/special:search?search=*&sourceid=mozilla-search' ].forEach(
+            function(oldpref) {
+                if (prefs['submenus'][sm] == oldpref)
+                {
+                    prefs['submenus'][sm] = oldpref.replace( /http:/, 'https:' );
+                    writePrefs = true;
+                }
+            });
+    }
+
     // Check version
     let thisVn = browser.runtime.getManifest().version;
     if (prefs.lastversion !== thisVn)
