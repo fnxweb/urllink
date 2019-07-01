@@ -212,7 +212,7 @@ function updateContextMenus()
     //     WE NEED TO CALL THIS UPON PREFS CHANGES FOR THE TIME BEING TO ENSURE IT'S CREATED BEFORE IT'S NEEDED.
     //     Rejig whenever the above bug is included (allows dynamic menu updating) - not in FF dev as of end Oct '17!!
 
-    /// let isUrl = (activeSelection.search(/^(http|ftp)/) >= 0);
+    /// let isUrl = (activeSelection.search(/^(https?|ftp)/) >= 0);
 
     // Menus required
     wantUrlMenu = false; /// isUrl;
