@@ -1,5 +1,5 @@
 // Handle identification of best selection
-//   content.js
+//   common.js
 //
 // Copyright (C) Neil Bird
 //
@@ -18,7 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-//// Utility functions previously in urllinkCommon.js
+//// Utility functions
 
 
 // Our prefs
@@ -121,27 +121,6 @@ function customSearchAndReplace( str )
 //// Browser page specific functionality
 
 
-// Get the best test from a textbox
-function getTextBoxText( field )
-{
-    // Field seems to sometimes be a div under the actual input object, so check parent
-    // TBD - is this still true under WebExtensions?
-    var tb;
-
-    if (field.value)
-        tb = field;
-    else if (field.parentNode && field.parentNode.value)
-        tb = field.parentNode;
-    else
-        return '';
-
-    if (tb.selectionStart == tb.selectionEnd)
-        return tb.value;
-    else
-        return tb.value.substring( tb.selectionStart, tb.selectionEnd );
-}
-
-
 // Some sites (e.g., kelkoo) obfuscate their js links with base64!
 function decode64(realinput)
 {
@@ -230,7 +209,7 @@ function getBestJavascriptArg(url)
         pos++;
     }
 
-    // Is out best actualy base64 (e.g,. kelkoo?)
+    // Is our best actually base64 (e.g,. kelkoo?)
     var decoded = fnxweb.urllink.decode64(best);
     if (decoded != '')
          best = decoded;
@@ -295,23 +274,20 @@ function unmangleURL( url, wasLink )
 }
 
 
-// Figure out best guess link to use if triggered
-function processSelection( event )
+// Figure out best guess link to use if triggered (info is menus.OnClickData)
+function processSelection( info )
 {
     // Determine official selected text
-    let lnk = window.getSelection().toString();
-    let field = document.activeElement;
+    let lnk = info.selectionText;
+
+    if (prefs.debug)
+        console.log( `URL Link: processSelection called with = '${lnk}'` );
 
     // ID target of click
-    let isLink = (event.target.tagName.search(/^a$/i) >= 0  ?  true  :  false);
-    let isInput = (typeof(field.selectionStart) === "number");
-
-    // Handle selection within textbox
-    if (isInput)
-        lnk = getTextBoxText( field );
+    let isLink = (typeof info.linkUrl !== "undefined"  &&  info.linkUrl.length > 0);
 
     // Process text or hyperlink
-    if (lnk.length)
+    if (typeof lnk !== "undefined"  &&  lnk.length)
     {
         // Use selected text
         lnk = tidySelection( lnk );
@@ -319,104 +295,16 @@ function processSelection( event )
     else if (isLink)
     {
         // Fall-back to target of link if nothing else
-        lnk = event.target.href;
+        lnk = info.linkUrl;
     }
+
+    // Anything at all?
+    if (typeof lnk === "undefined")
+        return "";
 
     // Final tidy-up (main extension code will have to fix up the final URL once prefix/suffix added)
     lnk = unmangleURL( lnk, isLink );
 
-    // Tell extension for the context menu handler
-    if (comms)
-        comms.postMessage( {
-            message:   "contextMenu",
-            selection: lnk
-        });
+    // Done
+    return lnk;
 }
-
-
-// Write text to the clipboard
-function setClipboardText( text )
-{
-    // Is there no easier way than this?
-    let textarea = document.createElement("textarea");
-
-    textarea.style.position = 'fixed';
-    textarea.style.top = 0;
-    textarea.style.left = 0;
-    textarea.style.width = '1px';
-    textarea.style.height = '1px';
-    textarea.style.padding = 0;
-    textarea.style.border = 'none';
-    textarea.style.outline = 'none';
-    textarea.style.boxShadow = 'none';
-    textarea.style.background = 'transparent';
-
-    textarea.value = text;
-
-    document.body.appendChild(textarea);
-
-    textarea.select();
-
-    try {
-        document.execCommand('copy');
-    } catch (err) {
-        console.error("URL Link was unable to copy '" + text + "' to the clipboard");
-    }
-
-  document.body.removeChild(textarea);
-}
-
-
-// Process right-click events for context menu
-function mousedownHandler( event )
-{
-    if (event.button === 2)
-        processSelection( event );
-}
-
-
-// Also catch context menu via keyboard
-function keydownHandler( event )
-{
-    if (event.shiftKey && event.key === "F10" || event.key === "ContextMenu")
-        processSelection( event );
-}
-
-
-//// Start up
-
-
-// Connection to extension
-var comms = browser.runtime.connect({name:"urllink-comms"});
-
-// Get prefs. on load and change
-comms.onMessage.addListener( message => {
-    if (prefs.debug)
-        console.log("URL Link page received message " + message["message"]);
-
-    if (message["message"] === "urllink-prefs")
-        prefs = message["prefs"];
-    else if (message["message"] === "urllink-set-clipboard")
-        setClipboardText( message["text"] );
-});
-
-// Request prefs. now
-comms.postMessage({"message":"urllink-prefs-req"});
-
-
-// Watch out for context mouse clicks
-window.addEventListener( "mousedown", mousedownHandler, true );
-
-// Watch out for keyboard context menus
-window.addEventListener( "keydown", keydownHandler, true );
-
-
-// Clear up on uninstall / update of main extension
-comms.onDisconnect.addListener( p => {
-    if (prefs.debug)
-        console.log( "URL Link page lost comms to extension" );
-
-    // Try again
-    comms = null;
-    setTimeout( function() { comms = browser.runtime.connect({name:"urllink-comms"}) }, 1000 );
-});

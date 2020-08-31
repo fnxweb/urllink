@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "3.4",
+    "version": "3.5beta1",
     "description": "__MSG_extensionDescription__",
     "author": "Neil Bird",
     "homepage_url": "https://addons.mozilla.org/en-GB/firefox/addon/url-link/",
@@ -10,7 +10,7 @@
     "applications": {
         "gecko": {
             "id": "{139a120b-c2ea-41d2-bf70-542d9f063dfd}",
-            "strict_min_version": "57.0"
+            "strict_min_version": "72.0"
         }
     },
 
@@ -20,22 +20,24 @@
     },
 
     "background": {
-        "scripts": [ "background.js" ]
+        "scripts": [ "common.js", "background.js" ]
     },
-
-    "content_scripts": [
-        {
-            "matches": [ "<all_urls>" ],
-            "exclude_globs": [ "about:*" ],
-            "js": [ "content.js" ],
-            "run_at": "document_end"
-        }
-    ],
 
     "options_ui": {
         "browser_style": true,
         "page": "preferences.html",
         "open_in_tab": true
+    },
+
+    "experiment_apis": {
+        "UrlLinkShellApi": {
+            "schema":"UrlLinkShellApi.json",
+            "parent" : {
+                "scopes" : ["addon_parent"],
+                "script" : "UrlLinkShellApi.js",
+                "paths" : [["urllink", "shell"]]
+            }
+        }
     },
 
     "permissions": [

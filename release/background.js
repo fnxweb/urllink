@@ -18,8 +18,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 
-// Prefs.
-var prefs = { "debug": false };
+// Prefs. defined in common.js
 
 // Comms to page codes
 var comms = [];
@@ -30,14 +29,14 @@ var currentTxtMenu = false; // text menu is set up
 var menuChanged    = false; // need to rebuild text menu anyway due to prefs change
 var submenuCount   = 0;     // number of text submenus created from prefs (for later deletion)
 
-// Current active selection
-var activeSelection = "";
-
 // Index into comms of last context menu trigger
 var lastComms = -1;
 
+// Thunderbird?
+var isThunderbird = (typeof messenger !== "undefined");
+
 // Functionality checks
-var firefoxVersion = 56;  // min release
+var mozillaVersion = 78;  // min release
 
 // Menus being deleted (need to waiut for them all to go before recreating so as to not dup. IDs)
 var menusDeleting = 0;
@@ -202,18 +201,6 @@ function updateContextMenus()
     if (prefs.debug)
         console.log("URL Link updating context menus");
 
-    // Selection analysis
-    // TBD selection analysis here;  currently, there is no point since we can't update the context menu once it's
-    //     been displayed, inc. deleting items.
-    //     Need something like onBeforeShow event.  See https://bugzilla.mozilla.org/show_bug.cgi?id=1215376
-    //     For now, all we can do is just always hide the URL menu items, and always show the text ones.
-    //     Basic functionality will only then work thorugh the “Unaltered” option of the text menu :-(
-    //     Most of the logic below is thus redundant, but keep it under the hope we'll get the old ability back.
-    //     WE NEED TO CALL THIS UPON PREFS CHANGES FOR THE TIME BEING TO ENSURE IT'S CREATED BEFORE IT'S NEEDED.
-    //     Rejig whenever the above bug is included (allows dynamic menu updating) - not in FF dev as of end Oct '17!!
-
-    /// let isUrl = (activeSelection.search(/^(https?|ftp)/) >= 0);
-
     // Menus required
     wantUrlMenu = false; /// isUrl;
     wantTxtMenu = true;  /// (!isUrl  ||  prefs.forcesubmenu);
@@ -232,6 +219,8 @@ function updateContextMenus()
         browserMenusRemove( "open-selected-url" );
         browserMenusRemove( "main-menu-separator" );
         browserMenusRemove( "main-menu-help" );
+        browserMenusRemove( "main-menu-changelog" );
+        browserMenusRemove( "main-menu-prefs" );
     }
     if (currentTxtMenu)
     {
@@ -241,6 +230,7 @@ function updateContextMenus()
         removeContextMenuItems( "open-selection" );
         browserMenusRemove( "main-menu-separator" );
         browserMenusRemove( "main-menu-help" );
+        browserMenusRemove( "main-menu-changelog" );
         browserMenusRemove( "main-menu-prefs" );
     }
 
@@ -320,14 +310,17 @@ function createContextMenus()
     // Help
     browser.menus.create({
         id: "main-menu-help",
-        title: browser.i18n.getMessage("help"),
-        contexts: ["selection","link"]
+        title: browser.i18n.getMessage("help")
+    });
+    // Changelog
+    browser.menus.create({
+        id: "main-menu-changelog",
+        title: browser.i18n.getMessage("prefs-changelog")
     });
     // Prefs
     browser.menus.create({
         id: "main-menu-prefs",
-        title: browser.i18n.getMessage("prefs"),
-        contexts: ["selection","link"]
+        title: browser.i18n.getMessage("prefs")
     });
 }
 
@@ -386,32 +379,25 @@ function onMessage( message, senderPort )
         }
 
     // Which message?
-    if (message["message"] === "contextMenu")
-        // Menu started
-        activeSelection = message["selection"];
-    else if (message["message"] === "urllink-prefs-req")
+    if (message["message"] === "urllink-prefs-req")
         // New page has asked for prefs, broadcast it
         senderPort.postMessage({"message":"urllink-prefs", "prefs": prefs});
     else if (message["message"] === "urllink-prefs-defaults-req")
-        // Default prefs. requested (prbably prefs. page' Defaults button), send them back
+        // Default prefs. requested (probably prefs. page' Defaults button), send them back
         senderPort.postMessage({"message":"urllink-prefs-defaults", "prefs": defaultPrefs()});
     else if (message["message"] === "urllink-prefs-changed")
     {
-        // New prefs. have been saved;  pass to all pages
+        // New prefs. have been saved;  pass on
         prefs = message["prefs"];
         menuChanged = true;
         for (let port in comms)
             comms[port].postMessage({"message":"urllink-prefs", "prefs": prefs});
 
-        // TBD rebuild menus now while we're not doing it on the fly
+        // Rebuild menus
         updateContextMenus();
     }
     else
         console.error("URL Link unrecognised message: " + JSON.stringify(message));
-
-    // Now we can create menus
-    // TBD no point re-doing them until FF supports regen. of menus on the fly (see above bug link)
-    ///updateContextMenus();
 }
 
 
@@ -479,10 +465,10 @@ function fixURL(url)
 
 
 // Handle request to open a link from a menu selection
-function openLink( menuItemId, tabId, mods )
+function openLink( selection, menuItemId, tabId, mods )
 {
     // Shouldn't come in here with no selection now.
-    if (activeSelection.length === 0)
+    if (selection.length === 0)
     {
         console.error("URL Link triggered with no selection");
         return;
@@ -514,10 +500,10 @@ function openLink( menuItemId, tabId, mods )
     }
 
     if (prefs.debug)
-        console.log( `URL Link: ${menuItemId} using '${prefix}' + '${activeSelection}' + '${suffix}'` );
+        console.log( `URL Link: ${menuItemId} using '${prefix}' + '${selection}' + '${suffix}'` );
 
     // Continue processing selection (it has been unmangled by the content script)
-    let lnk = activeSelection;
+    let lnk = selection;
     if (lnk == '')
         return;
     lnk = prefix + lnk + suffix;
@@ -548,17 +534,7 @@ function openLink( menuItemId, tabId, mods )
     if (lnk.search("file:") == 0)
     {
         // TBD we can't open file links at the moment.  Put in into the clipboard and get the user to use it.
-        // Also, we can't write to the clipboard from here, so send it back to the page ...
-        // Nothing we can do if the comms/port detection has failed :-(
-        if (lastComms >= 0  &&  lastComms < comms.length)
-        {
-            comms[lastComms].postMessage({"message":"urllink-set-clipboard", "text":lnk});
-        }
-        else
-        {
-            console.error("URL Link failed to determine origin tab for '" + lnk + "' request, can't set clipboard!")
-            return;
-        }
+        navigator.clipboard.writeText( lnk );
         lnk = browser.extension.getURL( "manual.html");
         force_active = true;
     }
@@ -584,21 +560,32 @@ function openLink( menuItemId, tabId, mods )
                 "active": !prefs.inbackground || force_active,
                 "url": lnk
             };
-            if (firefoxVersion >= 57)
+            // No openerTabId in TB [yet]?
+            if (!isThunderbird)
                 props["openerTabId"] = tabId;
             browser.tabs.create( props );
         }
         else
         {
-            // New window?  And <Shift> selects oppopsite of current pref.
-            var newWindow = ( (!prefs.newwindow  &&  mods.shift)  ||  (prefs.newwindow  &&  !mods.shift) );
+            // New window?  And <Shift> selects opposite of current pref.
+            let newWindow = ( (!prefs.newwindow  &&  mods.shift)  ||  (prefs.newwindow  &&  !mods.shift) );
             if (newWindow)
             {
                 // New window
-                browser.windows.create({
-                    // TBD unsupported by Firefox @v56-57dev  "focused": true,
-                    "url": lnk
-                });
+                if (!isThunderbird)
+                {
+                    // Normal way
+                    browser.windows.create({
+                        // TBD unsupported by Firefox @v56-57dev  "focused": true,
+                        "url": lnk
+                    });
+                }
+                else
+                {
+                    // For TB new window equates to external (default) browser
+                    // https://thunderbird.topicbox.com/groups/addons/Tfb76bff3d15a2a97-M6a856612da332185c00fba72/launch-external-url
+                    browser.urllink.shell.openExternal( lnk );
+                }
             }
             else
             {
@@ -610,9 +597,6 @@ function openLink( menuItemId, tabId, mods )
             }
         }
     }
-
-    // Done with that selection (get it again next context-click)
-    activeSelection = "";
 }
 
 
@@ -623,11 +607,15 @@ function openHelpWindow()
     let currentLocale = browser.i18n.getMessage( "__locale" );
     let lnk = browser.extension.getURL( `_locales/${currentLocale}/help.html` );
 
-    // Open help
-    browser.windows.create({
-        // TBD unsupported by Firefox @v56-57dev  "focused": true,
+    // Tab
+    let props = {
+        "active": !prefs.inbackground || force_active,
         "url": lnk
-    });
+    };
+    // No openerTabId in TB [yet]?
+    if (!isThunderbird)
+        props["openerTabId"] = tabId;
+    browser.tabs.create( props );
 }
 
 
@@ -640,7 +628,7 @@ browser.runtime.getBrowserInfo().then( result => {
     {
         let match = result["version"].match(/^([0-9]+)/);
         if (match  &&  match.length == 2)
-            firefoxVersion = parseInt( match[1] );
+            mozillaVersion = parseInt( match[1] );
     }
 });
 
@@ -738,6 +726,17 @@ error => {
 
 // Add menu handler
 browser.menus.onClicked.addListener( (info, tab) => {
+
+    if (prefs.debug)
+        console.log( `URL Link: onClicked listener called with info.menuItemId = '${info.menuItemId}'` );
+
+    // Selection
+    if (prefs.debug)
+        console.log( `URL Link: selection = '${info.selectionText}'` );
+    let selection = processSelection( info );
+    if (prefs.debug)
+        console.log( `URL Link: processed selection = '${selection}'` );
+
     // Selection stats
     let withShift = (info.modifiers.includes("Shift"));
     let withCtrl  = (info.modifiers.includes("Ctrl"));
@@ -751,6 +750,21 @@ browser.menus.onClicked.addListener( (info, tab) => {
         // Help window
         openHelpWindow();
     }
+    else if (info.menuItemId === "main-menu-changelog")
+    {
+        // Open changelog
+        let lnk = browser.extension.getURL( "changelog.html" );
+
+        // Tab
+        let props = {
+            "active": !prefs.inbackground || force_active,
+            "url": lnk
+        };
+        // No openerTabId in TB [yet]?
+        if (!isThunderbird)
+            props["openerTabId"] = tabId;
+        browser.tabs.create( props );
+    }
     else if (info.menuItemId === "main-menu-prefs")
     {
         // Prefs window
@@ -759,7 +773,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
     else
     {
         // Handle menu option
-        openLink( info.menuItemId, tabId, { shift:withShift, ctrl:withCtrl } );
+        openLink( selection, info.menuItemId, tabId, { shift:withShift, ctrl:withCtrl } );
     }
 });
 
@@ -811,18 +825,4 @@ browser.runtime.onInstalled.addListener( details => {
         if (showChangelog)
             browser.tabs.create({ "url": "changelog.html" });
     }
-});
-
-
-// Finally, add our required content script into all appropriate open tabs.
-// Originally https://discourse.mozilla.org/t/why-content-script-does-not-work-borderify-js/10009/3
-// Modifed to simply just for us.
-browser.tabs.query({}).then( tabs => {
-    browser.runtime.getManifest().content_scripts.forEach(({ js, css, matches, exclude_matches, }) => {
-        tabs.map(({ id, url, }) => {
-            if (!url  ||  url.match(/^(about|moz-extension):/)) { return; }
-            // No injected CSS yet  css && css.forEach(file => browser.tabs.insertCSS(id, { file, }));
-            try { js && js.forEach(file => chrome.tabs.executeScript(id, { file, }).catch( e => {} )); } catch (e) {}
-        });
-    });
 });
