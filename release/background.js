@@ -605,7 +605,7 @@ function openLink( selection, menuItemId, tabId, mods )
 
 
 // Open correct help window
-function openHelpWindow()
+function openHelpWindow( tabId )
 {
     // Useful trick to determine which of our locales is actually in use ...
     let currentLocale = browser.i18n.getMessage( "__locale" );
@@ -752,7 +752,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
     if (info.menuItemId === "main-menu-help")
     {
         // Help window
-        openHelpWindow();
+        openHelpWindow( tabId );
     }
     else if (info.menuItemId === "main-menu-changelog")
     {
