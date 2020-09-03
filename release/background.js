@@ -537,7 +537,7 @@ function openLink( selection, menuItemId, tabId, mods )
     let force_active = false;
     if (lnk.search("file:") == 0)
     {
-        // TBD we can't open file links at the moment.  Put in into the clipboard and get the user to use it.
+        // TBD we can't open file links at the moment.  Put it into the clipboard and get the user to use it.
         navigator.clipboard.writeText( lnk );
         lnk = browser.extension.getURL( "manual.html");
         force_active = true;
