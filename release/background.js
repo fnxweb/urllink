@@ -36,7 +36,7 @@ var lastComms = -1;
 var isThunderbird = (typeof messenger !== "undefined");
 
 // Functionality checks
-var mozillaVersion = 78;  // min release
+var mozillaVersion = 68;  // min release
 
 // Menus being deleted (need to waiut for them all to go before recreating so as to not dup. IDs)
 var menusDeleting = 0;
@@ -121,7 +121,8 @@ function onContextMenuCreated( menuId, useAsParent )
     let text = removeAccess( browser.i18n.getMessage("unaltered") );
     browserMenusCreate( parentId, {
         id: menuId + "-unaltered",
-        title: text
+        title: text,
+        contexts: ["selection","link"]
     });
 
     // Now create prefs menus
@@ -130,7 +131,8 @@ function onContextMenuCreated( menuId, useAsParent )
         // Separator
         browserMenusCreate( parentId, {
             id: menuId + "-separator",
-            type: "separator"
+            type: "separator",
+            contexts: ["selection","link"]
         });
 
         // Prefs.
@@ -144,7 +146,8 @@ function onContextMenuCreated( menuId, useAsParent )
                 // Sep.
                 browserMenusCreate( parentId, {
                     id: menuId + "-pref-" + n,
-                    type: "separator"
+                    type: "separator",
+                    contexts: ["selection","link"]
                 });
             }
             else
@@ -152,7 +155,8 @@ function onContextMenuCreated( menuId, useAsParent )
                 // Menu item
                 browserMenusCreate( parentId, {
                     id: menuId + "-pref-" + n,
-                    title: getMenuText( formatstr )
+                    title: getMenuText( formatstr ),
+                    contexts: ["selection","link"]
                 });
             }
         }
@@ -768,7 +772,24 @@ browser.menus.onClicked.addListener( (info, tab) => {
     else if (info.menuItemId === "main-menu-prefs")
     {
         // Prefs window
-        browser.runtime.openOptionsPage();
+        if (mozillaVersion >= 78)
+        {
+            // Not there at least as of 68, but is in 78
+            browser.runtime.openOptionsPage();
+        }
+        else
+        {
+            // Tab
+            let lnk = browser.extension.getURL( "preferences.html" );
+            let props = {
+                "active": !prefs.inbackground || force_active,
+                "url": lnk
+            };
+            // No openerTabId in TB [yet]?
+            if (!isThunderbird)
+                props["openerTabId"] = tabId;
+            browser.tabs.create( props );
+        }
     }
     else
     {
