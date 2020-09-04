@@ -586,12 +586,9 @@ function openLink( selection, menuItemId, tabId, mods )
                 }
                 else
                 {
-                    /*
-                     * Can't upload add-ons to AMO with experiments in
                     // For TB new window equates to external (default) browser
                     // https://thunderbird.topicbox.com/groups/addons/Tfb76bff3d15a2a97-M6a856612da332185c00fba72/launch-external-url
                     browser.urllink.shell.openExternal( lnk );
-                    */
                 }
             }
             else

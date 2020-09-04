@@ -10,7 +10,7 @@
     "applications": {
         "gecko": {
             "id": "{139a120b-c2ea-41d2-bf70-542d9f063dfd}",
-            "strict_min_version": "68.0"
+            "strict_min_version": "68.9.0"
         }
     },
 
@@ -27,6 +27,17 @@
         "browser_style": true,
         "page": "preferences.html",
         "open_in_tab": true
+    },
+
+    "experiment_apis": {
+        "UrlLinkShellApi": {
+            "schema":"UrlLinkShellApi.json",
+            "parent" : {
+                "scopes" : ["addon_parent"],
+                "script" : "UrlLinkShellApi.js",
+                "paths" : [["urllink", "shell"]]
+            }
+        }
     },
 
     "permissions": [
