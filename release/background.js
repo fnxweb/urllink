@@ -314,17 +314,20 @@ function createContextMenus()
     // Help
     browser.menus.create({
         id: "main-menu-help",
-        title: browser.i18n.getMessage("help")
+        title: browser.i18n.getMessage("help"),
+        contexts: ["selection","link"]
     });
     // Changelog
     browser.menus.create({
         id: "main-menu-changelog",
-        title: browser.i18n.getMessage("prefs-changelog")
+        title: browser.i18n.getMessage("prefs-changelog"),
+        contexts: ["selection","link"]
     });
     // Prefs
     browser.menus.create({
         id: "main-menu-prefs",
-        title: browser.i18n.getMessage("prefs")
+        title: browser.i18n.getMessage("prefs"),
+        contexts: ["selection","link"]
     });
 }
 
@@ -565,7 +568,7 @@ function openLink( selection, menuItemId, tabId, mods )
                 "url": lnk
             };
             // No openerTabId in TB [yet]?
-            if (!isThunderbird)
+            if (!isThunderbird  &&  tabId != -1)
                 props["openerTabId"] = tabId;
             browser.tabs.create( props );
         }
@@ -594,10 +597,15 @@ function openLink( selection, menuItemId, tabId, mods )
             else
             {
                 // Follow link
-                browser.tabs.update(
-                    tabId,
-                    { "url": lnk }
-                );
+                if (tabId != -1)
+                    browser.tabs.update(
+                        tabId,
+                        { "url": lnk }
+                    );
+                else
+                    browser.tabs.update(
+                        { "url": lnk }
+                    );
             }
         }
     }
@@ -617,7 +625,7 @@ function openHelpWindow( tabId )
         "url": lnk
     };
     // No openerTabId in TB [yet]?
-    if (!isThunderbird)
+    if (!isThunderbird  &&  tabId != -1)
         props["openerTabId"] = tabId;
     browser.tabs.create( props );
 }
@@ -745,8 +753,10 @@ browser.menus.onClicked.addListener( (info, tab) => {
     let withShift = (info.modifiers.includes("Shift"));
     let withCtrl  = (info.modifiers.includes("Ctrl"));
 
-    // On tab?
-    let tabId = tab.id;
+    // On tab?  (tab is undefined pre TB 72 (68, at least)
+    let tabId = -1;
+    if (typeof tab !== "undefined")
+        tabId = tab.id;
 
     // Help?
     if (info.menuItemId === "main-menu-help")
@@ -765,7 +775,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
             "url": lnk
         };
         // No openerTabId in TB [yet]?
-        if (!isThunderbird)
+        if (!isThunderbird  &&  tabId != -1)
             props["openerTabId"] = tabId;
         browser.tabs.create( props );
     }
@@ -786,7 +796,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
                 "url": lnk
             };
             // No openerTabId in TB [yet]?
-            if (!isThunderbird)
+            if (!isThunderbird  &&  tabId != -1)
                 props["openerTabId"] = tabId;
             browser.tabs.create( props );
         }
