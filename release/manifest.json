@@ -4,7 +4,7 @@
     "version": "3.5.1",
     "description": "__MSG_extensionDescription__",
     "author": "Neil Bird",
-    "homepage_url": "https://addons.mozilla.org/en-GB/firefox/addon/url-link/",
+    "homepage_url": "https://github.com/fnxweb/urllink",
     "default_locale": "en_US",
 
     "applications": {
