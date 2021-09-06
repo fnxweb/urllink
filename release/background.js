@@ -542,7 +542,7 @@ function openLink( selection, menuItemId, tabId, mods )
     {
         // TBD we can't open file links at the moment.  Put it into the clipboard and get the user to use it.
         navigator.clipboard.writeText( lnk );
-        lnk = browser.extension.getURL( "manual.html");
+        lnk = browser.runtime.getURL( "manual.html");
         force_active = true;
     }
 
@@ -617,7 +617,7 @@ function openHelpWindow( tabId )
 {
     // Useful trick to determine which of our locales is actually in use ...
     let currentLocale = browser.i18n.getMessage( "__locale" );
-    let lnk = browser.extension.getURL( `_locales/${currentLocale}/help.html` );
+    let lnk = browser.runtime.getURL( `_locales/${currentLocale}/help.html` );
 
     // Tab
     let props = {
@@ -767,7 +767,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
     else if (info.menuItemId === "main-menu-changelog")
     {
         // Open changelog
-        let lnk = browser.extension.getURL( "changelog.html" );
+        let lnk = browser.runtime.getURL( "changelog.html" );
 
         // Tab
         let props = {
