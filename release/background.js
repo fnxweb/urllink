@@ -590,8 +590,7 @@ function openLink( selection, menuItemId, tabId, mods )
                 else
                 {
                     // For TB new window equates to external (default) browser
-                    // https://thunderbird.topicbox.com/groups/addons/Tfb76bff3d15a2a97-M6a856612da332185c00fba72/launch-external-url
-                    browser.urllink.shell.openExternal( lnk );
+                    browser.windows.openDefaultBrowser( lnk );
                 }
             }
             else
