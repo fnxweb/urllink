@@ -560,7 +560,8 @@ function openLink( selection, menuItemId, tabId, mods )
     else
     {
         // Normal, honour relevant menu
-        if (inTab)
+        // Let <shift> still open new windows if tab option is selected (useful if the open-in-window submenu is hidden).
+        if (inTab  &&  !mods.shift)
         {
             // Tab
             let props = {
@@ -575,7 +576,11 @@ function openLink( selection, menuItemId, tabId, mods )
         else
         {
             // New window?  And <Shift> selects opposite of current pref.
-            let newWindow = ( (!prefs.newwindow  &&  mods.shift)  ||  (prefs.newwindow  &&  !mods.shift) );
+            // .. unless its an open-in-tab selection, in which case <shift> always opens in window.
+            let newWindow =
+                ( inTab  &&  mods.shift )  ||
+                ( !inTab  &&
+                    ( (!prefs.newwindow  &&  mods.shift)  ||  (prefs.newwindow  &&  !mods.shift) ) );
             if (newWindow)
             {
                 // New window
