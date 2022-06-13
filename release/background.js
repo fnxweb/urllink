@@ -47,7 +47,7 @@ let wantTxtMenu = true;  /// (!isUrl  ||  prefs.forcesubmenu);
 
 
 // Extract accelkey from label
-// TBD I don't know, this is getting ridiculous.  No menu accesskeys in webextensions yet!
+// TBD Sort out accesskeys in webextensions
 //     https://bugzilla.mozilla.org/show_bug.cgi?id=1320462
 // Going to go on the presumption that FF will honour & in text as Chrome does, and not have to set the shortcut
 // as a separate field like we had to do with XUL.  So for now, this is just a stub to clean up the text so & isn't displayed.
@@ -347,6 +347,7 @@ function defaultPrefs()
         "lastversion"  : '',
         "newwindow"    : false,
         "topmenu"      : true,
+        "prefpatch"    : 0,
 
         // Sub-menus
         "submenus" : [
@@ -700,6 +701,31 @@ browser.storage.local.get("preferences").then( results => {
     {
         prefs.sandr[0] = defaults.sandr[0];
         writePrefs = true;
+    }
+
+    // More complex prefs patching
+    if (prefs.prefpatch < 1)
+    {
+        console.log( 'URL Link: patching preferences up to 1' );
+        prefs.prefpatch = 1;
+        writePrefs = true;
+
+        // In Thunderbird, there's only really one sane set of working prefs., as most people want basic open-link options that
+        // launch the browser;  opening in a TB tab, or worse, in the current message window is, while possible, generally
+        // unexpected.
+        // So, as a one-off fix-up, force-change the prefs to match that on TB.  Anyone who really likes the other methods can
+        // then change their prefs. back and they won't be touched again.
+        // This patch will also apply the very first time we are run on TB (as default prefpatch is 0).
+        if (isThunderbird)
+        {
+            // Principle Of Least Astonishment:  one set of open-link options that launch/use the default browser.
+            prefs.forcesubmenu = false;
+            prefs.hideopen = false;
+            prefs.hidetab = true;
+            prefs.inbackground = false;
+            prefs.newwindow = true;
+            prefs.topmenu = true;
+        }
     }
 
     // https migration of default prefs. - can delete later
