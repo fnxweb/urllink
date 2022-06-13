@@ -17,9 +17,18 @@ body
 <p><b>PLEASE NOTE — If you have any problems, check the <a href="https://github.com/fnxweb/urllink/issues">bug-list on GitHub</a> first, but do feel free to email me (or create a new bug report).<br>
 Please don't use Mozilla Add-ons site reviews as a bug-reporting tool.</b>
 
-<p>See <a href="https://addons.mozilla.org/en-GB/firefox/addon/url-link/">the add-on page</a> for an explanation of required permissions.
+<p>See the <a href="https://addons.mozilla.org/en-GB/firefox/addon/url-link/">Firefox add-on page</a> for an explanation of required permissions.
+(there is also a <a href="https://addons.thunderbird.net/en-us/thunderbird/addon/url-link/">Thunderbird version of the page</a>)
 
 <pre>
+3.6 : 8-jun-2022
+- merge Thunderbird branch back into Firefox version now they should be able to be the same again
+- honour &lt;shift&gt; for a new window when selecting the explicit open-in-tab options
+- add one-off prefs. patch for Thunderbird to make behaviour the most commonly expected
+  (the prefs. can be changed back manually, but virtually no one wants links opened in TB tabs or the same window
+  the originating email is in;  attempts to replicate other reported TB prefs. oddities/failures failed, so presuming
+  these are all now fixed with this codebase and against latest TB/FF [~102] — if not, please raise a bug with details)
+
 3.5.2 : 5-sep-21
 - Push with bumped strict_max_version for Thunderbird due to use of experiments APIs
 
