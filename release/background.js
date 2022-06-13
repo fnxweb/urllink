@@ -36,7 +36,7 @@ var lastComms = -1;
 var isThunderbird = (typeof messenger !== "undefined");
 
 // Functionality checks
-var mozillaVersion = 68;  // min release
+var mozillaVersion = 91;  // min release
 
 // Menus being deleted (need to waiut for them all to go before recreating so as to not dup. IDs)
 var menusDeleting = 0;
@@ -786,24 +786,7 @@ browser.menus.onClicked.addListener( (info, tab) => {
     else if (info.menuItemId === "main-menu-prefs")
     {
         // Prefs window
-        if (mozillaVersion >= 78)
-        {
-            // Not there at least as of 68, but is in 78
-            browser.runtime.openOptionsPage();
-        }
-        else
-        {
-            // Tab
-            let lnk = browser.extension.getURL( "preferences.html" );
-            let props = {
-                "active": !prefs.inbackground || force_active,
-                "url": lnk
-            };
-            // No openerTabId in TB [yet]?
-            if (!isThunderbird  &&  tabId != -1)
-                props["openerTabId"] = tabId;
-            browser.tabs.create( props );
-        }
+        browser.runtime.openOptionsPage();
     }
     else
     {
