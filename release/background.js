@@ -38,7 +38,7 @@ var isThunderbird = (typeof messenger !== "undefined");
 // Functionality checks
 var mozillaVersion = 91;  // min release
 
-// Menus being deleted (need to waiut for them all to go before recreating so as to not dup. IDs)
+// Menus being deleted (need to wait for them all to go before recreating so as to not dup. IDs)
 var menusDeleting = 0;
 
 // Menus required

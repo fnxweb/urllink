@@ -2,7 +2,7 @@
 ___
 [![Build Status](https://travis-ci.org/fnxweb/urllink.svg?branch=master)](https://travis-ci.org/fnxweb/urllink)
 
-URL Link has been wholly re-written to be a WebExtension. **This new version will not work on Thunderbird as it does not support WebExtensions.** I may have to release a separate forked copy of URL Link just for Thunderbird; if I do, I shall try to use the name *URL Link Legacy* so you can watch out for that.
+URL Link has been wholly re-written to be a WebExtension.  This new version does now work on Thunderbird and so I have (currently) been able to retire the _Thunderbird_ branch.  However, I may not always update both versions on the respective add-ons sites if changes are particular to onle only application.
 
 *Preference editing is back in and has been completely re-written — please report any issues to me or via a bug on GitHub.  The force-submenu option does not yet do anything as menus cannot currently be recreated on-the-fly (Firefox issue).*
 
