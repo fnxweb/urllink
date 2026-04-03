@@ -1,3 +1,6 @@
+# THIS REPO HAS BEEN RELOCATED
+The new location is https://codeberg.org/fnxweb/urllink
+___
 **URL Link** is a small Firefox and Thunderbird extension that allows you to select a non-URL in a mail/news message or web-page, and open it in a browser window.
 ___
 [![Build Status](https://travis-ci.org/fnxweb/urllink.svg?branch=master)](https://travis-ci.org/fnxweb/urllink)
